@@ -1,18 +1,15 @@
-// console.log(angular);
-// const angular = require('angular');
-// const urlRouterProvider = require('angular-ui-router');
-// const animate = require('angular-animate');
-// const cookies = require('angular-cookies');
-// require('./less/test');
+import route from './common/route';
+import factory from './common/factory';
+import directive from './common/directive';
+import controller from './common/controller';
 
-angular.module('lkApp',['ui.router','ngAnimate','ngCookies']);
-
-// require('./route')(ngModule);
-// require('./factory')(ngModule);
-// require('./directive')(ngModule);
-// require('./controller')(ngModule);
-
-// angular.element(document).ready(function(){
-//     angular.bootstrap(document,['lkApp']);
-// });
+let myApp = angular.module('lkApp',['ui.router','ngAnimate','ngCookies']);
+myApp.controller('AppCtrl',['$rootScope','$scope',function($rootScope,$scope){
+    // $scope.name = 'dd';
+    // console.log($rootScope);
+}]);
+route(myApp);
+// factory(myApp);
+// directive(myApp);
+// controller(myApp);
 

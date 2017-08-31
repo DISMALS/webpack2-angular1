@@ -19,7 +19,7 @@ let npmEvent = process.env.npm_lifecycle_event;
 let config = (npmEvent == 'dev' ? webpackDev : webpackProduc);
 
 config.entry = {
-    vendor:'./app/vendor.js',
+    vendor:'./app/config/vendor.js',
     index:path.join(__dirname,'./app/index.js')
 };
 
