@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="lkApp">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
 </head>
-<body ng-controller="AppCtrl">
+<body>
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -16,7 +17,9 @@
         <h3>{{name}}</h3>
     </div> -->
     <div ui-view></div>
+    <!-- <div ui-view="header"></div>
+    <div ui-view="leftside"></div> -->
     <!-- We'll also add some navigation: -->
-    <a ui-sref="/login">State 1</a>
+    <!-- <a ui-sref="main">State 1</a> -->
 </body>
 </html>

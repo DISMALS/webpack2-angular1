@@ -1,6 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const uglifyJs = require('uglifyjs-webpack-plugin');
+const fs = require('fs');
+
+//获取所有的html文件
+let htmlTpl = require('./resolvehtml')('./app/view/','/view/');
 
 //从打包文件中抽离css文件
 const extractTextPlugin = require('extract-text-webpack-plugin');
@@ -24,8 +28,8 @@ config.entry = {
 };
 
 config.output = {
-    publicPath:(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com'),  //外部引用的根地址
-    path:path.join(__dirname,'/build'),
+    publicPath:(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com'),  //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
+    path:path.resolve(__dirname,'build'),
     filename : (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
     chunkFilename : (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
     libraryTarget:"umd",
@@ -139,5 +143,16 @@ if(npmEvent == 'dev'){
     ]
     config.plugins.concat(pluginArr);
 }
+
+//循环获取html模板，并输出到打包的文件目录中
+// htmlTpl.map((html) => {
+//     config.plugins.push(
+//         new htmlWebpackPlugin({
+//             filename:html,
+//             template:path.join('./app',html),
+//             minify:false
+//         })
+//     )
+// });
 
 module.exports = config;
