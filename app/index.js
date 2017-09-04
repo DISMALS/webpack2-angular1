@@ -7,5 +7,6 @@ angular.module('lkApp',[
     ($urlRouterProvider, $locationProvider) => {
         $urlRouterProvider.otherwise("login");
         $locationProvider.html5Mode(true);
+        // $locationProvider.hashPrefix('!');
     }
 ]);

@@ -27,7 +27,7 @@ module.exports = angular.module('lkApp.home',[]).config(['$stateProvider',
             }
         })
         .state('home.main',{
-             url:'',
+             url:'/main',
             templateProvider:($q) => {
                 const deferred = $q.defer();
                 require.ensure(['./main.html'],(require) => {
@@ -39,12 +39,12 @@ module.exports = angular.module('lkApp.home',[]).config(['$stateProvider',
             controller:'homeMainCtrl',
             controllerAs:'homMainevm',
             resolve:{
-                'lkApp.home.main':($q,$ocLazyLoad) => {
+                'lkApp.home':($q,$ocLazyLoad) => {
                     const deferred = $q.defer();
                     require.ensure(['./main-controller.js'],(require) => {
                         const mod = require('./main-controller.js');
                         $ocLazyLoad.load({
-                            name:'lkApp.home.main'
+                            name:'lkApp.home'
                         });
                         deferred.resolve(mod.controller);
                     },'home-main-ctrl');
