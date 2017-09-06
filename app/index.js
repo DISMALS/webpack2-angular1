@@ -1,8 +1,11 @@
+require('../less/test.less');
 angular.module('lkApp',[
     'ui.router',
     'oc.lazyLoad',
     'ngCookies',
-    require('./common/routing.js')
+    'ui.tree',
+    require('./common/routing.js'),
+    require('./common/service.js')
 ])
 .run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
     ($rootScope, $state, $stateParams, $timeout, $cookies) => {
@@ -29,9 +32,10 @@ angular.module('lkApp',[
             url:'/home',
             templateProvider:($q) => {
                 const deferred = $q.defer();
-                require.ensure(['./view/common/html/home.html'],(require) => {
+                require.ensure(['./view/common/html/home.html','../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css'],(require) => {
                     const template = require('./view/common/html/home.html');
-                    deferred.resolve(template);
+                    const uiTreeCss = require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
+                    deferred.resolve([template,uiTreeCss]);
                 },'home-tpl');
                 return deferred.promise;
             },
