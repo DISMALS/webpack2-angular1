@@ -1,0 +1,58 @@
+[
+    {
+        "title":"首页",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"系统管理",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"患者档案",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"电子病历",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"首页",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"首页",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"首页",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    },
+    {
+        "title":"首页",
+        "iconfont":"home-icon icon-common",
+        "state":"home.main",
+        "activeMatch":"home.main.*.*",
+        "child":[]
+    }
+]
