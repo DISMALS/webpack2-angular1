@@ -1,5 +1,6 @@
-module.exports = angular.module('lkApp.authorize').controller('authorizeCtrl', ['$scope', '$state', 'loginAuthorize',
-    ($scope, $state, loginAuthorize) => {
+module.exports = angular.module('lkApp.authorize').controller('authorizeCtrl', ['$rootScope','$scope', '$state', 'loginAuthorize',
+    ($rootScope,$scope, $state, loginAuthorize) => {
+        console.log($rootScope);
         loginAuthorize.test().then((data) => {
             console.log(data);
         });

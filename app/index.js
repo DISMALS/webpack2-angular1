@@ -11,6 +11,10 @@ angular.module('lkApp', [
         ($rootScope, $state, $stateParams, $timeout, $cookies) => {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
+            $rootScope.user = {
+                name:'wangyong',
+                age:23
+            };
 
             //禁用浏览器后退按钮
             $rootScope.$on('$locationChangeStart', function(event, from, to) {
