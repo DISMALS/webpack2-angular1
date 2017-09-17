@@ -1,7 +1,8 @@
-module.exports = angular.module('lkApp.home', []).config(['$stateProvider',
+const homeMod = angular.module('lkApp.home', []);
+module.exports = homeMod.config(['$stateProvider',
     ($stateProvider) => {
-        $stateProvider.state('home.main', {
-            url: '/main',
+        $stateProvider.state('sys.common.home', {
+            url: '/index',
             templateProvider: ($q) => {
                 const deferred = $q.defer();
                 require.ensure(['./html/main.html', './less/home.less'], (require) => {
@@ -14,14 +15,14 @@ module.exports = angular.module('lkApp.home', []).config(['$stateProvider',
             controller: 'homeMainCtrl',
             controllerAs: 'homMainevm',
             resolve: {
-                'lkApp.home': ($q, $ocLazyLoad) => {
+                'homeCtrl': ($q, $ocLazyLoad) => {
                     const deferred = $q.defer();
-                    require.ensure(['./controller/main-controller.js'], (require) => {
-                        const mod = require('./controller/main-controller.js');
+                    require.ensure(['./controller/home-controller'], (require) => {
+                        const ctrl = require('./controller/home-controller')(homeMod);
                         $ocLazyLoad.load({
                             name: 'lkApp.home'
                         });
-                        deferred.resolve(mod.controller);
+                        deferred.resolve(ctrl);
                     }, 'home-main-ctrl');
                     return deferred.promise;
                 }

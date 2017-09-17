@@ -1,5 +1,7 @@
 module.exports = angular.module('lkApp.router',[
-    require('../view/authorize/routers.js'),
-    require('../view/home/routers.js')
+    require('../view/common/common.routers'),
+    require('../view/login/login-routers'),
+    require('../view/home/home-routers'),
+    require('../view/patients/patients-routers')
 ]).name;
 

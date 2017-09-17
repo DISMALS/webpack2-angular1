@@ -4,6 +4,6 @@ let ops = {
     CH_AP_V_NAME: "X-App-Version",
 };
 module.exports = angular.module('lkApp.service', [
-        require('../view/common/service/http-service.js')
+        require('../view/common/service/http-service')
     ])
     .constant('APP_CONFIG', ops).name;

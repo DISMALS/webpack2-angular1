@@ -1,4 +1,4 @@
-module.exports = angular.module('lkApp.authorize', []).factory('loginAuthorize', ['$state', 'Http', '$cookies',
+module.exports = angular.module('lkApp.login', []).factory('loginService', ['$state', 'Http', '$cookies',
     ($state, Http, $cookies) => {
         const http = new Http();
 

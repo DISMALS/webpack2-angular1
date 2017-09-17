@@ -27,37 +27,16 @@ angular.module('lkApp', [
             });
         }
     ])
-    .config(['$urlRouterProvider', '$locationProvider', '$stateProvider',
-        ($urlRouterProvider, $locationProvider, $stateProvider) => {
-            $urlRouterProvider.otherwise("/authorize/login");
+    .config(['$urlRouterProvider', '$locationProvider','$stateProvider',
+        ($urlRouterProvider, $locationProvider,$stateProvider) => {
             $locationProvider.html5Mode(true);
             $locationProvider.hashPrefix('!');
-            $stateProvider.state('home', {
-                url: '/home',
-                templateProvider: ($q) => {
-                    const deferred = $q.defer();
-                    require.ensure(['./view/common/html/home.html', '../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css'], (require) => {
-                        const template = require('./view/common/html/home.html');
-                        const uiTreeCss = require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
-                        deferred.resolve([template, uiTreeCss]);
-                    }, 'home-tpl');
-                    return deferred.promise;
-                },
-                controller: 'homeCtrl',
-                controllerAs: 'homevm',
-                resolve: {
-                    'lkApp.home': ($q, $ocLazyLoad) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./view/common/controller/home-controller.js'], (require) => {
-                            const mod = require('./view/common/controller/home-controller.js');
-                            $ocLazyLoad.load({
-                                name: 'lkApp.home'
-                            });
-                            deferred.resolve(mod.controller);
-                        }, 'home-ctrl');
-                        return deferred.promise;
-                    }
-                }
-            })
+            $stateProvider.state('sys',{
+                abstract:true,
+                url:'/sys',
+                template:'<div ui-view class="sys"></div>'
+            });
+
+            $urlRouterProvider.otherwise("/login");
         }
-    ]);
+    ]).name;
