@@ -1,13 +1,14 @@
 require('../less/ui.less');
-angular.module('lkApp', [
+const lkApp = angular.module('lkApp', [
         'ui.router',
         'oc.lazyLoad',
         'ngCookies',
         'ui.tree',
         require('./common/routing.js'),
         require('./common/service.js')
-    ])
-    .run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
+])
+
+lkApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
         ($rootScope, $state, $stateParams, $timeout, $cookies) => {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
@@ -27,8 +28,16 @@ angular.module('lkApp', [
             });
         }
     ])
-    .config(['$urlRouterProvider', '$locationProvider','$stateProvider',
-        ($urlRouterProvider, $locationProvider,$stateProvider) => {
+    .config(['$urlRouterProvider', '$locationProvider','$stateProvider','$controllerProvider','$compileProvider','$filterProvider','$provide',
+        ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) => {
+            lkApp.controller = $controllerProvider.register;
+            lkApp.directive = $compileProvider.register;
+            lkApp.filter = $filterProvider.register;
+            lkApp.factory = $provide.factory;
+            lkApp.service = $provide.service;
+            lkApp.constant = $provide.constant;
+
+
             $locationProvider.html5Mode(true);
             $locationProvider.hashPrefix('!');
             $stateProvider.state('sys',{

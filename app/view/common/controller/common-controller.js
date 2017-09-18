@@ -11,7 +11,7 @@ class CommonCtrl {
 }
 
 module.exports = (ngMod) => {
-    ngMod.controller('commonCtrl',CommonCtrl)
-         .factory('commonService',require('../service/common-service.js')).name;
+    ngMod.controller('commonCtrl', CommonCtrl).name;
+         //.factory('commonService',require('../service/common-service.js')).name;
 }
     

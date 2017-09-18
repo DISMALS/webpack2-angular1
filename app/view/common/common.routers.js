@@ -20,11 +20,13 @@ module.exports = commonMod.config(['$stateProvider',
                     'commonCtrl': ($q, $ocLazyLoad) => {
                         const deferred = $q.defer();
                         require.ensure(['./controller/common-controller'], (require) => {
-                            const mod = require('./controller/common-controller')(commonMod);
+                            const ctrl = require('./controller/common-controller')(commonMod);
+                            const service = require('./service/common-service')(commonMod);
                             $ocLazyLoad.load({
-                                name: 'lkApp.common'
+                                name: 'lkApp.common',
+                                files: [ctrl, service]
                             });
-                            deferred.resolve(mod);
+                            deferred.resolve([service, ctrl]);
                         }, 'common-ctrl');
                         return deferred.promise;
                     }
