@@ -1,5 +1,5 @@
-class homeMainCtrl{
-    constructor($scope, $state){
+class homeMainCtrl {
+    constructor($scope, $state) {
         $scope.name = 'xiaohao';
         $scope.gostate = () => {
             $state.go('login');
@@ -10,8 +10,8 @@ class homeMainCtrl{
     }
 }
 
-
+homeMainCtrl.$inject = ['$scope', '$state'];
 
 module.exports = (ngModule) => {
-    ngModule.controller('homeMainCtrl',homeMainCtrl).name;
+    ngModule.controller('homeMainCtrl', homeMainCtrl);
 }

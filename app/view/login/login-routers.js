@@ -1,6 +1,7 @@
-module.exports = angular.module('lkApp.login', []).config(['$stateProvider',
-    ($stateProvider) => {
-        $stateProvider.state('login', {
+module.exports = (ngMold) => {
+    ngMold.config(['$stateProvider',
+        ($stateProvider) => {
+            $stateProvider.state('login', {
                 url: '/login',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();
@@ -16,15 +17,16 @@ module.exports = angular.module('lkApp.login', []).config(['$stateProvider',
                     'lkApp.login': ($q, $ocLazyLoad) => {
                         const deferred = $q.defer();
                         require.ensure(['./controller/login-controller.js'], (require) => {
-                            const mod = require('./controller/login-controller.js');
-                            $ocLazyLoad.load({
-                                name: 'lkApp.login'
+                            const ctrl = require('./controller/login-controller.js')(ngMold);
+                            $ocLazyLoad.inject({
+                                name: 'lkApp'
                             });
-                            deferred.resolve(mod.controller);
+                            deferred.resolve(ctrl);
                         }, 'login-ctrl');
                         return deferred.promise;
                     }
                 }
             });
-    }
-]).name;
+        }
+    ]).name;
+};

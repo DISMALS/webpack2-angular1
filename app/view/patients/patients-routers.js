@@ -1,32 +1,35 @@
-const patinetsMod = angular.module('lkApp.patinets',[]);
+// const patinetsMod = angular.module('lkApp.patinets',[]);
 
-module.exports = patinetsMod.config(['$stateProvider',
-    ($stateProvider) => {
-        $stateProvider.state('sys.common.patients',{
-            url:'/patients',
-            templateProvider:($q) => {
-                const deferred = $q.defer();
-                require.ensure(['./html/patients.html'],(require) => {
-                    let tpl = require('./html/patients.html');
-                    deferred.resolve(tpl);
-                },'patients-tpl');
-                return deferred.promise;
-            },
-            controller:'patientCtrl',
-            controllerAs:'patientVm',
-            resolve:{
-                'patientCtrl':($q,$ocLazyLoad) => {
+module.exports = (ngMold) => {
+    ngMold.config(['$stateProvider',
+        ($stateProvider) => {
+            $stateProvider.state('sys.common.patients', {
+                url: '/patients',
+                templateProvider: ($q) => {
                     const deferred = $q.defer();
-                    require.ensure(['./controller/patient-controller'],(require) => {
-                        let ctrl = require('./controller/patient-controller')(patinetsMod);
-                        $ocLazyLoad.load({
-                            name:'lkApp.patinets'
-                        });
-                        deferred.resolve(ctrl);
-                    },'patients-ctrl');
+                    require.ensure(['./html/patients.html'], (require) => {
+                        let tpl = require('./html/patients.html');
+                        deferred.resolve(tpl);
+                    }, 'patients-tpl');
                     return deferred.promise;
+                },
+                controller: 'patientCtrl',
+                controllerAs: 'patientVm',
+                resolve: {
+                    'patientCtrl': ($q, $ocLazyLoad) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./controller/patient-controller', './service/patients-service'], (require) => {
+                            let ctrl = require('./controller/patient-controller')(ngMold);
+                            let serv = require('./service/patients-service')(ngMold);
+                            $ocLazyLoad.inject({
+                                name: 'lkApp'
+                            });
+                            deferred.resolve([ctrl, serv]);
+                        }, 'patients-ctrl');
+                        return deferred.promise;
+                    }
                 }
-            }
-        })
-    }
-]).name;
+            })
+        }
+    ]).name;
+}

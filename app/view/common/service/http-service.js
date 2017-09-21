@@ -1,5 +1,5 @@
-module.exports = angular.module('lkApp.httpService', ['ngCookies'])
-    .factory('Http', ['$http', '$q', '$cookies', 'APP_CONFIG',
+module.exports = (ngMold) => {
+    ngMold.factory('Http', ['$http', '$q', '$cookies', 'APP_CONFIG',
         ($http, $q, $cookies, APP_CONFIG) => {
             function Http(apiName) {
                 var namePaths = apiName ? apiName.toString().split('|') : [];
@@ -148,3 +148,4 @@ module.exports = angular.module('lkApp.httpService', ['ngCookies'])
             return Http;
         }
     ]).name;
+};

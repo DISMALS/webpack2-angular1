@@ -1,12 +1,12 @@
 class PatientCtrl {
-    constructor($rootScope,$scope,$state,APP_CONFIG,patientsService){
+    constructor($rootScope, $scope, $state, APP_CONFIG, patientsService) {
         patientsService.patients().then((data) => {
             console.log(data);
         });
     }
 }
-
-module.exports = (ngMod) => {
-    ngMod.controller('patientCtrl',PatientCtrl)
-         .factory('patientsService',require('../service/patients-service')).name;
+PatientCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'patientsService'];
+module.exports = (ngMold) => {
+    ngMold.controller('patientCtrl', PatientCtrl);
+    // .factory('patientsService', require('../service/patients-service'))
 }

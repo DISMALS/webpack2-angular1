@@ -1,6 +1,13 @@
-module.exports = angular.module('lkApp.login').controller('loginCtrl',['$scope','$state',($scope,$state) => {
-    $scope.name = 'wangyong';
-    $scope.gostate = () => {
-        $state.go('sys.common.home');
+class LoginCtrl {
+    constructor($scope, $state) {
+        $scope.name = 'wangyong';
+        $scope.gostate = () => {
+            $state.go('sys.common.home');
+        }
     }
-}]).name;
+}
+LoginCtrl.$inject = ['$scope', '$state'];
+
+module.exports = (ngMold) => {
+    ngMold.controller('loginCtrl', LoginCtrl);
+};

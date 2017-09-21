@@ -3,7 +3,7 @@ let ops = {
     CH_AU_T_NAME: "X-Auth-Token",
     CH_AP_V_NAME: "X-App-Version",
 };
-module.exports = angular.module('lkApp.service', [
-        require('../view/common/service/http-service')
-    ])
-    .constant('APP_CONFIG', ops).name;
+module.exports = (ngMold) => {
+    require('../view/common/service/http-service')(ngMold);
+    ngMold.constant('APP_CONFIG', ops);
+}
