@@ -9,5 +9,8 @@ class LoginCtrl {
 LoginCtrl.$inject = ['$scope', '$state'];
 
 module.exports = (ngMold) => {
+    require.ensure(['../service/login-service'], (require) => {
+        let serv = require('../service/login-service')(ngMold);
+    }, 'login-serve');
     ngMold.controller('loginCtrl', LoginCtrl);
 };

@@ -18,13 +18,12 @@ module.exports = (ngMold) => {
                 resolve: {
                     'patientCtrl': ($q, $ocLazyLoad) => {
                         const deferred = $q.defer();
-                        require.ensure(['./controller/patient-controller', './service/patients-service'], (require) => {
+                        require.ensure(['./controller/patient-controller'], (require) => {
                             let ctrl = require('./controller/patient-controller')(ngMold);
-                            let serv = require('./service/patients-service')(ngMold);
                             $ocLazyLoad.inject({
                                 name: 'lkApp'
                             });
-                            deferred.resolve([ctrl, serv]);
+                            deferred.resolve(ctrl);
                         }, 'patients-ctrl');
                         return deferred.promise;
                     }
