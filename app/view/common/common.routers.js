@@ -1,8 +1,8 @@
-const commonMod = angular.module('lkApp.common',[]);
+const commonMod = angular.module('lkApp.common', []);
 
 module.exports = commonMod.config(['$stateProvider',
-        ($stateProvider) => {
-            $stateProvider
+    ($stateProvider) => {
+        $stateProvider
             .state('sys.common', {
                 url: '/common',
                 templateProvider: ($q) => {
@@ -26,11 +26,11 @@ module.exports = commonMod.config(['$stateProvider',
                                 name: 'lkApp.common',
                                 files: [ctrl, service]
                             });
-                            deferred.resolve([service, ctrl]);
+                            deferred.resolve(ctrl);
                         }, 'common-ctrl');
                         return deferred.promise;
                     }
                 }
             })
-        }
-    ]).name;
+    }
+]).name;
