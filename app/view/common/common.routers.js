@@ -2,13 +2,12 @@ module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
             $stateProvider
-                .state('sys.common', {
+                .state('common', {
                     url: '/common',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
                         require.ensure(['./html/common.html'], (require) => {
                             const template = require('./html/common.html');
-                            // const uiTreeCss = require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
                             deferred.resolve(template);
                         }, 'common-tpl');
                         return deferred.promise;

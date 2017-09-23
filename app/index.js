@@ -1,3 +1,6 @@
+require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
+
+
 require('../less/ui.less');
 const lkApp = angular.module('lkApp', [
     'ui.router',
@@ -51,11 +54,11 @@ lkApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$con
 
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
-        $stateProvider.state('sys', {
-            abstract: true,
-            url: '/sys',
-            template: '<div ui-view class="sys"></div>'
-        });
+        // $stateProvider.state('sys', {
+        //     abstract: true,
+        //     url: '/sys',
+        //     template: '<div ui-view class="sys"></div>'
+        // });
 
         $urlRouterProvider.otherwise("/login");
     }

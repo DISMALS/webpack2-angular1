@@ -2,7 +2,7 @@ class LoginCtrl {
     constructor($scope, $state) {
         $scope.name = 'wangyong';
         $scope.gostate = () => {
-            $state.go('sys.common.home');
+            $state.go('common.home');
         }
     }
 }

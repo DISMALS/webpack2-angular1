@@ -8,8 +8,8 @@ let htmlTpl = require('./resolvehtml')('./app/view/', '/view/');
 
 //从打包文件中抽离css文件
 const extractTextPlugin = require('extract-text-webpack-plugin');
-const cssOne = new extractTextPlugin('css/[name]-one.css?[contenthash:6]');
-const cssTwo = new extractTextPlugin('css/[name]-two.css?[contenthash:6]');
+const cssOne = new extractTextPlugin('css/[name]-main.css?[contenthash:6]');
+const cssTwo = new extractTextPlugin('css/[name]-common.css?[contenthash:6]');
 // 生成html文件
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -47,6 +47,21 @@ config.module = {
                 }
             }]
         },
+        { //编译css文件
+            test: /\.css$/,
+            use: cssTwo.extract({
+                fallback: 'style-loader',
+                use: [{
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            minimize: false
+                        }
+                    },
+                    'resolve-url-loader'
+                ]
+            })
+        },
         { //编译解析less文件
             test: /\.less$/,
             use: cssOne.extract({
@@ -61,21 +76,6 @@ config.module = {
                     'postcss-loader',
                     'resolve-url-loader',
                     'less-loader'
-                ]
-            })
-        },
-        { //编译css文件
-            test: /\.css$/,
-            use: cssTwo.extract({
-                fallback: 'style-loader',
-                use: [{
-                        loader: 'css-loader',
-                        options: {
-                            modules: false,
-                            minimize: false
-                        }
-                    },
-                    'resolve-url-loader'
                 ]
             })
         },

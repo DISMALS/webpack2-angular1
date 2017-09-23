@@ -2,7 +2,7 @@
 module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
-            $stateProvider.state('sys.common.home', {
+            $stateProvider.state('common.home', {
                 url: '/index',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();

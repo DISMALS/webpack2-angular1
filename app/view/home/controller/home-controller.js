@@ -5,7 +5,7 @@ class homeMainCtrl {
             $state.go('login');
         };
         $scope.goPatients = () => {
-            $state.go('sys.common.patients');
+            $state.go('common.patients');
         }
     }
 }
