@@ -10,6 +10,6 @@ PatientCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'patients
 module.exports = (ngMold) => {
     require.ensure(['../service/patients-service'], (require) => {
         require('../service/patients-service')(ngMold);
-    }, 'patients-serve');
+    }, './patients/patients-serve');
     ngMold.controller('patientCtrl', PatientCtrl);
 }
