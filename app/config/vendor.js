@@ -1,4 +1,5 @@
 import 'angular';
+import 'jquery';
 import 'angular-ui-router';
 import 'oclazyload';
 import 'angular-animate';
@@ -7,7 +8,6 @@ import 'angular-cookies';
 // import 'angular-sanitize';
 import 'angular-ui-bootstrap';
 import 'angular-ui-tree';
-import 'jquery';
 // import 'underscore';
 import 'iscroll';
-// import 'bootstrap';
+import 'bootstrap';

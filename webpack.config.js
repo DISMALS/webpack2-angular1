@@ -80,7 +80,7 @@ config.module = {
             })
         },
         { //编译图片
-            test: /\.(png|jpg|jpeg|gif|woff|woff2)$/,
+            test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf)$/,
             use: [{
                 loader: 'url-loader',
                 options: {

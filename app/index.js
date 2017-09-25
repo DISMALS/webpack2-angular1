@@ -1,12 +1,15 @@
 require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
-
+require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 
 require('../less/ui.less');
 const lkApp = angular.module('lkApp', [
+    'ngAnimate',
+    'LocalStorageModule',
     'ui.router',
     'oc.lazyLoad',
     'ngCookies',
-    'ui.tree'
+    'ui.tree',
+    'ui.bootstrap'
 ]);
 
 //集中加载路由文件以及公共服务
