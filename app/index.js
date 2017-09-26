@@ -15,7 +15,8 @@ const lkApp = angular.module('lkApp', [
     'ui.bootstrap',
     'ui.select',
     'toastr',
-    'angular-echarts'
+    'angular-echarts',
+    'btford.socket-io'
 ]);
 
 //集中加载路由文件以及公共服务
