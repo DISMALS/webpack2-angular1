@@ -1,5 +1,8 @@
 require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../node_modules/angular-toastr/dist/angular-toastr.min.css');
+require('../node_modules/ui-select/dist/select.min.css');
+
 
 require('../less/ui.less');
 const lkApp = angular.module('lkApp', [
@@ -9,7 +12,10 @@ const lkApp = angular.module('lkApp', [
     'oc.lazyLoad',
     'ngCookies',
     'ui.tree',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.select',
+    'toastr',
+    'angular-echarts'
 ]);
 
 //集中加载路由文件以及公共服务
