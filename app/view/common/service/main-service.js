@@ -1,5 +1,5 @@
 module.exports = (ngMod) => {
-    ngMod.factory('commonService', ['Http', '$cookies',
+    ngMod.factory('mainService', ['Http', '$cookies',
         (Http, $cookies) => {
             const http = new Http();
 

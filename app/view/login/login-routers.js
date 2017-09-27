@@ -14,12 +14,12 @@ module.exports = (ngMold) => {
                 controller: 'loginCtrl',
                 controllerAs: 'loginvm',
                 resolve: {
-                    'lkApp.login': ($q, $ocLazyLoad) => {
+                    'dryadApp.login': ($q, $ocLazyLoad) => {
                         const deferred = $q.defer();
                         require.ensure(['./controller/login-controller.js'], (require) => {
                             const ctrl = require('./controller/login-controller.js')(ngMold);
                             $ocLazyLoad.inject({
-                                name: 'lkApp'
+                                name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
                         }, 'login-ctrl');

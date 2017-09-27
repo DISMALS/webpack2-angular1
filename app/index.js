@@ -5,7 +5,7 @@ require('../node_modules/ui-select/dist/select.min.css');
 
 
 require('../less/ui.less');
-const lkApp = angular.module('lkApp', [
+const dryadApp = angular.module('dryadApp', [
     'ngAnimate',
     'LocalStorageModule',
     'ui.router',
@@ -20,10 +20,10 @@ const lkApp = angular.module('lkApp', [
 ]);
 
 //集中加载路由文件以及公共服务
-require('./common/routing.js')(lkApp);
-require('./common/service.js')(lkApp);
+require('./common/routing.js')(dryadApp);
+require('./common/service.js')(dryadApp);
 
-lkApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
+dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
     ($rootScope, $state, $stateParams, $timeout, $cookies) => {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
@@ -44,14 +44,14 @@ lkApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
     }
 ]);
 
-lkApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
+dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
     ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) => {
-        lkApp.controller = $controllerProvider.register;
-        lkApp.directive = $compileProvider.register;
-        lkApp.filter = $filterProvider.register;
-        lkApp.factory = $provide.factory;
-        lkApp.service = $provide.service;
-        lkApp.constant = $provide.constant;
+        dryadApp.controller = $controllerProvider.register;
+        dryadApp.directive = $compileProvider.register;
+        dryadApp.filter = $filterProvider.register;
+        dryadApp.factory = $provide.factory;
+        dryadApp.service = $provide.service;
+        dryadApp.constant = $provide.constant;
 
 
         // $ocLazyLoadProvider.config({

@@ -1,8 +1,8 @@
-// const homeMod = angular.module('lkApp.home', []);
+// const homeMod = angular.module('dryadApp.home', []);
 module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
-            $stateProvider.state('common.home', {
+            $stateProvider.state('dryad.home', {
                 url: '/index',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();
@@ -21,7 +21,7 @@ module.exports = (ngMold) => {
                         require.ensure(['./controller/home-controller'], (require) => {
                             const ctrl = require('./controller/home-controller')(ngMold);
                             $ocLazyLoad.inject({
-                                name: 'lkApp'
+                                name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
                         }, 'home-main-ctrl');

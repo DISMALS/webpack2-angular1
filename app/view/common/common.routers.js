@@ -2,30 +2,29 @@ module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
             $stateProvider
-                .state('common', {
-                    url: '/common',
+                .state('dryad', {
+                    url: '/dryad',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/common.html'], (require) => {
-                            const template = require('./html/common.html');
+                        require.ensure(['./html/main.html'], (require) => {
+                            const template = require('./html/main.html');
                             deferred.resolve(template);
-                        }, 'common-tpl');
+                        }, 'main-tpl');
                         return deferred.promise;
                     },
-                    controller: 'commonCtrl',
-                    controllerAs: 'commonvm',
+                    controller: 'mainCtrl',
+                    controllerAs: 'mainvm',
                     resolve: {
-                        'commonCtrl': ($q, $ocLazyLoad) => {
+                        'mainCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/common-controller'], (require) => {
-                                const ctrl = require('./controller/common-controller')(ngMold);
-                                // const service = require('./service/common-service')(ngMold);
+                            require.ensure(['./controller/main-controller'], (require) => {
+                                const ctrl = require('./controller/main-controller')(ngMold);
                                 $ocLazyLoad.inject({
-                                    name: 'lkApp',
+                                    name: 'dryadApp',
                                     files: [ctrl]
                                 });
                                 deferred.resolve(ctrl);
-                            }, 'common-ctrl');
+                            }, 'main-ctrl');
                             return deferred.promise;
                         }
                     }

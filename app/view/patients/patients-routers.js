@@ -1,9 +1,9 @@
-// const patinetsMod = angular.module('lkApp.patinets',[]);
+// const patinetsMod = angular.module('dryadApp.patinets',[]);
 
 module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
-            $stateProvider.state('common.patients', {
+            $stateProvider.state('dryad.patients', {
                 url: '/patients',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();
@@ -21,7 +21,7 @@ module.exports = (ngMold) => {
                         require.ensure(['./controller/patient-controller'], (require) => {
                             let ctrl = require('./controller/patient-controller')(ngMold);
                             $ocLazyLoad.inject({
-                                name: 'lkApp'
+                                name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
                         }, 'patients-ctrl');
