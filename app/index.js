@@ -69,7 +69,7 @@ dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$
 
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/authorize/login");
 
         // 允许跨域调用Web API
         $httpProvider.defaults.withCredentials = true;

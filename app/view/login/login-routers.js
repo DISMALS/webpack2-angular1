@@ -1,7 +1,20 @@
 module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
-            $stateProvider.state('login', {
+            $stateProvider
+            .state('authorize',{
+                abstract:true,
+                url:'/authorize',
+                templateProvider: ($q) => {
+                    const deferred = $q.defer();
+                    require.ensure(['./html/authorize.html'], (require) => {
+                        const template = require('./html/authorize.html');
+                        deferred.resolve(template);
+                    }, './login/authorize-tpl');
+                    return deferred.promise;
+                }
+            })
+            .state('authorize.login', { //登陆
                 url: '/login',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();
