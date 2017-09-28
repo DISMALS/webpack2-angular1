@@ -9,7 +9,7 @@ module.exports = (ngMold) => {
                         require.ensure(['./html/main.html'], (require) => {
                             const template = require('./html/main.html');
                             deferred.resolve(template);
-                        }, 'main-tpl');
+                        }, './common/main-tpl');
                         return deferred.promise;
                     },
                     controller: 'mainCtrl',
@@ -24,7 +24,7 @@ module.exports = (ngMold) => {
                                     files: [ctrl]
                                 });
                                 deferred.resolve(ctrl);
-                            }, 'main-ctrl');
+                            }, './common/main-ctrl');
                             return deferred.promise;
                         }
                     }

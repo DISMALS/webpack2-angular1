@@ -10,7 +10,7 @@ module.exports = (ngMold) => {
                     require.ensure(['./html/patients.html'], (require) => {
                         let tpl = require('./html/patients.html');
                         deferred.resolve(tpl);
-                    }, 'patients-tpl');
+                    }, './patients/patients-tpl');
                     return deferred.promise;
                 },
                 controller: 'patientCtrl',
@@ -24,7 +24,7 @@ module.exports = (ngMold) => {
                                 name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
-                        }, 'patients-ctrl');
+                        }, './patients/patients-ctrl');
                         return deferred.promise;
                     }
                 }

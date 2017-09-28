@@ -10,7 +10,7 @@ module.exports = (ngMold) => {
                         const template = require('./html/main.html');
                         const less = require('./less/home.less');
                         deferred.resolve([template, less]);
-                    }, 'home-main-tpl');
+                    }, './home/home-main-tpl');
                     return deferred.promise;
                 },
                 controller: 'homeMainCtrl',
@@ -24,7 +24,7 @@ module.exports = (ngMold) => {
                                 name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
-                        }, 'home-main-ctrl');
+                        }, './home/home-main-ctrl');
                         return deferred.promise;
                     }
                 }
