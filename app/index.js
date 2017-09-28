@@ -16,12 +16,15 @@ const dryadApp = angular.module('dryadApp', [
     'ui.select',
     'toastr',
     'angular-echarts',
-    'btford.socket-io'
+    'btford.socket-io',
+    'ui.timepicker',
+    'angularMoment'
 ]);
 
 //集中加载路由文件以及公共服务
 require('./common/routing.js')(dryadApp);
 require('./common/service.js')(dryadApp);
+require('./common/directive.js')(dryadApp);
 
 dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
     ($rootScope, $state, $stateParams, $timeout, $cookies) => {

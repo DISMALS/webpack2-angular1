@@ -8,7 +8,7 @@ module.exports = (ngMold) => {
                     require.ensure(['./html/login.html'], (require) => {
                         const template = require('./html/login.html');
                         deferred.resolve(template);
-                    }, 'login-tpl');
+                    }, './login/login-tpl');
                     return deferred.promise;
                 },
                 controller: 'loginCtrl',
@@ -22,7 +22,7 @@ module.exports = (ngMold) => {
                                 name: 'dryadApp'
                             });
                             deferred.resolve(ctrl);
-                        }, 'login-ctrl');
+                        }, './login/login-ctrl');
                         return deferred.promise;
                     }
                 }
