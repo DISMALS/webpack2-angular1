@@ -17,3 +17,4 @@ import '../../node_modules/angular-echarts/dist/angular-echarts.min'; //图表
 import '../../node_modules/angular-socket-io/socket.min'; //实时通信
 import '../../node_modules/angular-moment/angular-moment.min'; //时间日期转换
 import '../../node_modules/angular-jquery-timepicker/src/timepickerdirective.min'; //时间日期filter、directive
+import '../../node_modules/angular-block-ui/dist/angular-block-ui.min'; //弹窗锁屏

@@ -1,7 +1,7 @@
 // require('../service/common-service.js');
 class MainCtrl {
     constructor($rootScope, $scope, $state, APP_CONFIG, mainService) {
-        $scope.text = '这是主页的内容！';
+        $scope.text = '这是系统公共部分的内容！';
         console.log('这是common');
         console.log($rootScope);
         mainService.test().then(function(data) {

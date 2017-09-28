@@ -121,7 +121,7 @@ module.exports = (ngMold) => {
                     //是否需要自动消息
                     isAutoMsg: false,
                     // 检查输入的 TRANSFER 对象名称  对应你建的TRANSFER 名字
-                    transferClass: _config.transferClass || this._apiName || APP_CONFIG['TRANSFER_COMMON_NAME']
+                    // transferClass: _config.transferClass || this._apiName || APP_CONFIG['TRANSFER_COMMON_NAME']
                 }, _config);
             };
 
@@ -135,9 +135,9 @@ module.exports = (ngMold) => {
                 !(url === void 0) && arr.push(url);
 
                 var _url = arr.join('/');
-                if (_url.indexOf("?") === -1) {
-                    _url += "?v="; //+ APP_CONFIG.APP_VERSION
-                }
+                // if (_url.indexOf("?") === -1) {
+                //     _url += "?v="; //+ APP_CONFIG.APP_VERSION
+                // }
                 return _url;
             };
 

@@ -4,7 +4,7 @@ module.exports = (ngMold) => {
             let http = new Http();
 
             let _patients = () => {
-                return http.get('./app/config/data/patient.json');
+                return http.get('./app/config/data/patient.json', { isMask: true });
             }
 
             return {
