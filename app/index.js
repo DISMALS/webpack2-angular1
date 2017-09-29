@@ -83,7 +83,7 @@ dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$
     }
 ]);
 
-
+// 系统根控制器
 class DryadCtrl {
     constructor($rootScope, $scope, $uiBlock, APP_CONFIG, $injector, blockUI) {
         var scope = $scope;
