@@ -1,0 +1,112 @@
+@charset 'utf-8';
+.dryad{
+    width:100%;
+    height:100%;
+    .authorize{
+        width:100%;
+        height:100%;
+        background:url('../../images/loginbg.jpg') no-repeat top center;
+        background-size:100% 100%;
+        .login{
+            width:442px;
+            margin:0 auto;
+            h1{
+                margin:0;
+                color:@font-color-3;
+                font-size: @font-size-34;
+                letter-spacing:2.83px;
+                text-align:center;
+            }
+            .login-main{
+                width:374px;
+                margin:40px auto 50px;
+                .input-operate{
+                    background-color:@font-color-3;
+                    .border-radius(9.8px,9.8px,0px,0px);
+                    padding:56px 37px 15px;
+                    border-bottom:1px solid @font-color-9;
+                    form[name='login']{
+                        label{
+                            width:300px;
+                            height:40px;
+                            background: @input-bg-color;
+                            overflow:hidden;
+                            padding:0px 30px;
+                            line-height:40px;
+                            font-weight: normal;
+                            margin-bottom:10px;
+                            .border-radius(100px,100px,100px,100px);
+                            input[type='text']{
+                                border:none;
+                                background:none;
+                                float:left;
+                                width:218px;
+                                height:40px;
+                                font-size:14px;
+                                color: @font-color-1;
+                            }
+                        }
+                        .redioBtn{
+                            font-size: @font-size-14;
+                            color:@font-color-2;
+                            letter-spacing:0;
+                            text-align:center;
+                            line-height:20px;
+                            margin-bottom:10px;
+                        }
+                        .submite{
+                            height:40px;
+                            line-height:40px;
+                            // background:url('../../images/login-bg.png') no-repeat center top;
+                            text-align:center;
+                            font-size: @font-size-20;
+                            background:@icon-bg-color-2;
+                            .border-radius(60px,60px,60px,60px);
+                            box-shadow:0 7px 10px 0 rgba(0,166,200,0.21);
+                            margin-bottom:20px;
+                            a{
+                                color: @font-color-3;
+                            }
+                        }
+                        .forgetpass{
+                            height:20px;
+                            line-height:20px;
+                            font-size:14px;
+                            letter-spacing:0;
+                            text-align:center;
+                            a{
+                                color: @font-color-4;
+                            }
+                        }
+                        a{
+                            cursor: pointer;
+                            display: block;
+                            &:hover{
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+                .company-logo{
+                    height:84px;
+                    .border-radius(0px,0px,9.8px,9.8px);
+                    background:@font-color-3 url('../../images/company.png') no-repeat center;
+                }
+            }
+        }
+        .reset-password{
+            &:extend(.login);
+        }
+        .footer{
+            height:20px;
+            p{
+                font-family:'Microsoft YaHei';
+                font-size:@font-size-14;
+                color:@font-color-6;
+                letter-spacing:0.44px;
+                text-align:center;
+                line-height: 20px;
+            }
+        }
+    }
+}

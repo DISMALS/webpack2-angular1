@@ -1,16 +1,27 @@
+@charset 'UTF-8';
 html,body{
     width:100%;
     height:100%;
+    padding:0;
+    margin:0;
 }
 body{
     font-family: 'Microsoft YaHei';
-    margin:0;
-    padding:0;
     font-size:12px;
-    color:#555;
+    color:@font-color-5;
 }
 ul,li,ol,p,tt,td{
     list-style: none;
     margin:0;
     padding:0;
+}
+i,em,b,h1,h2,h3,h4,h5,h6{
+    font-weight:normal;
+}
+i,em,b{
+    font-style: normal;
+}
+input,button,a{
+    outline: none;
+    text-decoration: none;
 }

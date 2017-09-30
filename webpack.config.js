@@ -8,8 +8,8 @@ let htmlTpl = require('./resolvehtml')('./app/view/', '/view/');
 
 //从打包文件中抽离css文件
 const extractTextPlugin = require('extract-text-webpack-plugin');
-const cssOne = new extractTextPlugin('css/[name]-main.css?[contenthash:6]');
 const cssTwo = new extractTextPlugin('css/[name]-common.css?[contenthash:6]');
+const cssOne = new extractTextPlugin('css/[name]-main.css?[contenthash:6]');
 // 生成html文件
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
