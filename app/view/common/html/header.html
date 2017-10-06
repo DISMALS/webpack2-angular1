@@ -1,30 +1,25 @@
-<div class="dryad-header">
-    <div class="dryad-logo">
-        <img data-ng-src={{practiceimg}} alt="">
+<div class="dryad-head">
+    <div class="dryad-head-search">
+        <label class="head-search">
+            <input class="search-input" type="text" placeholder="姓名/拼音/病历号查询">
+            <i class="search"></i>
+        </label>
+        <a data-ng-click=""><i class="new-add"></i>新建病历</a>
     </div>
-    <div class="dryad-head">
-        <div class="dryad-head-search">
-            <label class="head-search">
-                <input type="text" placeholder="姓名/拼音/病历号查询">
-                <i class="search"></i>
-            </label>
-            <a data-ng-click=""><i class="new-add"></i>新建病历</a>
-        </div>
-        <div class="dryad-head-operate">
-            <a class="meetting-list"><i class="meeting"></i></a>
-            <a class="task-list"><i class="task"></i></a>
-            <div class="user-operate">
-                <a data-ng-click="" class="user">
-                    <i class="user-img"><img src="" alt=""></i>
-                    Jyue Huang
-                    <i class="user-select"></i>
-                </a>
-                <ul class="user-select-list" ng-show="false">
-                    <li><i class="change-password"></i>修改密码</li>
-                    <li><i class="lock-window"></i>锁定屏幕</li>
-                    <li><i class="sign-out"></i>退出</li>
-                </ul>
-            </div>
+    <div class="dryad-head-operate">
+        <a class="meetting-list"><i class="meeting"></i></a>
+        <a class="task-list"><i class="task"></i></a>
+        <div class="user-operate">
+            <a data-ng-click="" class="user">
+                <i class="user-img"><img src="" alt=""></i>
+                Jyue Huang
+                <i class="user-select"></i>
+            </a>
+            <ul class="user-select-list" ng-show="false">
+                <li><i class="change-password"></i>修改密码</li>
+                <li><i class="lock-window"></i>锁定屏幕</li>
+                <li><i class="sign-out"></i>退出</li>
+            </ul>
         </div>
     </div>
 </div>

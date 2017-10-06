@@ -1,20 +1,31 @@
-<div>
-    <ng-include src="'../app/view/common/html/header.html'"></ng-include>
-    <div ui-tree>
-        <ol ui-tree-nodes="" ng-model="list">
-            <li ng-repeat="item in list" ui-tree-node>
-            <div ui-tree-handle>
-                {{item.title}}
-            </div>
-            <ol ui-tree-nodes="" ng-model="item.items">
-                <li ng-repeat="subItem in item.items" ui-tree-node>
+<div class="dryad-home">
+    <!-- 左侧导航部分 -->
+    <div class="common-side">
+        <div class="dryad-logo">
+            <img data-ng-src={{practiceimg}} alt="">
+        </div>
+        <div ui-tree>
+            <ol ui-tree-nodes="" ng-model="list">
+                <li ng-repeat="item in list" ui-tree-node>
                 <div ui-tree-handle>
-                    {{subItem.title}}
+                    {{item.title}}
                 </div>
+                <ol ui-tree-nodes="" ng-model="item.items">
+                    <li ng-repeat="subItem in item.items" ui-tree-node>
+                    <div ui-tree-handle>
+                        {{subItem.title}}
+                    </div>
+                    </li>
+                </ol>
                 </li>
             </ol>
-            </li>
-        </ol>
+        </div>
     </div>
-    <ui-view></ui-view>
+    <!-- 顶部header部分 -->
+    <div class="common-right">
+        <div class="common-head">
+            <ng-include src="'../app/view/common/html/header.html'"></ng-include>
+        </div>
+        <div class="common-main"><ui-view></ui-view></div>
+    </div>
 </div>

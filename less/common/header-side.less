@@ -1,7 +1,91 @@
 @charset 'UTF-8';
-.dryad-header{
+.dryad-home{
     width:100%;
-    height:54px;
-    background:@font-color-3;
-    .box-shadow(0,2px,4px,0,rgba(169,192,204,0.10));
+    height:100%;
+    .common-side{
+        width:160px;
+        float: left;
+        height:100%;
+        background:@side-bg-color;
+        .dryad-logo{
+            height:54px;
+            background:@font-color-3;
+            border-right:1px solid @font-color-9;
+            img{
+                display: block;
+                margin:0px auto;
+            }
+        }
+    }
+    .common-right{
+        width:calc(~"100% - 160px");
+        height:100%;
+        float: left;
+        .common-head{
+            width:100%;
+            height:54px;
+            background:@font-color-3;
+            .box-shadow(0,2px,4px,0,rgba(169,192,204,0.10));
+        }
+    }
+}
+.dryad-head{
+    width:100%;
+    .dryad-head-search{
+        float: left;
+        padding-left:20px;
+        height:54px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        .head-search{
+            width:242px;
+            float: left;
+            height:32px;
+            .border(1px,solid,@font-color-9);
+            .border-radius(4px,4px,4px,4px);
+            background:@font-color-3;
+            margin-bottom: 0px;
+            font-weight: normal;
+            overflow: hidden;
+            .search-input{
+                width:210px;
+                height:30px;
+                border:none;
+                line-height:30px;
+                color:@font-color-1;
+                font-size:@font-size-14;
+                padding: 0px 0px 0px 5px;
+            }
+            .search{
+                float:right;
+                width:30px;
+                height:30px;
+                text-align: center;
+                border-left:1px solid @font-color-9;
+                cursor: pointer;
+            }
+        }
+        a{
+            width: 94px;
+            height:30px;
+            display: inline-block;
+            background:@font-color-3;
+            .border(1px,solid,@font-color-9);
+            .border-radius(4px,4px,4px,4px);
+            margin-left:10px;
+            font-size:@font-size-14;
+            color:@font-color-5;
+            letter-spacing:0;
+            text-align:center;
+            line-height: 30px;
+            cursor: pointer;
+            &:hover{
+                text-decoration: none;
+            }
+            i{
+                margin-right:6px;
+            }
+        }
+    }
 }
