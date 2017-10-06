@@ -1,7 +1,7 @@
 class LoginCtrl {
     constructor($scope, $state, moment) {
         $scope.name = 'wangyong';
-        $scope.gostate = () => {
+        $scope.goHome = () => {
             $state.go('dryad.home');
         }
         $scope.reset = () => {

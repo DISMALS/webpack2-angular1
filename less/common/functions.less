@@ -14,5 +14,10 @@
     border-bottom-right-radius: @bottomright;
 }
 .border(@size,@type,@color){
-    border-top:@size @type @color;
+    border:@size @type @color;
+}
+.box-shadow(@align,@vertical,@size,@ambiguity,@color){
+    box-shadow: @align @vertical @size @ambiguity @color;
+    -webkit-box-shadow: @align @vertical @size @ambiguity @color;
+    -moz-box-shadow: @align @vertical @size @ambiguity @color;
 }
