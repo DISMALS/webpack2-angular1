@@ -4,35 +4,40 @@
         "iconfont": "index-icon icon",
         "permissions":[],
         "active":"parent-active",
-        "uiRouter":"dryad.home"
+        "uiRouter":"dryad.home",
+        "child":[]
     },
     {
         "title": "病例管理",
         "iconfont": "index-icon icon",
         "permissions":[],
         "active":"parent-active",
-        "uiRouter":"dryad.home"
+        "uiRouter":"dryad.home",
+        "child":[]
     },
     {
         "title": "患者管理",
         "iconfont": "index-icon icon",
         "permissions":[],
         "active":"parent-active",
-        "uiRouter":"dryad.home"
+        "uiRouter":"dryad.home",
+        "child":[]
     },
     {
         "title": "随访管理",
         "iconfont": "index-icon icon",
         "permissions":[],
         "active":"parent-active",
-        "uiRouter":"dryad.home"
+        "uiRouter":"dryad.home",
+        "child":[]
     },
     {
         "title": "运营管理",
         "iconfont": "index-icon icon",
         "permissions":[],
         "active":"parent-active",
-        "uiRouter":"dryad.home"
+        "uiRouter":"dryad.home",
+        "child":[]
     },
     {
         "title": "系统管理",
