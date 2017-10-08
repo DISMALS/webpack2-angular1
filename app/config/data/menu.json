@@ -1,4 +1,62 @@
-[{
-    "title": "首页",
-    "iconfont": "index-icon icon"
-}]
+[
+    {
+        "title": "首页",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home"
+    },
+    {
+        "title": "病例管理",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home"
+    },
+    {
+        "title": "患者管理",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home"
+    },
+    {
+        "title": "随访管理",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home"
+    },
+    {
+        "title": "运营管理",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home"
+    },
+    {
+        "title": "系统管理",
+        "iconfont": "index-icon icon",
+        "permissions":[],
+        "active":"parent-active",
+        "uiRouter":"dryad.home",
+        "child":[
+            {
+                "title": "医疗机构管理",
+                "permissions":[],
+                "active":"parent-active",
+                "uiRouter":"dryad.home"
+            },{
+                "title": "常用药品字典",
+                "permissions":[],
+                "active":"parent-active",
+                "uiRouter":"dryad.home"
+            },{
+                "title": "数据使用管理",
+                "permissions":[],
+                "active":"parent-active",
+                "uiRouter":"dryad.home"
+            }
+        ]
+    }
+]
