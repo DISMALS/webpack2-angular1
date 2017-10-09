@@ -1,18 +1,33 @@
 <div class="dryad-head">
     <div class="dryad-head-search">
         <label class="head-search">
-            <!-- <input class="search-input" type="text" placeholder="姓名/拼音/病历号查询"> -->
-            <ui-select class="search-input" theme="bootstrap" search-enabled="true" autofocus="true" data-ng-model="search.searchKey">
+            <input class="search-input" type="text" placeholder="姓名/拼音/病历号查询">
+            <div class="search-list" data-ng-if="searchList.length > 0">
+                <i class="search-dialog dialog-needle"></i>
+                <span class="search-list-promp">找到<b>{{searchList.length}}</b>位符合条件的患者</span>
+                <ul class="search-list-main">
+                    <li data-ng-repeat="patient in searchList">
+                        <a data-ng-click="selectedItem(patient)">
+                            <i  class="patients-img"><img data-ng-src={{patient.img}} alt=""></i>
+                            <div class="patients-name-info">
+                                <p class="patients-name">{{patient.name}}</p>
+                                <p class="patients-info"><i class="patients-sex" data-ng-class="{'patients-man':patient.sex == 'man','patients-women':patient.sex == 'women'}"></i>23岁</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <ui-select class="search-input" theme="bootstrap" search-enabled="true" autofocus="true" data-ng-model="search.searchKey">
                 <ui-select-match placeholder="姓名/拼音/病历号查询">
                     <div data-ng-bind="$select.selected.name"></div>
                 </ui-select-match>
                 <ui-select-choices  repeat="person in searchList | filter: $select.search track by $index">
                     <div data-ng-bind="person.name"></div>
                 </ui-select-choices>
-            </ui-select>
+            </ui-select> -->
             <i class="search"></i>
         </label>
-        <a data-ng-click=""><i class="new-add"></i>新建病历</a>
+        <a data-ng-click="medicalRecords()" class="head-new-add"><i class="new-add"></i>新建病历</a>
     </div>
     <div class="dryad-head-operate">
         <a class="meetting-list"><i class="meeting"></i></a>

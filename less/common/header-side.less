@@ -35,9 +35,7 @@
     .dryad-head-search{
         float: left;
         height:54px;
-        display: flex;
-        justify-content:center;
-        align-items: center;
+        .vertical-align();
         .head-search{
             width:242px;
             float: left;
@@ -47,7 +45,7 @@
             background:@font-color-3;
             margin-bottom: 0px;
             font-weight: normal;
-            // overflow: hidden;
+            position:relative;
             .search-input{
                 width:210px;
                 height:30px;
@@ -56,16 +54,7 @@
                 font-size:@font-size-14;
                 padding: 0px 0px 0px 5px;
                 float: left;
-                input{
-                    border:none;
-                    .border-radius(0px,0px,0px,0px);
-                    box-shadow:none;
-                    transition:none;
-                    height:30px;
-                    line-height:30px;
-                    padding:0px;
-                    color:@font-color-1;
-                }
+                .border-radius(4px,0px,4px,0px);
             }
             .search{
                 float:right;
@@ -75,8 +64,97 @@
                 border-left:1px solid @font-color-9;
                 cursor: pointer;
             }
+            .search-list{
+                position:absolute;
+                left:0px;
+                top:38px;
+                width:225px;
+                height:auto;
+                background:@icon-bg-color-7;
+                z-index: 999;
+                .box-shadow(0px,2px,4px,0px,rgba(0,0,0,0.29));
+                .border-radius(4px,4px,4px,4px);
+                .search-dialog{
+                    position:absolute;
+                    top:-12px;
+                    right:33px;
+                }
+                .search-list-promp{
+                    display: block;
+                    padding:10px;
+                    font-size: @font-size-14;
+                    color:@font-color-8;
+                    b{
+                        color:@font-color-10;
+                        margin:0px 2px;
+                        font-weight: normal;
+                    }
+                }
+                .search-list-main{
+                    background:@font-color-3;
+                    .border-radius(0px,0px,4px,4px);
+                    // padding-bottom:20px;
+                    height:auto;
+                    max-height:401px;
+                    overflow-y:auto;
+                    border-bottom:1px solid @font-color-9;
+                    li{
+                        width:100%;
+                        height:50px;
+                        border-top:1px solid @font-color-9;
+                        a{
+                            .vertical-align();
+                            justify-content:left;
+                            height:49px;
+                            cursor: pointer;
+                            &:hover{
+                                background: @icon-bg-color-5;
+                                text-decoration: none;
+                            }
+                            padding-left:15px;
+                        }
+                        .patients-img{
+                            width:41px;
+                            height:41px;
+                            .border-radius(100px,100px,100px,100px);
+                            overflow: hidden;
+                            float: left;
+                            margin-right:10px;
+                            .vertical-align();
+                            img{
+                                display: block;
+                                margin:0px auto;
+                            }
+                        }
+                        .patients-name-info{
+                            width:calc(~"100% - 51px");
+                            height:45px;
+                            padding-top:4px;
+                            float: left;
+                            overflow: hidden;
+                            p{
+                                height:20px;
+                                line-height:20px;
+                                color:@font-color-7;
+                            }
+                            .patients-name{
+                                font-size:@font-size-14;
+                            }
+                            .patients-info{
+                                font-size:@font-size-12;
+                            }
+                            .patients-sex{
+                                display: inline-block;
+                                width:13px;
+                                height:13px;
+                                margin-right:7px;
+                            }
+                        }
+                    }
+                }
+            }
         }
-        a{
+        .head-new-add{
             width: 94px;
             height:30px;
             display: inline-block;
@@ -155,6 +233,40 @@
             &:hover{
                 text-decoration:none;
             }
+        }
+    }
+}
+
+.new-add-check{
+    width:100%;
+    height:auto;
+    padding:35px 0px;
+    .check-search{
+        width:272px;
+        height:32px;
+        .border(1px,solid,@font-color-9);
+        .border-radius(4px,4px,4px,4px);
+        background:@font-color-3;
+        margin:0px auto;
+        font-weight: normal;
+        display: block; 
+        .search-input{
+            width:210px;
+            height:30px;
+            border:none;
+            line-height:30px;
+            font-size:@font-size-14;
+            padding: 0px 0px 0px 5px;
+            float: left;
+            .border-radius(4px,0px,4px,0px);
+        }
+        .search-modal{
+            float:right;
+            width:30px;
+            height:30px;
+            text-align: center;
+            background:@font-color-4;
+            cursor: pointer;
         }
     }
 }

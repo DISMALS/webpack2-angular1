@@ -6,22 +6,7 @@ require('../node_modules/angular-block-ui/dist/angular-block-ui.min.css');
 
 
 require('../less/ui.less');
-const dryadApp = angular.module('dryadApp', [
-    'ngAnimate',
-    'LocalStorageModule',
-    'ui.router',
-    'oc.lazyLoad',
-    'ngCookies',
-    'ui.tree',
-    'ui.bootstrap',
-    'ui.select',
-    'toastr',
-    'angular-echarts',
-    'btford.socket-io',
-    'ui.timepicker',
-    'angularMoment',
-    'blockUI'
-]);
+const dryadApp = require('./common/module');
 
 //集中加载路由文件以及公共服务
 require('./common/routing.js')(dryadApp);
