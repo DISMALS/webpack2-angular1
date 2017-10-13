@@ -128,6 +128,9 @@ module.exports = (ngMold) => {
                         }, './login/lock-tpl');
                         return deferred.promise;
                     },
+                    params: {
+                        nowroute: null
+                    },
                     controller: 'lockCtrl',
                     controllerAs: 'lockvm',
                     resolve: {

@@ -16,5 +16,9 @@ import '../../node_modules/echarts/dist/echarts.min'; //图表
 import '../../node_modules/angular-echarts/dist/angular-echarts.min'; //图表
 import '../../node_modules/angular-socket-io/socket.min'; //实时通信
 import '../../node_modules/angular-moment/angular-moment.min'; //时间日期转换
-import '../../node_modules/angular-jquery-timepicker/src/timepickerdirective.min'; //时间日期filter、directive
 import '../../node_modules/angular-block-ui/dist/angular-block-ui.min'; //弹窗锁屏
+import '../../node_modules/angular-ui-router/lib/legacy/stateEvents'; //ui-router1.0以后监听路由变化需要此文件
+// require.ensure(['../../node_modules/jquery/dist/jquery'], (require) => {
+//     require('../../node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker');
+//     // import ; //时间选择插件（年月日）
+// });

@@ -1,0 +1,65 @@
+<div class="home">
+    <!-- 首页左边部分 -->
+    <div class="home-left">
+        <div class="home-top">
+            <div class="registered top-main">
+                <span class="top-main-icon"><i class="registered-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">已登记患者</p>
+                    <b class="text-number">23,232</b>
+                </span>
+            </div>
+            <div class="asthma top-main">
+                <span class="top-main-icon"><i class="asthma-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">重度哮喘患者</p>
+                    <b class="text-number">32,234</b>
+                </span>
+            </div>
+        </div>
+        <div class="home-main">
+            <!-- <div class="curve-diagram"> -->
+            <div class="curve-diagram-title">
+                <span class="title-text">哮喘病情统计</span>
+                <div class="date-select">
+                    <ui-select ng-model="selected.value" theme="select2" search-enabled="false">
+                        <ui-select-match>
+                            <span ng-bind="$select.selected.name"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">
+                            <span ng-bind="item.name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="curve-diagram-main"></div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <!-- 首页右边部分 -->
+    <div class="home-right">
+        <div class="home-top">
+            <div class="medicalrecords top-main">
+                <span class="top-main-icon"><i class="registered-medicalrecords"></i></span>
+                <span class="text-content">
+                    <p class="text-title">已登记病历</p>
+                    <b class="text-number">43,423</b>
+                </span>
+            </div>
+            <div class="nocontrol top-main">
+                <span class="top-main-icon"><i class="nocontrol-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">未控制患者</p>
+                    <b class="text-number">54,234</b>
+                </span>
+            </div>
+        </div>
+        <div class="home-main">
+            <div class="curve-diagram-title">
+                <span class="title-text">控制水平统计</span>
+                <div class="date-select"></div>
+            </div>
+            <div class="curve-diagram-main"></div>
+        </div>
+    </div>
+</div>

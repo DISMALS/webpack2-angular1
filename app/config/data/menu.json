@@ -1,67 +1,135 @@
-[
-    {
+[{
         "title": "首页",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[]
+        "iconfont": "index-icon",
+        "permissions": [],
+        "state": "dryad.home",
+        "active": "parent-active",
+        "uiRouter": "dryad.home",
+        "child": [],
+        "level": 1
     },
     {
-        "title": "病例管理",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[]
+        "title": "病历管理",
+        "iconfont": "medical-record-icon",
+        "permissions": [],
+        "state": "dryad.medicalhistory.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.medicalhistory.*",
+        "child": [],
+        "level": 1
     },
     {
         "title": "患者管理",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[]
+        "iconfont": "patient-icon",
+        "permissions": [],
+        "state": "dryad.patients.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.patients.*",
+        "child": [],
+        "level": 1
     },
     {
         "title": "随访管理",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[]
+        "iconfont": "follow-up-icon",
+        "permissions": [],
+        "state": "dryad.followup.unfinished",
+        "active": "parent-active",
+        "uiRouter": "dryad.followup.*",
+        "child": [],
+        "level": 1
     },
     {
         "title": "运营管理",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[]
+        "iconfont": "operation-icon",
+        "permissions": [],
+        "state": "dryad.operation.list",
+        "active": "parent-active",
+        "uiRouter": "dryad.operation.*",
+        "child": [],
+        "level": 1
     },
     {
         "title": "系统管理",
-        "iconfont": "index-icon icon",
-        "permissions":[],
-        "active":"parent-active",
-        "uiRouter":"dryad.home",
-        "child":[
-            {
-                "title": "医疗机构管理",
-                "permissions":[],
-                "active":"parent-active",
-                "uiRouter":"dryad.home"
-            },{
-                "title": "常用药品字典",
-                "permissions":[],
-                "active":"parent-active",
-                "uiRouter":"dryad.home"
-            },{
-                "title": "数据使用管理",
-                "permissions":[],
-                "active":"parent-active",
-                "uiRouter":"dryad.home"
-            }
-        ]
+        "iconfont": "system-icon",
+        "permissions": [],
+        "active": "parent-active",
+        "uiRouter": "dryad.system.*",
+        "child": [{
+            "title": "医疗机构管理",
+            "permissions": [],
+            "active": "child-active",
+            "uiRouter": "dryad.system.medical-organization.*",
+            "level": 2,
+            "child": [{
+                "title": "机构管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medical-organization.mechanism.*",
+                "level": 3
+            }, {
+                "title": "科室管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medical-organization.department.*",
+                "level": 3
+            }, {
+                "title": "角色管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medical-organization.role.*",
+                "level": 3
+            }, {
+                "title": "员工管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medical-organization.employee.*",
+                "level": 3
+            }]
+        }, {
+            "title": "常用药品字典",
+            "permissions": [],
+            "active": "child-active",
+            "uiRouter": "dryad.system.medicine.*",
+            "level": 2,
+            "child": [{
+                "title": "控制类药物",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medicine.control-class.*",
+                "level": 3
+            }, {
+                "title": "缓解类药物",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medicine.ease-class.*",
+                "level": 3
+            }, {
+                "title": "未分类药物",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.medicine.unclassified.*",
+                "level": 3
+            }]
+        }, {
+            "title": "数据使用管理",
+            "permissions": [],
+            "active": "child-active",
+            "uiRouter": "dryad.system.data.*",
+            "level": 2,
+            "child": [{
+                "title": "角色管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.data.role.*",
+                "level": 3
+            }, {
+                "title": "账号管理",
+                "permissions": [],
+                "active": "child-active",
+                "uiRouter": "dryad.system.data.account-number.*",
+                "level": 3
+            }]
+        }],
+        "level": 1
     }
 ]

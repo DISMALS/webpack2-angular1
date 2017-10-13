@@ -1,10 +1,50 @@
 <div class="modal-title">
     <span>新建患者</span>
-    <i class="close-modal" data-ng-click="closedModal()"></i>
+    <i class="close-modal" data-ng-click="checkCtrlVm.closedModal()"></i>
 </div>
-<div class="new-add-check">
+
+<!-- 查询 -->
+<div class="new-add-check" data-ng-if="false">
     <label class="check-search">
         <input class="search-input" type="text" placeholder="客户姓名/手机号/会员号查询">
         <i class="search-modal"></i>
     </label>
+</div>
+
+<!-- 确认患者并且创建病历 -->
+<div class="sure-patient" data-ng-if="true">
+    <div class="patientinfo">
+        <span class="left-title">就诊状态:</span>
+        <span class="right-content">
+            <i class="first-visit">初诊</i>
+            <i class="subsequent-visit">复诊</i>
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">姓名:</span>
+        <span class="right-content">
+            <input type="text" class="user-input">
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">性别:</span>
+        <span class="right-content">
+            <a class="sex-chooise">
+                <i class="man">男</i>
+                <i class="women">女</i>
+            </a>
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">生日:</span>
+        <span class="right-content">
+            <input class="date-input" ng-model="birthday"  placeholder="____-__-__"/>
+            <i class="date-icon date-time" dryad-date-time-picker></i>
+        </span>
+    </div>
+    <div class="patientinfo">
+        <a data-ng-click="checkCtrlVm.createMedical()" class="create-medical-records">
+            <i class="new-add"></i> 创建病历
+        </a>
+    </div>
 </div>

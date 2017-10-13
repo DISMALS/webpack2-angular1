@@ -6,10 +6,9 @@ module.exports = (ngMold) => {
                 url: '/index',
                 templateProvider: ($q) => {
                     const deferred = $q.defer();
-                    require.ensure(['./html/main.html', './less/home.less'], (require) => {
-                        const template = require('./html/main.html');
-                        const less = require('./less/home.less');
-                        deferred.resolve([template, less]);
+                    require.ensure(['./html/home.html'], (require) => {
+                        const template = require('./html/home.html');
+                        deferred.resolve(template);
                     }, './home/home-main-tpl');
                     return deferred.promise;
                 },

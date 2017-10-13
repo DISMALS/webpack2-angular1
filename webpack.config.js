@@ -120,6 +120,7 @@ config.plugins = [
         title: 'angular',
         filename: 'index.html',
         template: './app/index-tpl.html',
+        inject: 'body',
         minify: (npmEvent == 'dev' ? false : true)
     }),
     new webpack.optimize.CommonsChunkPlugin({

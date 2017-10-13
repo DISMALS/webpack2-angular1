@@ -1,12 +1,11 @@
 @font-face {
-    font-family: 'iconfont';  /* project id 431983 */
-    src: url('//at.alicdn.com/t/font_431983_ws6cqo5fdnzpk3xr.eot');
-    src: url('//at.alicdn.com/t/font_431983_ws6cqo5fdnzpk3xr.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_431983_ws6cqo5fdnzpk3xr.woff') format('woff'),
-    url('//at.alicdn.com/t/font_431983_ws6cqo5fdnzpk3xr.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_431983_ws6cqo5fdnzpk3xr.svg#iconfont') format('svg');
+  font-family: 'iconfont';  /* project id 431983 */
+  src: url('//at.alicdn.com/t/font_431983_6qa70jkz4hdxi529.eot');
+  src: url('//at.alicdn.com/t/font_431983_6qa70jkz4hdxi529.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_431983_6qa70jkz4hdxi529.woff') format('woff'),
+  url('//at.alicdn.com/t/font_431983_6qa70jkz4hdxi529.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_431983_6qa70jkz4hdxi529.svg#iconfont') format('svg');
 }
-
 .user-name::before{
     content:'\e6c8';
     font-family: 'iconfont';
@@ -41,7 +40,6 @@
     content:'\e6b9';
     font-family: 'iconfont';
     font-size: 14px;
-    color:@font-color-5;
 }
 .meeting::before{
     content:'\e609';
@@ -77,7 +75,6 @@
     content:'\e612';
     font-family: 'iconfont';
     font-size: 10px;
-    color:@icon-bg-color-7;
    // .box-shadow(0px,-2px,2px,0px,rgba(0,0,0,0.29)); 
 }
 .close-modal::before{
@@ -85,4 +82,117 @@
     font-family: 'iconfont';
     font-size: 14px;
     color:@icon-bg-color-7;
+}
+.date-time::before{
+    content:'\e6bf';
+    font-family: 'iconfont';
+    font-size: 14px;
+    color:@font-color-1;
+}
+.change-password::before{
+    content:'\e6c4';
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+.lock-window::before{
+    content:'\e64b';
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+.sign-out::before{
+    content:'\e631';
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+.arrow-new {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 6px;
+  border-color: transparent transparent @icon-bg-color-7;
+}
+.arrow-new::before {
+  position: absolute;
+  content: '';
+  top: 1px;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 5px;
+  border-color: transparent transparent #ffffff;
+}
+
+// 侧边导航图标
+.index-icon::before{
+    content:'\e6d1';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.medical-record-icon::before{
+    content:'\e6cb';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.patient-icon::before{
+    content:'\e691';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.follow-up-icon::before{
+    content:'\e6ca';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.operation-icon::before{
+    content:'\e68f';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.system-icon::before{
+    content:'\e690';
+    font-family: 'iconfont';
+    font-size: 16px;
+}
+.unfurled-icon::before{
+    content:'\e71d';
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+.pack-up-icon::before{
+    content:'\e695';
+    font-family: 'iconfont';
+    font-size: 14px;
+}
+.warning-icon::before{
+    content:'\e622';
+    font-family: 'iconfont';
+}
+.delete-icon::before{
+    content:'\e607';
+    font-family: 'iconfont';
+    font-size: 15px;
+}
+.save-icon::before{
+    content:'\e6c9';
+    font-family: 'iconfont';
+}
+
+// 首页iconfont
+.registered-patient::before{
+    content:'\e6d0';
+    font-family: 'iconfont';
+}
+.asthma-patient::before{
+    content:'\e6cf';
+    font-family: 'iconfont';
+}
+.registered-medicalrecords::before{
+    content:'\e6cb';
+    font-family: 'iconfont';
+}
+.nocontrol-patient::before{
+    content:'\e6ce';
+    font-family: 'iconfont';
 }

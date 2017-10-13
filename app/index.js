@@ -1,8 +1,8 @@
 require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('../node_modules/angular-toastr/dist/angular-toastr.min.css');
 require('../node_modules/ui-select/dist/select.min.css');
 require('../node_modules/angular-block-ui/dist/angular-block-ui.min.css');
+require('../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
 
 
 require('../less/ui.less');
@@ -13,29 +13,8 @@ require('./common/routing.js')(dryadApp);
 require('./common/service.js')(dryadApp);
 require('./common/directive.js')(dryadApp);
 
-dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies',
-    ($rootScope, $state, $stateParams, $timeout, $cookies) => {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-        $rootScope.user = {
-            name: 'wangyong',
-            age: 23
-        };
-
-        //禁用浏览器后退按钮
-        $rootScope.$on('$locationChangeStart', function(event, from, to) {
-            var st = angular.copy($state.current);
-            var stateHref = $state.href(st.name, $stateParams);
-            var isPageHistoryBack = st.url != '^' && -1 == from.indexOf(stateHref);
-            if (isPageHistoryBack) {
-                event.preventDefault();
-            }
-        });
-    }
-]);
-
-dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'blockUIConfig',
-    ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, blockUIConfig) => {
+dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'blockUIConfig', 'treeConfig', 'toastrConfig',
+    ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, blockUIConfig, treeConfig, toastrConfig) => {
         dryadApp.controller = $controllerProvider.register;
         dryadApp.directive = $compileProvider.register;
         dryadApp.filter = $filterProvider.register;
@@ -65,6 +44,57 @@ dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$
         //弹窗锁屏配置
         blockUIConfig.message = '请稍等，让数据飞一会儿...';
 
+        //tree默认配置
+        treeConfig.defaultCollapsed = true; //默认不展开 
+
+        //操作信息提示框配置
+        angular.extend(toastrConfig, {
+            autoDismiss: true,
+            containerId: 'toast-container',
+            positionClass: 'toast-top-center',
+            timeOut: 1500,
+            iconClasses: {
+                error: 'toast-error',
+                info: 'toast-info',
+                success: 'toast-success',
+                warning: 'toast-warning'
+            },
+            extendedTimeOut: 1500,
+            maxOpened: 0,
+            target: 'body'
+        });
+    }
+]);
+
+dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$templateCache',
+    ($rootScope, $state, $stateParams, $timeout, $cookies, $templateCache) => {
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+        $rootScope.user = {
+            name: 'wangyong',
+            age: 23
+        };
+
+        //禁用浏览器后退按钮
+        $rootScope.$on('$locationChangeStart', function(event, from, to) {
+            var st = angular.copy($state.current);
+            var stateHref = $state.href(st.name, $stateParams);
+            var isPageHistoryBack = st.url != '^' && -1 == from.indexOf(stateHref);
+            if (isPageHistoryBack) {
+                event.preventDefault();
+            }
+        });
+        // $state.includes(stateOrName,params,options);
+        //路由相关变化
+        $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
+            console.log('变化开始！');
+        });
+        $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
+            console.log('变化出错了！');
+        });
+        $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
+            console.log('变化结束了！');
+        });
     }
 ]);
 

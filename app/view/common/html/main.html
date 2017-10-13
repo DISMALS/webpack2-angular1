@@ -4,21 +4,13 @@
         <div class="dryad-logo">
             <img data-ng-src={{practiceimg}} alt="">
         </div>
-        <div ui-tree>
-            <ol ui-tree-nodes="" ng-model="list">
-                <li ng-repeat="item in list" ui-tree-node>
-                <div ui-tree-handle>
-                    {{item.title}}
-                </div>
-                <ol ui-tree-nodes="" ng-model="item.items">
-                    <li ng-repeat="subItem in item.items" ui-tree-node>
-                    <div ui-tree-handle>
-                        {{subItem.title}}
-                    </div>
-                    </li>
+        <div class="side-menu">
+            <div ui-tree id="tree-root" data-drag-enabled="false" class="tree-main">
+                <ol ui-tree-nodes ng-model="menuList" class="tree-main-ol">
+                    <li class="parent-menu" ng-repeat="node in menuList" ui-tree-node ng-include="'../app/view/common/html/tree.html'" ng-class="{active: node.active}"></li>
+                    <!-- data-scroll-container="#tree-root"  -->
                 </ol>
-                </li>
-            </ol>
+            </div>
         </div>
     </div>
     <!-- 顶部header部分 -->
@@ -26,6 +18,8 @@
         <div class="common-head">
             <ng-include src="'../app/view/common/html/header.html'"></ng-include>
         </div>
-        <div class="common-main"><ui-view></ui-view></div>
+        <div class="common-main">
+            <ui-view></ui-view>
+        </div>
     </div>
 </div>
