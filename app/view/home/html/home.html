@@ -22,7 +22,7 @@
             <div class="curve-diagram-title">
                 <span class="title-text">哮喘病情统计</span>
                 <div class="date-select">
-                    <ui-select ng-model="selected.value" theme="select2" search-enabled="false">
+                    <ui-select ng-model="selected.diagramOne" search-enabled="false">
                         <ui-select-match>
                             <span ng-bind="$select.selected.name"></span>
                         </ui-select-match>
@@ -32,7 +32,9 @@
                     </ui-select>
                 </div>
             </div>
-            <div class="curve-diagram-main"></div>
+            <div class="curve-diagram-main">
+                <div dryad-echarts="diagramOptionOne" ratio='1'></div>
+            </div>
             <!-- </div> -->
         </div>
     </div>
@@ -57,9 +59,20 @@
         <div class="home-main">
             <div class="curve-diagram-title">
                 <span class="title-text">控制水平统计</span>
-                <div class="date-select"></div>
+                <div class="date-select">
+                    <ui-select ng-model="selected.diagramTwo" search-enabled="false">
+                        <ui-select-match>
+                            <span ng-bind="$select.selected.name"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">
+                            <span ng-bind="item.name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
             </div>
-            <div class="curve-diagram-main"></div>
+            <div class="curve-diagram-main">
+                <div dryad-echarts="diagramOptionTwo" ratio='1'></div>
+            </div>
         </div>
     </div>
 </div>

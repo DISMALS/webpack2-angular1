@@ -1,0 +1,13 @@
+<div class="dryad-tab">
+    <h3 class="dryad-tab-title text-center">这是父级标题</h3>
+    <ul class="dryad-tab-list">
+        <li data-ng-repeat="item in tabList track by $index">
+            <a data-ng-class="{'dryad-tabList-fixed': item.icon,'dryad-tabList-dynamics': !item.icon}" data-ng-click="">
+                <i class="dryad-tabList-icon" data-ng-class={{item.icon}} data-ng-if="item.icon"></i>
+                <b class="dryad-tabList-text" data-ng-bind="item.title" data-ng-if="item.icon"></b>
+                <b class="dryad-tabList-text" data-ng-bind="item.title" data-ng-if="!item.icon"></b>
+            </a>
+            <i data-ng-click="" class="close-tab close-modal" data-ng-if="!item.icon"></i>
+        </li>
+    </ul>
+</div>

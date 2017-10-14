@@ -8,8 +8,8 @@ module.exports = angular.module('dryadApp', [
     'ui.tree',
     'ui.bootstrap',
     'ui.select',
+    'ngSanitize',
     'toastr',
-    'angular-echarts',
     'btford.socket-io',
     'angularMoment',
     'blockUI'
