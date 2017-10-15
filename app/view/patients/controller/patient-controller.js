@@ -7,9 +7,9 @@ class PatientCtrl {
         //     template: '<div>这是内容</div>'
         // });
         // console.log(socketFactory);
-        patientsService.patients().then((data) => {
-            console.log(data);
-        });
+        // patientsService.patients().then((data) => {
+        //     console.log(data);
+        // });
     }
 }
 PatientCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'patientsService', '$uibModal','toastr','socketFactory'];

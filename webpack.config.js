@@ -23,12 +23,12 @@ let npmEvent = process.env.npm_lifecycle_event;
 let config = (npmEvent == 'dev' ? webpackDev : webpackProduc);
 
 config.entry = {
-    vendor: './app/config/vendor.js',
+    vendor: path.join(__dirname, './app/vendor.js'),
     index: path.join(__dirname, './app/index.js')
 };
 
 config.output = {
-    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : 'http://test.yunpractice.com'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
+    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : '/'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
     path: path.resolve(__dirname, 'build'),
     filename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
     chunkFilename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
@@ -55,7 +55,7 @@ config.module = {
                         loader: 'css-loader',
                         options: {
                             modules: false,
-                            minimize: false
+                            minimize: (npmEvent == 'dev' ? false : true)
                         }
                     },
                     'resolve-url-loader'
@@ -70,7 +70,7 @@ config.module = {
                         loader: 'css-loader',
                         options: {
                             modules: false,
-                            minimize: false
+                            minimize: (npmEvent == 'dev' ? false : true)
                         }
                     },
                     'postcss-loader',
@@ -121,7 +121,11 @@ config.plugins = [
         filename: 'index.html',
         template: './app/index-tpl.html',
         inject: 'body',
-        minify: (npmEvent == 'dev' ? false : true)
+        minify: {
+            removeAttributeQuotes:(npmEvent == 'dev' ? false : true),
+            collapseWhitespace:(npmEvent == 'dev' ? false : true),
+            removeComments:(npmEvent == 'dev' ? false : true)
+        }
     }),
     new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor'],

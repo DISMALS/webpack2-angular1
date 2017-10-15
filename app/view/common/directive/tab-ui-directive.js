@@ -6,7 +6,7 @@ let TabUi = ($timeout) => {
         },
         transclude: true,
         replace: true,
-        templateUrl: 'app/view/common/html/tab-ui.html',
+        template: require('../../common/html/tab-ui.html'),
         controller: ['$scope', ($scope) => {
             // this.tabList = $scope.tabList;
         }],

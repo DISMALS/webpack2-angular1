@@ -1,3 +1,18 @@
+<script type=”text/ng-template” id=”template.html”>
+<div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
+    <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
+        <b class="left-colorm"></b>
+        <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>
+        <span class="tree-title" data-ng-bind="node.title"></span>
+        <i class="unfurled-packup-menu" data-ng-if="node.child.length > 0" data-ng-class="{'unfurled-icon':!this.collapsed,'pack-up-icon':this.collapsed}"></i>
+    </a>
+    <!-- ng-click="(node.size == 0 ? editItem(node) : '')"-->
+</div>
+<ol ui-tree-nodes ng-model="node.child" ng-class="{hidden: this.collapsed}">
+    <li ng-repeat="node in node.child" ui-tree-node ng-include="'../app/view/common/html/tree.html'"></li>
+</ol>
+
+</script>
 <div class="dryad-home">
     <!-- 左侧导航部分 -->
     <div class="common-side">
@@ -7,7 +22,7 @@
         <div class="side-menu">
             <div ui-tree id="tree-root" data-drag-enabled="false" class="tree-main">
                 <ol ui-tree-nodes ng-model="menuList" class="tree-main-ol">
-                    <li class="parent-menu" ng-repeat="node in menuList" ui-tree-node ng-include="'../app/view/common/html/tree.html'" ng-class="{active: node.active}"></li>
+                    <li class="parent-menu" ng-repeat="node in menuList" ui-tree-node ng-include="'common/html/tree.html'" ng-class="{active: node.active}"></li>
                     <!-- data-scroll-container="#tree-root"  -->
                 </ol>
             </div>
@@ -16,7 +31,50 @@
     <!-- 顶部header部分 -->
     <div class="common-right">
         <div class="common-head">
-            <ng-include src="'../app/view/common/html/header.html'"></ng-include>
+            <!-- <ng-include src="'../../../common/html/header.html'"></ng-include> -->
+            <div class="dryad-head">
+                <div class="dryad-head-search">
+                    <label class="head-search">
+                        <input class="search-input" type="text" placeholder="姓名/拼音/病历号查询">
+                        <div class="search-list" data-ng-if="false">
+                            <i class="search-dialog dialog-needle"></i>
+                            <span class="search-list-promp">找到<b>{{searchList.length}}</b>位符合条件的患者</span>
+                            <ul class="search-list-main">
+                                <li data-ng-repeat="patient in searchList">
+                                    <a data-ng-click="selectedItem(patient)">
+                                        <i  class="patients-img"><img data-ng-src={{patient.img}} alt=""></i>
+                                        <div class="patients-name-info">
+                                            <p class="patients-name">{{patient.name}}</p>
+                                            <p class="patients-info"><i class="patients-sex" data-ng-class="{'patients-man':patient.sex == 'man','patients-women':patient.sex == 'women'}"></i>23岁</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <i class="search"></i>
+                    </label>
+                    <a data-ng-click="mainvm.medicalRecords()" class="head-new-add"><i class="new-add"></i>新建病历</a>
+                </div>
+                <div class="dryad-head-operate">
+                    <a class="meetting-list"><i class="meeting"></i></a>
+                    <a class="task-list"><i class="task"></i></a>
+                    <div class="user-operate">
+                        <a class="user" element-show-hide>
+                            <i class="user-img"><img data-ng-src={{userimg}} alt="" class="img"></i>
+                            <span class="head-user-name">Jyue Huang</span>
+                            <i class="user-select"></i>
+                        </a>
+                        <div class="operate-list">
+                            <i class="operate-dialog arrow-new"></i>
+                            <ul class="operate-list-main">
+                                <li data-ng-click="mainvm.editPassWord()"><i class="change-password"></i>修改密码</li>
+                                <li data-ng-click="mainvm.lock()"><i class="lock-window"></i>锁定屏幕</li>
+                                <li data-ng-click="mainvm.signOut()"><i class="sign-out"></i>退出</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="common-main">
             <ui-view></ui-view>

@@ -1,11 +1,14 @@
-// let menuList = require('./app/config/data/menu.json');
+let menuList = require('../../../config/data/menu.json');
+require('../../../../images/practice.png');
+require('../../../../images/user-icon.png');
 class MainCtrl {
-    constructor($rootScope, $scope, $state, APP_CONFIG, mainService, $uibModal, $cookies) {
-        $scope.practiceimg = APP_CONFIG.API_HOST + '/images/practice.png';
-        $scope.userimg = APP_CONFIG.API_HOST + '/images/user-icon.png';
+    constructor($rootScope, $scope, $state, APP_CONFIG, mainService, $uibModal, $cookies,$q) {
+        $scope.practiceimg = APP_CONFIG.API_HOST + 'images/practice.png';
+        $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
         this.uibModal = $uibModal;
         this.state = $state;
         this.cookies = $cookies;
+        this.q = $q;
         $scope.search = {
             searchKey: null
         };
@@ -29,9 +32,11 @@ class MainCtrl {
 
         //初始化数据
         let initData = () => {
-            mainService.test().then(function(data) {
-                $scope.menuList = data;
-            });
+            console.log(menuList);
+            $scope.menuList = menuList;
+            // mainService.test().then(function(data) {
+            //     $scope.menuList = data;
+            // });
         }
         initData();
 
@@ -60,7 +65,7 @@ class MainCtrl {
         this.uibModal.open({
             animation: true,
             backdrop: 'static',
-            templateUrl: 'app/view/common/html/check-number.html',
+            template: require('../html/check-number.html'),
             controller: 'checkCtrl',
             controllerAs: 'checkCtrlVm',
             size: 'width-320',
@@ -93,7 +98,7 @@ class MainCtrl {
         this.uibModal.open({
             animation: true,
             backdrop: 'static',
-            templateUrl: 'app/view/common/html/delete-modal.html',
+            template: require('../html/delete-modal.html'),
             controller: 'deleteModalCtrl',
             controllerAs: 'deleteModalCtrlVm',
             size: 'width-400',
@@ -127,7 +132,7 @@ class MainCtrl {
         this.uibModal.open({
             animation: true,
             backdrop: 'static',
-            templateUrl: 'app/view/common/html/edit-password.html',
+            template: require('../html/edit-password.html'),
             controller: 'editPasswordCtrl',
             controllerAs: 'editPasswordVm',
             size: 'width-400',
@@ -170,11 +175,11 @@ class MainCtrl {
     };
 }
 
-MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'mainService', '$uibModal', '$cookies'];
+MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'mainService', '$uibModal', '$cookies','$q'];
 
 module.exports = (ngMold) => {
     require.ensure(['../service/main-service'], (require) => {
         const service = require('../service/main-service')(ngMold);
-    }, 'main-serve');
+    }, './common/main-serve');
     ngMold.controller('mainCtrl', MainCtrl);
 }

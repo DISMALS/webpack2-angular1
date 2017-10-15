@@ -1,4 +1,3 @@
-let echarts = require('echarts');
 let DryadEcharts = ($timeout) => {
     return {
         restrict: 'A',

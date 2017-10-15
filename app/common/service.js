@@ -1,5 +1,5 @@
 let ops = {
-    API_HOST: 'http://localhost:9000', //'http://test.yunpractice.com/rest'
+    API_HOST: '../', //'http://test.yunpractice.com/rest'
     CH_AU_T_NAME: "X-Auth-Token",
     CH_AP_V_NAME: "X-App-Version",
 };
