@@ -4,19 +4,26 @@
 	height:100%;
 	overflow: hidden;
 }
-.medical-history-left{
+.main-left{
 	width:180px;
 	height:100%;
-	margin-right:20px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	background:@font-color-3;
 	padding-top:20px;
 	float:left;
 }
-.medical-history-right{
+.main-right{
 	width:calc(~"100% - 180px");
 	padding:20px;
 	overflow:hidden;
 	float: left;
+	.main-right-search{
+		height:100%;
+		.border-radius(4px,4px,4px,4px);
+		overflow-y: auto;
+		overflow-x: hidden;
+		background:@font-color-3;	
+		padding:20px;
+	}
 }

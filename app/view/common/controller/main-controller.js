@@ -2,7 +2,7 @@ let menuList = require('../../../config/data/menu.json');
 require('../../../../images/practice.png');
 require('../../../../images/user-icon.png');
 class MainCtrl {
-    constructor($rootScope, $scope, $state, APP_CONFIG, mainService, $uibModal, $cookies,$q) {
+    constructor($rootScope, $scope, $state, APP_CONFIG, mainService, $uibModal, $cookies, $q) {
         $scope.practiceimg = APP_CONFIG.API_HOST + 'images/practice.png';
         $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
         this.uibModal = $uibModal;
@@ -172,10 +172,11 @@ class MainCtrl {
     signOut() {
         // console.log(this.cookies);
         this.state.go('authorize.login');
+        this.cookies.remove('tabs');
     };
 }
 
-MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'mainService', '$uibModal', '$cookies','$q'];
+MainCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'mainService', '$uibModal', '$cookies', '$q'];
 
 module.exports = (ngMold) => {
     require.ensure(['../service/main-service'], (require) => {

@@ -27,6 +27,8 @@
 			a{
 				display: block;
 				cursor:pointer;
+				height: 60px;
+				line-height:60px;
 				&:hover{
 					text-decoration: none;
 				}
@@ -47,23 +49,52 @@
 			}
 		}
 		.dryad-tabList-dynamics{
+		    padding-left:16px;
 			.dryad-tabList-icon{
+				width:40px;
+				height:40px;
 				font-size:@font-size-14;
 				color:@font-color-13;
 				margin-right:8px;
+				.border-radius(100px,100px,100px,100px);
+				overflow: hidden;
+				float: left;
+				margin-top:10px;
+				.vertical-align();
+				img{
+					display: block;
+				}
 			}
-			.dryad-tabList-text{
-				font-size:@font-size-16;
-				color:@font-color-5;
-			}
-			.close-tab{
-				position: absolute;
-				top:7px;
-				right:8px;
-				font-size: @font-size-14;
-				color:@font-color-1;
+			.tab-user-info{
+				float: left;
+				width:calc(~"100% - 55px");
+				height: 40px;
+				margin-top:10px;
+				.dryad-tabList-text{
+					font-size:@font-size-16;
+					color:@font-color-5;
+					display: block;
+					height:20px;
+					line-height:22px;
+				}
+				.dryad-tabList-textp{
+					font-size:@font-size-14;
+					color:@font-color-5;
+					height:20px;
+					line-height:24px;
+					margin:0;
 
+				}
 			}
+		}
+		.close-tab{
+			position: absolute;
+			top:7px;
+			right:8px;
+			font-size: @font-size-14;
+			color:@font-color-1;
+			display: none;
+			cursor: pointer;
 		}
 		.dryad-tabList-active{
 			background:@syscolor;

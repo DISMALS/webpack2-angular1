@@ -43,7 +43,7 @@ module.exports = (ngMold) => {
                         return deferred.promise;
                     },
                     controller: 'medicalHistorySearchCtrl',
-                    controllerAs: 'medicalhistorsearchyvm',
+                    controllerAs: 'medicalhistorysearchvm',
                     resolve: {
                         'medicalHistorySearchCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
@@ -55,6 +55,33 @@ module.exports = (ngMold) => {
                                 });
                                 deferred.resolve(ctrl);
                             }, './medicalHistory/medicalhistory-search-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.medicalhistory.details', { //病历详情
+                    url: '/details/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/medical-history-details.html'], (require) => {
+                            const template = require('./html/medical-history-details.html');
+                            deferred.resolve(template);
+                        }, './medicalHistory/medicalhistory-details-tpl');
+                        return deferred.promise;
+                    },
+                    controller: 'medicalHistoryDeailsCtrl',
+                    controllerAs: 'medicalhistorydetailsvm',
+                    resolve: {
+                        'medicalHistoryDeailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/medicalhistory-details-controller'], (require) => {
+                                const ctrl = require('./controller/medicalhistory-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp',
+                                    files: [ctrl]
+                                });
+                                deferred.resolve(ctrl);
+                            }, './medicalHistory/medicalhistory-details-ctrl');
                             return deferred.promise;
                         }
                     }
