@@ -7,15 +7,15 @@ class MedicalHistorySearchCtrl {
     //打开详情页面dryad.medicalhistory.details
     openDetails(row) {
         this.scope.$emit('addTab', {
-            title: '患者1',
+            title: '患者2',
             close: true,
             route: 'dryad.medicalhistory.details',
             params: {
-                id: 77865
+                id: 34534
             }
         });
         this.state.go('dryad.medicalhistory.details', {
-            id: 77865
+            id: 34534
         });
     }
 }

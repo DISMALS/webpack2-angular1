@@ -38,23 +38,12 @@ let TabUi = ($timeout, $cookies, $state) => {
 
             //删除tab事件
             scope.closeEvt = (index, item) => {
-                scope.tabs = $cookies.get('tabs') ? JSON.parse($cookies.get('tabs')) : [];
-                scope.tabList.splice(index, 1);
-                if (scope.tabs.length > 0) {
-                    angular.forEach(scope.tabs, (i, k) => {
-                        if (i.params.id == item.params.id) {
-                            scope.tabs.splice(k, 1);
-                        }
-                    });
-                    $cookies.putObject('tabs', (scope.tabs || []));
-                    //scope.tabList = scope.tabList.concat(scope.tabs);
-                }
-                scope.tabActive = 0;
+                scope.$emit('closeTab', { index: index, item: item });
             };
 
             //tab选中
             scope.selectTab = (index, item) => {
-                scope.tabActive = index;
+                scope.$emit('active', { index: index, item: item });
             };
 
             // 监听tab列表变化

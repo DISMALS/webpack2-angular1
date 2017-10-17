@@ -4,7 +4,7 @@ class MedicalHistoryCtrl {
         $scope.tablist = [];
 
         //获取cookies中的tab
-        $scope.tabs = $cookies.get('tabs') ? JSON.parse($cookies.get('tabs')) : [];
+        $scope.tabs = $cookies.get('historytabs') ? JSON.parse($cookies.get('historytabs')) : [];
         $scope.tabfixed = [{
             icon: 'search',
             close: false,
@@ -16,25 +16,44 @@ class MedicalHistoryCtrl {
 
         //添加tab
         $scope.$on('addTab', function(evt, obj) {
-            $scope.tablist = [];
-            $scope.tabs = $cookies.get('tabs') ? JSON.parse($cookies.get('tabs')) : [];
-            $scope.tabs.push(obj);
-            $cookies.putObject('tabs', $scope.tabs);
-
-            $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
-            setTimeout(function() {
-                $scope.active = $scope.tablist.length - 1;
+            let num = 0;
+            $scope.tabs = $cookies.get('historytabs') ? JSON.parse($cookies.get('historytabs')) : [];
+            $scope.tablist.map((item, index) => {
+                if (item.params && (obj.params.id == item.params.id)) {
+                    num++;
+                    $scope.active = index;
+                    return;
+                }
             });
+            if (num == 0) {
+                $scope.tabs.push(obj);
+                $cookies.putObject('historytabs', $scope.tabs);
+                $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
+                setTimeout(function() {
+                    $scope.active = $scope.tablist.length - 1;
+                });
+            }
         });
 
         // 删除tab
         $scope.$on('closeTab', function(evt, obj) {
-
+            let closeObj = obj.item;
+            $scope.tabs = $cookies.get('historytabs') ? JSON.parse($cookies.get('historytabs')) : [];
+            $scope.tablist.splice(obj.index, 1);
+            if ($scope.tabs.length > 0) {
+                angular.forEach($scope.tabs, (i, k) => {
+                    if (i.params.id == closeObj.params.id) {
+                        $scope.tabs.splice(k, 1);
+                    }
+                });
+                $cookies.putObject('historytabs', ($scope.tabs || []));
+            }
+            $scope.active = 0;
         });
 
         //选中tab
         $scope.$on('active', function(evt, obj) {
-
+            $scope.active = obj.index;
         });
     }
 }

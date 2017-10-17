@@ -1,19 +1,14 @@
-import 'angular';
-import 'jquery';
-import 'angular-ui-router';
-import 'oclazyload';
-import 'angular-animate';
-import 'angular-local-storage';
-import 'angular-cookies';
+// import 'angular';
+import '../node_modules/angular/angular.min';
+import '../node_modules/jquery/dist/jquery.min';
+import '../node_modules/oclazyload/dist/ocLazyLoad.min';
+import '../node_modules/oclazyload/dist/ocLazyLoad.require.min';
+import '../node_modules/angular-ui-router/release/angular-ui-router.min';
+import '../node_modules/angular-animate/angular-animate.min';
+import '../node_modules/angular-local-storage/dist/angular-local-storage.min';
+import '../node_modules/angular-cookies/angular-cookies.min';
+// import 'angular-animate';
+// import 'angular-local-storage';
+// import 'angular-cookies';
 import 'angular-ui-bootstrap';
-import 'moment'; //时间日期转换
-import '../node_modules/angular-ui-tree/dist/angular-ui-tree.min'; //树结构
-import '../node_modules/bootstrap/dist/js/bootstrap.min';
-import '../node_modules/ui-select/dist/select.min'; //下拉列表插件
-import '../node_modules/angular-sanitize/angular-sanitize.min'; //下拉列表插件依赖
-import '../node_modules/angular-toastr/dist/angular-toastr.tpls.min'; //消息提示框
-import '../node_modules/angular-socket-io/socket.min'; //实时通信
-import '../node_modules/angular-moment/angular-moment.min'; //时间日期转换
-import '../node_modules/angular-block-ui/dist/angular-block-ui.min'; //弹窗锁屏
-import '../node_modules/angular-ui-router/lib/legacy/stateEvents'; //ui-router1.0以后监听路由变化需要此文件
-window.echarts = require('echarts');
+// import '../node_modules/angular-ui-bootstrap/dist/ui-bootstrap';

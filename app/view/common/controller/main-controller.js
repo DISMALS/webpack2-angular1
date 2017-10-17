@@ -172,7 +172,7 @@ class MainCtrl {
     signOut() {
         // console.log(this.cookies);
         this.state.go('authorize.login');
-        this.cookies.remove('tabs');
+        this.cookies.remove('historytabs');
     };
 }
 

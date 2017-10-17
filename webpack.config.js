@@ -4,7 +4,7 @@ const uglifyJs = require('uglifyjs-webpack-plugin');
 const fs = require('fs');
 
 //获取所有的html文件
-let htmlTpl = require('./resolvehtml')('./app/view/', '/view/');
+// let htmlTpl = require('./resolvehtml')('./app/view/', '/view/');
 
 //从打包文件中抽离css文件
 const extractTextPlugin = require('extract-text-webpack-plugin');
@@ -24,6 +24,7 @@ let config = (npmEvent == 'dev' ? webpackDev : webpackProduc);
 
 config.entry = {
     vendor: path.join(__dirname, './app/vendor.js'),
+    plugin: path.join(__dirname, './app/plugins.js'),
     index: path.join(__dirname, './app/index.js')
 };
 
@@ -122,14 +123,14 @@ config.plugins = [
         template: './app/index-tpl.html',
         inject: 'body',
         minify: {
-            removeAttributeQuotes:(npmEvent == 'dev' ? false : true),
-            collapseWhitespace:(npmEvent == 'dev' ? false : true),
-            removeComments:(npmEvent == 'dev' ? false : true)
+            removeAttributeQuotes: (npmEvent == 'dev' ? false : true),
+            collapseWhitespace: (npmEvent == 'dev' ? false : true),
+            removeComments: (npmEvent == 'dev' ? false : true)
         }
     }),
     new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor'],
-        chunks: ['vendor']
+        chunks: ['vendor', 'plugin', 'index']
     }),
     new webpack.BannerPlugin({
         banner: "author:wangyong, hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]"
@@ -154,7 +155,9 @@ if (npmEvent == 'dev') {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
 } else {
     let pluginArr = [
-        new uglifyJs({ parallel: true }),
+        new uglifyJs({
+            comments: false
+        }),
         new webpack.HashedModuleIdsPlugin({
             hashDigestLength: 6
         })

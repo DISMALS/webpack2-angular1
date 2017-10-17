@@ -3,6 +3,8 @@ require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('../node_modules/ui-select/dist/select.min.css');
 require('../node_modules/angular-block-ui/dist/angular-block-ui.min.css');
 require('../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
+require('../node_modules/jsgrid/dist/jsgrid-theme.css');
+require('../node_modules/jsgrid/dist/jsgrid.min.css');
 
 
 require('../less/ui.less');
@@ -13,8 +15,8 @@ require('./common/routing.js')(dryadApp);
 require('./common/service.js')(dryadApp);
 require('./common/directive.js')(dryadApp);
 
-dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'blockUIConfig', 'treeConfig', 'toastrConfig',
-    ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, blockUIConfig, treeConfig, toastrConfig) => {
+dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'blockUIConfig', 'treeConfig', 'toastrConfig', '$cookiesProvider',
+    ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, blockUIConfig, treeConfig, toastrConfig, $cookiesProvider) => {
         dryadApp.controller = $controllerProvider.register;
         dryadApp.directive = $compileProvider.register;
         dryadApp.filter = $filterProvider.register;
@@ -29,6 +31,9 @@ dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$
         //     //files: ['modules/summary','modules/appEngine','modules/alarm','modules/database'], //主模块需要的资源，这里主要子模块的声明文件
         //     debug: true
         // });
+        //设置cookies过期时间
+        let date = new Date();
+        $cookiesProvider.expires = date.setDate(date.getDate() + 1);
 
 
         $locationProvider.html5Mode(true);
@@ -98,17 +103,17 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
 
         //导航模板缓存
         $templateCache.put('common/html/tree.html', `<div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
-    <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
-        <b class="left-colorm"></b>
-        <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>
-        <span class="tree-title" data-ng-bind="node.title"></span>
-        <i class="unfurled-packup-menu" data-ng-if="node.child.length > 0" data-ng-class="{'unfurled-icon':!this.collapsed,'pack-up-icon':this.collapsed}"></i>
-    </a>
-    <!-- ng-click="(node.size == 0 ? editItem(node) : '')"-->
-</div>
-<ol ui-tree-nodes ng-model="node.child" ng-class="{hidden: this.collapsed}">
-    <li ng-repeat="node in node.child" ui-tree-node ng-include="'common/html/tree.html'"></li>
-</ol>`);
+                <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
+                    <b class="left-colorm"></b>
+                    <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>
+                    <span class="tree-title" data-ng-bind="node.title"></span>
+                    <i class="unfurled-packup-menu" data-ng-if="node.child.length > 0" data-ng-class="{'unfurled-icon':!this.collapsed,'pack-up-icon':this.collapsed}"></i>
+                </a>
+                <!-- ng-click="(node.size == 0 ? editItem(node) : '')"-->
+            </div>
+            <ol ui-tree-nodes ng-model="node.child" ng-class="{hidden: this.collapsed}">
+                <li ng-repeat="node in node.child" ui-tree-node ng-include="'common/html/tree.html'"></li>
+            </ol>`);
     }
 ]);
 
