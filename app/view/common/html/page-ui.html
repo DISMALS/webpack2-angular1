@@ -1,0 +1,17 @@
+<div class="dryad-page-main">
+    <button class="button" ng-click="dryadUiPageVm.pagination.goto(1)" ng-disabled='dryadUiPageVm.pagination.currentPage == 1'>
+        <i class="fa fa-step-backward"></i>
+    </button>
+    <button class="button" ng-click="dryadUiPageVm.pagination.previousPage()" ng-disabled='dryadUiPageVm.pagination.currentPage == 1'>
+        <i class="fa fa-backward"></i>
+    </button>
+    <a class='lk-page-link' ng-repeat="item in dryadUiPageVm.pagination.items" ng-class="dryadUiPageVm.pagination.currentPage == item ? 'active' : ''" ng-click="dryadUiPageVm.pagination.goto(item)">{{item}}</a>
+    <button class="button" ng-click="dryadUiPageVm.pagination.nextPage()" ng-disabled='dryadUiPageVm.pagination.currentPage == dryadUiPageVm.pagination.pageCount'>
+        <i class="fa fa-forward"></i>
+    </button>
+    <button class="button" ng-click="dryadUiPageVm.pagination.goto(dryadUiPageVm.pagination.pageCount)" ng-disabled='dryadUiPageVm.pagination.currentPage == dryadUiPageVm.pagination.pageCount'>
+        <i class="fa fa-step-forward"></i>
+    </button>
+    <input type="text" class="text-center" ng-model="dryadUiPageVm.pagination.goToPage">
+    <button class="button" ng-click="dryadUiPageVm.pagination.goto(dryadUiPageVm.pagination.goToPage)">GO</button>
+</div>

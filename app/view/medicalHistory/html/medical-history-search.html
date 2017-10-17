@@ -1,3 +1,21 @@
 <div class="main-right-search">
-    <a data-ng-click="medicalhistorysearchvm.openDetails()">添加tab项</a>
+    <div class="searchTitle">
+        <label class="head-search">
+            <input class="search-input" type="text" placeholder="客户姓名/手机号查询">
+            <i class="search searchBg"></i>
+        </label>
+        <a data-ng-click="" class="screening">
+            高级筛选
+            <i class="full-selectdown"></i>
+        </a>
+        <a data-ng-click="" class="exportBtn button-default botton-save">
+            <i class="export-icon"></i> 导出并发送邮件
+        </a>
+    </div>
+    <div class="dryad-grid medical-history-height">
+        <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid>
+    </div>
+    <div class="common-page">
+        <dryad-ui-page page-config="pageConfig"></dryad-ui-page>
+    </div>
 </div>
