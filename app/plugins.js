@@ -1,5 +1,5 @@
-import '../node_modules/moment/min/moment-with-locales.min'; //时间日期转换
-// import 'moment'; 
+// import '../node_modules/moment/min/moment-with-locales.min'; //时间日期转换
+import 'moment'; //时间日期转换
 import '../node_modules/angular-ui-tree/dist/angular-ui-tree.min'; //树结构
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
 import '../node_modules/ui-select/dist/select.min'; //下拉列表插件

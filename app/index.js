@@ -1,6 +1,6 @@
 require('../node_modules/angular-ui-tree/dist/angular-ui-tree.min.css');
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('../node_modules/ui-select/dist/select.min.css');
+// require('../node_modules/ui-select/dist/select.min.css');
 require('../node_modules/angular-block-ui/dist/angular-block-ui.min.css');
 require('../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
 require('../node_modules/jsgrid/dist/jsgrid-theme.css');

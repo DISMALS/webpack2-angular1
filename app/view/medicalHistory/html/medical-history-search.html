@@ -1,20 +1,37 @@
 <div class="main-right-search">
     <div class="searchTitle">
         <label class="head-search">
-            <input class="search-input" type="text" placeholder="客户姓名/手机号查询">
+            <span class="search-input">
+                <ui-select ng-model="medicalhistorysearchvm.searchkey"
+                        theme="bootstrap"
+                        reset-search-input="true">
+                    <ui-select-match placeholder="客户姓名/手机号查询">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="address.id as address in medicalhistorysearchvm.searchSelect track by $index" 
+                        data-ng-hide="medicalhistorysearchvm.searchSelect.length == 0" class="set-width">
+                        <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
+                        <div ng-bind-html="address.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </span>
+            <!-- <input  type="text" placeholder="客户姓名/手机号查询"> -->
             <i class="search searchBg"></i>
         </label>
         <a data-ng-click="" class="screening">
             高级筛选
             <i class="full-selectdown"></i>
         </a>
+        <dryad-screen-ui screen-data="screenData" search-fn="medicalhistorysearchvm.searchFn"></dryad-screen-ui>
         <a data-ng-click="" class="exportBtn button-default botton-save">
             <i class="export-icon"></i> 导出并发送邮件
         </a>
     </div>
+    <!-- screen conditions -->
+    <div class="advanced-filter"></div>
+    <!-- grid -->
     <div class="dryad-grid medical-history-height">
         <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid>
     </div>
+    <!-- page -->
     <div class="common-page">
         <dryad-ui-page page-config="pageConfig"></dryad-ui-page>
     </div>
