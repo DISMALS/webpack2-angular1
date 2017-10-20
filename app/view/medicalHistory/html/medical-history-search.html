@@ -26,7 +26,23 @@
         </a>
     </div>
     <!-- screen conditions -->
-    <div class="advanced-filter"></div>
+    <div class="advanced-filter" data-ng-if="screenData.length > 0">
+        <div class="filter-title">高级筛选&nbsp;&nbsp;></div>
+        <div class="filter-conditions">
+            <div class="every-item" data-ng-repeat="item in screenData track by $index">
+                <span class="filter-range" data-ng-bind="item.logic"></span>
+                <span>{{($index + 1) + '、'}}</span>
+                <span data-ng-bind="item.theme"></span>
+                <span data-ng-bind="item.conditions"></span>
+                <span data-ng-bind="item.domainValues"></span>
+                <a data-ng-click="medicalhistorysearchvm.deleteFilter($index)">删除</a>
+            </div>
+            <div class="filter-operate">
+                <a class="filter-clear" data-ng-click="medicalhistorysearchvm.clearFilter()">清空</a>
+                <a class="filter-edite" data-ng-click="medicalhistorysearchvm.editFilter()">修改筛选条件</a>
+            </div>
+        </div>
+    </div>
     <!-- grid -->
     <div class="dryad-grid medical-history-height">
         <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid>

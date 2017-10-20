@@ -171,8 +171,11 @@ class MainCtrl {
     //退出
     signOut() {
         // console.log(this.cookies);
+        let cookies = this.cookies.getAll();
+        for (let item in cookies) {
+            this.cookies.remove(item);
+        }
         this.state.go('authorize.login');
-        this.cookies.remove('historytabs');
     };
 }
 

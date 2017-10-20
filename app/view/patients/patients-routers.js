@@ -57,6 +57,33 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
+                .state('dryad.patients.details', { //患者详情
+                    url: '/details/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/patients-details.html'], (require) => {
+                            const template = require('./html/patients-details.html');
+                            deferred.resolve(template);
+                        }, './patients/patients-details-tpl');
+                        return deferred.promise;
+                    },
+                    controller: 'patientsDeailsCtrl',
+                    controllerAs: 'patientsdetailsvm',
+                    resolve: {
+                        'patientsDeailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/patients-details-controller'], (require) => {
+                                const ctrl = require('./controller/patients-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp',
+                                    files: [ctrl]
+                                });
+                                deferred.resolve(ctrl);
+                            }, './patients/patients-details-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
         }
     ]).name;
 }

@@ -25,18 +25,27 @@ let DryadScreenUi = ($timeout) => {
             let screenmain = $(ele);
             let screening = $(ele).prev('a');
             let iIcon = $(screening).find('i');
-            $scope.show = false; //只有点击的时候内容才会渲染出来
-
-            $(screening).bind('click', () => {
+            // $scope.show = false; //只有点击的时候内容才会渲染出来
+            let showHide = () => {
                 if (screenmain.hasClass('show')) {
-                    $scope.show = false;
                     screenmain.removeClass('show').hide(500);
                     $(iIcon).removeClass('full-selectup').addClass('full-selectdown');
                 } else {
-                    $scope.show = true;
+                    if ($scope.screenData.length == 0) {
+                        $scope.screenData.push({
+                            logic: null,
+                            theme: null,
+                            conditions: null,
+                            domainValues: null
+                        });
+                    }
                     $(iIcon).removeClass('full-selectdown').addClass('full-selectup');
                     screenmain.addClass('show').show(500);
                 }
+            };
+
+            $(screening).bind('click', () => {
+                showHide();
             });
 
             //add row
@@ -68,7 +77,7 @@ let DryadScreenUi = ($timeout) => {
                 screenmain.removeClass('show').hide(500);
                 $(iIcon).removeClass('full-selectup').addClass('full-selectdown');
                 $scope.searchFn(screenData);
-                $scope.resetScreen();
+                // $scope.resetScreen();
             };
 
             //reset screen
@@ -81,6 +90,10 @@ let DryadScreenUi = ($timeout) => {
                 });
             };
 
+            //reception data
+            $scope.$on('edite', (evt, obj) => {
+                showHide();
+            });
             //点击空白处关闭弹窗
             // $(window).on('click', (evt) => {
             //     let targets = evt.target;

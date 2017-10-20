@@ -79,6 +79,10 @@
             </div>
         </div>
         <div class="screen-btn">
+            <div class="remeber-filter">
+                <label class="checkbox-remeber"><input type="checkbox" data-ng-model="remeber">记住本次查询</label>
+                <label class="filter-name">本次查询名称:<input type="text" data-ng-model="templateName"></label>
+            </div>
             <a data-ng-click="closeScreen()" class="screen-close">关闭</a>
             <a data-ng-click="searchScreen()" class="screen-search-btn button-default botton-search"><i class="search"></i>搜索</a>
             <a data-ng-click="resetScreen()" class="screen-reset-btn button botton-cancle">重置</a>

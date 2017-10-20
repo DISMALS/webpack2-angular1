@@ -247,8 +247,25 @@ class MedicalHistorySearchCtrl {
     };
     //search
     searchFn(obj) {
+        // this.scope.screenData = [];
+        // this.scope.screenData = angular.copy(obj);
         console.log(obj);
-    }
+    };
+
+    //delete filter item
+    deleteFilter(index) {
+        this.scope.screenData.splice(index, 1);
+    };
+
+    //clear filter
+    clearFilter() {
+        this.scope.screenData = [];
+    };
+
+    //edite filter
+    editFilter() {
+        this.scope.$broadcast('edite', this.scope.screenData);
+    };
 }
 MedicalHistorySearchCtrl.$inject = ['$rootScope', '$scope', '$uibModal', '$state'];
 

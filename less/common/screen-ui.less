@@ -20,7 +20,7 @@
 	.screen-main{
 		width: 100%;
 		max-height: calc(~"100%");
-		overflow-y: auto;
+		// overflow-y: auto;
 	}
 }
 .screen-table {
@@ -161,4 +161,37 @@
 .screen-close{
 	color:@font-color-4;
 	margin-right:10px;
+}
+.remeber-filter{
+  float: left;
+  height:30px; 
+  font-size:@font-size-14;
+  color:@font-color-7;
+  label{
+    font-weight: normal;
+  }
+  .checkbox-remeber{
+    float: left;
+    line-height: 30px;
+    margin-right:15px;
+    input{
+      float: left;
+      margin-right:5px;
+      width: 15px;
+      height: 15px;
+      margin-top: 8px;
+    }
+  }
+  .filter-name{
+    float: left;
+    line-height: 30px;
+    input{
+      height: 28px;
+      .border(1px,solid,@font-color-9);
+      line-height: 28px;
+      padding:0px 5px;
+      background-color: @font-color-3;
+      margin-left:5px;
+    }
+  }
 }
