@@ -11,4 +11,6 @@ import '../node_modules/angular-block-ui/dist/angular-block-ui.min'; //弹窗锁
 // import '../node_modules/angular-ui-router/lib/legacy/stateEvents'; //ui-router1.0以后监听路由变化需要此文件
 import '../node_modules/angular-ui-router/release/stateEvents.min'; //ui-router1.0以后监听路由变化需要此文件
 import '../node_modules/jsgrid/dist/jsgrid.min'; //jsgrid表格
+import '../node_modules/angular-timeline/dist/angular-timeline'; //时间轴
+import '../node_modules/angular-ui-router-tabs/src/ui-router-tabs'; //路由tab
 window.echarts = require('../node_modules/echarts/dist/echarts.min');

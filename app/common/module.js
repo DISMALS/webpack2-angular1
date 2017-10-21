@@ -12,5 +12,7 @@ module.exports = angular.module('dryadApp', [
     'toastr',
     'btford.socket-io',
     'angularMoment',
-    'blockUI'
+    'blockUI',
+    'angular-timeline',
+    'ui.router.tabs'
 ]);

@@ -2,12 +2,12 @@
     <div class="searchTitle">
         <label class="head-search">
             <span class="search-input">
-                <ui-select ng-model="medicalhistorysearchvm.searchkey"
+                <ui-select ng-model="searchkey"
                         theme="bootstrap"
                         reset-search-input="true">
                     <ui-select-match placeholder="客户姓名/手机号查询">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="address.id as address in medicalhistorysearchvm.searchSelect track by $index" 
-                        data-ng-hide="medicalhistorysearchvm.searchSelect.length == 0" class="set-width">
+                    <ui-select-choices repeat="address.id as address in searchSelect track by $index" 
+                        data-ng-hide="searchSelect.length == 0" class="set-width">
                         <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
                         <div ng-bind-html="address.name | highlight: $select.search"></div>
                     </ui-select-choices>
@@ -20,26 +20,27 @@
             高级筛选
             <i class="full-selectdown"></i>
         </a>
-        <dryad-screen-ui screen-data="screenData" search-fn="medicalhistorysearchvm.searchFn"></dryad-screen-ui>
+        <!-- screen-data="screenData" -->
+        <dryad-screen-ui search-fn="searchFn"></dryad-screen-ui>
         <a data-ng-click="" class="exportBtn button-default botton-save">
             <i class="export-icon"></i> 导出并发送邮件
         </a>
     </div>
     <!-- screen conditions -->
-    <div class="advanced-filter" data-ng-if="screenData.length > 0">
+    <div class="advanced-filter" data-ng-if="screenList.length > 0">
         <div class="filter-title">高级筛选&nbsp;&nbsp;></div>
         <div class="filter-conditions">
-            <div class="every-item" data-ng-repeat="item in screenData track by $index">
+            <div class="every-item" data-ng-repeat="item in screenList track by $index">
                 <span class="filter-range" data-ng-bind="item.logic"></span>
                 <span>{{($index + 1) + '、'}}</span>
                 <span data-ng-bind="item.theme"></span>
                 <span data-ng-bind="item.conditions"></span>
                 <span data-ng-bind="item.domainValues"></span>
-                <a data-ng-click="medicalhistorysearchvm.deleteFilter($index)">删除</a>
+                <a data-ng-click="deleteFilter($index)">删除</a>
             </div>
             <div class="filter-operate">
-                <a class="filter-clear" data-ng-click="medicalhistorysearchvm.clearFilter()">清空</a>
-                <a class="filter-edite" data-ng-click="medicalhistorysearchvm.editFilter()">修改筛选条件</a>
+                <a class="filter-clear" data-ng-click="clearFilter()">清空</a>
+                <a class="filter-edite" data-ng-click="editFilter()">修改筛选条件</a>
             </div>
         </div>
     </div>

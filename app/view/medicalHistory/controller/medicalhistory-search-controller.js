@@ -1,10 +1,9 @@
 class MedicalHistorySearchCtrl {
     constructor($rootScope, $scope, $uibModal, $state) {
-        this.scope = $scope;
-        this.state = $state;
-        this.searchkey = '';
+        $scope.searchkey = '';
+        $scope.screenList = [];
 
-        this.searchSelect = [{
+        $scope.searchSelect = [{
             id: 1,
             name: '测试1'
         }, {
@@ -15,21 +14,8 @@ class MedicalHistorySearchCtrl {
             name: '测试3'
         }];
 
-        //screen data
-        this.scope.screenData = [{
-            logic: null,
-            theme: 1,
-            conditions: 1,
-            domainValues: 1
-        }, {
-            logic: 2,
-            theme: 2,
-            conditions: 2,
-            domainValues: 2
-        }];
-
         //list data
-        this.scope.data = [{
+        $scope.data = [{
                 Name: 'wangyong',
                 Age: 33,
                 Address: '上海市浦东新区',
@@ -186,7 +172,7 @@ class MedicalHistorySearchCtrl {
         ];
 
         //girdOptions
-        this.scope.gridOptions = {
+        $scope.gridOptions = {
             width: "100%",
             height: "100%",
             filtering: false, //启动查找
@@ -196,12 +182,12 @@ class MedicalHistorySearchCtrl {
             pageIndex: 1,
             pageSize: 10,
             inserting: false, //启动添加
-            data: this.scope.data,
+            data: $scope.data,
             noDataContent: '暂无数据...',
             loadMessage: '正在加载数据，请稍等...',
             loadIndication: true, //是否在加载数据时显示提示语
             rowClick: (row) => {
-                this.openDetails(row);
+                $scope.openDetails(row);
             },
             fields: [{
                     name: "Age",
@@ -218,54 +204,62 @@ class MedicalHistorySearchCtrl {
         };
 
         //pageConfig
-        this.scope.pageConfig = {
+        $scope.pageConfig = {
             pageIndex: 1,
             pageSize: 10,
             pageCount: 500
         }
 
+        //open page the details
+        $scope.openDetails = (row) => {
+            $scope.$emit('addTab', {
+                title: '患者2',
+                close: true,
+                route: 'dryad.medicalhistory.details',
+                params: {
+                    id: 34534
+                }
+            });
+            $state.go('dryad.medicalhistory.details', {
+                index: 0, //第一次显示第一个tab,所以这个值不用修改
+                id: 34534
+            });
+        };
+        //search
+        $scope.searchFn = (obj) => {
+            $scope.filterObj = obj;
+            $scope.screenList = angular.copy(obj.screenData);
+            console.log(obj);
+        };
+
+        //delete filter item
+        $scope.deleteFilter = (index) => {
+            $scope.screenList.splice(index, 1);
+        };
+
+        //clear filter
+        $scope.clearFilter = () => {
+            $scope.screenList = [];
+        };
+
+        //edite filter
+        $scope.editFilter = () => {
+            let obj = {
+                screenData: $scope.screenList,
+                remeber: $scope.filterObj.remeber,
+                templateName: $scope.filterObj.templateName
+            }
+            $scope.$broadcast('edite', obj);
+        };
+
         //to watch the pageindex,to load data
-        this.scope.$watch('pageConfig', (newValue, oldValue) => {
+        $scope.$watch('pageConfig', (newValue, oldValue) => {
             if (newValue != oldValue) {
-                console.log(this.scope.pageConfig);
+                console.log($scope.pageConfig);
             }
         }, true);
     };
-    //open page the details
-    openDetails(row) {
-        this.scope.$emit('addTab', {
-            title: '患者2',
-            close: true,
-            route: 'dryad.medicalhistory.details',
-            params: {
-                id: 34534
-            }
-        });
-        this.state.go('dryad.medicalhistory.details', {
-            id: 34534
-        });
-    };
-    //search
-    searchFn(obj) {
-        // this.scope.screenData = [];
-        // this.scope.screenData = angular.copy(obj);
-        console.log(obj);
-    };
 
-    //delete filter item
-    deleteFilter(index) {
-        this.scope.screenData.splice(index, 1);
-    };
-
-    //clear filter
-    clearFilter() {
-        this.scope.screenData = [];
-    };
-
-    //edite filter
-    editFilter() {
-        this.scope.$broadcast('edite', this.scope.screenData);
-    };
 }
 MedicalHistorySearchCtrl.$inject = ['$rootScope', '$scope', '$uibModal', '$state'];
 

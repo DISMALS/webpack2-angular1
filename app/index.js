@@ -5,6 +5,7 @@ require('../node_modules/angular-block-ui/dist/angular-block-ui.min.css');
 require('../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css');
 require('../node_modules/jsgrid/dist/jsgrid-theme.css');
 require('../node_modules/jsgrid/dist/jsgrid.min.css');
+require('../node_modules/angular-timeline/dist/angular-timeline.css');
 
 
 require('../less/ui.less');

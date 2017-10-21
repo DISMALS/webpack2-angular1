@@ -2,7 +2,7 @@ let DryadScreenUi = ($timeout) => {
     return {
         restrict: "ECMA",
         scope: {
-            screenData: '=',
+            // screenData: '=',
             searchFn: '='
         },
         transclude: true,
@@ -19,13 +19,24 @@ let DryadScreenUi = ($timeout) => {
                 id: 3,
                 name: '测试3测试3测试3测试3'
             }];
+            $scope.screenData = [{
+                logic: null,
+                theme: null,
+                conditions: null,
+                domainValues: null
+            }];
         }],
         controllerAs: 'screenVm',
         link: ($scope, ele, attr) => {
             let screenmain = $(ele);
             let screening = $(ele).prev('a');
             let iIcon = $(screening).find('i');
-            // $scope.show = false; //只有点击的时候内容才会渲染出来
+
+            // save a template for this screen conditions
+            $scope.remeber = false;
+            $scope.templateName = null;
+
+            //screen box show and hide
             let showHide = () => {
                 if (screenmain.hasClass('show')) {
                     screenmain.removeClass('show').hide(500);
@@ -54,7 +65,7 @@ let DryadScreenUi = ($timeout) => {
                     logic: null,
                     theme: null,
                     conditions: null,
-                    domainValues: ''
+                    domainValues: null
                 };
                 $scope.screenData.splice(index + 1, 0, rowData);
             };
@@ -68,16 +79,34 @@ let DryadScreenUi = ($timeout) => {
             $scope.closeScreen = () => {
                 $(iIcon).removeClass('full-selectup').addClass('full-selectdown');
                 screenmain.removeClass('show').hide(500);
-                $scope.resetScreen();
+                $scope.screenData = [{
+                    logic: null,
+                    theme: null,
+                    conditions: null,
+                    domainValues: null
+                }];
+                $scope.remeber = false;
+                $scope.templateName = null;
             };
 
             //search screen
             $scope.searchScreen = () => {
-                let screenData = angular.copy($scope.screenData);
+                let obj = {
+                    screenData: angular.copy($scope.screenData),
+                    remeber: $scope.remeber,
+                    templateName: $scope.templateName
+                }
                 screenmain.removeClass('show').hide(500);
                 $(iIcon).removeClass('full-selectup').addClass('full-selectdown');
-                $scope.searchFn(screenData);
-                // $scope.resetScreen();
+                $scope.searchFn(obj);
+                $scope.screenData = [{
+                    logic: null,
+                    theme: null,
+                    conditions: null,
+                    domainValues: null
+                }];
+                $scope.remeber = false;
+                $scope.templateName = null;
             };
 
             //reset screen
@@ -92,6 +121,9 @@ let DryadScreenUi = ($timeout) => {
 
             //reception data
             $scope.$on('edite', (evt, obj) => {
+                $scope.screenData = obj.screenData;
+                $scope.remeber = obj.remeber;
+                $scope.templateName = obj.templateName;
                 showHide();
             });
             //点击空白处关闭弹窗
