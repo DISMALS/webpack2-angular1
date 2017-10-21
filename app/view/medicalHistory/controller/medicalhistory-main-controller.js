@@ -30,8 +30,8 @@ class MedicalHistoryCtrl {
                 $cookies.putObject('historytabs', $scope.tabs);
                 $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
                 $scope.active = $scope.tablist.length - 1;
-                $scope.$apply();
             }
+            $scope.$apply();
         });
 
         // 删除tab
@@ -53,7 +53,6 @@ class MedicalHistoryCtrl {
         //选中tab
         $scope.$on('active', function(evt, obj) {
             $scope.active = obj.index;
-            $scope.$apply();
         });
     }
 }

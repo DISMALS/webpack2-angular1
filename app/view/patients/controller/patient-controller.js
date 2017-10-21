@@ -29,9 +29,9 @@ class PatientCtrl {
                 $cookies.putObject('patientstabs', $scope.tabs);
                 $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
                 $scope.active = $scope.tablist.length - 1;
-                $scope.$apply();
                 // $scope.$broadcast('newTab',{active:$scope.active});
             }
+            $scope.$apply();
         });
 
         // 删除tab
@@ -53,7 +53,7 @@ class PatientCtrl {
         //选中tab
         $scope.$on('active', function(evt, obj) {
             $scope.active = obj.index;
-            $scope.$apply();
+            // $scope.$apply();
         });
     }
 }
