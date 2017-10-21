@@ -53,6 +53,7 @@ class PatientCtrl {
         //选中tab
         $scope.$on('active', function(evt, obj) {
             $scope.active = obj.index;
+            $scope.$apply();
         });
     }
 }
