@@ -71,6 +71,9 @@ module.exports = (ngMold) => {
                     },
                     controller: 'medicalHistoryDeailsCtrl',
                     controllerAs: 'medicalhistorydetailsvm',
+                    params: {
+                        id: null
+                    },
                     resolve: {
                         'medicalHistoryDeailsCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();

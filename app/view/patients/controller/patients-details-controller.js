@@ -39,7 +39,7 @@ class PatientsDeailsCtrl {
                 }
             }
         ];
-        $state.go($scope.tabData[0]['route']);
+        $state.go($scope.tabData[0]['route'],$scope.tabData[0]['params']);
         // $scope.go = function(state) {
         //     $state.go(state);
         // };

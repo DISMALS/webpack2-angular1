@@ -59,7 +59,7 @@ module.exports = (ngMold) => {
                 })
                 .state('dryad.patients.details', { //患者详情
                     // abstract: true,
-                    url: '/details',
+                    url: '/details/{id}',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
                         require.ensure(['./html/patients-details.html'], (require) => {
@@ -70,6 +70,9 @@ module.exports = (ngMold) => {
                     },
                     controller: 'patientsDeailsCtrl',
                     controllerAs: 'patientsdetailsvm',
+                    params: {
+                        id: null
+                    },
                     resolve: {
                         'patientsDeailsCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();

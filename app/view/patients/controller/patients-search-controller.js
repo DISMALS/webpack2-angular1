@@ -100,7 +100,7 @@ class PatientsSearchCtrl {
                 close: true,
                 route: 'dryad.patients.details',
                 params: {
-                    id: 23543534
+                    id: 34255
                 }
             });
             // $state.go('dryad.patients.details', {

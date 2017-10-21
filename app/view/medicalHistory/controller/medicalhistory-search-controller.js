@@ -217,7 +217,7 @@ class MedicalHistorySearchCtrl {
                 close: true,
                 route: 'dryad.medicalhistory.details',
                 params: {
-                    id: 34534
+                    id: 235534
                 }
             });
             // $state.go('dryad.medicalhistory.details', {
