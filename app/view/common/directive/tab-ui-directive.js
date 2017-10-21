@@ -61,6 +61,14 @@ let TabUi = ($timeout, $cookies, $state) => {
                 $state.go(scope.tabList[scope.tabActive].route, scope.tabList[scope.tabActive].params);
             });
 
+            // scope.$on('newTab',(evt,obj) => {
+            //     angular.forEach(scope.tabList, (item) => {
+            //         item.active = false;
+            //     }, true);
+            //     scope.tabList[scope.tabActive]['active'] = true;
+            //     $state.go(scope.tabList[scope.tabActive].route, scope.tabList[scope.tabActive].params);
+            // });
+
         }
     }
 }

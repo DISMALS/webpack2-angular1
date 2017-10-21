@@ -58,7 +58,7 @@ module.exports = (ngMold) => {
                     }
                 })
                 .state('dryad.patients.details', { //患者详情
-                    abstract: true,
+                    // abstract: true,
                     url: '/details',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();

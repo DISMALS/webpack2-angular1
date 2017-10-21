@@ -28,9 +28,9 @@ class PatientCtrl {
                 $scope.tabs.push(obj);
                 $cookies.putObject('patientstabs', $scope.tabs);
                 $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
-                setTimeout(function() {
-                    $scope.active = $scope.tablist.length - 1;
-                });
+                $scope.active = $scope.tablist.length - 1;
+                $scope.$apply();
+                // $scope.$broadcast('newTab',{active:$scope.active});
             }
         });
 
@@ -52,7 +52,6 @@ class PatientCtrl {
 
         //选中tab
         $scope.$on('active', function(evt, obj) {
-            console.log(obj);
             $scope.active = obj.index;
         });
     }

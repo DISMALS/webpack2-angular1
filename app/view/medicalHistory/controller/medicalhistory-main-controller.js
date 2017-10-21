@@ -29,9 +29,8 @@ class MedicalHistoryCtrl {
                 $scope.tabs.push(obj);
                 $cookies.putObject('historytabs', $scope.tabs);
                 $scope.tablist = $scope.tabfixed.concat(($scope.tabs ? $scope.tabs : []));
-                setTimeout(function() {
-                    $scope.active = $scope.tablist.length - 1;
-                });
+                $scope.active = $scope.tablist.length - 1;
+                $scope.$apply();
             }
         });
 

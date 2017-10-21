@@ -220,10 +220,10 @@ class MedicalHistorySearchCtrl {
                     id: 34534
                 }
             });
-            $state.go('dryad.medicalhistory.details', {
-                index: 0, //第一次显示第一个tab,所以这个值不用修改
-                id: 34534
-            });
+            // $state.go('dryad.medicalhistory.details', {
+            //     index: 0, //第一次显示第一个tab,所以这个值不用修改
+            //     id: 34534
+            // });
         };
         //search
         $scope.searchFn = (obj) => {

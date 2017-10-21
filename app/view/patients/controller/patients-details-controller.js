@@ -1,6 +1,6 @@
 require('../../../../images/user-icon.png');
 class PatientsDeailsCtrl {
-    constructor($scope, $stateParams, APP_CONFIG) {
+    constructor($scope, $stateParams, APP_CONFIG,$state) {
         this.name = '这是病历详情页面,ID是：' + $stateParams.id;
         $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
         $scope.tabData = [{
@@ -39,13 +39,14 @@ class PatientsDeailsCtrl {
                 }
             }
         ];
+        $state.go($scope.tabData[0]['route']);
         // $scope.go = function(state) {
         //     $state.go(state);
         // };
     }
 }
 
-PatientsDeailsCtrl.$inject = ['$scope', '$stateParams', 'APP_CONFIG'];
+PatientsDeailsCtrl.$inject = ['$scope', '$stateParams', 'APP_CONFIG','$state'];
 
 module.exports = (ngMold) => {
     ngMold.controller('patientsDeailsCtrl', PatientsDeailsCtrl);

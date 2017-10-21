@@ -98,15 +98,15 @@ class PatientsSearchCtrl {
             $scope.$emit('addTab', {
                 title: '患者3',
                 close: true,
-                route: 'dryad.patients.details.baseinfo',
+                route: 'dryad.patients.details',
                 params: {
                     id: 23543534
                 }
             });
-            $state.go('dryad.patients.details.baseinfo', {
-                index: 0, //第一次显示第一个tab,所以这个值不用修改
-                id: 23543534
-            });
+            // $state.go('dryad.patients.details', {
+            //     //index: 0, //第一次显示第一个tab,所以这个值不用修改
+            //     id: 23543534
+            // });
         };
         //search
         $scope.searchFn = (obj) => {

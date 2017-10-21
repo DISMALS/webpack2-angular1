@@ -14,7 +14,7 @@
         "permissions": [],
         "state": "dryad.medicalhistory.search",
         "active": "parent-active",
-        "uiRouter": "dryad.medicalhistory.*",
+        "uiRouter": "dryad.medicalhistory.**",
         "child": [],
         "level": 1
     },
@@ -24,7 +24,7 @@
         "permissions": [],
         "state": "dryad.patients.search",
         "active": "parent-active",
-        "uiRouter": "dryad.patients.*",
+        "uiRouter": "dryad.patients.**",
         "child": [],
         "level": 1
     },
@@ -34,7 +34,7 @@
         "permissions": [],
         "state": "dryad.followup.unfinished",
         "active": "parent-active",
-        "uiRouter": "dryad.followup.*",
+        "uiRouter": "dryad.followup.**",
         "child": [],
         "level": 1
     },
@@ -44,7 +44,7 @@
         "permissions": [],
         "state": "dryad.operation.list",
         "active": "parent-active",
-        "uiRouter": "dryad.operation.*",
+        "uiRouter": "dryad.operation.**",
         "child": [],
         "level": 1
     },
@@ -53,80 +53,80 @@
         "iconfont": "system-icon",
         "permissions": [],
         "active": "parent-active",
-        "uiRouter": "dryad.system.*",
+        "uiRouter": "dryad.system.**",
         "child": [{
             "title": "医疗机构管理",
             "permissions": [],
             "active": "child-active",
-            "uiRouter": "dryad.system.medical-organization.*",
+            "uiRouter": "dryad.system.medical-organization.**",
             "level": 2,
             "child": [{
                 "title": "机构管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.mechanism.*",
+                "uiRouter": "dryad.system.medical-organization.mechanism.**",
                 "level": 3
             }, {
                 "title": "科室管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.department.*",
+                "uiRouter": "dryad.system.medical-organization.department.**",
                 "level": 3
             }, {
                 "title": "角色管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.role.*",
+                "uiRouter": "dryad.system.medical-organization.role.**",
                 "level": 3
             }, {
                 "title": "员工管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.employee.*",
+                "uiRouter": "dryad.system.medical-organization.employee.**",
                 "level": 3
             }]
         }, {
             "title": "常用药品字典",
             "permissions": [],
             "active": "child-active",
-            "uiRouter": "dryad.system.medicine.*",
+            "uiRouter": "dryad.system.medicine.**",
             "level": 2,
             "child": [{
                 "title": "控制类药物",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medicine.control-class.*",
+                "uiRouter": "dryad.system.medicine.control-class.**",
                 "level": 3
             }, {
                 "title": "缓解类药物",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medicine.ease-class.*",
+                "uiRouter": "dryad.system.medicine.ease-class.**",
                 "level": 3
             }, {
                 "title": "未分类药物",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.medicine.unclassified.*",
+                "uiRouter": "dryad.system.medicine.unclassified.**",
                 "level": 3
             }]
         }, {
             "title": "数据使用管理",
             "permissions": [],
             "active": "child-active",
-            "uiRouter": "dryad.system.data.*",
+            "uiRouter": "dryad.system.data.**",
             "level": 2,
             "child": [{
                 "title": "角色管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.data.role.*",
+                "uiRouter": "dryad.system.data.role.**",
                 "level": 3
             }, {
                 "title": "账号管理",
                 "permissions": [],
                 "active": "child-active",
-                "uiRouter": "dryad.system.data.account-number.*",
+                "uiRouter": "dryad.system.data.account-number.**",
                 "level": 3
             }]
         }],
