@@ -94,13 +94,12 @@ class PatientsSearchCtrl {
 
         //open page the details
         $scope.openDetails = (row) => {
-            console.log(row);
             $scope.$emit('addTab', {
                 title: '患者3',
                 close: true,
                 route: 'dryad.patients.details',
                 params: {
-                    id: 34255
+                    id: 235354
                 }
             });
             // $state.go('dryad.patients.details', {
