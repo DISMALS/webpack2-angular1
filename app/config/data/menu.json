@@ -39,12 +39,32 @@
         "level": 1
     },
     {
-        "title": "运营管理",
+        "title": "资源管理",
         "iconfont": "operation-icon",
         "permissions": [],
         "state": "dryad.operation.list",
         "active": "parent-active",
         "uiRouter": "dryad.operation.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "在线咨询",
+        "iconfont": "online-consulting-icon",
+        "permissions": [],
+        "state": "dryad.online-consulting",
+        "active": "parent-active",
+        "uiRouter": "dryad.online-consulting.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "数据应用",
+        "iconfont": "data-applications-icon",
+        "permissions": [],
+        "state": "dryad.data-applications.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.data-applications.**",
         "child": [],
         "level": 1
     },
@@ -55,80 +75,77 @@
         "active": "parent-active",
         "uiRouter": "dryad.system.**",
         "child": [{
-            "title": "医疗机构管理",
+            "title": "机构管理",
             "permissions": [],
+            "state": "dryad.system.institutional-management.department",
             "active": "child-active",
-            "uiRouter": "dryad.system.medical-organization.**",
+            "uiRouter": "dryad.system.institutional-management.**",
             "level": 2,
-            "child": [{
-                "title": "机构管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.mechanism.**",
-                "level": 3
-            }, {
-                "title": "科室管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.department.**",
-                "level": 3
-            }, {
-                "title": "角色管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.role.**",
-                "level": 3
-            }, {
-                "title": "员工管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medical-organization.employee.**",
-                "level": 3
-            }]
+            "child": []
         }, {
-            "title": "常用药品字典",
+            "title": "药品字典",
             "permissions": [],
+            "state": "dryad.system.drug-dictionary.controlclass",
             "active": "child-active",
-            "uiRouter": "dryad.system.medicine.**",
+            "uiRouter": "dryad.system.drug-dictionary.**",
             "level": 2,
-            "child": [{
-                "title": "控制类药物",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medicine.control-class.**",
-                "level": 3
-            }, {
-                "title": "缓解类药物",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medicine.ease-class.**",
-                "level": 3
-            }, {
-                "title": "未分类药物",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.medicine.unclassified.**",
-                "level": 3
-            }]
+            "child": []
         }, {
-            "title": "数据使用管理",
+            "title": "基础配置",
             "permissions": [],
+            "state": "dryad.system.basic-configuration",
             "active": "child-active",
-            "uiRouter": "dryad.system.data.**",
+            "uiRouter": "dryad.system.basic-configuration.**",
             "level": 2,
-            "child": [{
-                "title": "角色管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.data.role.**",
-                "level": 3
-            }, {
-                "title": "账号管理",
-                "permissions": [],
-                "active": "child-active",
-                "uiRouter": "dryad.system.data.account-number.**",
-                "level": 3
-            }]
+            "child": []
+        }, {
+            "title": "项目机构管理",
+            "permissions": [],
+            "state": "dryad.system.programs",
+            "active": "child-active",
+            "uiRouter": "dryad.system.programs.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "运营角色管理",
+            "permissions": [],
+            "state": "dryad.system.operational-roles",
+            "active": "child-active",
+            "uiRouter": "dryad.system.operational-roles.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "运营账号管理",
+            "permissions": [],
+            "state": "dryad.system.operating-account",
+            "active": "child-active",
+            "uiRouter": "dryad.system.operating-account.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "区域中心管理",
+            "permissions": [],
+            "state": "dryad.system.regional-center",
+            "active": "child-active",
+            "uiRouter": "dryad.system.regional-center.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "专家角色管理",
+            "permissions": [],
+            "state": "dryad.system.expert-role",
+            "active": "child-active",
+            "uiRouter": "dryad.system.expert-role.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "专家账号管理",
+            "permissions": [],
+            "state": "dryad.system.experts-account",
+            "active": "child-active",
+            "uiRouter": "dryad.system.experts-account.**",
+            "level": 2,
+            "child": []
         }],
         "level": 1
     }

@@ -1,4 +1,5 @@
 @charset 'UTF-8';
+// 基本信息
 .patients-baseinfo{
 	width: 100%;
 	height: calc(~"100% - 64px");
@@ -22,6 +23,15 @@
 		color:@font-color-7;
 		text-align: left;
 		display: inline-block;
+	}
+}
+.patients{
+	.patients-baseinfo{
+		height: calc(~"100%");
+		padding-top:20px;
+	}
+	.curve-diagram-main{
+
 	}
 }
 //诊断
@@ -204,5 +214,86 @@
 		left: 77px;
 		z-index: 6;
 		.border-radius(100px,100px,100px,100px);
+	}
+}
+
+// 用药/ACT
+.chooise-time{
+	width:260px;
+	height: 32px;
+	line-height: 32px;
+	padding-left:25px;
+	.left-title{
+		text-align: right;
+		display: inline-block;
+		font-size:@font-size-14;
+		color:@font-color-5;
+		margin-right:5px;
+	}
+	.right-content{
+		width:170px;
+		height: 32px;
+		line-height: 30px;
+		.border(1px,solid,@font-color-9);
+		.border-radius(4px,4px,4px,4px);
+		position: relative;
+		display: inline-block;
+	}
+	.date-input{
+		width: 100%;
+	    height: 30px;
+		font-size: @font-size-14;
+		color:@font-color-7;
+		padding:0px 25px 0px 5px;
+		.border-radius(4px,4px,4px,4px);
+		.border(0px,solid,@font-color-9);
+	}
+	.date-icon{
+		position: absolute;
+		font-size: @font-size-15;
+		top: 0px;
+	    right: 11px;
+	    height: 30px;
+	}
+}
+.curve-diagram-main{
+	width:calc(~"100%");
+	height: auto;
+	overflow:hidden;
+}
+.instruction-text{
+	width: calc(~"100% - 40px");
+	height: 32px;
+	margin:30px 20px 10px;
+	.border(1px,solid,@font-color-9);
+	.border-radius(4px,4px,4px,4px);
+	background:@icon-bg-color-7;
+	padding:0px 15px;
+	span{
+		float: left;
+		display:flex;
+	    align-items:center;
+		margin-right:20px;
+		min-width: 150px;
+		height: 32px;
+    	line-height: 32px;
+		color:@font-color-13;
+		font-size:@font-size-14;
+		b{
+			color:@font-color-8;
+			margin-left:15px;
+			font-weight: normal;
+		}
+		i{
+			display: inline-block;
+			height: 21px;
+			line-height:21px;
+			color:@font-color-3;
+			font-size:@font-size-12;
+			background: @icon-bg-color-4;
+			.border-radius(4px,4px,4px,4px);
+			padding:0px 5px;
+			margin-left:5px;
+		}
 	}
 }

@@ -4,9 +4,6 @@ class PatientsDiagnosisCtrl {
         this.scope = $scope;
         this.name = '这是病历详情页面,ID是：' + $stateParams.id;
         $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
-        console.log($rootScope);
-        console.log($scope);
-        console.log($stateParams);
         $scope.events = [{
             visit: true,
             card: 242344,

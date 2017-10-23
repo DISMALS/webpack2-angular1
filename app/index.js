@@ -97,6 +97,7 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
         });
         $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
             console.log('变化出错了！');
+            $state.go('dryad.home');
         });
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
             console.log('变化结束了！');
