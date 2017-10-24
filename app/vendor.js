@@ -7,8 +7,9 @@ import '../node_modules/angular-ui-router/release/angular-ui-router.min';
 import '../node_modules/angular-animate/angular-animate.min';
 import '../node_modules/angular-local-storage/dist/angular-local-storage.min';
 import '../node_modules/angular-cookies/angular-cookies.min';
-// import 'angular-animate';
-// import 'angular-local-storage';
-// import 'angular-cookies';
 import 'angular-ui-bootstrap';
+
+window.WebIM = require('./config/webim.config.js');
+window.Strophe = require('../node_modules/easemob-websdk/dist/strophe-1.2.8.min');
+
 // import '../node_modules/angular-ui-bootstrap/dist/ui-bootstrap';

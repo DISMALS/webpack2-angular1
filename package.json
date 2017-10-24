@@ -53,6 +53,7 @@
     "angular-ui-router-tabs": "^2.0.2",
     "angular-ui-tree": "^2.22.6",
     "bootstrap": "^3.3.7",
+    "crypto-js": "^3.1.9-1",
     "easemob-websdk": "^1.4.12",
     "echarts": "^3.7.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
@@ -62,6 +63,7 @@
     "oclazyload": "^1.1.0",
     "resolve-url-loader": "2.1.0",
     "ui-select": "^0.19.8",
+    "underscore": "^1.8.3",
     "webpack": "2.7.0"
   }
 }
