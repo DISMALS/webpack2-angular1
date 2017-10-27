@@ -10,6 +10,5 @@ import '../node_modules/angular-cookies/angular-cookies.min';
 import 'angular-ui-bootstrap';
 
 window.WebIM = require('./config/webim.config.js');
-window.Strophe = require('../node_modules/easemob-websdk/dist/strophe-1.2.8.min');
-
+window.Strophe = require('./common/src/strophe-1.2.8.js');
 // import '../node_modules/angular-ui-bootstrap/dist/ui-bootstrap';

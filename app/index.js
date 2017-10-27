@@ -19,12 +19,11 @@ require('./common/directive.js')(dryadApp);
 dryadApp.config(['$urlRouterProvider', '$locationProvider', '$stateProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider', 'blockUIConfig', 'treeConfig', 'toastrConfig', '$cookiesProvider',
     ($urlRouterProvider, $locationProvider, $stateProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, blockUIConfig, treeConfig, toastrConfig, $cookiesProvider) => {
         dryadApp.controller = $controllerProvider.register;
-        dryadApp.directive = $compileProvider.register;
+        dryadApp.directive = $compileProvider.directive;
         dryadApp.filter = $filterProvider.register;
         dryadApp.factory = $provide.factory;
         dryadApp.service = $provide.service;
         dryadApp.constant = $provide.constant;
-
 
         // $ocLazyLoadProvider.config({
         //     loadedModules: ["oc.lazyLoad","ui.router"],//主模块名,和ng.bootstrap(document, ['monitorApp'])相同
@@ -77,8 +76,8 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         $rootScope.user = {
-            name: 'wangyong',
-            age: 23
+            password: '123456',
+            username: '15138991340',
         };
 
         //禁用浏览器后退按钮
@@ -104,7 +103,9 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
         });
 
         //导航模板缓存
-        $templateCache.put('common/html/tree.html', `<div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
+        $templateCache.put('common/html/tree.html', `
+        <div dryad-permission-check="node.permissions">
+            <div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
                 <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
                     <b class="left-colorm"></b>
                     <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>
@@ -115,7 +116,8 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
             </div>
             <ol ui-tree-nodes ng-model="node.child" ng-class="{hidden: this.collapsed}">
                 <li ng-repeat="node in node.child" ui-tree-node ng-include="'common/html/tree.html'"></li>
-            </ol>`);
+            </ol>
+        </div>`);
     }
 ]);
 
@@ -125,7 +127,7 @@ class DryadCtrl {
         var scope = $scope;
         var _http = _http || $injector.get('$http');
 
-        scope.ASSETS_URL = APP_CONFIG.ASSETS_URL;
+        // scope.ASSETS_URL = APP_CONFIG.ASSETS_URL;
 
         //响应成功时
         scope.$on('$responseSuccess', function(e, data) {

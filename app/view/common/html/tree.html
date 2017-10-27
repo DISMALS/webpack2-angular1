@@ -1,4 +1,4 @@
-<div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
+<div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;" dryad-permission-check="node.permissions">
     <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
         <b class="left-colorm"></b>
         <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>

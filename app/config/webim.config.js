@@ -1,3 +1,10 @@
+/**
+ * git do not control webim.config.js
+ * everyone should copy webim.config.js.demo to webim.config.js
+ * and have their own configs.
+ * In this way , others won't be influenced by this config while git pull.
+ *
+ */
 var WebIM = {};
 WebIM.config = {
     /*
@@ -11,7 +18,7 @@ WebIM.config = {
     /*
      * Application AppKey
      */
-    appkey: 'easemob-demo#chatdemoui',
+    appkey: '1128170520115705#dryad-test',
 
     /*
      * Whether to use wss
@@ -43,7 +50,7 @@ WebIM.config = {
      * Whether to console.log in strophe.log()
      * @parameter {Boolean} true or false
      */
-    isDebug: true,
+    isDebug: false,
     /**
      * will auto connect the xmpp server autoReconnectNumMax times in background when client is offline.
      * won't auto connect if autoReconnectNumMax=0.

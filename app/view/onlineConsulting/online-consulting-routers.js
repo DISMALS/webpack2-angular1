@@ -1,5 +1,4 @@
 // const patinetsMod = angular.module('dryadApp.patinets',[]);
-const path = require('path');
 module.exports = (ngMold) => {
     ngMold.config(['$stateProvider',
         ($stateProvider) => {
@@ -19,8 +18,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'onlineConsultingCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/online-consulting-controller'], (require) => {
-                                require('easemob-websdk');
+                            require.ensure(['../../config/webim.config.js', '../../../node_modules/easemob-websdk/dist/strophe-1.2.8.min.js', './controller/online-consulting-controller'], (require) => {
+
                                 let ctrl = require('./controller/online-consulting-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'

@@ -10,7 +10,7 @@ let TabUi = ($timeout, $cookies, $state) => {
         replace: true,
         template: require('../../common/html/tab-ui.html'),
         controller: ['$scope', 'APP_CONFIG', ($scope, APP_CONFIG) => {
-            $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
+            $scope.userimg = 'images/user-icon.png';
         }],
         controllerAs: 'tab',
         link: (scope, ele, attr) => {

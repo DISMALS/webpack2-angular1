@@ -14,5 +14,6 @@ module.exports = angular.module('dryadApp', [
     'angularMoment',
     'blockUI',
     'angular-timeline',
-    'ui.router.tabs'
+    'ui.router.tabs',
+    'xen3r0.underscorejs'
 ]);

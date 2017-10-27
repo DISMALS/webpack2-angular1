@@ -1,7 +1,7 @@
 [{
         "title": "首页",
         "iconfont": "index-icon",
-        "permissions": [],
+        "permissions": ["HOME"],
         "state": "dryad.home",
         "active": "parent-active",
         "uiRouter": "dryad.home",
@@ -11,7 +11,7 @@
     {
         "title": "病历管理",
         "iconfont": "medical-record-icon",
-        "permissions": [],
+        "permissions": ["MEDICAL_RECORD"],
         "state": "dryad.medicalhistory.search",
         "active": "parent-active",
         "uiRouter": "dryad.medicalhistory.**",
@@ -21,7 +21,7 @@
     {
         "title": "患者管理",
         "iconfont": "patient-icon",
-        "permissions": [],
+        "permissions": ["PATIENT"],
         "state": "dryad.patients.search",
         "active": "parent-active",
         "uiRouter": "dryad.patients.**",
@@ -31,7 +31,7 @@
     {
         "title": "随访管理",
         "iconfont": "follow-up-icon",
-        "permissions": [],
+        "permissions": ["FOLLOW_UP"],
         "state": "dryad.followup.unfinished",
         "active": "parent-active",
         "uiRouter": "dryad.followup.**",
@@ -41,7 +41,7 @@
     {
         "title": "资源管理",
         "iconfont": "operation-icon",
-        "permissions": [],
+        "permissions": ["OPERATION"],
         "state": "dryad.operation.list",
         "active": "parent-active",
         "uiRouter": "dryad.operation.**",
@@ -51,7 +51,7 @@
     {
         "title": "在线咨询",
         "iconfont": "online-consulting-icon",
-        "permissions": [],
+        "permissions": ["ONLINE_CONSULTING"],
         "state": "dryad.online-consulting",
         "active": "parent-active",
         "uiRouter": "dryad.online-consulting.**",
@@ -61,7 +61,7 @@
     {
         "title": "数据应用",
         "iconfont": "data-applications-icon",
-        "permissions": [],
+        "permissions": ["DATA_APPLICATION"],
         "state": "dryad.data-applications.search",
         "active": "parent-active",
         "uiRouter": "dryad.data-applications.**",
@@ -71,12 +71,12 @@
     {
         "title": "系统管理",
         "iconfont": "system-icon",
-        "permissions": [],
+        "permissions": ["SYSTEM"],
         "active": "parent-active",
         "uiRouter": "dryad.system.**",
         "child": [{
             "title": "机构管理",
-            "permissions": [],
+            "permissions": ["DEPARTMENT"],
             "state": "dryad.system.institutional-management.department",
             "active": "child-active",
             "uiRouter": "dryad.system.institutional-management.**",
@@ -84,7 +84,7 @@
             "child": []
         }, {
             "title": "药品字典",
-            "permissions": [],
+            "permissions": ["CONTROLCLASS"],
             "state": "dryad.system.drug-dictionary.controlclass",
             "active": "child-active",
             "uiRouter": "dryad.system.drug-dictionary.**",
@@ -92,7 +92,7 @@
             "child": []
         }, {
             "title": "基础配置",
-            "permissions": [],
+            "permissions": ["BASIC_CONFIGURATION"],
             "state": "dryad.system.basic-configuration",
             "active": "child-active",
             "uiRouter": "dryad.system.basic-configuration.**",
@@ -100,7 +100,7 @@
             "child": []
         }, {
             "title": "项目机构管理",
-            "permissions": [],
+            "permissions": ["PROGRAMS"],
             "state": "dryad.system.programs",
             "active": "child-active",
             "uiRouter": "dryad.system.programs.**",
@@ -108,7 +108,7 @@
             "child": []
         }, {
             "title": "运营角色管理",
-            "permissions": [],
+            "permissions": ["OPERATIONAL_ROLES"],
             "state": "dryad.system.operational-roles",
             "active": "child-active",
             "uiRouter": "dryad.system.operational-roles.**",
@@ -116,7 +116,7 @@
             "child": []
         }, {
             "title": "运营账号管理",
-            "permissions": [],
+            "permissions": ["OPERATING_ACCOUNT"],
             "state": "dryad.system.operating-account",
             "active": "child-active",
             "uiRouter": "dryad.system.operating-account.**",
@@ -124,7 +124,7 @@
             "child": []
         }, {
             "title": "区域中心管理",
-            "permissions": [],
+            "permissions": ["REGIONAL_CENTER"],
             "state": "dryad.system.regional-center",
             "active": "child-active",
             "uiRouter": "dryad.system.regional-center.**",
@@ -132,7 +132,7 @@
             "child": []
         }, {
             "title": "专家角色管理",
-            "permissions": [],
+            "permissions": ["EXPERT_ROLE"],
             "state": "dryad.system.expert-role",
             "active": "child-active",
             "uiRouter": "dryad.system.expert-role.**",
@@ -140,7 +140,7 @@
             "child": []
         }, {
             "title": "专家账号管理",
-            "permissions": [],
+            "permissions": ["EXPERTS_ACCOUNT"],
             "state": "dryad.system.experts-account",
             "active": "child-active",
             "uiRouter": "dryad.system.experts-account.**",

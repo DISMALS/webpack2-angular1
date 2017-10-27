@@ -3,8 +3,8 @@ require('../../../../images/practice.png');
 require('../../../../images/user-icon.png');
 class MainCtrl {
     constructor($rootScope, $scope, $state, APP_CONFIG, mainService, $uibModal, $cookies, $q) {
-        $scope.practiceimg = APP_CONFIG.API_HOST + 'images/practice.png';
-        $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
+        $scope.practiceimg = 'images/practice.png';
+        $scope.userimg = 'images/user-icon.png';
         this.uibModal = $uibModal;
         this.state = $state;
         this.cookies = $cookies;
