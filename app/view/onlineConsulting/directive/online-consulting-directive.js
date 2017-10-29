@@ -27,59 +27,50 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
                     imAccount: data.data.imAccount,
                     imPassword: data.data.imPassword
                 }
+                require.ensure(['../service/online-consulting'], (require) => {
+                    require('../service/online-consulting');
+                    var options = {
+                        apiUrl: WebIM.config.apiURL,
+                        user: $scope.imInfo.imAccount.toLowerCase(),
+                        pwd: $scope.imInfo.imPassword,
+                        appKey: WebIM.config.appkey,
+                        success: function(token) {
+                            var encryptUsername = btoa($scope.imInfo.imAccount);
+                            encryptUsername = encryptUsername.replace(/=*$/g, "");
+                            var token = token.access_token;
+                            WebIM.utils.setCookie('webim_' + encryptUsername, token, 1);
+                            Demo.token = token;
+                        },
+                        error: function() {
+                            // window.location.href = '#'
+
+                        }
+                    };
+                    if (Demo.user) {
+                        if (Demo.user != $scope.imInfo.imAccount) {
+                            Demo.chatRecord = {};
+                        }
+                    }
+                    Demo.user = $scope.imInfo.imAccount;
+                    Demo.userImgSrc = 'http://imgsrc.baidu.com/imgad/pic/item/342ac65c1038534376f778069813b07eca8088d9.jpg';
+
+                    Demo.conn.open(options);
+                    Demo.api.render(document.getElementById('onlineConsulting'));
+                    console.log(Demo);
+                }, './onlineConsulting/online-talk-components');
             });
         }],
         link: (scope, ele, attr) => {
-            let online = function() {
-                $(document).ready(() => {
-                    // console.log(WebIM);
-                    $timeout(function() {
-                        require.ensure(['../service/online-consulting'], (require) => {
-                            require('../service/online-consulting');
-                            // let users = {
-                            //     username: 'DOCTOR22', //PATIENT27\DOCTOR22
-                            //     pwd: 'DOCTOR22'
-                            // }
-                            var options = {
-                                apiUrl: WebIM.config.apiURL,
-                                user: scope.imInfo.imAccount.toLowerCase(),
-                                pwd: scope.imInfo.imPassword,
-                                appKey: WebIM.config.appkey,
-                                success: function(token) {
-                                    var encryptUsername = btoa(scope.imInfo.imAccount);
-                                    encryptUsername = encryptUsername.replace(/=*$/g, "");
-                                    var token = token.access_token;
-                                    WebIM.utils.setCookie('webim_' + encryptUsername, token, 1);
-                                    Demo.token = token;
-                                },
-                                error: function() {
-                                    // window.location.href = '#'
-
-                                }
-                            };
-                            if (Demo.user) {
-                                if (Demo.user != scope.imInfo.imAccount) {
-                                    Demo.chatRecord = {};
-                                }
-                            }
-                            Demo.user = scope.imInfo.imAccount;
-                            Demo.userImgSrc = 'http://imgsrc.baidu.com/imgad/pic/item/342ac65c1038534376f778069813b07eca8088d9.jpg';
-
-                            Demo.conn.open(options);
-                            Demo.api.render(document.getElementById('onlineConsulting'));
-                            console.log(Demo);
-                        }, './onlineConsulting/online-talk-components');
-
-                    }, 0, false);
-                });
-            }
-            online();
+            // let online = function() {
+            //     $(document).ready(() => {
+            //         // console.log(WebIM);
+                    
+            //     });
+            // }
+            // online();
 
 
             $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
-                // if (toState.name == 'dryad.online-consulting') {
-                //     online();
-                // }
                 if (fromState.name == 'dryad.online-consulting') {
                     Demo.token = null;
                     // if (Demo.user) {

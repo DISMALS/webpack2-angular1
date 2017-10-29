@@ -1,6 +1,6 @@
 class SystemDepartmentCtrl {
     constructor($scope, $state, $stateParams) {
-
+        
     }
 }
 SystemDepartmentCtrl.$inject = ['$scope', '$state', '$stateParams'];
