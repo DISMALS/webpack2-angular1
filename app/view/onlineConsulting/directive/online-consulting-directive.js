@@ -16,13 +16,12 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
             let obj = {
                 password: $rootScope.user.password,
                 phoneNo: $rootScope.user.username,
-                userType: 1
+                userType: 2
             }
             onlineConsultingService.userLogin(obj).then(data => {
-                console.log(data);
-                console.log($cookies);
+                // console.log(data);
+                // console.log($cookies);
                 $cookies.put(APP_CONFIG.CH_AU_T_NAME, data.data.token);
-                $cookies.putObject();
                 $scope.imInfo = {
                     imAccount: data.data.imAccount,
                     imPassword: data.data.imPassword
@@ -35,11 +34,11 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
                         pwd: $scope.imInfo.imPassword,
                         appKey: WebIM.config.appkey,
                         success: function(token) {
-                            var encryptUsername = btoa($scope.imInfo.imAccount);
-                            encryptUsername = encryptUsername.replace(/=*$/g, "");
-                            var token = token.access_token;
-                            WebIM.utils.setCookie('webim_' + encryptUsername, token, 1);
-                            Demo.token = token;
+                            // var encryptUsername = btoa($scope.imInfo.imAccount);
+                            // encryptUsername = encryptUsername.replace(/=*$/g, "");
+                            // var token = token.access_token;
+                            // WebIM.utils.setCookie('webim_' + encryptUsername, token, 1);
+                            // Demo.token = token;
                         },
                         error: function() {
                             // window.location.href = '#'
@@ -52,7 +51,13 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
                         }
                     }
                     Demo.user = $scope.imInfo.imAccount;
+                    let sendArr = data.data.imAccount.split('');
+                    Demo.sendId = Number(sendArr.slice(sendArr.length - 2).join(''));
+                    Demo.token = data.data.token;
+                    Demo.groupId = data.data.imGroupId;
+                    Demo.user = data.data.imAccount;
                     Demo.userImgSrc = 'http://imgsrc.baidu.com/imgad/pic/item/342ac65c1038534376f778069813b07eca8088d9.jpg';
+                    Demo.apiUrls = APP_CONFIG.API_HOST; //'https://test.asthmachina.org/dryad-app-api'
 
                     Demo.conn.open(options);
                     Demo.api.render(document.getElementById('onlineConsulting'));
@@ -61,15 +66,6 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
             });
         }],
         link: (scope, ele, attr) => {
-            // let online = function() {
-            //     $(document).ready(() => {
-            //         // console.log(WebIM);
-                    
-            //     });
-            // }
-            // online();
-
-
             $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
                 if (fromState.name == 'dryad.online-consulting') {
                     Demo.token = null;

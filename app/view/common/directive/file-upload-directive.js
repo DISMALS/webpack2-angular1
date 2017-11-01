@@ -190,7 +190,7 @@ class DryadPdfImgFileSelect {
                     }
                     scope.file = files[0];
                     if (scope.row.examId) { scope.row.encounterCtmriId = scope.row.examId }
-                    if (scope.row.encounterCtmriId) { //影像学上传
+                    if (scope.row.encounterCtmriId) {
                         NurseNewService.ctmriUpload(scope.file).then(function(data) {
                             NurseNewService.ctmriPreview(scope.row.encounterCtmriId, data.values).then(function(data) {
                                 scope.refresh();
@@ -201,13 +201,13 @@ class DryadPdfImgFileSelect {
                         })
 
                     } else {
-                        if (scope.examination) { //辅助检查
+                        if (scope.examination) {
                             NurseNewService.ctmriUpload(scope.file).then(function(data) {
                                 scope.$emit('ecg', data.values);
                             }, function(err) {
                                 $uiNoty.error(err.message);
                             });
-                        } else { //眼科专科，眼角膜地形图
+                        } else {
                             NurseNewService.ctmriUpload(scope.file).then(function(data) {
                                 scope.$emit('imgId', data.values);
                             }, function(err) {

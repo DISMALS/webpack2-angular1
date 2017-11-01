@@ -15,12 +15,17 @@ class homeMainCtrl {
             { id: 8, name: '2017季度' }
         ];
 
+        $scope.initData = {
+            chartOnePei: true,
+            chartTwoPei: true
+        }
+
         $scope.selected = {
             diagramOne: $scope.itemArray[0],
             diagramTwo: $scope.itemArray[0]
         };
 
-        // 图表一
+        // 曲线图一
         $scope.diagramOptionOne = {
             color: ['#1495eb', '#bc99f4', '#e2534d'],
             legend: {
@@ -102,6 +107,37 @@ class homeMainCtrl {
             }],
             animation: true
         };
+        //饼图一
+        $scope.peiChartOptionOne = {
+            color: ['#1495eb', '#bc99f4', '#e2534d'],
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['轻度', '中度', '重度']
+            },
+            series: [{
+                name: '哮喘病情统计',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    { value: 335, name: '轻度' },
+                    { value: 310, name: '中度' },
+                    { value: 234, name: '重度' }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };
 
         // 图表二
         $scope.diagramOptionTwo = {
@@ -170,6 +206,45 @@ class homeMainCtrl {
                 data: [12, 13, 1, 31, 14, 15, 16, 17, 18, 23, 13, 42, 21, 43]
             }],
             animation: true
+        };
+        //饼图二
+        $scope.peiChartOptionTwo = {
+            color: ['#1495eb', '#bc99f4', '#e2534d'],
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['完全控制', '部分控制', '未控制']
+            },
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    { value: 335, name: '完全控制' },
+                    { value: 310, name: '部分控制' },
+                    { value: 234, name: '未控制' }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };
+
+        $scope.chartActive = (index) => {
+            if (index == 1) {
+                $scope.initData.chartOnePei = !$scope.initData.chartOnePei;
+            } else {
+                $scope.initData.chartTwoPei = !$scope.initData.chartTwoPei;
+            }
         };
     }
 }

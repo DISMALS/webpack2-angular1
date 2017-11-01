@@ -99,7 +99,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "项目机构管理",
+            "title": "医疗单位",
             "permissions": ["PROGRAMS"],
             "state": "dryad.system.programs",
             "active": "child-active",

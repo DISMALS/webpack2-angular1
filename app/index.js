@@ -77,7 +77,7 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
         $rootScope.$stateParams = $stateParams;
         $rootScope.user = {
             password: '123456',
-            username: '15138991340',
+            username: '15138991340', //15618385088
         };
 
         //禁用浏览器后退按钮
