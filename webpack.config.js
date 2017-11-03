@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const uglifyJs = require('uglifyjs-webpack-plugin');
 const fs = require('fs');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 //获取所有的html文件
 // let htmlTpl = require('./resolvehtml')('./app/view/', '/view/');
@@ -29,7 +30,7 @@ config.entry = {
 };
 
 config.output = {
-    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : '/'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
+    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : 'https://test.asthmachina.org/'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
     path: path.resolve(__dirname, 'build'),
     filename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
     chunkFilename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
@@ -152,7 +153,7 @@ config.resolve = {
 };
 
 if (npmEvent == 'dev') {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(new webpack.HotModuleReplacementPlugin(), new OpenBrowserPlugin({ url: 'http://localhost:9000' }));
 } else {
     let pluginArr = [
         new uglifyJs({

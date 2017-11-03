@@ -50,6 +50,8 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
                             Demo.chatRecord = {};
                         }
                     }
+                    Demo.startIndex = 0;
+                    Demo.listSize = 20;
                     Demo.user = $scope.imInfo.imAccount;
                     let sendArr = data.data.imAccount.split('');
                     Demo.sendId = Number(sendArr.slice(sendArr.length - 2).join(''));

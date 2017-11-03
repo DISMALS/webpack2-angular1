@@ -341,7 +341,7 @@
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "images/font/iconfont.eot";
+	module.exports = __webpack_require__.p + "demo/stylesheet/src/font/iconfont.eot";
 
 /***/ }),
 /* 6 */
@@ -22010,6 +22010,7 @@
 
 	    callSomeone: function callSomeone() {
 	        var textArea = document.getElementById('textArea');
+	        // console.log(Demo.callReleaveId);
 	        // console.log(this.props.prop);
 	        var nameArr = Array.from(this.props.prop.name);
 
@@ -25886,6 +25887,8 @@
 	                // console.log(responses);
 	                // Demo.api.addToChatRecord(msg, 'txt', 'Undelivered');
 	                // Demo.api.appendMsg(msg, 'txt');
+	                Demo.callReleaveId = null;
+	                Demo.callReleaveName = null;
 	            }
 	        };
 	        xhr.open('POST', Demo.apiUrls + '/imGroup/portal/sendMessage/' + Demo.groupId, true); //建立连接，参数一：发送方式，二：请求地址，三：是否异步，true为异步

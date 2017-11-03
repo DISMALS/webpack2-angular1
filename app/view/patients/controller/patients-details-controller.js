@@ -2,7 +2,7 @@ require('../../../../images/user-icon.png');
 class PatientsDeailsCtrl {
     constructor($scope, $stateParams, APP_CONFIG, $state) {
         this.name = '这是病历详情页面,ID是：' + $stateParams.id;
-        $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
+        $scope.userimg = 'images/user-icon.png'; //APP_CONFIG.API_HOST + 
         $scope.tabData = [{
                 heading: '基本信息',
                 route: 'dryad.patients.details.baseinfo',

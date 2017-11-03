@@ -3,7 +3,7 @@ class LockCtrl {
         this.state = $state;
         this.cookies = $cookies;
         $scope.name = 'wangyong';
-        $scope.imgsrc = APP_CONFIG.API_HOST + '/images/loginbg.jpg';
+        $scope.imgsrc = '/images/loginbg.jpg'; //APP_CONFIG.API_HOST + 
         $scope.gostate = () => {
                 this.state.go('dryad.home');
             }

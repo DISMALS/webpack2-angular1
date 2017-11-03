@@ -6,6 +6,7 @@ module.exports = (ngMold) => {
     require('../view/common/directive/echarts-ui-directive')(ngMold);
     require('../view/common/directive/tab-ui-directive')(ngMold);
     require('../view/common/directive/grid-ui-directive')(ngMold);
+    require('../view/common/directive/jqgrid-ui-directive')(ngMold);
     require('../view/common/directive/page-ui-directive')(ngMold);
     require('../view/common/directive/screen-ui-directive')(ngMold);
 };

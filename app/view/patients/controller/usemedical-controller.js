@@ -3,7 +3,7 @@ class PatientsUsemedicalCtrl {
     constructor($rootScope, $scope, $stateParams, APP_CONFIG) {
         this.scope = $scope;
         this.name = '这是病历详情页面,ID是：' + $stateParams.id;
-        $scope.userimg = APP_CONFIG.API_HOST + 'images/user-icon.png';
+        $scope.userimg = 'images/user-icon.png'; //APP_CONFIG.API_HOST + 
         $scope.itemArray = [
             { id: 1, name: '2010季度' },
             { id: 2, name: '2011季度' },
