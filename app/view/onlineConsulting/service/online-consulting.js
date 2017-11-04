@@ -191,6 +191,8 @@
 	//             }
 	//         }
 	//         let sendArr = responses.data.imAccount.split('');
+	//         Demo.isscroll = true;
+	//         Demo.listSize = 20;
 	//         Demo.sendId = Number(sendArr.slice(sendArr.length - 2).join(''));
 	//         Demo.token = responses.data.token;
 	//         Demo.groupId = responses.data.imGroupId;
@@ -341,7 +343,7 @@
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "demo/stylesheet/src/font/iconfont.eot";
+	module.exports = __webpack_require__.p + "images/font/iconfont.eot";
 
 /***/ }),
 /* 6 */
@@ -1240,11 +1242,14 @@
 	        if (msg.sourceMsg) {
 	            sourceObj = JSON.parse(msg.data);
 	            data = JSON.parse(msg.data).content || '';
+	        } else if (msg.content) {
+	            sourceObj = msg;
+	            data = msg.content || '';
 	        } else {
 	            data = msg.data || msg.msg || '';
 	        }
 	        var brief = '',
-	            data = msg.sourceMsg ? JSON.parse(msg.data).content || '' : msg.data || msg.msg || '',
+	            data = msg.sourceMsg ? JSON.parse(msg.data).content || '' : msg.data || msg.msg || msg.content || '',
 	            name = this.sendByMe ? Demo.user.toUpperCase() : msg.from.toUpperCase(),
 	            targetId = this.sentByMe || msg.type !== 'chat' ? msg.to : msg.from;
 	        var targetNode = document.getElementById('wrapper' + targetId);
@@ -1280,7 +1285,9 @@
 	                            errorText: msg.errorText,
 	                            id: msg.id,
 	                            status: status,
-	                            nid: nid
+	                            nid: nid,
+	                            record: msg.hasOwnProperty('content'),
+	                            time: msg.sendDate && new Date(msg.sendDate).toLocaleString() || new Date().toLocaleString()
 	                        }, this.sentByMe);
 	                        break;
 	                    case 'emoji':
@@ -1329,7 +1336,9 @@
 	                                error: msg.error,
 	                                errorText: msg.errorText,
 	                                status: status,
-	                                nid: nid
+	                                record: msg.hasOwnProperty('content'),
+	                                nid: nid,
+	                                time: msg.sendDate && new Date(msg.sendDate).toLocaleString() || new Date().toLocaleString()
 	                            }, this.sentByMe);
 	                        }
 	                        break;
@@ -20571,7 +20580,7 @@
 	// var SignIn = require('./sign/signin');
 	// var SignUp = require('./sign/signup');
 	var Chat = __webpack_require__(166);
-	var Loading = __webpack_require__(194);
+	var Loading = __webpack_require__(180);
 
 	module.exports = React.createClass({
 	    displayName: 'exports',
@@ -20638,12 +20647,12 @@
 	var React = __webpack_require__(12);
 	var LeftBar = __webpack_require__(167);
 	var Contact = __webpack_require__(178);
-	var ChatWindow = __webpack_require__(180);
-	var RTCChannel = __webpack_require__(189);
-	var Subscribe = __webpack_require__(191);
-	var ConfirmPop = __webpack_require__(192);
+	var ChatWindow = __webpack_require__(181);
+	var RTCChannel = __webpack_require__(190);
+	var Subscribe = __webpack_require__(192);
+	var ConfirmPop = __webpack_require__(193);
 	var _ = __webpack_require__(175);
-	var ConfirmGroupInfo = __webpack_require__(193);
+	var ConfirmGroupInfo = __webpack_require__(194);
 
 	module.exports = React.createClass({
 	    displayName: 'exports',
@@ -20716,18 +20725,14 @@
 	                    var messageObj = JSON.parse(message.data);
 	                    if (messageObj.messageType == 1) {
 	                        //纯文本
-	                        Demo.api.addToChatRecord(message, 'txt');
+	                        // Demo.api.addToChatRecord(message, 'txt');
 	                        Demo.api.appendMsg(message, 'txt');
 	                    } else if (messageObj.messageType == 2) {
 	                        //图片
-	                        Demo.api.addToChatRecord(message, 'img');
+	                        // Demo.api.addToChatRecord(message, 'img');
 	                        Demo.api.appendMsg(message, 'img');
 	                    }
 	                }
-	                // else{
-	                //     Demo.api.addToChatRecord(message, 'txt');
-	                //     Demo.api.appendMsg(message, 'txt');
-	                // }
 
 	                if (Demo.selected == message.from) {
 	                    var id = message.id,
@@ -25235,6 +25240,7 @@
 	    },
 
 	    update: function update(id) {
+	        // console.log(id);
 	        this.props.updateNode(id);
 	    },
 
@@ -25270,7 +25276,7 @@
 
 	        for (var i = 0; i < this.props.groups.length; i++) {
 	            g.push(React.createElement(Item, { id: this.props.groups[i].roomId, cate: 'groups', key: this.props.groups[i].roomId, username: this.props.groups[i].name,
-	                update: this.update, cur: this.props.curNode, src: this.state.src, brief: this.getBrief(this.props.groups[i].roomId) }));
+	                update: this.update, cur: this.props.curNode, src: this.state.src, brief: this.getBrief(this.props.groups[i].roomId), loading: this.props.loading }));
 	        }
 
 	        for (var i = 0; i < this.props.chatrooms.length; i++) {
@@ -25325,15 +25331,14 @@
 
 	var React = __webpack_require__(12);
 	var Avatar = __webpack_require__(168);
+	var Loading = __webpack_require__(180);
 	var _ = __webpack_require__(175);
 
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
-
 	    getInitialState: function getInitialState() {
 	        var me = this;
-
 	        return {
 	            msg: '',
 	            avatar: '',
@@ -25361,7 +25366,7 @@
 
 	    update: function update() {
 	        Demo.chatingCate = Demo.selectedCate;
-
+	        var this_ = this;
 	        if (this.refs['i']) {
 	            var count = this.refs['i'].getAttribute('data-count') / 1;
 	            this.handleCurCateIconCount(count);
@@ -25428,8 +25433,40 @@
 	                }
 	            } else {}
 	        }
-
 	        this.props.update(Demo.selected);
+	        //获取聊天记录
+	        this_.setState({
+	            loadingStatus: true,
+	            loadingMsg: '加载数据中...'
+	        });
+	        var xhr = new XMLHttpRequest();
+	        xhr.onreadystatechange = function (event) {
+	            if (xhr.readyState == 4 && xhr.status == 200) {
+	                var responses = JSON.parse(xhr.responseText);
+	                if (!responses.data) {
+	                    return false;
+	                }
+	                Demo.messageId = responses.data[0].messageId;
+	                responses.data.reverse().forEach(function (item, index) {
+	                    var option = {
+	                        from: item.sendOrigin == 0 ? 'PATIENT' + item.sendId : 'DOCTOR' + item.sendId, //发消息账号
+	                        type: 'groupchat', //groupchat
+	                        to: Demo.selected, //发到哪里
+	                        id: item.messageId, //消息id
+	                        content: item.content, // 消息内容
+	                        sendDate: item.sendDate,
+	                        userBo: item.userBo
+	                    };
+	                    // 消息类型。文本：1,图片：2，语音：3，视频：4 
+	                    var msgType = item.messageType == 1 ? 'txt' : item.messageType == 2 ? 'img' : item.messageType == 3 ? 'aud' : 'video';
+	                    Demo.api.appendMsg(option, msgType);
+	                }, this);
+	            }
+	        };
+	        xhr.open('GET', Demo.apiUrls + '/imGroup/getGroupMessageFormPortal/' + Demo.selected + '/' + Demo.sendId + '/0/' + Demo.listSize, true); //建立连接，参数一：发送方式，二：请求地址，三：是否异步，true为异步
+	        xhr.setRequestHeader('Content-type', 'application/json');
+	        xhr.setRequestHeader('Token', Demo.token);
+	        xhr.send(null); //发送
 	    },
 
 	    render: function render() {
@@ -25463,14 +25500,39 @@
 
 	'use strict';
 
+	var React = __webpack_require__(12);
+
+	module.exports = React.createClass({
+	    displayName: 'exports',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'webim-loading' + (this.props.show === 'show' ? '' : ' hide') },
+	            React.createElement('img', { src: 'images/loading.gif' }),
+	            React.createElement(
+	                'span',
+	                null,
+	                this.props.msg
+	            )
+	        );
+	    }
+	});
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(12);
 	var ReactDOM = __webpack_require__(164);
-	var SendWrapper = __webpack_require__(181);
+	var SendWrapper = __webpack_require__(182);
 	var Avatar = __webpack_require__(168);
-	var OperationsGroups = __webpack_require__(183);
-	var OperationsFriends = __webpack_require__(188);
+	var OperationsGroups = __webpack_require__(184);
+	var OperationsFriends = __webpack_require__(189);
 	var _ = __webpack_require__(175);
 
 	module.exports = React.createClass({
@@ -25539,7 +25601,55 @@
 	    },
 
 	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
+	    componentWillMount: function componentWillMount() {
+	        if (Demo.isscroll) {
+	            window.addEventListener('scroll', this.scrollEvent, true);
+	        }
+	        // window.addEventListener('scroll',this.scrollEvent,true);
+	    },
+	    scrollEvent: function scrollEvent(e) {
+	        var target = e.target;
+	        if (target.className == 'webim-chatwindow-msg') {
+	            var obj = document.getElementById(target.id);
 
+	            if (obj.scrollTop == 0) {
+	                Demo.isscroll = false;
+	                if (!Demo.isscroll) {
+	                    window.removeEventListener('scroll', this.scrollEvent, true);
+	                }
+	                //获取聊天记录
+	                var xhr = new XMLHttpRequest();
+	                xhr.onreadystatechange = function (event) {
+	                    if (xhr.readyState == 4 && xhr.status == 200) {
+	                        var responses = JSON.parse(xhr.responseText);
+	                        if (!responses.data) {
+	                            return false;
+	                        }
+	                        Demo.messageId = responses.data[0].messageId;
+	                        responses.data.reverse().forEach(function (item, index) {
+	                            var option = {
+	                                from: item.sendOrigin == 0 ? 'PATIENT' + item.sendId : 'DOCTOR' + item.sendId, //发消息账号
+	                                type: 'groupchat', //groupchat
+	                                to: Demo.selected, //发到哪里
+	                                id: item.messageId, //消息id
+	                                content: item.content, // 消息内容
+	                                sendDate: item.sendDate,
+	                                userBo: item.userBo
+	                            };
+	                            // 消息类型。文本：1,图片：2，语音：3，视频：4 
+	                            var msgType = item.messageType == 1 ? 'txt' : item.messageType == 2 ? 'img' : item.messageType == 3 ? 'aud' : 'video';
+	                            Demo.api.appendMsg(option, msgType);
+	                        }, this);
+	                        Demo.isscroll = true;
+	                    }
+	                };
+	                xhr.open('GET', Demo.apiUrls + '/imGroup/getGroupMessageFormPortal/' + Demo.selected + '/' + Demo.sendId + '/' + Demo.messageId + '/' + Demo.listSize, true); //建立连接，参数一：发送方式，二：请求地址，三：是否异步，true为异步
+	                xhr.setRequestHeader('Content-type', 'application/json');
+	                xhr.setRequestHeader('Token', Demo.token);
+	                xhr.send(null); //发送
+	            }
+	        }
+	    },
 	    preListMember: function preListMember() {
 	        if (this.state.owner.length == 0) {
 	            this.getGroupInfo('listMember');
@@ -25925,6 +26035,9 @@
 	        }
 	        Demo.api.releaseChatRecord();
 	    },
+	    // componentWillUnmount() {
+	    //     window.removeEventListener('scroll',this.scrollEvent);
+	    // },
 
 	    // hide when blur close
 	    handleOnBlur: function handleOnBlur() {
@@ -25955,7 +26068,6 @@
 	                affiliation = 'owner';
 	            }
 	            username = item[affiliation];
-
 	            if (isAdmin) {
 	                roomMember.push(React.createElement(
 	                    'li',
@@ -25964,7 +26076,9 @@
 	                    React.createElement(
 	                        'span',
 	                        { className: 'webim-group-name' },
-	                        username
+	                        ' ',
+	                        username,
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -25976,8 +26090,9 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: this.removeGroupMember.bind(this, username, i),
 	                                title: Demo.lan.removeGroupMember },
-	                            'A'
-	                        )
+	                            ' A '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -25989,8 +26104,9 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: this.addToGroupBlackList.bind(this, username, i),
 	                                title: Demo.lan.addToGroupBlackList },
-	                            'n'
-	                        )
+	                            ' n '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26002,8 +26118,11 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: isMuted ? this.removeMute.bind(this, username) : this.mute.bind(this, username),
 	                                title: isMuted ? Demo.lan.removeMute : Demo.lan.mute },
-	                            isMuted ? 'e' : 'f'
-	                        )
+	                            ' ',
+	                            isMuted ? 'e' : 'f',
+	                            ' '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26015,7 +26134,7 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: isAdmin ? this.removeAdmin.bind(this, username) : this.setAdmin.bind(this, username),
 	                                title: Demo.lan.rmAdministrator },
-	                            '\u2193'
+	                            ' & darr; '
 	                        )
 	                    )
 	                ));
@@ -26027,7 +26146,9 @@
 	                    React.createElement(
 	                        'span',
 	                        { className: 'webim-group-name' },
-	                        username
+	                        ' ',
+	                        username,
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26039,8 +26160,9 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: this.removeGroupMember.bind(this, username, i),
 	                                title: Demo.lan.removeGroupMember },
-	                            'A'
-	                        )
+	                            ' A '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26052,8 +26174,9 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: this.addToGroupBlackList.bind(this, username, i),
 	                                title: Demo.lan.addToGroupBlackList },
-	                            'n'
-	                        )
+	                            ' n '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26065,8 +26188,11 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: isMuted ? this.removeMute.bind(this, username) : this.mute.bind(this, username),
 	                                title: isMuted ? Demo.lan.removeMute : Demo.lan.mute },
-	                            isMuted ? 'e' : 'f'
-	                        )
+	                            ' ',
+	                            isMuted ? 'e' : 'f',
+	                            ' '
+	                        ),
+	                        ' '
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -26078,7 +26204,7 @@
 	                                style: { display: this.state.admin != 1 ? 'none' : '' },
 	                                onClick: isAdmin ? this.removeAdmin.bind(this, username) : this.setAdmin.bind(this, username),
 	                                title: Demo.lan.administrator },
-	                            '\u2191'
+	                            ' & uarr; '
 	                        )
 	                    )
 	                ));
@@ -26087,8 +26213,7 @@
 
 	        var operations = [];
 	        if (Demo.selectedCate == 'friends') {
-	            operations.push(React.createElement(OperationsFriends, {
-	                key: 'operation_div',
+	            operations.push(React.createElement(OperationsFriends, { key: 'operation_div',
 	                ref: 'operation_div',
 	                roomId: this.props.roomId,
 	                admin: this.state.admin,
@@ -26101,8 +26226,7 @@
 	                delFriend: this.props.delFriend
 	            }));
 	        } else if (Demo.selectedCate == 'groups') {
-	            operations.push(React.createElement(OperationsGroups, {
-	                key: 'operation_div',
+	            operations.push(React.createElement(OperationsGroups, { key: 'operation_div',
 	                ref: 'operation_div',
 	                name: this.props.name,
 	                roomId: this.props.roomId,
@@ -26126,33 +26250,31 @@
 	                React.createElement(
 	                    'div',
 	                    { className: 'windowTitleSelect', onClick: this.preListMember },
+	                    ' ',
 	                    Demo.selectedCate == 'chatrooms' || Demo.selectedCate == 'groups' ? Demo.lan.groupMemberLabel : this.props.name,
 	                    React.createElement(
 	                        'i',
 	                        { ref: 'i', className: 'webim-down-icon font smallest ' + className + " " + (this.state.memberShowStatus ? 'webim-up-icon' : 'webim-down-icon') },
-	                        'D'
+	                        'D '
 	                    )
 	                )
 	            ),
 	            React.createElement(
 	                'ul',
-	                { onBlur: this.handleOnBlur,
-	                    tabIndex: '-1',
-	                    ref: 'member',
-	                    className: 'webim-group-memeber' + memberStatus },
+	                { onBlur: this.handleOnBlur, tabIndex: '-1', ref: 'member', className: 'webim-group-memeber' + memberStatus },
 	                ' ',
-	                roomMember
+	                roomMember,
+	                ' '
 	            ),
-	            React.createElement('div', { id: this.props.id,
-	                ref: 'wrapper',
-	                className: 'webim-chatwindow-msg' }),
-	            React.createElement(SendWrapper, _extends({ send: this.send }, props))
+	            React.createElement('div', { id: this.props.id, ref: 'wrapper', className: 'webim-chatwindow-msg' }),
+	            React.createElement(SendWrapper, _extends({ send: this.send }, props)),
+	            ' '
 	        );
 	    }
 	});
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26160,7 +26282,7 @@
 	var React = __webpack_require__(12);
 	var UI = __webpack_require__(172);
 	var Button = UI.Button;
-	var UploadShim = __webpack_require__(182);
+	var UploadShim = __webpack_require__(183);
 
 	module.exports = React.createClass({
 	    displayName: 'exports',
@@ -26377,7 +26499,7 @@
 	});
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -26515,17 +26637,17 @@
 	};
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var React = __webpack_require__(12);
 	var ReactDOM = __webpack_require__(164);
-	var ChangeGroupInfo = __webpack_require__(184);
-	var AddGroupMember = __webpack_require__(185);
-	var AdminGroupMembers = __webpack_require__(186);
-	var ShowGroupBlacklist = __webpack_require__(187);
+	var ChangeGroupInfo = __webpack_require__(185);
+	var AddGroupMember = __webpack_require__(186);
+	var AdminGroupMembers = __webpack_require__(187);
+	var ShowGroupBlacklist = __webpack_require__(188);
 
 	module.exports = React.createClass({
 	    displayName: "exports",
@@ -26784,7 +26906,7 @@
 	});
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26916,7 +27038,7 @@
 	};
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27013,7 +27135,7 @@
 	};
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27227,7 +27349,7 @@
 	};
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27370,7 +27492,7 @@
 	};
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27523,14 +27645,14 @@
 	});
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(12);
 	var ReactDOM = __webpack_require__(164);
-	var Drag = __webpack_require__(190);
+	var Drag = __webpack_require__(191);
 
 	var Channel = React.createClass({
 	    displayName: 'Channel',
@@ -27890,7 +28012,7 @@
 	};
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -28061,7 +28183,7 @@
 	}(window);
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28212,7 +28334,7 @@
 	};
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28333,7 +28455,7 @@
 	};
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28443,31 +28565,6 @@
 	};
 
 /***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(12);
-
-	module.exports = React.createClass({
-	    displayName: 'exports',
-
-	    render: function render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'webim-loading' + (this.props.show === 'show' ? '' : ' hide') },
-	            React.createElement('img', { src: 'images/loading.gif' }),
-	            React.createElement(
-	                'span',
-	                null,
-	                this.props.msg
-	            )
-	        );
-	    }
-	});
-
-/***/ }),
 /* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28562,9 +28659,13 @@
 
 	    var node = document.createElement('div');
 	    node.className = 'webim-msg-container rel';
-	    options.wrapper.appendChild(node);
-
-	    Demo.api.scrollIntoView(node);
+	    if (options.record) {
+	        options.wrapper.insertBefore(node, options.wrapper.childNodes[0]);
+	        Demo.api.scrollIntoView(options.wrapper.childNodes[options.wrapper.childNodes.length - 1]);
+	    } else {
+	        options.wrapper.appendChild(node);
+	        Demo.api.scrollIntoView(node);
+	    }
 
 	    return ReactDOM.render(React.createElement(TextMsg, _extends({}, props, { className: sentByMe ? 'right' : 'left' })), node);
 	};
@@ -28708,8 +28809,14 @@
 	    var node = document.createElement('div');
 	    node.className = 'webim-msg-container rel';
 	    options.wrapper.appendChild(node);
-
-	    Demo.api.scrollIntoView(node);
+	    if (options.record) {
+	        options.wrapper.insertBefore(node, options.wrapper.childNodes[0]);
+	        Demo.api.scrollIntoView(options.wrapper.childNodes[options.wrapper.childNodes.length - 1]);
+	    } else {
+	        options.wrapper.appendChild(node);
+	        Demo.api.scrollIntoView(node);
+	    }
+	    // Demo.api.scrollIntoView(node);
 
 	    return ReactDOM.render(React.createElement(ImgMsg, _extends({}, props, { className: sentByMe ? 'right' : 'left' })), node);
 	};

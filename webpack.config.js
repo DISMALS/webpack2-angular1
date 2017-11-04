@@ -30,7 +30,7 @@ config.entry = {
 };
 
 config.output = {
-    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : 'https://test.asthmachina.org/'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
+    publicPath: (npmEvent == 'dev' ? 'http://localhost:9000/' : 'https://test.asthmachina.org/dryad-manager-api/'), //外部引用的根地址(npmEvent == 'dev' ? '/' : 'http://test.yunpractice.com')
     path: path.resolve(__dirname, 'build'),
     filename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
     chunkFilename: (npmEvent == 'dev' ? 'js/[name].js?[hash]' : 'js/[name].js?[chunkhash]'),
@@ -106,7 +106,10 @@ config.module = {
             use: [{
                 loader: 'html-loader',
                 options: {
-                    attrs: ['img:src', 'link:href', 'script:src']
+                    attrs: ['img:src', 'link:href', 'script:src'],
+                    minimize: (npmEvent == 'dev' ? false : true),
+                    removeComments: (npmEvent == 'dev' ? false : true),
+                    collapseWhitespace: (npmEvent == 'dev' ? false : true)
                 }
             }]
         },
@@ -148,16 +151,21 @@ config.plugins = [
 ];
 
 config.resolve = {
-    extensions: ['.js', '.less', '.html', '.css'],
+    extensions: ['.js', '.less', '.html', '.css', '.json'],
     modules: ['node_modules', path.join(__dirname, './app')]
 };
 
 if (npmEvent == 'dev') {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin(), new OpenBrowserPlugin({ url: 'http://localhost:9000' }));
+    config.plugins.push(new webpack.HotModuleReplacementPlugin(), new OpenBrowserPlugin({ url: 'http://localhost:9000/' }));
 } else {
     let pluginArr = [
         new uglifyJs({
-            comments: false
+            ecma: 8,
+            output: {
+                comments: false,
+                beautify: false
+            },
+            warnings: false
         }),
         new webpack.HashedModuleIdsPlugin({
             hashDigestLength: 6
@@ -165,16 +173,5 @@ if (npmEvent == 'dev') {
     ]
     config.plugins.concat(pluginArr);
 }
-
-//循环获取html模板，并输出到打包的文件目录中
-// htmlTpl.map((html) => {
-//     config.plugins.push(
-//         new htmlWebpackPlugin({
-//             filename:html,
-//             template:path.join('./app',html),
-//             minify:false
-//         })
-//     )
-// });
 
 module.exports = config;

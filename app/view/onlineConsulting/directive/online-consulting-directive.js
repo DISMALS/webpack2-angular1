@@ -50,6 +50,7 @@ let OnlineOperate = ($timeout, $rootScope, onlineConsultingService) => {
                             Demo.chatRecord = {};
                         }
                     }
+                    Demo.isscroll = true;
                     Demo.startIndex = 0;
                     Demo.listSize = 20;
                     Demo.user = $scope.imInfo.imAccount;

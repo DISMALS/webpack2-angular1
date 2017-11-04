@@ -1,5 +1,5 @@
 let ops = {
-    API_HOST: 'https://test.asthmachina.org/dryad-app-api', //'https://test.asthmachina.org/dryad-manager-api/xxxx'
+    API_HOST: 'https://test.asthmachina.org/dryad-app-api', //'https://test.asthmachina.org/dryad-manager-api/xxxx' //https://test.asthmachina.org/dryad-app-api
     CH_AU_T_NAME: "X-Auth-Token",
     CH_AP_V_NAME: "X-App-Version",
 };
