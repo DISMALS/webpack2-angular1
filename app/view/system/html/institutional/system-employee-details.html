@@ -1,0 +1,132 @@
+<div class="employee-details">
+    <div class="employee-details-title">
+        <b class="left-title">新增员工</b>
+        <a data-ng-click="save()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
+        <a data-ng-click="cancel()" class="button botton-close">取消</a>
+    </div>
+    <div class="employee-details-main">
+        <div class="left-main">
+            <div class="lm-employee">
+                <i class="lm-employee-logo"><img data-ng-src={{logoSrc}} alt="员工头像"></i>
+                <dryad-upload-img btn-name="'上传头像'" preview-src="logoSrc" service-fn="serviceFunc"></dryad-upload-img>
+            </div>
+            <div class="lm-employee">
+                <span class="ewm"><img data-ng-src={{ewm}} alt="员工二维码"></span>
+                <a data-ng-click="print()" class="patients-especial botton-special">打印</a>
+                <a data-ng-click="download()" class="patients-especial botton-special">下载</a>
+            </div>
+        </div>
+        <div class="right-main">
+            <div class="form float-l">
+                <span class="left-title">姓名:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="请输入姓名" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">所属科室:</span>
+                <span class="right-content">
+                    <div class="nature-select">
+                        <ui-select data-ng-model="departmentObj.department" search-enabled="false" theme="select2">
+                            <ui-select-match placeholder="选择科室"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                        <ui-select-choices repeat="item.id as item in departmentList">
+                            <span data-ng-bind="item.name"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">性别:</span>
+                <span class="right-content">
+                    <a class="sex-chooise">
+                        <i class="man manactive">男</i>
+                        <i class="women womenactive">女</i>
+                    </a>
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">所属角色:</span>
+                <span class="right-content">
+                    <div class="nature-select">
+                        <ui-select data-ng-model="departmentObj.role" search-enabled="false" theme="select2">
+                            <ui-select-match placeholder="选择账号所选角色"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                            <ui-select-choices repeat="item.id as item in roleList"><span data-ng-bind="item.name"></span></ui-select-choices>
+                        </ui-select>
+                    </div>
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">生日:</span>
+                <span class="right-content">
+                    <span class="date-main">
+                        <input class="date-input" ng-model="birthday"  placeholder="____-__-__"/>
+                        <i class="date-icon date-time" dryad-date-time-picker></i>
+                    </span>
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">登录账号:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="输入登录账号" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">手机号码:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="请输入手机号码" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">登录密码:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="输入密码" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">邮编:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="请输入邮编" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">确认密码:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="确认密码" class="form-input">
+                </span>
+            </div>
+            <div class="form float-l">
+                <span class="left-title">职称:</span>
+                <span class="right-content">
+                    <input type="text" placeholder="请输入职称" class="form-input">
+                </span>
+            </div>
+            <div class="form-textarea overflow-h">
+                <span class="left-title">简介:</span>
+                <span class="right-content">
+                    <div class="description-textarea">
+                        <textarea placeholder="请输入个人简介"></textarea>
+                    </div>
+                </span>
+            </div>
+            <div class="form-textarea overflow-h">
+                <span class="left-title">擅长:</span>
+                <span class="right-content">
+                    <div class="description-textarea">
+                        <textarea placeholder="请输入擅长领域"></textarea>
+                    </div>
+                </span>
+            </div>
+            <div class="form-textarea overflow-h">
+                <span class="left-title">在职状态:</span>
+                <span class="right-content">
+                    <a class="sex-chooise">
+                        <i class="man manactive">在职</i>
+                        <i class="women womenactive">离职</i>
+                    </a>
+                </span>
+                <span><i class="warning-icon"></i>离职员工不能登录系统</span>
+            </div>
+        </div>
+    </div>
+</div>

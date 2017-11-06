@@ -100,6 +100,12 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
         });
         $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
             console.log('变化结束了！');
+            if(fromState.name){
+                $cookies.putObject('prevRoute',{
+                    name:fromState.name,
+                    params:fromParams
+                });
+            }
         });
 
         //导航模板缓存

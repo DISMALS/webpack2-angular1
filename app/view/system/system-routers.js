@@ -21,34 +21,46 @@ module.exports = (ngMold) => {
                     url: '/institutional-management',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-institutional-management.html'], (require) => {
-                            let tpl = require('./html/system-institutional-management.html');
+                        require.ensure(['./html/institutional/system-institutional-management.html'], (require) => {
+                            let tpl = require('./html/institutional/system-institutional-management.html');
                             deferred.resolve(tpl);
                         }, './system/system-institutional-management-tpl');
                         return deferred.promise;
+                    }
+                })
+                .state('dryad.system.institutional-management.list', { //机构管理列表
+                    abstract: true,
+                    url: '/list',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/institutional/system-institutional-management-list.html'], (require) => {
+                            let tpl = require('./html/institutional/system-institutional-management-list.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-institutional-management-list-tpl');
+                        return deferred.promise;
                     },
-                    controller: 'systemInstitutionalCtrl',
-                    controllerAs: 'systemInstitutionalCtrlVm',
+                    controller: 'systemInstitutionalListCtrl',
+                    controllerAs: 'systemInstitutionalListCtrlVm',
                     resolve: {
-                        'systemInstitutionalCtrl': ($q, $ocLazyLoad) => {
+                        'systemInstitutionalListCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-institutional-management-controller'], (require) => {
-                                let ctrl = require('./controller/system-institutional-management-controller')(ngMold);
+                            require.ensure(['./controller/institutional/system-institutional-management-list-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-institutional-management-list-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
                                 deferred.resolve(ctrl);
-                            }, './system/system-institutional-management-ctrl');
+                            }, './system/system-institutional-management-list-ctrl');
                             return deferred.promise;
                         }
                     }
                 })
-                .state('dryad.system.institutional-management.department', { //科室管理
+                .state('dryad.system.institutional-management.list.department', { //科室管理
                     url: '/department',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-department.html'], (require) => {
-                            let tpl = require('./html/system-department.html');
+                        require.ensure(['./html/institutional/system-department.html'], (require) => {
+                            let tpl = require('./html/institutional/system-department.html');
                             deferred.resolve(tpl);
                         }, './system/system-department-tpl');
                         return deferred.promise;
@@ -58,8 +70,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemDepartmentCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-department-controller'], (require) => {
-                                let ctrl = require('./controller/system-department-controller')(ngMold);
+                            require.ensure(['./controller/institutional/system-department-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-department-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -69,12 +81,12 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
-                .state('dryad.system.institutional-management.role', { //角色管理
+                .state('dryad.system.institutional-management.list.role', { //角色管理
                     url: '/role',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-role.html'], (require) => {
-                            let tpl = require('./html/system-role.html');
+                        require.ensure(['./html/institutional/system-role.html'], (require) => {
+                            let tpl = require('./html/institutional/system-role.html');
                             deferred.resolve(tpl);
                         }, './system/system-role-tpl');
                         return deferred.promise;
@@ -84,8 +96,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemRoleCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-role-controller'], (require) => {
-                                let ctrl = require('./controller/system-role-controller')(ngMold);
+                            require.ensure(['./controller/institutional/system-role-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-role-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -95,12 +107,12 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
-                .state('dryad.system.institutional-management.employee', { //员工管理
+                .state('dryad.system.institutional-management.list.employee', { //员工管理
                     url: '/employee',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-employee.html'], (require) => {
-                            let tpl = require('./html/system-employee.html');
+                        require.ensure(['./html/institutional/system-employee.html'], (require) => {
+                            let tpl = require('./html/institutional/system-employee.html');
                             deferred.resolve(tpl);
                         }, './system/system-employee-tpl');
                         return deferred.promise;
@@ -110,8 +122,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemEmployeeCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-employee-controller'], (require) => {
-                                let ctrl = require('./controller/system-employee-controller')(ngMold);
+                            require.ensure(['./controller/institutional/system-employee-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-employee-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -121,13 +133,71 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
+                .state('dryad.system.institutional-management.details', { //员工管理详情
+                    url: '/details/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/institutional/system-employee-details.html'], (require) => {
+                            let tpl = require('./html/institutional/system-employee-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-employee-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemEmployeeDetailsCtrl',
+                    controllerAs: 'systemEmployeeDetailsVm',
+                    resolve: {
+                        'systemEmployeeDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/institutional/system-employee-details-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-employee-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-employee-details-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.system.institutional-management.view', { //员工管理详情
+                    url: '/view/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/institutional/system-employee-view-details.html'], (require) => {
+                            let tpl = require('./html/institutional/system-employee-view-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-employee-view-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemEmployeeViewDetailsCtrl',
+                    controllerAs: 'systemEmployeeViewDetailsVm',
+                    resolve: {
+                        'systemEmployeeViewDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/institutional/system-employee-view-details-controller'], (require) => {
+                                let ctrl = require('./controller/institutional/system-employee-view-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-employee-view-details-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
                 .state('dryad.system.drug-dictionary', { //药品字典
                     abstract: true,
                     url: '/drug-dictionary',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-drug-dictionary.html'], (require) => {
-                            let tpl = require('./html/system-drug-dictionary.html');
+                        require.ensure(['./html/drugDictionary/system-drug-dictionary.html'], (require) => {
+                            let tpl = require('./html/drugDictionary/system-drug-dictionary.html');
                             deferred.resolve(tpl);
                         }, './system/system-drug-dictionary-tpl');
                         return deferred.promise;
@@ -137,8 +207,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemDrugDictionaryCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-drug-dictionary-controller'], (require) => {
-                                let ctrl = require('./controller/system-drug-dictionary-controller')(ngMold);
+                            require.ensure(['./controller/drugDictionary/system-drug-dictionary-controller'], (require) => {
+                                let ctrl = require('./controller/drugDictionary/system-drug-dictionary-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -152,8 +222,8 @@ module.exports = (ngMold) => {
                     url: '/controlclass',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-controlclass.html'], (require) => {
-                            let tpl = require('./html/system-controlclass.html');
+                        require.ensure(['./html/drugDictionary/system-controlclass.html'], (require) => {
+                            let tpl = require('./html/drugDictionary/system-controlclass.html');
                             deferred.resolve(tpl);
                         }, './system/system-controlclass-tpl');
                         return deferred.promise;
@@ -163,8 +233,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemControlclassCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-controlclass-controller'], (require) => {
-                                let ctrl = require('./controller/system-controlclass-controller')(ngMold);
+                            require.ensure(['./controller/drugDictionary/system-controlclass-controller'], (require) => {
+                                let ctrl = require('./controller/drugDictionary/system-controlclass-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -178,8 +248,8 @@ module.exports = (ngMold) => {
                     url: '/easeclass',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-easeclass.html'], (require) => {
-                            let tpl = require('./html/system-easeclass.html');
+                        require.ensure(['./html/drugDictionary/system-easeclass.html'], (require) => {
+                            let tpl = require('./html/drugDictionary/system-easeclass.html');
                             deferred.resolve(tpl);
                         }, './system/system-easeclass-tpl');
                         return deferred.promise;
@@ -189,8 +259,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemEaseclassCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-easeclass-controller'], (require) => {
-                                let ctrl = require('./controller/system-easeclass-controller')(ngMold);
+                            require.ensure(['./controller/drugDictionary/system-easeclass-controller'], (require) => {
+                                let ctrl = require('./controller/drugDictionary/system-easeclass-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -204,8 +274,8 @@ module.exports = (ngMold) => {
                     url: '/unclassified',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-unclassified.html'], (require) => {
-                            let tpl = require('./html/system-unclassified.html');
+                        require.ensure(['./html/drugDictionary/system-unclassified.html'], (require) => {
+                            let tpl = require('./html/drugDictionary/system-unclassified.html');
                             deferred.resolve(tpl);
                         }, './system/system-unclassified-tpl');
                         return deferred.promise;
@@ -215,8 +285,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemUnclassifiedCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-unclassified-controller'], (require) => {
-                                let ctrl = require('./controller/system-unclassified-controller')(ngMold);
+                            require.ensure(['./controller/drugDictionary/system-unclassified-controller'], (require) => {
+                                let ctrl = require('./controller/drugDictionary/system-unclassified-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -230,8 +300,8 @@ module.exports = (ngMold) => {
                     url: '/basic-configuration',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-basic-configuration.html'], (require) => {
-                            let tpl = require('./html/system-basic-configuration.html');
+                        require.ensure(['./html/baseConfig/system-basic-configuration.html'], (require) => {
+                            let tpl = require('./html/baseConfig/system-basic-configuration.html');
                             deferred.resolve(tpl);
                         }, './system/system-basic-configuration-tpl');
                         return deferred.promise;
@@ -241,8 +311,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemBasicConfiguration': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-basic-configuration-controller'], (require) => {
-                                let ctrl = require('./controller/system-basic-configuration-controller')(ngMold);
+                            require.ensure(['./controller/baseConfig/system-basic-configuration-controller'], (require) => {
+                                let ctrl = require('./controller/baseConfig/system-basic-configuration-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -252,12 +322,12 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
-                .state('dryad.system.programs', { //项目机构管理
+                .state('dryad.system.programs', { //医疗单位
                     url: '/programs',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-programs.html'], (require) => {
-                            let tpl = require('./html/system-programs.html');
+                        require.ensure(['./html/operational/system-programs.html'], (require) => {
+                            let tpl = require('./html/operational/system-programs.html');
                             deferred.resolve(tpl);
                         }, './system/system-programs-tpl');
                         return deferred.promise;
@@ -267,8 +337,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemProgramsCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-programs-controller'], (require) => {
-                                let ctrl = require('./controller/system-programs-controller')(ngMold);
+                            require.ensure(['./controller/operational/system-programs-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-programs-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -282,8 +352,8 @@ module.exports = (ngMold) => {
                     url: '/operational-roles',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-operational-roles.html'], (require) => {
-                            let tpl = require('./html/system-operational-roles.html');
+                        require.ensure(['./html/operational/system-operational-roles.html'], (require) => {
+                            let tpl = require('./html/operational/system-operational-roles.html');
                             deferred.resolve(tpl);
                         }, './system/system-operational-roles-tpl');
                         return deferred.promise;
@@ -293,8 +363,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemOperationalRoles': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-operational-roles-controller'], (require) => {
-                                let ctrl = require('./controller/system-operational-roles-controller')(ngMold);
+                            require.ensure(['./controller/operational/system-operational-roles-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-operational-roles-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -308,8 +378,8 @@ module.exports = (ngMold) => {
                     url: '/operating-account',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-operating-account.html'], (require) => {
-                            let tpl = require('./html/system-operating-account.html');
+                        require.ensure(['./html/operational/system-operating-account.html'], (require) => {
+                            let tpl = require('./html/operational/system-operating-account.html');
                             deferred.resolve(tpl);
                         }, './system/system-operating-account-tpl');
                         return deferred.promise;
@@ -319,8 +389,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemOperatingAccount': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-operating-account-controller'], (require) => {
-                                let ctrl = require('./controller/system-operating-account-controller')(ngMold);
+                            require.ensure(['./controller/operational/system-operating-account-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-operating-account-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -334,8 +404,8 @@ module.exports = (ngMold) => {
                     url: '/regional-center',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-regional-center.html'], (require) => {
-                            let tpl = require('./html/system-regional-center.html');
+                        require.ensure(['./html/expert/system-regional-center.html'], (require) => {
+                            let tpl = require('./html/expert/system-regional-center.html');
                             deferred.resolve(tpl);
                         }, './system/system-regional-center-tpl');
                         return deferred.promise;
@@ -345,8 +415,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemDataCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-regional-center-controller'], (require) => {
-                                let ctrl = require('./controller/system-regional-center-controller')(ngMold);
+                            require.ensure(['./controller/expert/system-regional-center-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-regional-center-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -360,8 +430,8 @@ module.exports = (ngMold) => {
                     url: '/expert-role',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-expert-role.html'], (require) => {
-                            let tpl = require('./html/system-expert-role.html');
+                        require.ensure(['./html/expert/system-expert-role.html'], (require) => {
+                            let tpl = require('./html/expert/system-expert-role.html');
                             deferred.resolve(tpl);
                         }, './system/system-expert-role-tpl');
                         return deferred.promise;
@@ -371,8 +441,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemExpertRoleCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-expert-role-controller'], (require) => {
-                                let ctrl = require('./controller/system-expert-role-controller')(ngMold);
+                            require.ensure(['./controller/expert/system-expert-role-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-expert-role-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
@@ -386,8 +456,8 @@ module.exports = (ngMold) => {
                     url: '/experts-account',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
-                        require.ensure(['./html/system-experts-account.html'], (require) => {
-                            let tpl = require('./html/system-experts-account.html');
+                        require.ensure(['./html/expert/system-experts-account.html'], (require) => {
+                            let tpl = require('./html/expert/system-experts-account.html');
                             deferred.resolve(tpl);
                         }, './system/system-experts-account-tpl');
                         return deferred.promise;
@@ -397,8 +467,8 @@ module.exports = (ngMold) => {
                     resolve: {
                         'systemExpertsAccountCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/system-experts-account-controller'], (require) => {
-                                let ctrl = require('./controller/system-experts-account-controller')(ngMold);
+                            require.ensure(['./controller/expert/system-experts-account-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-experts-account-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });

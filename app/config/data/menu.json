@@ -77,7 +77,7 @@
         "child": [{
             "title": "机构管理",
             "permissions": ["DEPARTMENT"],
-            "state": "dryad.system.institutional-management.department",
+            "state": "dryad.system.institutional-management.list.department",
             "active": "child-active",
             "uiRouter": "dryad.system.institutional-management.**",
             "level": 2,
@@ -107,7 +107,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "运营角色管理",
+            "title": "运营角色",
             "permissions": ["OPERATIONAL_ROLES"],
             "state": "dryad.system.operational-roles",
             "active": "child-active",
@@ -115,7 +115,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "运营账号管理",
+            "title": "运营账号",
             "permissions": ["OPERATING_ACCOUNT"],
             "state": "dryad.system.operating-account",
             "active": "child-active",
@@ -123,7 +123,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "区域中心管理",
+            "title": "区域中心",
             "permissions": ["REGIONAL_CENTER"],
             "state": "dryad.system.regional-center",
             "active": "child-active",
@@ -131,7 +131,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "专家角色管理",
+            "title": "专家角色",
             "permissions": ["EXPERT_ROLE"],
             "state": "dryad.system.expert-role",
             "active": "child-active",
@@ -139,7 +139,7 @@
             "level": 2,
             "child": []
         }, {
-            "title": "专家账号管理",
+            "title": "专家账号",
             "permissions": ["EXPERTS_ACCOUNT"],
             "state": "dryad.system.experts-account",
             "active": "child-active",
