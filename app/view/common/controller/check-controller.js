@@ -26,6 +26,6 @@ CheckCtrl.$inject = ['$rootScope', '$scope', '$state', 'APP_CONFIG', 'mainServic
 module.exports = (ngMold) => {
     require.ensure(['../service/main-service'], (require) => {
         const service = require('../service/main-service')(ngMold);
-    }, 'main-serve');
+    }, './common/main-serve');
     ngMold.controller('checkCtrl', CheckCtrl);
 }

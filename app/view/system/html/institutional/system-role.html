@@ -1,33 +1,3 @@
 <div class="main-right-search">
-    <!-- 角色管理左侧部分 -->
-   <div class="role-left">
-       <div class="role-t">
-           <span class="tit"><b>角色名称</b></span>
-           <a class="role-btn"><i class="new-add"></i></a>
-           <a class="role-btn"><i class="change-password"></i></a>
-           <a class="role-btn"><i class="delete-icon"></i></a>
-       </div>
-        <ul class="role-l-m">
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-            <li><a>数据录入员<i class="fa-forward"></i></a></li>
-        </ul>
-   </div>
-   <div class="role-right">
-        <div class="role-t">
-            <span class="tit"><b>数据录入员</b>(数据录入员是做大数据集成的)</span>
-            <span class="role-m-btn"><i class="save-icon"></i>保存</span>
-        </div>
-        <div class="role-r-m">
-            <div ui-tree id="tree-root" data-drag-enabled="false" class="tree-main">
-                <ol ui-tree-nodes ng-model="menuList" class="tree-main-ol">
-                    <li class="parent-menu" ng-repeat="node in menuList" ui-tree-node ng-include="'common/html/tree.html'" ng-class="{active: node.active}"></li>
-                </ol>
-            </div>
-        </div>
-   </div>
+    <dryad-role-tree-ui role-options="roleOptions"></dryad-role-tree-ui>
 </div>

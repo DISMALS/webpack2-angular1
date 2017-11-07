@@ -169,7 +169,7 @@ class SystemDepartmentCtrl {
             $uibModal.open({
                 animation: true,
                 backdrop: 'static',
-                template: require('../../html/institutional/delete-modal.html'),
+                template: require('../../../common/html/delete-modal.html'),
                 controller: 'deleteModalCtrl',
                 controllerAs: 'deleteModalCtrlVm',
                 size: 'width-400',
@@ -183,8 +183,8 @@ class SystemDepartmentCtrl {
                     },
                     deleteModalCtrl: ($q, $ocLazyLoad) => {
                         const deferred = $q.defer();
-                        require.ensure(['./delete-modal-controller'], (require) => {
-                            const ctrl = require('./delete-modal-controller')(require('../../../../common/module'));
+                        require.ensure(['../../../common/controller/delete-modal-controller'], (require) => {
+                            const ctrl = require('../../../common/controller/delete-modal-controller')(require('../../../../common/module'));
                             $ocLazyLoad.inject({
                                 name: 'dryadApp',
                                 files: [ctrl]
@@ -195,6 +195,7 @@ class SystemDepartmentCtrl {
                     }
                 }
             }).result.then(function(result) {
+                console.log(result);
                 // initData();
             });
         };

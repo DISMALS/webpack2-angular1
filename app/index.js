@@ -124,6 +124,23 @@ dryadApp.run(['$rootScope', '$state', '$stateParams', '$timeout', '$cookies', '$
                 <li ng-repeat="node in node.child" ui-tree-node ng-include="'common/html/tree.html'"></li>
             </ol>
         </div>`);
+
+        //角色树模板
+        // $templateCache.put('common/html/role-tree-ui.html',`
+        // <div dryad-permission-check="node.permissions">
+        //     <div ui-tree-handle class="tree-node" ng-click="toggles(this,node)" style="background:none;">
+        //         <a data-ng-class="{'node-contents':node.iconfont,'node-child-contents':!node.iconfont}" menu-href-active={{node}}>
+        //             <b class="left-colorm"></b>
+        //             <i ng-if="node.iconfont" class="menu-icon" data-ng-class="node.iconfont" data-nodrag></i>
+        //             <span class="tree-title" data-ng-bind="node.title"></span>
+        //             <i class="unfurled-packup-menu" data-ng-if="node.child.length > 0" data-ng-class="{'unfurled-icon':!this.collapsed,'pack-up-icon':this.collapsed}"></i>
+        //         </a>
+        //         <!-- ng-click="(node.size == 0 ? editItem(node) : '')"-->
+        //     </div>
+        //     <ol ui-tree-nodes ng-model="node.child" ng-class="{hidden: this.collapsed}">
+        //         <li ng-repeat="node in node.child" ui-tree-node ng-include="'common/html/tree.html'"></li>
+        //     </ol>
+        // </div>`);
     }
 ]);
 

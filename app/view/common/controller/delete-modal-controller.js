@@ -10,7 +10,7 @@ class DeleteModalCtrl {
     };
     //确认
     delete() {
-        this.uibModalInstance.close();
+        this.uibModalInstance.close(this.items);
     };
 }
 DeleteModalCtrl.$inject = ['$scope', 'items', '$uibModalInstance'];

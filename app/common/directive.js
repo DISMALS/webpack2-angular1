@@ -9,4 +9,5 @@ module.exports = (ngMold) => {
     require('../view/common/directive/jqgrid-ui-directive')(ngMold);
     require('../view/common/directive/page-ui-directive')(ngMold);
     require('../view/common/directive/screen-ui-directive')(ngMold);
+    require('../view/common/directive/role-tree-ui-directive')(ngMold);
 };
