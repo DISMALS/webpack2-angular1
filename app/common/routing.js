@@ -5,7 +5,7 @@ module.exports = (ngMold) => {
     require('../view/medicalHistory/medical-history-routers')(ngMold);
     require('../view/patients/patients-routers')(ngMold);
     require('../view/followUp/followup-routers')(ngMold);
-    require('../view/operation/operation-routers')(ngMold);
+    require('../view/resource/resource-routers')(ngMold);
     require('../view/onlineConsulting/online-consulting-routers')(ngMold);
     require('../view/dataApplications/data-application-routers')(ngMold);
     require('../view/system/system-routers')(ngMold);

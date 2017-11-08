@@ -1,19 +1,18 @@
 //单图片上传
 let DryadUploadImg = ($timeout) => {
     return {
-        restrict: "ECMA",
+        restrict: "A",
         scope: {
-            btnName:'=',
             previewSrc:'=',
             serviceFn:'='
         },
-        template:`
-        <label class="fileLabel">
-            <a class="patients-especial botton-special" data-ng-bind="btnName"></a>
-            <input class="upfile" type="file" accept="image/jpg, image/gif, image/jpeg, image/png" style="opacity:0;cursor:pointer;">
-        </label>`,
+        // template:`
+        // <label class="fileLabel">
+        //     <a class="patients-especial botton-special" data-ng-bind="btnName"></a>
+        //     <input class="upfile" type="file" accept="image/jpg, image/gif, image/jpeg, image/png" style="opacity:0;cursor:pointer;">
+        // </label>`,
         link: function(scope, ele, attrs) {
-            ele.find('input').bind("change", function(event) {
+            $(ele).bind("change", function(event) {
                 scope.serviceFn(event.target.files);
                 // var file, width, height, reader, path;
                 // file = this.files[0];

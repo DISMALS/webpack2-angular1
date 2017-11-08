@@ -162,7 +162,7 @@ module.exports = (ngMold) => {
                         }
                     }
                 })
-                .state('dryad.system.institutional-management.view', { //员工管理详情
+                .state('dryad.system.institutional-management.view', { //员工管理查看
                     url: '/view/{id}',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
@@ -375,6 +375,7 @@ module.exports = (ngMold) => {
                     }
                 })
                 .state('dryad.system.operating-account', { //运营账号管理
+                    abstract: true,
                     url: '/operating-account',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
@@ -383,19 +384,88 @@ module.exports = (ngMold) => {
                             deferred.resolve(tpl);
                         }, './system/system-operating-account-tpl');
                         return deferred.promise;
+                    }
+                })
+                .state('dryad.system.operating-account.list', { //运营账号管理
+                    url: '/list',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/operational/system-operating-account-list.html'], (require) => {
+                            let tpl = require('./html/operational/system-operating-account-list.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-operating-account-list-tpl');
+                        return deferred.promise;
                     },
                     controller: 'systemOperatingAccountCtrl',
                     controllerAs: 'systemOperatingAccountVm',
                     resolve: {
                         'systemOperatingAccount': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/operational/system-operating-account-controller'], (require) => {
-                                let ctrl = require('./controller/operational/system-operating-account-controller')(ngMold);
+                            require.ensure(['./controller/operational/system-operating-account-list-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-operating-account-list-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
                                 deferred.resolve(ctrl);
-                            }, './system/system-operating-account-ctrl');
+                            }, './system/system-operating-account-list-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.system.operating-account.details', { //运营账号详情
+                    url: '/details/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/operational/system-account-details.html'], (require) => {
+                            let tpl = require('./html/operational/system-account-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-account-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemAccountDetailsCtrl',
+                    controllerAs: 'systemAccountDetailsVm',
+                    resolve: {
+                        'systemAccountDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/operational/system-account-details-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-account-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-account-details-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.system.operating-account.view', { //运营账号查看
+                    url: '/view/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/operational/system-account-view-details.html'], (require) => {
+                            let tpl = require('./html/operational/system-account-view-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-account-view-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemAccountViewDetailsCtrl',
+                    controllerAs: 'systemAccountViewDetailsVm',
+                    resolve: {
+                        'systemAccountViewDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/operational/system-account-view-details-controller'], (require) => {
+                                let ctrl = require('./controller/operational/system-account-view-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-account-view-details-ctrl');
                             return deferred.promise;
                         }
                     }

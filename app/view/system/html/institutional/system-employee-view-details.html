@@ -17,109 +17,74 @@
             </div>
         </div>
         <div class="right-main">
-            <div class="form float-l">
-                <span class="left-title">姓名:</span>
-                <span class="right-content" data-ng-bind="info.name">
-                    <!-- <input type="text" placeholder="请输入姓名" class="form-input"> -->
-                </span>
+            <div class="right-main-l">
+                <div class="form float-l">
+                    <span class="left-title">姓名:</span>
+                    <span class="right-content" data-ng-bind="info.name">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">性别:</span>
+                    <span class="right-content" data-ng-bind="info.sex">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">生日:</span>
+                    <span class="right-content" data-ng-bind="info.birth">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">手机号码:</span>
+                    <span class="right-content" data-ng-bind="info.phon">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">邮编:</span>
+                    <span class="right-content" data-ng-bind="info.email">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">职称:</span>
+                    <span class="right-content" data-ng-bind="info.work">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">简介:</span>
+                    <span class="right-content" data-ng-bind="info.information">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">擅长:</span>
+                    <span class="right-content" data-ng-bind="info.like">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">在职状态:</span>
+                    <span class="right-content" data-ng-bind="info.status">
+                    </span>
+                </div>
             </div>
-            <div class="form float-l">
-                <span class="left-title">所属科室:</span>
-                <span class="right-content" data-ng-bind="info.department">
-                    <!-- <div class="nature-select">
-                        <ui-select data-ng-model="departmentObj.department" search-enabled="false" theme="select2">
-                            <ui-select-match placeholder="选择科室"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
-                        <ui-select-choices repeat="item.id as item in departmentList">
-                            <span data-ng-bind="item.name"></span>
-                        </ui-select-choices>
-                        </ui-select>
-                    </div> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">性别:</span>
-                <span class="right-content" data-ng-bind="info.sex">
-                    <!-- <a class="sex-chooise">
-                        <i class="man manactive">男</i>
-                        <i class="women womenactive">女</i>
-                    </a> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">所属角色:</span>
-                <span class="right-content" data-ng-bind="info.role">
-                    <!-- <div class="nature-select">
-                        <ui-select data-ng-model="departmentObj.role" search-enabled="false" theme="select2">
-                            <ui-select-match placeholder="选择账号所选角色"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
-                            <ui-select-choices repeat="item.id as item in roleList"><span data-ng-bind="item.name"></span></ui-select-choices>
-                        </ui-select>
-                    </div> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">生日:</span>
-                <span class="right-content" data-ng-bind="info.birth">
-                    <!-- <span class="date-main">
-                        <input class="date-input" ng-model="birthday"  placeholder="____-__-__"/>
-                        <i class="date-icon date-time" dryad-date-time-picker></i>
-                    </span> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">登录账号:</span>
-                <span class="right-content" data-ng-bind="info.accountNumber">
-                    <!-- <input type="text" placeholder="输入登录账号" class="form-input"> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">手机号码:</span>
-                <span class="right-content" data-ng-bind="info.phon">
-                    <!-- <input type="text" placeholder="请输入手机号码" class="form-input"> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">登录密码:</span>
-                <span class="right-content" data-ng-bind="info.password">
-                    <!-- <input type="text" placeholder="输入密码" class="form-input"> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">邮编:</span>
-                <span class="right-content" data-ng-bind="info.email">
-                    <!-- <input type="text" placeholder="请输入邮编" class="form-input"> -->
-                </span>
-            </div>
-            <div class="form float-l">
-                <span class="left-title">职称:</span>
-                <span class="right-content" data-ng-bind="info.work">
-                    <!-- <input type="text" placeholder="请输入职称" class="form-input"> -->
-                </span>
-            </div>
-            <div class="form-textarea overflow-h">
-                <span class="left-title">简介:</span>
-                <span class="right-content" data-ng-bind="info.information">
-                    <!-- <div class="description-textarea">
-                        <textarea placeholder="请输入个人简介"></textarea>
-                    </div> -->
-                </span>
-            </div>
-            <div class="form-textarea overflow-h">
-                <span class="left-title">擅长:</span>
-                <span class="right-content" data-ng-bind="info.like">
-                    <!-- <div class="description-textarea">
-                        <textarea placeholder="请输入擅长领域"></textarea>
-                    </div> -->
-                </span>
-            </div>
-            <div class="form-textarea overflow-h">
-                <span class="left-title">在职状态:</span>
-                <span class="right-content" data-ng-bind="info.status">
-                    <!-- <a class="sex-chooise">
-                        <i class="man manactive">在职</i>
-                        <i class="women womenactive">离职</i>
-                    </a> -->
-                </span>
-                <!-- <span><i class="warning-icon"></i>离职员工不能登录系统</span> -->
+            <div class="right-main-r">
+                <div class="form float-l">
+                    <span class="left-title">所属科室:</span>
+                    <span class="right-content" data-ng-bind="info.department">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属角色:</span>
+                    <span class="right-content" data-ng-bind="info.role">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">登录账号:</span>
+                    <span class="right-content" data-ng-bind="info.accountNumber">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">登录密码:</span>
+                    <span class="right-content" data-ng-bind="info.password">
+                    </span>
+                </div>
             </div>
         </div>
     </div>

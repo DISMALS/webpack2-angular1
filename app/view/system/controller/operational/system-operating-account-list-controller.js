@@ -1,4 +1,4 @@
-class SystemProgramsCtrl {
+class SystemOperatingAccountCtrl {
     constructor($scope, $state, $stateParams, $uibModal) {
         $scope.searchkey = '';
 
@@ -17,7 +17,7 @@ class SystemProgramsCtrl {
         $scope.data = [{
                 Name: 'wangyong',
                 Sex: '男',
-                Age: 345454,
+                Age: 33,
                 Address: '呼吸内科',
                 Role: '医生',
                 Work: '主治医生',
@@ -75,12 +75,11 @@ class SystemProgramsCtrl {
                     align: 'center',
                     width: 20
                 },
-                { name: "Name", title: '机构名称', type: "text", width: 40, align: 'center' },
-                { name: "Sex", title: '地址', type: "text", width: 100, align: 'center' },
-                { name: "Age", title: '邮编', type: "text", width: 20, align: 'center' },
-                { name: "Address", title: '机构管理员', type: "text", width: 35, align: 'center' },
-                { name: "Role", title: '管理员电话', type: "text", width: 40, align: 'center' },
-                { name: "Work", title: '管理员账号', type: "text", width: 40, align: 'center' },
+                { name: "Name", title: '姓名', type: "text", width: 80, align: 'center' },
+                { name: "Sex", title: '手机号', type: "text", width: 30, align: 'center' },
+                { name: "Age", title: '年龄', type: "text", width: 30, align: 'center' },
+                { name: "Address", title: '角色', type: "text", width: 80, align: 'center' },
+                { name: "Status", title: '在职状态', type: "text", width: 40, align: 'center' },
                 {
                     title: '操作',
                     type: "control",
@@ -96,7 +95,7 @@ class SystemProgramsCtrl {
                             $scope.view(item);
                         };
                         let createB = document.createElement('a');
-                        createB.textContent = '编辑';
+                        createB.textContent = '修改';
                         createB.className = 'grid-edit';
                         createB.onclick = () => {
                             $scope.editeAdd(item, 'edit');
@@ -118,75 +117,18 @@ class SystemProgramsCtrl {
         };
 
         //添加或者修改
-        $scope.editeAdd = (item) => {
-            $uibModal.open({
-                animation: true,
-                backdrop: 'static',
-                template: require('../../html/operational/add-edit-programs.html'),
-                controller: 'addEditProgramCtrl',
-                controllerAs: 'addEditProgramCtrlVm',
-                size: 'width-65',
-                resolve: {
-                    items: function() {
-                        return {
-                            title: item ? '修改医疗单位' : '新增医疗单位',
-                            item: item || {}
-                        };
-                    },
-                    addEditProgramCtrl: ($q, $ocLazyLoad) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./add-edit-program-controller'], (require) => {
-                            const ctrl = require('./add-edit-program-controller')(require('../../../../common/module'));
-                            $ocLazyLoad.inject({
-                                name: 'dryadApp',
-                                files: [ctrl]
-                            });
-                            deferred.resolve(ctrl);
-                        }, './system/add-edit-program-ctrl');
-                        return deferred.promise;
-                    }
-                }
-            }).result.then(function(result) {
-                console.log(result);
-                // initData();
-            });
+        $scope.editeAdd = (item, type) => {
+            if(type == 'edit'){
+                $state.go('dryad.system.operating-account.details', { id: 2333 });
+            }else{
+                $state.go('dryad.system.operating-account.details');
+            }
            
         };
 
         //查看
         $scope.view = (item) => {
-            $uibModal.open({
-                animation: true,
-                backdrop: 'static',
-                template: require('../../html/operational/view-programs.html'),
-                controller: 'viewProgramCtrl',
-                controllerAs: 'viewProgramCtrlVm',
-                size: 'width-660',
-                resolve: {
-                    items: function() {
-                        return {
-                            title: '查看医疗单位',
-                            item: item,
-                            parentScope:$scope
-                        };
-                    },
-                    viewProgramCtrl: ($q, $ocLazyLoad) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./view-program-controller'], (require) => {
-                            const ctrl = require('./view-program-controller')(require('../../../../common/module'));
-                            $ocLazyLoad.inject({
-                                name: 'dryadApp',
-                                files: [ctrl]
-                            });
-                            deferred.resolve(ctrl);
-                        }, './system/view-program-ctrl');
-                        return deferred.promise;
-                    }
-                }
-            }).result.then(function(result) {
-                console.log(result);
-                // initData();
-            });
+            $state.go('dryad.system.operating-account.view', { id: 2666 });
         };
 
         //删除确认弹窗
@@ -240,8 +182,8 @@ class SystemProgramsCtrl {
         }, true);
     }
 }
-SystemProgramsCtrl.$inject = ['$scope', '$state', '$stateParams', '$uibModal'];
+SystemOperatingAccountCtrl.$inject = ['$scope', '$state', '$stateParams', '$uibModal'];
 
 module.exports = (ngMold) => {
-    ngMold.controller('systemProgramsCtrl', SystemProgramsCtrl);
+    ngMold.controller('systemOperatingAccountCtrl', SystemOperatingAccountCtrl);
 }

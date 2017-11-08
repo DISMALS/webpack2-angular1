@@ -42,7 +42,7 @@
         "title": "资源管理",
         "iconfont": "operation-icon",
         "permissions": ["OPERATION"],
-        "state": "dryad.operation.list",
+        "state": "dryad.resource.list",
         "active": "parent-active",
         "uiRouter": "dryad.operation.**",
         "child": [],
@@ -117,7 +117,7 @@
         }, {
             "title": "运营账号",
             "permissions": ["OPERATING_ACCOUNT"],
-            "state": "dryad.system.operating-account",
+            "state": "dryad.system.operating-account.list",
             "active": "child-active",
             "uiRouter": "dryad.system.operating-account.**",
             "level": 2,

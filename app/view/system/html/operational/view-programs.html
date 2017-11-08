@@ -1,0 +1,66 @@
+<div class="modal-title">
+        <span data-ng-bind="items.title"></span>
+        <i class="close-modal" data-ng-click="closedModal()"></i>
+    </div>
+    
+    <!-- 新增医疗单位或者修改医疗单位 -->
+    <div class="sure-patient programs-add-edit">
+        <div class="row">
+            <div class="programs-input col-sm-6">
+                <span class="left-title">机构名称:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.orgName"></div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">机构管理员:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.orgAdmin"></div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">联系电话:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.phon"></div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">邮编:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.email"></div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-12">
+                <span class="left-title">联系地址:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.address"></div>  
+                </span>
+            </div>
+            <div class="programs-upload col-sm-12">
+                <span class="left-title">机构logo:</span>
+                <span class="right-content">
+                    <div class="orgLogo-view">
+                        <img data-ng-src={{programObj.logoSrc}} data-ng-if="programObj.logoSrc">
+                    </div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">管理员账号:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.adminAccount"></div>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">登录密码:</span>
+                <span class="right-content">
+                    <div class="text-view" data-ng-bind="programObj.password"></div>
+                </span>
+            </div>
+        </div>
+        
+        <!-- 按钮 -->
+        <div class="patientinfo text-right programs-btn">
+            <a data-ng-click="closedModal()" class="button botton-close">关闭</a>
+            <a data-ng-click="edit()" class="button botton-close"><i class="change-password"></i>修改</a>
+        </div>
+    </div>

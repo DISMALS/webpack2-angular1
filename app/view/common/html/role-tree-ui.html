@@ -3,12 +3,12 @@
     <div class="role-left">
         <div class="role-t">
             <span class="tit"><b>角色名称</b></span>
-            <a class="role-btn" data-toggle="tooltip" data-ng-click="roleOptions.deleteRole()" title="新增角色"><i class="new-add"></i></a>
+            <a class="role-btn" data-toggle="tooltip" data-ng-click="roleOptions.editRole()" title="新增角色"><i class="new-add"></i></a>
             <a class="role-btn" data-toggle="tooltip" data-ng-click="roleOptions.editRole(chooiseRole)" title="修改角色"><i class="change-password"></i></a>
             <a class="role-btn" data-toggle="tooltip" data-ng-click="roleOptions.deleteRole(chooiseRole)" title="删除角色"><i class="delete-icon"></i></a>
         </div>
         <ul class="role-l-m">
-            <li data-ng-repeat="role in roleData"><a data-ng-class="{'active':role.active}" data-ng-click="roleActive(role,$index)"><i data-ng-if="role.isDisabled" class="disabled">禁</i>{{role.name}}<i class="fa-forward"></i></a></li>
+            <li data-ng-repeat="role in roleData"><a data-ng-class="{'active':role.active}" data-ng-click="roleActive(role,$index)"><i data-ng-if="!role.isEnable" class="disabled">禁</i>{{role.name}}<i class="fa-forward"></i></a></li>
         </ul>
     </div>
     <!-- 角色管理右侧部分 -->
@@ -18,6 +18,16 @@
             <span data-ng-click="save(chooiseRole,data)" data-ng-disabled="!canSave" class="role-m-btn" data-ng-class="{'role-m-btn-enable':canSave,'role-m-btn-disabled':!canSave}"><i class="save-icon"></i>保存</span><!--role-m-btn-enable-->
         </div>
         <div class="role-r-m">
+            <div class="isEnable">
+                <div class="isEnableMain">
+                    启用
+                    <div class="isEnableBtn" data-ng-class="{'yes':isEnable,'no':!isEnable}" data-ng-click="isEnableFn($event)">
+                        <i class="text" data-ng-if="isEnable">YES</i>
+                        <i class="text" data-ng-if="!isEnable">NO</i>
+                        <i class="roundBtn" data-ng-class="{'moveLeft':!isEnable,'moveRight':isEnable}"></i>
+                    </div>
+                </div>
+            </div>
             <div ui-tree id="tree-root" data-drag-enabled="false" class="tree-main">
                 <ol ui-tree-nodes data-ng-model="data" class="tree-main-ol">
                     <li class="parent-menu" data-ng-repeat="node in data" ui-tree-node ng-include="'common/role-tree-ui.html'"></li>

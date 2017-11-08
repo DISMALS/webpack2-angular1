@@ -117,7 +117,7 @@ class SystemDepartmentCtrl {
                         };
                         let createB = document.createElement('a');
                         createB.textContent = '删除';
-                        createA.className = 'grid-delete';
+                        createB.className = 'grid-delete';
                         createB.onclick = () => {
                             $scope.deleteModal(item);
                         };

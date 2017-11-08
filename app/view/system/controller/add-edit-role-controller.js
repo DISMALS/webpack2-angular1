@@ -4,8 +4,9 @@ class AddEditRoleCtrl {
         this.uibModalInstance = $uibModalInstance;
         this.toastr = toastr;
         $scope.items = items;
+        console.log($scope.items);
 
-        $scope.departmentObj = $scope.items.item || {};
+        $scope.roleObj = $scope.items.item || {};
     };
     //
     createMedical() {
@@ -18,8 +19,8 @@ class AddEditRoleCtrl {
     };
     //sure
     sure() {
-        console.log(this.scope.departmentObj);
-        this.uibModalInstance.close(this.scope.departmentObj);
+        console.log(this.scope.roleObj);
+        this.uibModalInstance.close(this.scope.roleObj);
     }
 }
 

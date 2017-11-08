@@ -18,7 +18,4 @@ import '../node_modules/angular-timeline/dist/angular-timeline'; //时间轴
 import '../node_modules/angular-ui-router-tabs/src/ui-router-tabs'; //路由tab
 window.echarts = require('../node_modules/echarts/dist/echarts.min');
 
-
-
-
 require('./common/src/websdk-1.4.13.js');

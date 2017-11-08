@@ -5,7 +5,6 @@ class SystemRoleCtrl {
 
         //删除角色
         $scope.deleteRole = (item) => {
-            console.log(item);
             $uibModal.open({
                 animation: true,
                 backdrop: 'static',
@@ -42,7 +41,6 @@ class SystemRoleCtrl {
 
         //修改角色/添加角色
         $scope.addOrEditRole = (item) => {
-            console.log(item);
             $uibModal.open({
                 animation: true,
                 backdrop: 'static',
@@ -53,7 +51,7 @@ class SystemRoleCtrl {
                 resolve: {
                     items: function() {
                         return {
-                            title: item ? '新增角色' : '修改角色',
+                            title: item ? '修改角色' : '新增角色',
                             item: item || {}
                         };
                     },
@@ -84,7 +82,7 @@ class SystemRoleCtrl {
 
         //选中角色重新载入权限数据
         $scope.chooiseRole = (role) => {
-            console.log(role);
+            // console.log(role);
             return systemService.getPermissionData();
         };
         // 角色配置项
@@ -93,22 +91,22 @@ class SystemRoleCtrl {
                 {
                     id:1,
                     name:'数据录入员',
-                    isDisabled:false,
+                    isEnable:true,
                     description:'角色描述'
                 },{
                     id:2,
                     name:'主治医生',
-                    isDisabled:false,
+                    isEnable:true,
                     description:'角色描述'
                 },{
                     id:3,
                     name:'药房主管',
-                    isDisabled:false,
+                    isEnable:false,
                     description:'角色描述'
                 },{
                     id:4,
                     name:'护士长',
-                    isDisabled:true,
+                    isEnable:true,
                     description:'角色描述'
                 }
             ],

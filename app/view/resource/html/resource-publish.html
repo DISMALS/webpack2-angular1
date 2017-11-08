@@ -1,0 +1,181 @@
+<div class="publish">
+    <div class="publishTitle">
+        <div class="clearfix textImg">
+            <ul class="clearfix">
+                <li ng-class='{active:activeTab==1}' ng-click='activeTab=1'><i class="tuwen"></i>新增图文</li>
+                <li ng-class='{active:activeTab==2}' ng-click='activeTab=2'><i class="shiping"></i>新增视频</li>
+            </ul>
+        </div>
+        <div class="buttonList">
+            <ul>
+                <li ng-click="resourcePublishVm.closedModal()">关闭</li>
+                <li>浏览</li>
+                <li>提交</li>
+                <li><i class="save-icon"></i>保存</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="publishTab">
+        <div ng-show='activeTab==1'>
+            <div class="searchTitle">
+                <ul>
+                    <li class="clearfix">
+                        <div class="searchLi">
+                            <span>
+                                性质
+                            </span>
+                            <label class="head-search inputSearch">
+                                <ui-select ng-model="uploadData.resource" theme="select2" search-enabled="false" class="search-drug form-control form-white">
+                                    <ui-select-match placeholder="全部资源">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in searchResourceList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                        <span>{{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </label>
+                        </div>
+
+                        <div class="searchLi" ng-if="activeTab == 2">
+                            <span>
+                                医生账号
+                            </span>
+                            <span class="inputSearch">
+                               <input type="text" ng-model="uploadData.doctorAccount" placeholder="请输入医生账号"/>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="searchLi">
+                            <span>
+                                分类
+                            </span>
+                            <label class="head-search inputSearch">
+                                <ui-select ng-model="uploadData.classify" theme="select2" search-enabled="false" class="search-drug form-control form-white">
+                                    <ui-select-match placeholder="请选择">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in searchClassifyList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                        <span>{{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="searchLi">
+                            <span>
+                                作者
+                            </span>
+                            <span class="inputSearch">
+                               <input type="text" ng-model="uploadData.author" placeholder="请输入作者"/>
+                            </span>
+                        </div>
+                        <div class="searchLi clearfix textareaLi">
+                            <span>
+                                作者介绍
+                            </span>
+                            <span class="inputSearch ">
+                               <textarea type="text" ng-model="uploadData.authorDesc" placeholder="请输入作者介绍"/>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="uploadCover">
+                <strong>请添加资源封面图</strong>（支持xM以内的JPG\PNG图片，建议尺寸：）
+            </div>
+            <div class="inputCentent">
+                <div class="inputTitle">
+                    <input type="text" placeholder="请输入标题" />
+                </div>
+                <div class="inputDesc">
+                    <input type="text" placeholder="请输入简介" />
+                </div>
+            </div>
+        </div>
+        <div ng-show='activeTab==2'>
+            <div class="searchTitle">
+            <ul>
+                <li class="clearfix">
+                    <div class="searchLi">
+                            <span>
+                                性质
+                            </span>
+                        <label class="head-search inputSearch">
+                            <ui-select ng-model="uploadData.resource" theme="select2" search-enabled="false" class="search-drug form-control form-white">
+                                <ui-select-match placeholder="全部资源">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in searchResourceList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                    <span>{{item.name}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </label>
+                    </div>
+
+                    <div class="searchLi" ng-if="activeTab == 2">
+                            <span>
+                                医生账号
+                            </span>
+                        <span class="inputSearch">
+                               <input type="text" ng-model="uploadData.doctorAccount" placeholder="请输入医生账号"/>
+                            </span>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="searchLi">
+                            <span>
+                                分类
+                            </span>
+                        <label class="head-search inputSearch">
+                            <ui-select ng-model="uploadData.classify" theme="select2" search-enabled="false" class="search-drug form-control form-white">
+                                <ui-select-match placeholder="请选择">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in searchClassifyList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                    <span>{{item.name}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </label>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="searchLi">
+                            <span>
+                                作者
+                            </span>
+                        <span class="inputSearch">
+                               <input type="text" ng-model="uploadData.author" placeholder="请输入作者"/>
+                            </span>
+                    </div>
+                    <div class="searchLi clearfix textareaLi">
+                            <span>
+                                作者介绍
+                            </span>
+                        <span class="inputSearch ">
+                               <textarea type="text" ng-model="uploadData.authorDesc" placeholder="请输入作者介绍"/>
+                            </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+            <div class="uploadCover">
+                <strong>请添加资源封面图</strong>（支持xM以内的JPG\PNG图片，建议尺寸：）
+            </div>
+            <div class="inputCentent">
+                <div class="inputTitle">
+                    <input type="text" placeholder="请输入标题" />
+                </div>
+                <div class="inputDesc">
+                    <input type="text" placeholder="请输入简介" />
+                </div>
+            </div>
+            <div class="uploadCover uploadVideo">
+                <i class="upload-icon"></i>
+                <strong>上传本地视频</strong>
+                <b>解释，视频最大多少，格式是什么</b>
+            </div></div>
+    </div>
+</div>
