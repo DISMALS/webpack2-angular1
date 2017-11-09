@@ -105,32 +105,11 @@ class ResourceListUncommittedCtrl {
             noDataContent: '暂无数据...',
             loadMessage: '正在加载数据，请稍等...',
             loadIndication: true, //是否在加载数据时显示提示语
-            rowClick: (row) => {
+/*            rowClick: (row) => {
                 $scope.openDetails(row);
-            },
+            },*/
             fields: [
-                { name: "no", title: '序号',type: "text",
-  /*                  headerTemplate: function() {
-                        return '操作';
-                    },
-                    itemTemplate: function(value, item) {
-                        let createA = document.createElement('a');
-                        createA.textContent = '编辑';
-                        createA.className = 'grid-edit';
-                        createA.onclick = () => {
-                            $scope.editeAdd(item, 'edit');
-                        };
-                        let createB = document.createElement('a');
-                        createB.textContent = '删除';
-                        createA.className = 'grid-delete';
-                        createB.onclick = () => {
-                            $scope.deleteModal(item);
-                        };
-                        let spanEle = document.createElement('span');
-                        spanEle.appendChild(createA);
-                        spanEle.appendChild(createB);
-                        return spanEle;
-                    },*/  align: 'center', width: '5%', align: 'center' },
+                { name: "no", title: '序号',type: "text", align: 'center', width: '5%', align: 'center' },
                 { name: "resourceTitle", title: '资源标题', type: "text", width: '', align: 'center' },
                 { name: "resourceClassify", title: '资源分类', type: "text", width: '10%', align: 'center' },
                 { name: "resourceType", title: '资源类型', type: "text",  width: '11%', align: 'center' },
@@ -138,9 +117,63 @@ class ResourceListUncommittedCtrl {
                 { name: "author", title: '作者', type: "text", width: '8%', align: 'center' },
                 { name: "operationDate", title: '操作日期', type: "text", width: '11%', align: 'center' },
                 { name: "status", title: '状态', type: "text", width: '10%', align: 'center' },
-                { name: "operation", title: '操作', type: "text", width: '15%', align: 'center' }
+                { name: "operation", title: '操作',  type: "control",
+                    itemTemplate: function(value, item) {
+                                          let createA = document.createElement('a');
+                                          createA.textContent = '预览';
+                                          createA.className = 'grid-preview';
+                                          createA.onclick = () => {
+                                              $scope.preview();
+                                          };
+                                          let createB = document.createElement('a');
+                                          createB.textContent = '编辑';
+                                          createB.className = 'grid-view';
+                                          createB.onclick = () => {
+                                              $scope.editeAdd(item, 'edit');
+                                          };
+                                          let createC = document.createElement('a');
+                                          createC.textContent = '删除';
+                                          createC.className = 'grid-delete';
+                                          createC.onclick = () => {
+                                              $scope.deleteModal(item);
+                                          };
+                                          let spanEle = document.createElement('span');
+                                          spanEle.appendChild(createA);
+                                          spanEle.appendChild(createB);
+                                          spanEle.appendChild(createC);
+                                          return spanEle;
+                                      }, width: '15%', align: 'center' }
             ]
         };
+        $scope.preview = function(item, preview) {
+            $uibModal.open({
+                animation: true,
+                backdrop: 'static',
+                template: require('../html/resource-publish-previewText.html'),
+                controller: 'resourcePublishPreviewTextCtrl',
+                controllerAs: 'resourcePublishPreviewTextVm',
+                size: 'publish-lg',
+                resolve: {
+                    items: function() {
+                        return {
+                            action: 'ADD',
+                        };
+                    },
+                    resourcePublishPreviewTextCtrl: ($q, $ocLazyLoad) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./resource-publish-previewText-controller'], (require) => {
+                            const ctrl = require('./resource-publish-previewText-controller')(require('../../../common/module'));
+                            $ocLazyLoad.inject({
+                                name: 'dryadApp',
+                                files: [ctrl]
+                            });
+                            deferred.resolve(ctrl);
+                        }, './resource-publish-controller');
+                        return deferred.promise;
+                    }
+                }
+            }).result.then(function(result) {
+            });        }
 
         //pageConfig
         $scope.pageConfig = {
@@ -150,7 +183,7 @@ class ResourceListUncommittedCtrl {
         }
 
     };
-    medicalRecords() {
+     medicalRecords() {
         this.uibModal.open({
             animation: true,
             backdrop: 'static',

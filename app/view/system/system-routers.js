@@ -192,7 +192,6 @@ module.exports = (ngMold) => {
                     }
                 })
                 .state('dryad.system.drug-dictionary', { //药品字典
-                    abstract: true,
                     url: '/drug-dictionary',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
@@ -214,84 +213,6 @@ module.exports = (ngMold) => {
                                 });
                                 deferred.resolve(ctrl);
                             }, './system/system-drug-dictionary-ctrl');
-                            return deferred.promise;
-                        }
-                    }
-                })
-                .state('dryad.system.drug-dictionary.controlclass', { //控制类药物
-                    url: '/controlclass',
-                    templateProvider: ($q) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./html/drugDictionary/system-controlclass.html'], (require) => {
-                            let tpl = require('./html/drugDictionary/system-controlclass.html');
-                            deferred.resolve(tpl);
-                        }, './system/system-controlclass-tpl');
-                        return deferred.promise;
-                    },
-                    controller: 'systemControlclassCtrl',
-                    controllerAs: 'systemControlclassVm',
-                    resolve: {
-                        'systemControlclassCtrl': ($q, $ocLazyLoad) => {
-                            const deferred = $q.defer();
-                            require.ensure(['./controller/drugDictionary/system-controlclass-controller'], (require) => {
-                                let ctrl = require('./controller/drugDictionary/system-controlclass-controller')(ngMold);
-                                $ocLazyLoad.inject({
-                                    name: 'dryadApp'
-                                });
-                                deferred.resolve(ctrl);
-                            }, './system/system-controlclass-ctrl');
-                            return deferred.promise;
-                        }
-                    }
-                })
-                .state('dryad.system.drug-dictionary.easeclass', { //缓解类药物
-                    url: '/easeclass',
-                    templateProvider: ($q) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./html/drugDictionary/system-easeclass.html'], (require) => {
-                            let tpl = require('./html/drugDictionary/system-easeclass.html');
-                            deferred.resolve(tpl);
-                        }, './system/system-easeclass-tpl');
-                        return deferred.promise;
-                    },
-                    controller: 'systemEaseclassCtrl',
-                    controllerAs: 'systemEaseclassVm',
-                    resolve: {
-                        'systemEaseclassCtrl': ($q, $ocLazyLoad) => {
-                            const deferred = $q.defer();
-                            require.ensure(['./controller/drugDictionary/system-easeclass-controller'], (require) => {
-                                let ctrl = require('./controller/drugDictionary/system-easeclass-controller')(ngMold);
-                                $ocLazyLoad.inject({
-                                    name: 'dryadApp'
-                                });
-                                deferred.resolve(ctrl);
-                            }, './system/system-easeclass-ctrl');
-                            return deferred.promise;
-                        }
-                    }
-                })
-                .state('dryad.system.drug-dictionary.unclassified', { //未分类药物
-                    url: '/unclassified',
-                    templateProvider: ($q) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./html/drugDictionary/system-unclassified.html'], (require) => {
-                            let tpl = require('./html/drugDictionary/system-unclassified.html');
-                            deferred.resolve(tpl);
-                        }, './system/system-unclassified-tpl');
-                        return deferred.promise;
-                    },
-                    controller: 'systemUnclassifiedCtrl',
-                    controllerAs: 'systemUnclassifiedVm',
-                    resolve: {
-                        'systemUnclassifiedCtrl': ($q, $ocLazyLoad) => {
-                            const deferred = $q.defer();
-                            require.ensure(['./controller/drugDictionary/system-unclassified-controller'], (require) => {
-                                let ctrl = require('./controller/drugDictionary/system-unclassified-controller')(ngMold);
-                                $ocLazyLoad.inject({
-                                    name: 'dryadApp'
-                                });
-                                deferred.resolve(ctrl);
-                            }, './system/system-unclassified-ctrl');
                             return deferred.promise;
                         }
                     }
@@ -386,7 +307,7 @@ module.exports = (ngMold) => {
                         return deferred.promise;
                     }
                 })
-                .state('dryad.system.operating-account.list', { //运营账号管理
+                .state('dryad.system.operating-account.list', { //运营账号管理列表
                     url: '/list',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
@@ -523,6 +444,7 @@ module.exports = (ngMold) => {
                     }
                 })
                 .state('dryad.system.experts-account', { //专家账号管理
+                    abstract: true,
                     url: '/experts-account',
                     templateProvider: ($q) => {
                         const deferred = $q.defer();
@@ -532,18 +454,88 @@ module.exports = (ngMold) => {
                         }, './system/system-experts-account-tpl');
                         return deferred.promise;
                     },
-                    controller: 'systemExpertsAccountCtrl',
-                    controllerAs: 'systemExpertsAccountVm',
+                    
+                })
+                .state('dryad.system.experts-account.list', { //运营账号管理列表
+                    url: '/list',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/expert/system-experts-account-list.html'], (require) => {
+                            let tpl = require('./html/expert/system-experts-account-list.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-experts-account-list-tpl');
+                        return deferred.promise;
+                    },
+                    controller: 'systemExpertsAccountListCtrl',
+                    controllerAs: 'systemExpertsAccountListVm',
                     resolve: {
-                        'systemExpertsAccountCtrl': ($q, $ocLazyLoad) => {
+                        'systemExpertsAccountListCtrl': ($q, $ocLazyLoad) => {
                             const deferred = $q.defer();
-                            require.ensure(['./controller/expert/system-experts-account-controller'], (require) => {
-                                let ctrl = require('./controller/expert/system-experts-account-controller')(ngMold);
+                            require.ensure(['./controller/expert/system-experts-account-list-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-experts-account-list-controller')(ngMold);
                                 $ocLazyLoad.inject({
                                     name: 'dryadApp'
                                 });
                                 deferred.resolve(ctrl);
-                            }, './system/system-experts-account-ctrl');
+                            }, './system/system-experts-account-list-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.system.experts-account.details', { //运营账号详情
+                    url: '/details/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/expert/system-account-details.html'], (require) => {
+                            let tpl = require('./html/expert/system-account-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-expert-account-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemExpertAccountDetailsCtrl',
+                    controllerAs: 'systemExpertAccountDetailsVm',
+                    resolve: {
+                        'systemExpertAccountDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/expert/system-account-details-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-account-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-expert-account-details-ctrl');
+                            return deferred.promise;
+                        }
+                    }
+                })
+                .state('dryad.system.experts-account.view', { //运营账号查看
+                    url: '/view/{id}',
+                    templateProvider: ($q) => {
+                        const deferred = $q.defer();
+                        require.ensure(['./html/expert/system-account-view-details.html'], (require) => {
+                            let tpl = require('./html/expert/system-account-view-details.html');
+                            deferred.resolve(tpl);
+                        }, './system/system-expert-account-view-details-tpl');
+                        return deferred.promise;
+                    },
+                    params: {
+                        id: null
+                    },
+                    controller: 'systemExpertAccountViewDetailsCtrl',
+                    controllerAs: 'systemExpertAccountViewDetailsVm',
+                    resolve: {
+                        'systemExpertAccountViewDetailsCtrl': ($q, $ocLazyLoad) => {
+                            const deferred = $q.defer();
+                            require.ensure(['./controller/expert/system-account-view-details-controller'], (require) => {
+                                let ctrl = require('./controller/expert/system-account-view-details-controller')(ngMold);
+                                $ocLazyLoad.inject({
+                                    name: 'dryadApp'
+                                });
+                                deferred.resolve(ctrl);
+                            }, './system/system-expert-account-view-details-ctrl');
                             return deferred.promise;
                         }
                     }

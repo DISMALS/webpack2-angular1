@@ -1,1 +1,46 @@
-基础配置
+<div class="system">
+    <div class="medical-history-details">
+        <div class="drug-class">
+            <div class="class-title" data-ng-bind="title"></div>
+            <ul class="class-list">
+                <li data-ng-repeat="class in classList"><a data-ng-class="{'active':class.active}" data-ng-click="chooiseClass($index)">{{class.name}}<i class="fa-forward"></i></a></li>
+            </ul>
+        </div>
+        <div class="drug-list">
+            <div class="searchTitle">
+                <label class="head-search">
+                    <span class="search-input">
+                        <ui-select ng-model="searchkey"
+                                theme="bootstrap"
+                                reset-search-input="true">
+                            <ui-select-match placeholder="请输入关键词搜索">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="address.id as address in searchSelect track by $index" 
+                                data-ng-hide="searchSelect.length == 0" class="set-width">
+                                <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
+                                <div ng-bind-html="address.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </span>
+                    <i class="search searchBg"></i>
+                </label>
+                <a data-ng-click="editeAdd(null,'add')" class="exportBtn button-default botton-save">
+                    <i class="new-add"></i> 新增职业
+                </a>
+                <a data-ng-click="exportsBtn()" class="disabled-btn" data-ng-disabled="!selected" data-ng-class="{'button botton-close':selected,'botton-disabled':!selected}">
+                    <i class="moveUpDown move-up"></i> 上移
+                </a>
+                <a data-ng-click="importsBtn()" class="disabled-btn" data-ng-disabled="!selected" data-ng-class="{'button botton-close':selected,'botton-disabled':!selected}">
+                    <i class="moveUpDown move-down"></i> 下移
+                </a>
+            </div>
+            <!-- grid -->
+            <div class="dryad-grid medical-history-height">
+                <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid>
+            </div>
+            <!-- page -->
+            <div class="common-page">
+                <dryad-ui-page page-config="pageConfig"></dryad-ui-page>
+            </div>
+        </div>
+    </div>
+</div>

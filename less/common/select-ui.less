@@ -337,3 +337,138 @@
 .form-control{
     height: 32px !important;
 }
+
+//multiple
+.ui-select-multiple{
+    .ui-select-search{
+        border:none;
+    }
+    .btn.active.focus,
+    .btn.active:focus,
+    .btn.focus,
+    .btn:active.focus,
+    .btn:active:focus,
+    .btn:focus {
+        outline: 0px;
+        outline-offset: 0px;
+        height: 24px;
+        line-height: 22px;
+        box-shadow:none;
+        transition:none;
+        .ui-select-match-close::before{
+            color:@font-color-4;
+            opacity: 1;
+        }
+    }
+    .btn.focus,
+    .btn:focus,
+    .btn:hover {
+        color: @font-color-5;
+        text-decoration: none;
+        height: 24px;
+        line-height: 22px;
+        box-shadow:none;
+        transition:none;
+        .ui-select-match-close::before{
+            opacity: 1;
+            color:@font-color-4;
+        }
+        .close{
+            opacity: 1;
+            background-color:@icon-bg-color-4;
+        }
+    }
+
+    .btn.active,
+    .btn:active {
+        background-image: none;
+        outline: 0;
+        box-shadow: none;
+    }
+    .btn-xs{
+        padding: 0;
+        font-size: 14px;
+        line-height: 22px;
+        overflow: hidden;
+        span{
+            float: right;
+        }
+        margin-right: 5px;
+        margin-bottom:3px;
+    }
+    .btn-primary{
+        font-size:@font-size-14;
+        color:@font-color-5;
+        background-color: @icon-bg-color-7;
+        border-color: @font-color-9;
+        border-width: 1px;
+        border-style: solid;
+        padding:0;
+        height: 22px;
+        line-height: 22px;
+        .close{
+            display: block;
+            width:24px;
+            height: 100%;
+            text-align: center;
+            color:@font-color-4;
+            font-size: 0px;
+            line-height: 22px;
+        }
+        &:focus,&:hover{
+            background-color: @icon-bg-color-7;
+            color: @font-color-5;
+            height: 24px;
+            line-height: 22px;
+            box-shadow:none;
+            transition:none;
+            .ui-select-match-close::before{
+                opacity: 1;
+                color:@font-color-4;
+            }
+            .close{
+                opacity: 1;
+                background-color:@icon-bg-color-4;
+            }
+        }
+    }
+    .close{
+        display: block;
+        width:22px;
+        height: 22px;
+        text-align: center;
+        color:@font-color-5;
+        line-height: 22px;
+        font-size: 0px;
+    }
+    .ui-select-match-close::before{
+        content:'\e6b1';
+        font-family: 'iconfont';
+        font-size: 14px;
+        color:@font-color-5;
+    }
+    .select-value{
+        padding:0px 3px;
+        display: block;
+    }
+    .ui-select-choices-row{
+        height: 22px;
+        line-height: 22px;
+        padding:0px 3px;
+        cursor: pointer;
+        &:hover{
+            background-color:@font-color-4;
+            color:@font-color-3;
+        }
+    }
+}
+.open>.dropdown-menu{
+    width: 100%;
+}
+.ui-select-multiple.form-control{
+    height: auto !important;
+    padding: 3px 5px;
+    box-shadow:none;
+    transition:none;
+    border:none;
+}

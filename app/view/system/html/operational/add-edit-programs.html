@@ -1,100 +1,100 @@
 <div class="modal-title">
-        <span data-ng-bind="items.title"></span>
-        <i class="close-modal" data-ng-click="addEditProgramCtrlVm.closedModal()"></i>
+    <span data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="addEditProgramCtrlVm.closedModal()"></i>
+</div>
+
+<!-- 新增医疗单位或者修改医疗单位 -->
+<div class="sure-patient programs-add-edit">
+    <div class="row">
+        <div class="programs-input col-sm-6">
+            <span class="left-title">机构名称:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入机构名称" data-ng-model="programObj.orgName">
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">机构管理员:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入联系人" data-ng-model="programObj.orgAdmin">
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">联系电话:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入联系电话" data-ng-model="programObj.phon">
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">邮编:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入邮编" data-ng-model="programObj.email">
+            </span>
+        </div>
+        <div class="programs-input col-sm-12">
+                <span class="left-title">联系地址:</span>
+                <span class="right-content">
+                    <div class="nature-select">
+                        <ui-select data-ng-model="programObj.country" search-enabled="true" theme="bootstrap" class="bootstrap-select">
+                            <ui-select-match placeholder="国家"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                        <ui-select-choices repeat="item.id as item in selectList">
+                            <span data-ng-bind="item.name"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="nature-select">
+                        <ui-select data-ng-model="programObj.province" search-enabled="true" theme="bootstrap" class="bootstrap-select">
+                            <ui-select-match placeholder="省/市"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                        <ui-select-choices repeat="item.id as item in selectList">
+                            <span data-ng-bind="item.name"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="nature-select">
+                        <ui-select data-ng-model="programObj.area" search-enabled="true" theme="bootstrap" class="bootstrap-select">
+                            <ui-select-match placeholder="区/县"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                        <ui-select-choices repeat="item.id as item in selectList">
+                            <span data-ng-bind="item.name"></span>
+                        </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="addressInfo"><input type="text" class="user-input" placeholder="请输入具体地址" data-ng-model="programObj.address"></div>
+            </span>
+        </div>
+        <div class="programs-upload col-sm-12">
+            <span class="left-title">机构logo:</span>
+            <span class="right-content">
+                <div class="orgLogo">
+                    <i class="upload-icon"></i>
+                    <img data-ng-src={{programObj.logoSrc}} data-ng-if="programObj.logoSrc">
+                    <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" preview-src="programObj.logoSrc" dryad-upload-img>
+                </div>
+                <p class="warning"><i class="warning-icon"></i>只能上传JPG/PNG文件单个文件不能超过1M，长宽比（4：3）</p>
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">管理员账号:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入管理员账号" data-ng-model="programObj.name">
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">登录密码:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入密码" data-ng-model="programObj.name">
+            </span>
+        </div>
+        <div class="programs-input col-sm-6">
+            <span class="left-title">确认密码:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请确认密码" data-ng-model="programObj.name">
+            </span>
+        </div>
     </div>
     
-    <!-- 新增医疗单位或者修改医疗单位 -->
-    <div class="sure-patient programs-add-edit">
-        <div class="row">
-            <div class="programs-input col-sm-6">
-                <span class="left-title">机构名称:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入机构名称" data-ng-model="programObj.orgName">
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">机构管理员:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入联系人" data-ng-model="programObj.orgAdmin">
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">联系电话:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入联系电话" data-ng-model="programObj.phon">
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">邮编:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入邮编" data-ng-model="programObj.email">
-                </span>
-            </div>
-            <div class="programs-input col-sm-12">
-                    <span class="left-title">联系地址:</span>
-                    <span class="right-content">
-                        <div class="nature-select">
-                            <ui-select data-ng-model="programObj.country" search-enabled="true" theme="bootstrap" class="bootstrap-select">
-                                <ui-select-match placeholder="国家"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
-                            <ui-select-choices repeat="item.id as item in selectList">
-                                <span data-ng-bind="item.name"></span>
-                            </ui-select-choices>
-                            </ui-select>
-                        </div>
-                        <div class="nature-select">
-                            <ui-select data-ng-model="programObj.province" search-enabled="true" theme="bootstrap" class="bootstrap-select">
-                                <ui-select-match placeholder="省/市"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
-                            <ui-select-choices repeat="item.id as item in selectList">
-                                <span data-ng-bind="item.name"></span>
-                            </ui-select-choices>
-                            </ui-select>
-                        </div>
-                        <div class="nature-select">
-                            <ui-select data-ng-model="programObj.area" search-enabled="true" theme="bootstrap" class="bootstrap-select">
-                                <ui-select-match placeholder="区/县"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
-                            <ui-select-choices repeat="item.id as item in selectList">
-                                <span data-ng-bind="item.name"></span>
-                            </ui-select-choices>
-                            </ui-select>
-                        </div>
-                        <div class="addressInfo"><input type="text" class="user-input" placeholder="请输入具体地址" data-ng-model="programObj.address"></div>
-                </span>
-            </div>
-            <div class="programs-upload col-sm-12">
-                <span class="left-title">机构logo:</span>
-                <span class="right-content">
-                    <div class="orgLogo">
-                        <i class="upload-icon"></i>
-                        <img data-ng-src={{programObj.logoSrc}} data-ng-if="programObj.logoSrc">
-                        <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" preview-src="programObj.logoSrc" dryad-upload-img>
-                    </div>
-                    <p class="warning"><i class="warning-icon"></i>只能上传JPG/PNG文件单个文件不能超过1M，长宽比（4：3）</p>
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">管理员账号:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入管理员账号" data-ng-model="programObj.name">
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">登录密码:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请输入密码" data-ng-model="programObj.name">
-                </span>
-            </div>
-            <div class="programs-input col-sm-6">
-                <span class="left-title">确认密码:</span>
-                <span class="right-content">
-                    <input type="text" class="user-input" placeholder="请确认密码" data-ng-model="programObj.name">
-                </span>
-            </div>
-        </div>
-        
-        <!-- 按钮 -->
-        <div class="patientinfo text-right programs-btn">
-            <label class="pullsend"><input type="checkbox">推送账号至管理员</label>
-            <a data-ng-click="addEditProgramCtrlVm.closedModal()" class="button botton-close">取消</a>
-            <a data-ng-click="addEditProgramCtrlVm.sure()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
-        </div>
+    <!-- 按钮 -->
+    <div class="patientinfo text-right programs-btn">
+        <label class="pullsend"><input type="checkbox">推送账号至管理员</label>
+        <a data-ng-click="addEditProgramCtrlVm.closedModal()" class="button botton-close">取消</a>
+        <a data-ng-click="addEditProgramCtrlVm.sure()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
     </div>
+</div>

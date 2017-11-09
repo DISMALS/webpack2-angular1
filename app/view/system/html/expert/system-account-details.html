@@ -1,0 +1,91 @@
+<div class="employee-details">
+    <div class="employee-details-title">
+        <b class="left-title" data-ng-bind="title"></b>
+        <a data-ng-click="save()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
+        <a data-ng-click="cancel()" class="button botton-close">取消</a>
+    </div>
+    <div class="employee-details-main">
+        <div class="right-main experts-layout">
+            <div class="right-main-l">
+                <div class="form float-l">
+                    <span class="left-title">姓名:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="请输入姓名" class="form-input">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">性别:</span>
+                    <span class="right-content">
+                        <a class="sex-chooise">
+                            <i class="man manactive">男</i>
+                            <i class="women womenactive">女</i>
+                        </a>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">生日:</span>
+                    <span class="right-content">
+                        <span class="date-main">
+                            <input class="date-input" ng-model="birthday"  placeholder="____-__-__"/>
+                            <i class="date-icon date-time" dryad-date-time-picker></i>
+                        </span>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">手机号码:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="请输入手机号码" class="form-input">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">邮编:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="请输入邮编" class="form-input">
+                    </span>
+                </div>
+            </div>
+            <div class="right-main-r">
+                <div class="form float-l">
+                    <span class="left-title">登录账号:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="输入登录账号" class="form-input">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">登录密码:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="输入密码" class="form-input">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">确认密码:</span>
+                    <span class="right-content">
+                        <input type="text" placeholder="确认密码" class="form-input">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属角色:</span>
+                    <span class="right-content">
+                        <div class="nature-select">
+                            <ui-select data-ng-model="departmentObj.role" search-enabled="false" theme="select2">
+                                <ui-select-match placeholder="选择账号所选角色"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                                <ui-select-choices repeat="item.id as item in roleList"><span data-ng-bind="item.name"></span></ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属区域中心:</span>
+                    <span class="right-content">
+                        <div class="nature-select">
+                            <ui-select data-ng-model="departmentObj.role" search-enabled="false" theme="select2">
+                                <ui-select-match placeholder="选择所属区域中心"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                                <ui-select-choices repeat="item.id as item in roleList"><span data-ng-bind="item.name"></span></ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

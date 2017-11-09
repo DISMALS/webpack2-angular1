@@ -1,0 +1,77 @@
+<div class="modal-title">
+    <span data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="addEditDrugdictionaryCtrlVm.closedModal()"></i>
+</div>
+
+<!-- 新增科室或者修改科室 -->
+<div class="sure-patient add-department">
+    <div class="patientinfo">
+        <span class="left-title">药品分类:</span>
+        <span class="right-content">
+            <div class="nature-select">
+                <ui-select data-ng-model="drugdictionary.drugclass" search-enabled="false" theme='select2'>
+                    <ui-select-match placeholder="请选择药品分类"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                <ui-select-choices repeat="item.id as item in selectList">
+                    <span data-ng-bind="item.name"></span>
+                </ui-select-choices>
+                </ui-select>
+            </div>
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">药品编号:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" placeholder="请输入药品名称" data-ng-model="drugdictionary.nor">
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">药品名称:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" placeholder="请输入药品名称" data-ng-model="drugdictionary.name">
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">药品单位:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" placeholder="请输入医嘱单位" data-ng-model="drugdictionary.unit">
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">剂型:</span>
+        <span class="right-content">
+            <div class="nature-select">
+                <ui-select data-ng-model="drugdictionary.dosageForm" search-enabled="false" theme='select2'>
+                    <ui-select-match placeholder="请选择"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                <ui-select-choices repeat="item.id as item in selectList">
+                    <span data-ng-bind="item.name"></span>
+                </ui-select-choices>
+                </ui-select>
+            </div>
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">制造商:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" placeholder="请输入药品制造商" data-ng-model="drugdictionary.manufacturer">
+        </span>
+    </div>
+    <div class="patientinfo">
+        <span class="left-title">国药准字:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" placeholder="请输入国药准字" data-ng-model="drugdictionary.approved">
+        </span>
+    </div>
+    <div class="patientinfo department-textarea">
+        <span class="left-title">备注:</span>
+        <span class="right-content">
+            <div class="description-textarea">
+                <textarea data-ng-model="drugdictionary.remark" placeholder="请输入备注内容"></textarea>
+            </div>
+        </span>
+    </div>
+    <!-- 按钮 -->
+    <div class="patientinfo text-right programs-btn">
+        <a data-ng-click="addEditDrugdictionaryCtrlVm.closedModal()" class="button botton-close">取消</a>
+        <a data-ng-click="addEditDrugdictionaryCtrlVm.sure()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
+    </div>
+</div>

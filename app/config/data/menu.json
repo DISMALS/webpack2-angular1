@@ -85,7 +85,7 @@
         }, {
             "title": "药品字典",
             "permissions": ["CONTROLCLASS"],
-            "state": "dryad.system.drug-dictionary.controlclass",
+            "state": "dryad.system.drug-dictionary",
             "active": "child-active",
             "uiRouter": "dryad.system.drug-dictionary.**",
             "level": 2,
@@ -141,7 +141,7 @@
         }, {
             "title": "专家账号",
             "permissions": ["EXPERTS_ACCOUNT"],
-            "state": "dryad.system.experts-account",
+            "state": "dryad.system.experts-account.list",
             "active": "child-active",
             "uiRouter": "dryad.system.experts-account.**",
             "level": 2,

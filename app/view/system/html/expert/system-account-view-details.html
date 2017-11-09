@@ -1,0 +1,76 @@
+<div class="employee-details">
+    <div class="employee-details-title">
+        <b class="left-title">查看账号信息</b>
+        <!-- <a data-ng-click="" class="patients-especial botton-special"><i class="new-add"></i>特殊哮喘记录</a> -->
+        <a data-ng-click="edit()" class="button botton-close"><i class="change-password"></i>修改</a><!--button-default botton-special-->
+        <a data-ng-click="close()" class="button botton-close">关闭</a>
+    </div>
+    <div class="employee-details-main">
+        <div class="right-main experts-layout">
+            <div class="right-main-l">
+                <div class="form float-l">
+                    <span class="left-title">姓名:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.name"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">性别:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.sex"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">生日:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.birth"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">手机号码:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.phon"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">邮编:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.email"></div>
+                    </span>
+                </div>
+            </div>
+            <div class="right-main-r">
+                <div class="form float-l">
+                    <span class="left-title">登录账号:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.accountNumber"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">登录密码:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.password"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属角色:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.role"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属区域中心:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="info.config"></div>
+                        <i class="config-info">上海：上海市第六人民医院</i>
+                        <i class="config-info">浙江：浙江大学附属第一人民医院</i>
+                        <i class="config-info">上海：上海市第六人民医院</i>
+                        <i class="config-info">浙江：浙江大学附属第一人民医院</i>
+                        <i class="config-info">上海：上海市第六人民医院</i>
+                        <i class="config-info">浙江：浙江大学附属第一人民医院</i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

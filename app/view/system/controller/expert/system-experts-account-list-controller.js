@@ -1,7 +1,6 @@
-class SystemDrugDictionaryCtrl {
+class SystemExpertsAccountListCtrl {
     constructor($scope, $state, $stateParams, $uibModal) {
         $scope.searchkey = '';
-        $scope.title = '药品分类';
 
         $scope.searchSelect = [{
             id: 1,
@@ -13,24 +12,6 @@ class SystemDrugDictionaryCtrl {
             id: 3,
             name: '测试3'
         }];
-
-        //class list 
-        $scope.classList = [{id:1,name:'控制类药物'},{id:2,name:'编辑类药物'},{id:3,name:'未分类药物'}].map((item,i) => {
-            if(i == 0){
-                item.active = true;
-            }else{
-                item.active = false;
-            }
-            return item;
-        });
-
-        //chooise class
-        $scope.chooiseClass = (index) => {
-            $scope.classList.forEach(function(element) {
-                element.active = false;
-            }, this);
-            $scope.classList[index].active = true;
-        };
 
         //list data
         $scope.data = [{
@@ -94,11 +75,11 @@ class SystemDrugDictionaryCtrl {
                     align: 'center',
                     width: 20
                 },
-                { name: "Name", title: '名称', type: "text", width: 80, align: 'center' },
-                { name: "Sex", title: '剂型', type: "text", width: 30, align: 'center' },
-                { name: "Age", title: '医嘱单位', type: "text", width: 30, align: 'center' },
-                { name: "Address", title: '制造商', type: "text", width: 80, align: 'center' },
-                { name: "Status", title: '国药准字', type: "text", width: 40, align: 'center' },
+                { name: "Name", title: '姓名', type: "text", width: 80, align: 'center' },
+                { name: "Sex", title: '手机号', type: "text", width: 30, align: 'center' },
+                { name: "Age", title: '年龄', type: "text", width: 30, align: 'center' },
+                { name: "Address", title: '角色', type: "text", width: 80, align: 'center' },
+                { name: "Status", title: '在职状态', type: "text", width: 40, align: 'center' },
                 {
                     title: '操作',
                     type: "control",
@@ -135,86 +116,19 @@ class SystemDrugDictionaryCtrl {
             ]
         };
 
-        //exports
-        $scope.exportsBtn = () => {
-            console.log('导出');
-        };
-        
-        //imports
-        $scope.importsBtn = () => {
-            console.log('导入');
-        };
-
         //添加或者修改
-        $scope.editeAdd = (item) => {
-            $uibModal.open({
-                animation: true,
-                backdrop: 'static',
-                template: require('../../html/drugDictionary/add-edit-drugdictionary.html'),
-                controller: 'addEditDrugdictionaryCtrl',
-                controllerAs: 'addEditDrugdictionaryCtrlVm',
-                size: 'width-660',
-                resolve: {
-                    items: function() {
-                        return {
-                            title: item ? '修改药品' : '新增药品',
-                            item: item || {}
-                        };
-                    },
-                    addEditDrugdictionaryCtrl: ($q, $ocLazyLoad) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./add-edit-drugdictionary-controller'], (require) => {
-                            const ctrl = require('./add-edit-drugdictionary-controller')(require('../../../../common/module'));
-                            $ocLazyLoad.inject({
-                                name: 'dryadApp',
-                                files: [ctrl]
-                            });
-                            deferred.resolve(ctrl);
-                        }, './system/add-edit-drugdictionary-ctrl');
-                        return deferred.promise;
-                    }
-                }
-            }).result.then(function(result) {
-                console.log(result);
-                // initData();
-            });
+        $scope.editeAdd = (item, type) => {
+            if(type == 'edit'){
+                $state.go('dryad.system.experts-account.details', { id: 2333 });
+            }else{
+                $state.go('dryad.system.experts-account.details');
+            }
            
         };
 
         //查看
         $scope.view = (item) => {
-            $uibModal.open({
-                animation: true,
-                backdrop: 'static',
-                template: require('../../html/drugDictionary/view-drugdictionary.html'),
-                controller: 'viewDrugdictionaryCtrl',
-                controllerAs: 'viewDrugdictionaryCtrlVm',
-                size: 'width-660',
-                resolve: {
-                    items: function() {
-                        return {
-                            title: item ? '修改区域中心' : '新增区域中心',
-                            item: item || {},
-                            parentScope:$scope
-                        };
-                    },
-                    viewDrugdictionaryCtrl: ($q, $ocLazyLoad) => {
-                        const deferred = $q.defer();
-                        require.ensure(['./view-drugdictionary-controller'], (require) => {
-                            const ctrl = require('./view-drugdictionary-controller')(require('../../../../common/module'));
-                            $ocLazyLoad.inject({
-                                name: 'dryadApp',
-                                files: [ctrl]
-                            });
-                            deferred.resolve(ctrl);
-                        }, './system/view-drugdictionary-ctrl');
-                        return deferred.promise;
-                    }
-                }
-            }).result.then(function(result) {
-                console.log(result);
-                // initData();
-            });
+            $state.go('dryad.system.experts-account.view', { id: 2666 });
         };
 
         //删除确认弹窗
@@ -268,8 +182,8 @@ class SystemDrugDictionaryCtrl {
         }, true);
     }
 }
-SystemDrugDictionaryCtrl.$inject = ['$scope', '$state', '$stateParams', '$uibModal'];
+SystemExpertsAccountListCtrl.$inject = ['$scope', '$state', '$stateParams', '$uibModal'];
 
 module.exports = (ngMold) => {
-    ngMold.controller('systemDrugDictionaryCtrl', SystemDrugDictionaryCtrl);
+    ngMold.controller('systemExpertsAccountListCtrl', SystemExpertsAccountListCtrl);
 }

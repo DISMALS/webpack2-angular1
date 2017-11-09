@@ -123,7 +123,23 @@
 	.border(1px,solid,@font-color-4);
 	.border-radius(4px,4px,4px,4px);
 }
-
+.botton-disabled{
+	background:@font-color-9;
+	.border-radius(4px,4px,4px,4px);
+	font-size:@font-size-14;
+	cursor: not-allowed !important;
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	display: inline-block;
+	margin:0px 5px;
+	padding:0px 10px;
+	color: @font-color-1;
+	&:hover{
+		text-decoration: none;
+		color: @font-color-1;
+	}
+}
 //delete modal
 .delete-modal{
 	padding:20px;
