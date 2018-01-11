@@ -1,0 +1,648 @@
+.appt{
+    width:calc(~"100%");
+    height: calc(~"100%");
+    padding:20px;
+}
+.appt_main{
+    width:100%;
+    height: 100%;
+    padding:10px;
+    background-color:@font-color-3;
+    .border-radius(4px,4px,4px,4px);
+}
+.appt_main{
+    width:100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    button{
+        background:@font-color-3;
+        border:none;
+        outline: none;
+        cursor: pointer
+    }
+}
+
+
+.btn_group{float:left;left:18px;}
+.scheduler_btn{
+    height:30px;
+    line-height: 30px;
+    color:#747473;
+    font-size: 12px;
+    font-weight: 700;
+    /* padding:0px 15px; */
+    margin:0;
+    width: 60px;
+    float: left;
+} 
+.scheduler_btn.btn_lt{
+    border:1px solid @font-color-9;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.scheduler_btn.btn_lt.active{
+    background-color: @font-color-4;
+    color: @font-color-3;
+    border: 1px solid @font-color-4;
+}
+.scheduler_btn.btn_ct{
+    border-top: 1px solid @font-color-9;
+    border-bottom: 1px solid @font-color-9;
+    border-right:1px solid @font-color-9;
+}
+.scheduler_btn.btn_ct.active{
+    background-color: @font-color-4;
+    color: @font-color-3;
+    border-top: 1px solid @font-color-4;
+    border-bottom: 1px solid @font-color-4;
+    border-right:1px solid @font-color-4;
+}
+.scheduler_btn.btn_rt{
+    border:1px solid @font-color-9;
+    border-left:0px solid @font-color-9;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+.scheduler_btn.btn_rt.active{
+    background-color: @font-color-4;
+    border:1px solid @font-color-4;
+    color: @font-color-3;
+    border-left:0px solid @font-color-4;
+}
+// .scheduler_btn.active{
+//     background-color: @font-color-4;
+//     color: @font-color-3;
+//     border: 1px solid @font-color-4;
+//     // text-shadow: 0 1px 0 @font-color-5;
+// }
+.data_value{
+    border-left:none !important;
+    border-right:none !important;
+}
+.chooise_day{
+    width:241px;
+    height:30px;
+    padding:0px;
+    line-height:30px;
+    right:62px;
+    border-top: 1px solid @font-color-9;
+    border-bottom: 1px solid @font-color-9;
+    background-color: @font-color-3;
+    div{
+        top:0px !important;
+        position:relative !important;
+        white-space: nowrap;
+        input{
+            width:100%;
+            border:none;
+            padding:0px 24px 0px 5px;
+            font-size: 14px;
+        }
+        i{
+            position: absolute;
+            right:5px;
+        }
+    }
+}
+
+.department_select{
+    position: absolute;
+    left: 215px;
+    height: 30px;
+    width: 150px;
+    border:1px solid @font-color-9;
+    border-radius:5px;
+    background-color:@font-color-3;
+    padding-right: 5px;
+    div{
+        top:0px;
+        position:static !important;
+        white-space: nowrap;
+    }
+    ul{
+        outline: none;
+    }
+}
+.cheduler_today{
+    color: #747473;
+    left: auto;
+    right: 371px;
+    background: 0 0;
+    text-decoration: none;
+    width: 80px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: arial;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid @font-color-9;
+    text-align: center;
+    cursor: pointer;
+}
+
+//原样式
+.dhx_cal_event_line.status_draft,
+.dhx_cal_event.status_draft div { 
+    background-color: #D4FCFB; 
+    border-color: transparent; 
+    color: #575d6a; 
+}
+
+.dhx_cal_event_line.status_appting,
+.dhx_cal_event.status_appting div { 
+    background-color: #FDF1D4; 
+    border-color: transparent; 
+    color: #575d6a; 
+}
+
+.dhx_cal_event_line.status_checked,
+.dhx_cal_event.status_checked div { 
+    background-color: #D3FCE5; 
+    border-color: transparent; 
+    color: #575d6a; 
+}
+
+.dhx_cal_event_line.status_complete,
+.dhx_cal_event.status_complete div { 
+    background-color: #D2ECFF; 
+    border-color: transparent; 
+    color: #575d6a; 
+}
+
+.dhx_cal_event_line.status_canceled,
+.dhx_cal_event.status_canceled div { 
+    background-color: #d1dade; 
+    border-color: transparent; 
+    color: #000; 
+}
+
+.dhx_cal_event_line.status_noServiceTime,
+.dhx_cal_event.status_noServiceTime div { 
+    background-color: #f7a54a; 
+    border-color: transparent; 
+    color: #ffffff; 
+}
+
+.dhx_cal_event_line.status_expired,
+.dhx_cal_event.status_expired div { 
+    background-color: #d1dade; 
+    border-color: transparent; 
+    color: #000; 
+}
+
+.badge-disable { 
+    background-color: #d1dade; 
+    color: #5e5e5e; 
+}
+
+.badge-info-status { 
+    position: absolute; 
+    left: 165px; 
+    top: 200px; 
+    background-color: #1c84c6 !important; 
+    color: #ffffff !important; 
+}
+
+.badge-info-care { 
+    position: absolute; 
+    left: 220px; 
+    top: 200px; 
+    background-color: #23c6c8 !important; 
+    color: #ffffff !important; 
+}
+
+.target_schedule { 
+    position: absolute; 
+    margin: 82px 0 0 51px; 
+    height: 190px; 
+    width: 350px; 
+    background: #000; filter: alpha(opacity=40); 
+    opacity: 0.4; 
+}
+
+.target_schedule_content { 
+    position: absolute; 
+    margin: 82px 0 0 51px; 
+    height: 190px; 
+    width: 350px; 
+    text-align: center; 
+    vertical-align: middle; 
+    color: #ffffff; 
+}
+
+.target-noworking-time { 
+    width: 100%; 
+    opacity: .4; 
+    filter: alpha(opacity=40); 
+    font-size: 20px; 
+    text-align: center; 
+    color: gray; 
+    background-color: #e7eaec; 
+}
+
+.target-working-time { 
+    width: 100%; 
+    opacity: .4; 
+    filter: alpha(opacity=40); 
+    font-size: 20px; 
+    text-align: center; 
+    color: gray; 
+    background-color: #e7eaec; 
+    border-top: 2px dashed #1c84c6; 
+    border-bottom: 2px dashed #1c84c6; 
+}
+
+.target-working-time-noDoctor { 
+    width: 100%; 
+    opacity: .1; 
+    filter: alpha(opacity=10); 
+    font-size: 20px; 
+    text-align: center; 
+    color: red; 
+    background-color: #1c84c6; 
+    border-top: 2px dashed #1c84c6; 
+    border-bottom: 2px dashed #1c84c6; 
+}
+
+.target-working-time-special { 
+    width: 100%; 
+    opacity: .1; 
+    filter: alpha(opacity=10); 
+    font-size: 20px; 
+    text-align: center; 
+    color: red; 
+    background-color: #f8ac59; 
+    border-top: 2px dashed #1c84c6; 
+    border-bottom: 2px dashed #1c84c6; 
+}
+
+.dhx_cal_header .dhx_scale_bar { 
+    border-left: 1px solid #e3e3e3; 
+    font: 12px/16px Arial; 
+    font-weight: 700; 
+    color: #767676; 
+    padding-top: 2px; 
+    padding-bottom: 2px; 
+    background-color: #ffffff 
+}
+/*周视图日期*/
+.dhx_cal_navline .dhx_cal_date { 
+    border: 0; 
+    font-size: 14px !important;
+    font-weight: normal; 
+    font-family: arial; 
+    width: 240px;
+    height: 32.6px; 
+    top: 14px; 
+    text-align: center; 
+    position: absolute; 
+    right: 192px;
+    border: 1px solid #e3e3e3; 
+    z-index: -1;
+}
+
+.btn-padding-lf { 
+    padding-left: 8px; 
+    padding-right: 8px; 
+}
+
+.div-appt-flag { 
+    width: 100%; 
+    height: 25px; 
+    padding-top: 6px; 
+    margin-top: 0px; 
+    border-top: 1px solid #A7B1C2; 
+}
+
+.div-appt-flag .-td { 
+    height: 15px; 
+    float: left; 
+    margin-left: 10px; 
+}
+
+.div-appt-flag .-td .-td-color { 
+    width: 15px; 
+    height: 15px; 
+    margin-top: 2px; 
+    float: left; 
+}
+
+.div-appt-flag .-td .-td-note { 
+    float: left; 
+    margin-left: 5px; 
+}
+
+.div-hour-header { 
+    position: absolute; 
+    width: 50px; 
+    height: 21px; 
+    left: 0px; 
+    top: 60px; 
+    border-left: 1px solid rgb(206, 206, 206); 
+    border-top: 1px solid rgb(206, 206, 206); 
+    font-size: 14px; 
+}
+
+.div-hour-header .div-td { 
+    margin: 0px 0 0 2px; 
+    float: left; 
+}
+.div_appt_details_line { 
+    height: 22px; 
+}
+
+.div_appt_details_line .line_l { 
+    color: #afafaf; 
+    width: 80px; 
+    float: left; 
+}
+
+.div_appt_details_line .line_r { 
+    float: left; 
+    max-width: 96px;
+    height:20px;
+    line-height: 20px;
+}
+
+.btn-appt-details, .btn-group-sm > .btn { 
+    padding: 3px 12px; 
+    font-size: 12px; 
+    line-height: 1.5; 
+    border-radius: 3px; 
+}
+.btn-appt-details, .btn-group-sm > .btn { padding: 3px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
+.appt_main .btn-warning{
+    background: #ffc021;
+    outline: none;
+    &:hover,&:focus,&:active{
+        outline: none;
+    }
+}
+.appt_main .btn-success{
+    background: #00a6c9;
+    &:hover,&:focus,&:active{
+        background: #0498b6;
+        outline: none;
+    }
+    outline: none;
+}
+.appt_main button{
+    outline: none;
+}
+.font-overflow{
+    overflow: hidden;
+}
+/*当前时间刻度*/
+.div_curr_time{ 
+    width: calc(~"100% - 68px"); 
+    height: 1px; 
+    border-top: 1px solid red; 
+    position: absolute; 
+    left: 50px; 
+    top: 81px;
+}
+.div_curr_time_pop { 
+    width: calc(~"100% - 66px"); 
+    height: 1px; 
+    border-top: 1px solid red; 
+    position: absolute; 
+    left: 50px; 
+    top: 81px;
+}
+.scheduler_foot{
+    width:100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    text-align: right;
+    padding-right:18px;
+    .appt_num{
+        display: inline-block;
+        line-height: 30px;
+        font-size: 14px;
+        color:@font-color-2;
+        i{
+            float: left;
+            margin-left:15px;
+            height: 30px;
+            line-height: 30px;
+            color:@font-color-4;
+            margin-right:5px;
+        }
+    }
+}
+
+//新建预约
+.searchPatientAppt{
+    width: 260px;
+    height: 32px;
+    margin-top:6px;
+    margin-left:10px;
+    border-radius: 4px;
+    border:1px solid #e3e3e3;
+    background-color:#fff;
+}
+.fl_l{
+    float: left;
+}
+.appt_left{
+    width: 45%;
+    height: auto;
+}
+.appt_right{
+    width: 55%;
+    height: auto;
+    padding: 0px 0px 0px 15px;
+}
+.patient_info{
+    width: 100%;
+    overflow: hidden;
+    .patient_logo{
+        float: left;
+        // .vertical-align();
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        overflow: hidden;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
+    .patient_mation{
+        float: right;
+        width:calc(~"100% - 70px");
+        height:  56px;
+        padding:4px 0px;
+        span{
+            width: 100%;
+            height: 28px;
+            display: block;
+            line-height: 28px;
+            font-size: 14px;
+            color:@font-color-7;
+            b{
+                color:@font-color-5;
+                // float: left;
+                // width: 80px;
+                // text-align: right;
+            }
+            overflow: hidden;
+        }
+    }
+}
+.patient_other_info{
+    width:100%;
+    height: auto;
+    margin-top:15px;
+    .other_info_name{
+        width: 80px;
+        float: left;
+        line-height: 30px;
+        text-align: right;
+        font-size: @font-size-14;
+        color:@font-color-5;
+    }
+    .patient_mark{
+        width: calc(~"100% - 80px");
+        height: 44px;
+        float: right;
+        border:1px solid @font-color-9;
+        .border-radius(4px,4px,4px,4px);
+        outline: none;
+        padding:3px 5px;
+        line-height: 22px;
+        font-size: 12px;
+        color:@font-color-7;
+    }
+    .patient_other_info_select{
+        float: right;
+        width:calc(~"100% - 80px");
+        .border(1px,solid,@font-color-9);
+        .border-radius(4px,4px,4px,4px);
+        height: 32px;
+        position: relative;
+        i{
+            color:@font-color-5;
+        }
+        .date-input{
+            width:100%;
+            height:30px;
+            line-height:30px;
+            color:@font-color-7;
+            font-size:@font-size-14;
+            .border(0px,solid,@font-color-9);
+            background:@font-color-3;
+            padding:0px 25px 0px 10px;
+            .border-radius(4px,4px,4px,4px);
+            float: left;
+        }
+        .date-icon{
+            width:14px;
+            height:14px;
+            line-height: 14px;
+            display: inline-block;
+            position: absolute;
+            top:5px;
+            right:0px;
+        }
+    }
+}
+.increase_btn,.decrease_btn{
+    width:32px;
+    height: 100%;
+    display: block;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+    i{
+        font-weight: bold;
+        margin:0px !important;
+        font-size: 16px !important;
+        color:@font-color-7 !important;
+    }
+}
+.time_text{
+    width:calc(~"100% - 126px");
+    height: 32px;
+    line-height: 32px;
+    padding-left:10px;
+    background:#eee;
+    border-left: 1px solid @font-color-9;
+    font-size: 14px;
+    color:@font-color-7;
+}
+.unit_text{
+    width:60px;
+    height: 32px;
+    line-height: 32px;
+    border-right: 1px solid @font-color-9;
+    border-left: 1px solid @font-color-9;
+    text-align: center;
+    font-size: 14px;
+    color: @font-color-7;
+}
+
+// appt list
+.appt_list_header{
+    width: 100%;
+    height: 52px;
+    line-height: 32px;
+    padding-bottom:10px;
+    padding-top:12px;
+}
+.appt_list_select{
+    height: 30px;
+    width: 150px;
+    border:1px solid @font-color-9;
+    border-radius:5px;
+    background-color:@font-color-3;
+    padding-right: 5px;
+}
+.appt_list_time{
+    .border(1px,solid,@font-color-9);
+    .border-radius(4px,4px,4px,4px);
+    height: 32px;
+    position: relative;
+    .date-input{
+        width:100%;
+        height:30px;
+        line-height:30px;
+        color:@font-color-7;
+        font-size:@font-size-14;
+        .border(0px,solid,@font-color-9);
+        background:@font-color-3;
+        padding:0px 25px 0px 10px;
+        .border-radius(4px,4px,4px,4px);
+        float: left;
+    }
+    .date-icon{
+        width:14px;
+        height:14px;
+        line-height: 14px;
+        display: inline-block;
+        position: absolute;
+        top:8px;
+        right:9px;
+    }
+}
+.send-message-icon{
+    width: 28px;
+    height: 28px !important;
+    border-radius: 4px !important;
+    display: inline-block;
+    vertical-align: middle;
+    background: #00a6c9 !important;
+    color: #fff !important;
+    padding: 0 !important;
+    line-height: 0;
+    margin: 0 5px;
+    font-size: 15px;
+}

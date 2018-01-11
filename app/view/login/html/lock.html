@@ -1,0 +1,14 @@
+﻿<div class="lock">
+    <div class="user">
+        <i class="img"><img data-ng-src={{imgsrc}} alt=""></i>
+        <b class="name" data-ng-bind="name"></b>
+    </div>
+    <form name="lock">
+        <label class="password">
+            <input type="password" placeholder="请输入密码" data-ng-keyup="enter($event)" data-ng-model="unlockPassWord">
+            <a data-ng-click="unlock()" class="goins">
+                <i class="goin"></i>
+            </a>
+        </label>
+    </form>
+</div>

@@ -1,0 +1,187 @@
+<div class="medical-history-details-case">
+        <div class="medical-case-content">
+            <div class="case-data-content  p-t15-l0"  ng-if="clinicInfo">
+                <div class="flex" ng-if='clinicInfo.generalCondition.br'>
+                    <div>呼吸频率（BR）：</div>
+                    <div class="simple-text">{{clinicInfo.generalCondition.br}}次/分</div>
+                </div>
+                <div class="flex" ng-if='clinicInfo.generalCondition.hr'>
+                    <div>心率（HR）：</div>
+                    <div class="simple-text">{{clinicInfo.generalCondition.hr}}次/分</div>
+                </div>
+                <div  class='flex' ng-if='clinicInfo.generalCondition.bp||clinicInfo.generalCondition.bp2'>
+                    <div>血压（BP）：</div>
+                    <div  class="simple-text">{{clinicInfo.generalCondition.bp}}/{{clinicInfo.generalCondition.bp2}}mmhg</div>
+                </div>
+                <div  class='flex' ng-if='clinicInfo.generalCondition.SpO2'>
+                    <div>血氧饱和度(SpO2)：</div>
+                    <div  class="simple-text">{{clinicInfo.generalCondition.SpO2}}%</div>
+                </div>
+                <div  class="clinic-split-line" ng-if='clinicInfo.asthmaSymptoms.status!=null'></div>
+
+                <div class="flex" ng-if='clinicInfo.asthmaSymptoms.status!=null'>
+                    <div>哮喘症状：</div>
+                    <div  class="simple-text">
+                        <p >{{clinicInfo.asthmaSymptoms.status==1?'有':'无'}}</p>
+                        <p ng-if='clinicInfo.asthmaSymptoms.status' ng-repeat="item in clinicInfo.asthmaSymptoms.symptoms">{{item.type}}、{{item.name}}： <span>{{item.state == '0'?'无':'有'}}</span>
+                            <span ng-if='item.type!="d"'>【是否为主要症状：{{item.isMain == '0'?'否':'是'}}】</span>
+                            <span ng-if='item.type=="d"'>
+						【咳痰描述:{{item.details.coughtype.list[item.details.coughtype.type-1].name}} &nbsp;
+						<span ng-if='item.details.coughtype.list[item.details.coughtype.type-1].name == "有痰" '>
+						咳痰次数：{{item.details.times.list[item.details.times.type-1].name}} &nbsp;
+						颜色：{{item.details.color.list[item.details.color.type-1].name}}&nbsp;
+						性状：{{item.details.character.list[item.details.character.type-1].name}}</span>】
+					</span>
+                        </p>
+                        <!--细节未处理（例如：咳痰：黄色 粘性 30次）-->
+                    </div>
+                </div>
+                <div class="flex" ng-if='clinicInfo.asthmaSymptoms.routineTime.type!=null'>
+                    <div>症状高发时间：</div>
+                    <div class="simple-text" ng-repeat="item in clinicInfo.asthmaSymptoms.routineTime.list track by $index" ng-if="$index == clinicInfo.asthmaSymptoms.routineTime.type">{{item.name}}</div>
+                </div>
+                <div class="flex" ng-if='clinicInfo.asthmaSymptoms.morbidityDays'>
+                    <div>最近一次发病天数：</div>
+                    <div class="simple-text">{{clinicInfo.asthmaSymptoms.morbidityDays}}{{clinicInfo.asthmaSymptoms.morbidityDaysUnit}}</div>
+                </div>
+                <div class="flex">
+                    <div>本次发病因素：</div>
+                    <div class="simple-text">
+                        <span ng-repeat='item in clinicInfo.asthmaSymptoms.morbidityFactors.list track by $index' ng-if="item.stuts && item.stuts=='1'">{{item.name}}&nbsp;</span>
+                    </div>
+
+                </div>
+                <div  class="clinic-split-line"></div>
+                <div class="flex" ng-if='clinicInfo.medicalHistory.firstTime'>
+                    <div>首次发病时间：</div>
+                    <div class="simple-text"><span>{{clinicInfo.medicalHistory.firstTime |date:'yyyy-MM-dd'}}</span></div>
+                </div>
+                <div class="flex mg-t20">
+                    <div>急性发作情况：</div>
+                    <div  class="simple-text">
+                        <p ng-repeat='item in clinicInfo.medicalHistory.acuteCondition' ng-if='item.state!=null' class="wid-max height-30">
+   					<span class="fl-l wid-300">
+   						{{item.type}}、{{item.name}}(近一年因哮喘)：
+   					</span>
+                            <span class="fl-l">{{item.state?'有':'无'}}</span>
+                            <span ng-if='item.state' class="fl-l">【
+   						<span ng-if='item.type == "a" '>住院次数：</span>
+   						<span ng-if='item.type =="b" '>急诊次数：</span>
+   						{{clinicInfo.medicalHistory.timesTypes[item.times]}}】</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mg-t20">
+                    <div>合并症：</div>
+                    <div  class="simple-text">
+                        <p ng-repeat='item in clinicInfo.medicalHistory.comorbidity.data' ng-if='item.state!=null' class="fl-l wid-max">
+                            <span class="fl-l wid-300">{{item.type}}、{{item.name}}：</span>
+                            <span class="fl-l">{{item.state?'有':'无'}}</span>
+                            <span class="fl-l">
+   					 	<span ng-if='item.state && item.type=="a"'>【首次诊断时间：{{item.firstTime|date:'yyyy-MM-dd'}}】</span>
+   					<span ng-if='item.state && (item.type=="b"||item.type=="c")'>【{{clinicInfo.medicalHistory.comorbidity.timesTypes[item.times]}}】</span>
+   					<span ng-if='item.state && item.type=="d"'>
+   						【<span  ng-repeat='cbox in clinicInfo.medicalHistory.comorbidity.fruitTypes'>
+   							<span ng-if='cbox.stuts && cbox.id!=999'>&nbsp;{{cbox.name}}</span>
+   							<span ng-if='cbox.id==999 && cbox.value'>&nbsp;{{cbox.value}}</span></span>	】
+   						</span>
+
+   					<span ng-if='item.state && item.type=="e"'>
+   						【<span  ng-repeat='cbox in clinicInfo.medicalHistory.comorbidity.diseaseTypes'>
+   							<span ng-if='cbox.stuts && cbox.id!=999'>&nbsp;{{cbox.name}}</span>
+   							<span ng-if='cbox.id==999 && cbox.value'>&nbsp;{{cbox.value}}</span>
+   						</span>】
+   					</span>
+   					 </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mg-t20" >
+                    <div>家族史：</div>
+                    <div  class="simple-text">
+                        <p ng-repeat="item in clinicInfo.medicalHistory.familyHistory" ng-if='item.state!=null' class="wid-max height-30">
+                            <span class="fl-l wid-300">{{item.type}}、{{item.name}}：</span>
+                            <span class="fl-l">{{item.state?'有':'无'}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex" ng-if='clinicInfo.medicalHistory.smokeHistory.state!=null'>
+                    <div>吸烟史：</div>
+                    <div  class="simple-text">
+                        <p>
+                            {{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].name}}
+
+                            <span ng-if='clinicInfo.medicalHistory.smokeHistory.state==1'>
+   					【<span>
+   						<span>吸烟数量：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].number}}包/天 &nbsp;吸烟年限：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].years}}年&nbsp;</span>
+   					</span>】
+   				</span>
+                            <span ng-if='clinicInfo.medicalHistory.smokeHistory.state==2'>
+   					【<span>吸烟数量：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].number}}包/天 &nbsp;吸烟年数：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].smokeyears}}年&nbsp;戒烟年数：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].nosmokeyears}}年&nbsp;</span>】
+   				</span>
+                            <span ng-if='clinicInfo.medicalHistory.smokeHistory.state==3'>
+   					【<span>吸烟年数：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].years}}年 &nbsp;</span>】
+   				</span>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mg-t20" ng-if='clinicInfo.medicalHistory.workHistory.status!=null'>
+                    <div>职业/生活史：</div>
+                    <div  class="simple-text">
+                        <p class="c-i">职业/生活中致喘物质接触史： <span>{{clinicInfo.medicalHistory.workHistory.status?'有':'无'}}</span></p>
+                        <p ng-if='clinicInfo.medicalHistory.workHistory.status' ng-repeat="item in clinicInfo.medicalHistory.workHistory.list" class="wid-max height-30">
+   				 		<span class="fl-l wid-300">
+   				 		{{item.type}}、{{item.name}}：
+   				 		</span>
+                            <span class="fl-l">{{item.state?'有':'无'}}</span>
+                            <span class="fl-l">
+   				 		<span ng-if="item.state&&(item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd')">
+   				 			【   类型：{{item.form}} &nbsp;时间：{{item.years}}年】
+   				 		</span>
+   				 		<span ng-if="item.state&&(item.type=='e' || item.type=='f' || item.type=='g')">
+   				 		 	<span ng-if="item.type=='e'">【   药物：{{item.form}}】</span>
+   				 		 	<span ng-if="item.type=='f'">【   食物：{{item.form}}】</span>
+   				 		 	<span ng-if="item.type=='g'">【   宠物：{{item.form}}】</span>
+   				 		 	</span>
+   				 		</span>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mg-t20">
+                    <div>控制情况：</div>
+                    <div  class="simple-text">
+                        <div style="width: 100%;" ng-if='clinicInfo.controlSituation.gina.level'>
+                            <p class="c-i">1、数据录入员完成GINA指南的症状控制评估，过去4周，患者存在：</p>
+                            <p class="t-i-20" ng-repeat="data in clinicInfo.controlSituation.gina.list" ng-if='data.state!=null'>
+   						<span class="fl-l wid-300">
+   							{{data.type}}、{{data.name}}：
+   						</span>
+                                <span class="fl-l">{{data.state?'有':'无'}}</span>
+                            </p>
+                            <p class="t-i-20">哮喘症状控制水平：<span>{{clinicInfo.controlSituation.gina.level}}</span></p>
+                        </div>
+                        <div style="width: 100%;" ng-if='clinicInfo.controlSituation.act.score'>
+                            <p class="c-i">2、数据录入员协助患者完成ACT测试量表：</p>
+                            <p class="t-i-20" ng-repeat="item in clinicInfo.controlSituation.act.list" ng-if="item.state!='null'">
+                                {{item.type}}、{{item.name}}
+                                <br />
+                                <span class="t-i-20">{{item.options[item.state].name}}</span>
+
+                            </p>
+                            <p class="t-i-20">
+                                <span class="t-i-0 ">评估得分：{{clinicInfo.controlSituation.act.score}}</span>
+                                &nbsp;&nbsp;
+                                <span class="t-i-0 ">哮喘控制水平：{{clinicInfo.controlSituation.act.level}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='case-data-content' ng-if='imgShow' style="margin:20px auto;text-align:center">
+                <img src="../../../../images/nodata.png" style="width:330px;" alt="">
+            </div>
+        </div>
+</div>
+        

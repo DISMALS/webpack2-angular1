@@ -1,0 +1,564 @@
+<div class="medical-history-details-case" >
+	<div class="modal-title">
+		<span class="title">病历预览</span>
+		<i class="close-modal" data-ng-click="closedModal()"></i>
+	</div>
+	<!-- 确认患者并且创建病历 -->
+	<div class="medical-case-content dryad-drag-disabled" data-ng-if="true">
+		<div class='case-header'>
+				<strong>病历信息</strong>
+		</div>
+		<div class="case-message" ng-if='baseInfo'>基本信息</div>
+		<div  class="clinic-split-line" ng-if='baseInfo'></div>
+		<div class="case-message-content" ng-if='baseInfo'>
+				<table>
+					<tr>
+						<td>
+							<div>姓名：</div><div>{{baseInfo.patientName}}</div>
+						</td>
+						<td>
+							<div>性别：</div><div>{{baseInfo.sex =='F'?'女':'男'}}</div>
+						</td>
+						<td>
+							<div>生日：</div><div>{{baseInfo.dob}}</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>民族：</div><div>{{baseInfo.nation}}</div>
+						</td>
+						<td>
+							<div>身高：</div><div>{{baseInfo.patientHeight}}CM</div>
+						</td>
+						<td>
+							<div>体重：</div><div>{{baseInfo.patientWeight}}KG</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>BMI指数：</div><div>{{baseInfo.bmi}}</div>
+						</td>
+						<td>
+							<!--<div>教育程度：</div><div>本科</div>-->
+							<div>教育程度：</div><div>{{baseInfo.education}}</div>
+						</td>
+						<td>
+							<!--<div>职业：</div><div>医疗</div>-->
+							<div>职业：</div><div style="width: 50%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" data-toggle="tooltip" data-placement="top" title="{{baseInfo.job}}">{{baseInfo.job}}</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>手机：</div><div>{{baseInfo.mobilePhone}}</div>
+						</td>
+						<td>
+							<div>固定电话：</div><div>{{baseInfo.telePhone}}</div>
+						</td>
+						<td>
+							<div>接诊医生：</div><div>{{baseInfo.receptDoctor}}</div>
+						</td>
+					</tr>
+				</table>
+				<div  class='case-message-last'><div>地址：</div><div>{{baseInfo.address.province}}{{baseInfo.address.city}}{{baseInfo.address.country == null ?'':baseInfo.address.country}}</div></div>
+				<div  class='case-message-last'><div>病历号：</div><div>{{baseInfo.medicalRecordCode}}</div></div>
+			
+		</div>
+		<div class="case-data" ng-if="clinicInfo">临床资料</div>
+		<div  class="clinic-split-line"  ng-if="clinicInfo"></div>
+		<div class="case-data-content"  ng-if="clinicInfo">
+				<div class="flex" ng-if='clinicInfo.generalCondition.br'>
+					<div>呼吸频率（BR）：</div>
+					<div class="simple-text fw-700">{{clinicInfo.generalCondition.br}}&nbsp;次/分</div>
+				</div>
+				<div class="flex" ng-if='clinicInfo.generalCondition.hr'>
+					<div>心率（HR）：</div>
+					<div class="simple-text fw-700">{{clinicInfo.generalCondition.hr}}&nbsp;次/分</div>
+				</div>
+				<div  class='flex' ng-if='clinicInfo.generalCondition.bp||clinicInfo.generalCondition.bp2'>
+					<div>血压（BP）：</div>
+					<div  class="simple-text fw-700">{{clinicInfo.generalCondition.bp}}/{{clinicInfo.generalCondition.bp2}}&nbsp;mmhg</div>
+				</div>
+				<div  class='flex' ng-if='clinicInfo.generalCondition.SpO2'>
+						<div>血氧饱和度(SpO2)：</div>
+						<div  class="simple-text fw-700">{{clinicInfo.generalCondition.SpO2}}&nbsp;%</div>
+					</div>
+				<div  class="clinic-split-line" ng-if='clinicInfo.asthmaSymptoms.status!=null'></div>
+				
+				<div class="flex" ng-if='clinicInfo.asthmaSymptoms.status!=null'>
+					<div>哮喘症状：</div>
+					<div  class="simple-text">
+						<p class="fw-700">{{clinicInfo.asthmaSymptoms.status==1?'有':'无'}}</p>
+						<p ng-if='clinicInfo.asthmaSymptoms.status' ng-repeat="item in clinicInfo.asthmaSymptoms.symptoms">{{item.type}}、{{item.name}}： <span class="fw-700">{{item.state == '0'?'无':'有'}}</span> 
+							<span ng-if='item.type!="d"'>【是否为主要症状：
+								<span class="fw-700">{{item.isMain == '0'?'否':'是'}}</span>】</span>
+							<span ng-if='item.type=="d"'>
+								【咳痰描述:
+								<span class="fw-700">{{item.details.coughtype.list[item.details.coughtype.type-1].name}}</span> &nbsp;
+								<span ng-if='item.details.coughtype.list[item.details.coughtype.type-1].name == "有痰" '>
+								咳痰次数：
+								<span class="fw-700">{{item.details.times.list[item.details.times.type-1].name}}</span> &nbsp;
+								颜色：
+								<span class="fw-700">{{item.details.color.list[item.details.color.type-1].name}}</span>&nbsp;
+								性状：
+								<span class="fw-700">{{item.details.character.list[item.details.character.type-1].name}}</span></span>】
+							</span>
+						</p>
+						<!--细节未处理（例如：咳痰：黄色 粘性 30次）-->
+					</div>
+				</div>
+				<div class="flex" ng-if='clinicInfo.asthmaSymptoms.routineTime.type!=null'>
+					<div>症状高发时间：</div>
+					<div class="simple-text" ng-repeat="item in clinicInfo.asthmaSymptoms.routineTime.list track by $index" ng-if="$index == clinicInfo.asthmaSymptoms.routineTime.type">
+						<span class="fw-700">{{item.name}}</span>
+					</div>
+				</div>
+				<div class="flex" ng-if='clinicInfo.asthmaSymptoms.morbidityDays'>
+					<div>最近一次发病天数：</div>
+					<div class="simple-text fw-700">{{clinicInfo.asthmaSymptoms.morbidityDays}}{{clinicInfo.asthmaSymptoms.morbidityDaysUnit}}</div>
+				</div>
+				<div class="flex">
+					<div>本次发病因素：</div>
+					<div class="simple-text">
+						<span ng-repeat='item in clinicInfo.asthmaSymptoms.morbidityFactors.list track by $index' ng-if="item.stuts && item.stuts=='1'">
+							<span class="fw-700">{{item.name}}&nbsp;</span>
+						</span>
+					</div>
+					
+				</div>
+				<div  class="clinic-split-line"></div>
+				<div class="flex" ng-if='clinicInfo.medicalHistory.firstTime'>
+					<div>首次发病时间：</div>
+					<div class="simple-text">
+						<span class="fw-700">
+						{{clinicInfo.medicalHistory.firstTime |date:'yyyy-MM-dd'}}</span>
+					</div>
+				</div>
+				<div class="flex mg-t20">
+					<div>急性发作情况：</div>
+					<div  class="simple-text">
+						<p ng-repeat='item in clinicInfo.medicalHistory.acuteCondition' ng-if='item.state!=null' class="wid-max height-30">
+							<span class="fl-l wid-300">
+								{{item.type}}、{{item.name}}(近一年因哮喘)： 
+							</span>
+							<span class="fl-l fw-700">{{item.state?'有':'无'}}</span>
+							<span ng-if='item.state' class="fl-l">【
+								<span ng-if='item.type == "a" '>住院次数：</span>
+								<span ng-if='item.type =="b" '>急诊次数：</span>
+								<span class="fw-700">{{clinicInfo.medicalHistory.timesTypes[item.times]}}</span>
+								】</span>
+						</p>
+					</div>
+				</div>
+				<div class="flex mg-t20">
+					<div>合并症：</div>
+					<div  class="simple-text">
+						<p ng-repeat='item in clinicInfo.medicalHistory.comorbidity.data' ng-if='item.state!=null' class="fl-l wid-max">
+							<span class="fl-l wid-300">{{item.type}}、{{item.name}}：</span>
+							<span class="fl-l fw-700">{{item.state?'有':'无'}}</span> 
+							<span class="fl-l">
+								<span ng-if='item.state && item.type=="a"'>【首次诊断时间：
+									<span class="fw-700">{{item.firstTime|date:'yyyy-MM-dd'}}</span>】</span>
+							<span ng-if='item.state && (item.type=="b"||item.type=="c")'>【<span class="fw-700">{{clinicInfo.medicalHistory.comorbidity.timesTypes[item.times]}}</span>】</span>
+							<span ng-if='item.state && item.type=="d"'>
+								【<span  ng-repeat='cbox in clinicInfo.medicalHistory.comorbidity.fruitTypes'>
+									<span ng-if='cbox.stuts && cbox.id!=999' class="fw-700">&nbsp;{{cbox.name}}</span>
+									<span ng-if='cbox.id==999 && cbox.value' class="fw-700">&nbsp;{{cbox.value}}</span></span>	】
+								</span>
+							
+							<span ng-if='item.state && item.type=="e"'>
+								【<span  ng-repeat='cbox in clinicInfo.medicalHistory.comorbidity.diseaseTypes'>
+									<span ng-if='cbox.stuts && cbox.id!=999' class="fw-700">&nbsp;{{cbox.name}}</span>
+									<span ng-if='cbox.id==999 && cbox.value' class="fw-700">&nbsp;{{cbox.value}}</span>
+								</span>】
+							</span>
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="flex mg-t20" >
+					<div>家族史：</div>
+					<div  class="simple-text">
+						<p ng-repeat="item in clinicInfo.medicalHistory.familyHistory" ng-if='item.state!=null' class="wid-max height-30">
+							<span class="fl-l wid-300">{{item.type}}、{{item.name}}：</span>
+							<span class="fl-l fw-700">{{item.state?'有':'无'}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="flex" ng-if='clinicInfo.medicalHistory.smokeHistory.state!=null'>
+					<div>吸烟史：</div>
+					<div  class="simple-text">
+						<p>
+						{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].name}}  
+						
+						<span ng-if='clinicInfo.medicalHistory.smokeHistory.state==1'>
+							【<span>
+								<span>吸烟数量：
+									<span class="fw-700">{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].number}}</span>包/天 &nbsp;吸烟年限：{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].years}}年&nbsp;</span>
+							</span>】
+						</span>
+						<span ng-if='clinicInfo.medicalHistory.smokeHistory.state==2'>
+							【<span>吸烟数量：
+								<span class="fw-700">{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].number}}</span>包/天 &nbsp;吸烟年数：
+								<span class="fw-700">{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].smokeyears}}</span>年&nbsp;戒烟年数：
+								<span class="fw-700">{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].nosmokeyears}}</span>年&nbsp;</span>】
+						</span>
+						<span ng-if='clinicInfo.medicalHistory.smokeHistory.state==3'>
+							【<span>吸烟年数：
+								<span class="fw-700">{{clinicInfo.medicalHistory.smokeHistory.options[clinicInfo.medicalHistory.smokeHistory.state].years}}</span>年 &nbsp;</span>】
+						</span>
+						
+						</p>
+					</div>
+				</div>
+				<div class="flex mg-t20" ng-if='clinicInfo.medicalHistory.workHistory.status!=null'>
+					<div>职业/生活史：</div>
+					<div  class="simple-text">
+						<p class="c-i">职业/生活中致喘物质接触史： <span class=" fw-700" style="margin-left: 106px;">{{clinicInfo.medicalHistory.workHistory.status?'有':'无'}}</span></p>
+						<p ng-if='clinicInfo.medicalHistory.workHistory.status' ng-repeat="item in clinicInfo.medicalHistory.workHistory.list" class="wid-max height-30">
+								<span class="fl-l wid-300">
+								{{item.type}}、{{item.name}}： 
+								</span>
+								<span class="fl-l fw-700">{{item.state?'有':'无'}}</span> 
+								<span class="fl-l">
+								<span ng-if="item.state&&(item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd')">
+									【   类型：<span class=" fw-700">{{item.form}}</span> &nbsp;时间：<span class=" fw-700">{{item.years}}</span>年】
+								</span>
+								<span ng-if="item.state&&(item.type=='e' || item.type=='f' || item.type=='g')">
+									<span ng-if="item.type=='e'">【   药物：<span class=" fw-700">{{item.form}}</span>】</span>	
+									<span ng-if="item.type=='f'">【   食物：{{item.form}}】</span>	
+									<span ng-if="item.type=='g'">【   宠物：{{item.form}}】</span>	
+									</span>
+								</span>
+								
+						</p>
+					</div>
+				</div>
+				<div class="flex mg-t20">
+					<div>控制情况：</div>
+					<div  class="simple-text">
+						<div style="width: 100%;" ng-if='clinicInfo.controlSituation.gina.level'>
+							<p class="c-i">1、数据录入员完成GINA指南的症状控制评估，过去4周，患者存在：</p>
+							<p class="t-i-20" ng-repeat="data in clinicInfo.controlSituation.gina.list" ng-if='data.state!=null'>
+								<span class="fl-l wid-300">
+									{{data.type}}、{{data.name}}： 
+								</span>
+								<span class="fl-l fw-700 t-i-0">{{data.state?'有':'无'}}</span>
+							</p>
+							<p class="t-i-20">哮喘症状控制水平：<span>{{clinicInfo.controlSituation.gina.level}}</span></p>
+						</div>
+						<div style="width: 100%;" ng-if='clinicInfo.controlSituation.act.score'>
+							<p class="c-i">2、数据录入员协助患者完成ACT测试量表：</p>
+							<p class="t-i-20" ng-repeat="item in clinicInfo.controlSituation.act.list" ng-if="item.state!='null'">
+								{{item.type}}、{{item.name}}
+								<br />
+								<span class="t-i-20 fw-700">{{item.options[item.state].name}}</span>
+								
+							</p>
+							<p class="t-i-20">
+								<span class="t-i-0 ">评估得分：
+									<span class=" fw-700">{{clinicInfo.controlSituation.act.score}}</span>
+								</span>
+								&nbsp;&nbsp;
+								<span class="t-i-0 ">哮喘控制水平：
+									<span class=" fw-700">{{clinicInfo.controlSituation.act.level}}</span>
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="case-message" ng-if="labInspection">实验室检查</div>
+		<div  class="clinic-split-line"  ng-if="labInspection"></div>
+		<div class="case-data-content"  ng-if="labInspection">
+			<div class="flex" ng-if='labInspection.bre.checkTime||labInspection.bre.wbc||labInspection.bre.eos||labInspection.bre.neut'>
+				<div>血常规检查：</div>
+				<div  class="simple-text">
+					<p ng-if='labInspection.bre.checkTime'>检查时间： <span class=" fw-700">{{labInspection.bre.checkTime | date: 'yyyy-MM-dd' }}</span></p>
+					<p ng-if='labInspection.bre.wbc'>白细胞总数（WBC）： <span class=" fw-700">{{labInspection.bre.wbc}}</span></p>
+					<p ng-if='labInspection.bre.eos.percent'>嗜酸性粒细胞（EOS）： <span class=" fw-700">{{labInspection.bre.eos.percent}}%</span> </p>
+					<p ng-if='labInspection.bre.neut'>中性粒细胞比例（NEUT%）： <span class=" fw-700">{{labInspection.bre.neut}}%</span></p>
+				</div>
+			</div>
+			<div  class="clinic-split-line"  ng-if="labInspection.lge.checkTime||labInspection.lge.amount"></div>
+			<div class="flex" ng-if="labInspection.lge.checkTime || labInspection.lge.checkTIme ||labInspection.lge.amount">
+				<div>血清总IgE检测：</div>
+				<div  class="simple-text">
+					<span ng-if="labInspection.lge.checkTime">检查时间：
+						<span class="fw-700">{{labInspection.lge.checkTime | date: 'yyyy-MM-dd'}}</span></span>
+					<span ng-if="labInspection.lge.checkTIme">检查时间：
+						<span class="fw-700">{{labInspection.lge.checkTIme | date: 'yyyy-MM-dd'}}</span></span>
+					&nbsp;&nbsp;
+					<span ng-if="labInspection.lge.amount">总IgE：
+						<span class="fw-700">{{labInspection.lge.amount}}</span>&nbsp;&nbsp;IU/ml</span>
+				</div>
+			</div>
+			<div  class="clinic-split-line" ng-if="labInspection.pft"></div>
+			<div class="flex">
+				<div>肺功能检查：</div>
+				<div>
+					<p ng-if="labInspection.pft.checkTime">检查时间：
+						<span class="fw-700">{{labInspection.pft.checkTime | date: 'yyyy-MM-dd'}}</span></p>
+					<div>
+						<table ng-if="labInspection.pft.list[0].estimate||labInspection.pft.list[0].amount||labInspection.pft.list[0].percent">
+							<tr>
+								<th>检查项目</th>
+								<th>正常预计值（L）</th>
+								<th>实测值（L）</th>
+								<th>%pred</th>
+							</tr>
+							<tr ng-repeat="list in labInspection.pft.list track by $index" ng-if='list.estimate||list.amount||list.percent'>
+								<td ng-bind="list.name"><i ng-show="$index==list.length">|</i ><i></i></td>
+								<td><span ng-bind="list.estimate" ng-if="$index != 2">100</span></td>
+								<td><span ng-bind="list.amount" ng-if="$index != 2">100</span></td>
+								<td ng-bind="list.percent + '%'">100</td>
+
+							</tr>
+						</table>
+					</div>
+					<div>
+						<div ng-if="labInspection.pft.bdt">支气管舒张试验</div>
+						<div class="c-m"  ng-if="labInspection.pft.bdt">
+							<span>FEV1上升：<span class=" fw-700">&nbsp;{{labInspection.pft.bdt.amount}}L&nbsp;{{labInspection.pft.bdt.percent}}%&nbsp;{{!labInspection.pft.bdt.state? '' : labInspection.pft.bdt.state == 1 ? '阳性' : '阴性'}}</span>
+							</span>
+						</div>
+						<div>支气管激发试验</div>
+						<div class="t-i-20 c-m"  ng-if="labInspection.pft.bpt.type||labInspection.pft.bpt.result.state||labInspection.pft.bpt.result.concentration||labInspection.pft.bpt.result.dosage||labInspection.pft.bpt.result.amount">
+							<div  class="flex" ng-if="labInspection.pft.bpt.type">
+								<div>
+									<span class="fl-l wid-130">激发试剂：</span>
+									<span class="fl-l fw-700">{{labInspection.pft.bpt.type}}</span>
+								</div>
+							</div>
+							<div>
+								<div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.state">
+									<span class="fl-l wid-130">结果：</span>
+									<span class="fl-l fw-700">{{!labInspection.pft.bpt.result.state? '' : labInspection.pft.bpt.result.state== 1 ? '阳性' : '阴性'}}</span>
+								</div>
+								<div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.concentration && labInspection.pft.bpt.result.state == 1">
+									<span class="fl-l wid-130">激发浓度：</span>
+									<span class="fl-l fw-700">{{labInspection.pft.bpt.result.concentration}}</span>
+								</div>
+								<div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.dosage && labInspection.pft.bpt.result.state == 1">
+									<span class="fl-l wid-130">累计吸入剂量：</span>
+									<span class="fl-l fw-700">{{labInspection.pft.bpt.result.dosage}}</span>
+								</div>
+								<div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.amount && labInspection.pft.bpt.result.state == 1">
+									<span class="fl-l wid-130">FEV1下降：</span>
+									<span class="fl-l fw-700">{{labInspection.pft.bpt.result.amount}}L&nbsp;{{labInspection.pft.bpt.result.percent}}%</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			<div  class="clinic-split-line" ng-if='labInspection.cap'></div>
+			<div class="flex">
+				<div>变应原检测：</div>
+				<div ng-if='labInspection.cap.ast'>
+					<div  ng-if='labInspection.cap.ast.checkTime||labInspection.cap.ast.result.state'>过敏原皮试：</div>
+					<div class="t-i-20" ng-if='labInspection.cap.ast.checkTime||labInspection.cap.ast.result.state'>
+						<div class="c-m" ng-if="labInspection.cap.ast.checkTime"><span >时间：</span><span ng-bind="labInspection.cap.ast.checkTime | date: 'yyyy-MM-dd'" class="fw-700"></span></div>
+						<div class="c-m"><span >结果：</span><span ng-bind="!labInspection.cap.ast.result.state? '' : labInspection.cap.ast.result.state== '1' ? '阳性' : '阴性'" class=" fw-700"></span></div>
+						<div class="p-l-20" ng-if="labInspection.cap.ast.result.state =='1'">
+							<table ng-if="labInspection.cap.ast.result.source[0].name">
+								<tr>
+									<th class="table-width-50">过敏源</th>
+									<th class="table-width-50">结果分级</th>
+								</tr>
+								<tr ng-repeat="source in labInspection.cap.ast.result.source">
+									<td ng-bind="source.name"></td>
+									<td ng-bind="source.intensityName"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div ng-if='labInspection.cap.lge.checkTime||labInspection.cap.lge.list.list[0].name'>血清特异性IgE检测：</div>
+					<div class="t-i-20" ng-if='labInspection.cap.lge.checkTime||labInspection.cap.lge.list[0].name'>
+						<div class="c-m" ng-if="labInspection.cap.lge.checkTime">时间：
+							<span class="fw-700">{{labInspection.cap.lge.checkTime | date: 'yyyy-MM-dd'}}</span></div>
+						<div class="p-l-20">
+							<table ng-if='labInspection.cap.lge.list.length'>
+								<tr>
+									<th class="table-width-30">过敏原</th>
+									<th class="table-width-25">OD值</th>
+									<th class="table-width-25">浓度（KIU/L）</th>
+									<th class="table-width-20">级别</th>
+								</tr>
+								<tr ng-repeat="list in labInspection.cap.lge.list">
+									<td ng-bind="list.name"></td>
+									<td ng-bind="list.ODAmount"></td>
+									<td ng-bind="list.amount"></td>
+									<td ng-bind="list.level"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div  class="clinic-split-line"  ng-if='labInspection.ait'></div>
+			<div class="flex" ng-if='labInspection.ait'>
+				<div>气道炎症检查：</div>
+				<div>
+					<div  ng-if='labInspection.ait.feno.checkTime'>呼出气一氧化氮（FeNO）：</div>
+					<div class="p-l-20 c-m" ng-if='labInspection.ait.feno.checkTime'>
+						时间：<span class="fw-700">{{labInspection.ait.feno.checkTime | date: 'yyyy-MM-dd'}}</span>&nbsp;&nbsp;特异性IgE：<span class=" fw-700">{{labInspection.ait.feno.amount}}</span>&nbsp;ppb
+					</div>
+					<div ng-if='labInspection.ait.list'>诱导痰检查：</div>
+					<div  class="p-l-20 flex c-m">
+						<div class="f-1 t-a-l" ng-if="labInspection.ait.list.checkTime">
+							<span class="fl-l wid-170">时间：</span>
+							<span class="fl-l fw-700" ng-bind="labInspection.ait.list.checkTime | date: 'yyyy-MM-dd'"></span>
+						</div>
+						<div class="f-1 t-a-l"  ng-if="labInspection.ait.list.totalCount">
+							<span class="fl-l wid-170">细胞总数：</span>
+							<span class="fl-l fw-700">{{labInspection.ait.list.totalCount}}</span>
+						</div>
+					</div>
+					<div  class="p-l-20 flex c-m" >
+						<div class="f-1 t-a-l"  ng-if='labInspection.ait.list.eos'>
+							<span class="fl-l wid-170">嗜酸性粒细胞比例(Eos)：</span>
+							<span class="fl-l fw-700">{{ labInspection.ait.list.eos }}&nbsp;%</span>
+						</div>
+						<div class="f-1 t-a-l" ng-if='labInspection.ait.list.neut'>
+							<span class="fl-l wid-170">中性粒细胞比例(N)：</span>
+							<span class="fl-l fw-700">{{labInspection.ait.list.neut}}&nbsp;%</span>
+						</div>
+					</div>
+					<div  class="p-l-20 flex c-m" >
+						<div class="f-1 t-a-l"  ng-if='labInspection.ait.list.mp'>
+							<span class="fl-l wid-170">巨噬细胞比例(M)：</span>
+							<span class="fl-l fw-700">{{labInspection.ait.list.mp}}&nbsp;%</span>
+						</div>
+						<div class="f-1 t-a-l" ng-if='labInspection.ait.list.lymr'>
+							<span class="fl-l wid-170">淋巴细胞(L)：</span>
+							<span class="fl-l fw-700">{{labInspection.ait.list.lymr}}&nbsp;%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div  class="clinic-split-line"  ng-if='labInspection.xre.list'> </div>
+			<div class="flex"  ng-if='labInspection.xre.list'>
+				<div>影像学检查：</div>
+				<div>
+					<div ng-repeat="list in labInspection.xre.list" ng-if='list.checkTime||list.state'>
+						<span class="lk-w-100">{{list.name}}:</span>
+						<span class="p-r-20 lk-w-150">时间：
+							<span class="fw-700">{{list.checkTime | date: 'yyyy-MM-dd'}}</span></span>
+						<span>结果：<i ng-bind="!list.state? '' : list.state == '2' ? '异常' : '无异常'" class=" fw-700"></i></span>
+					</div>
+
+					<div>
+						<span cass="lk-w-100">其他检查：</span>
+						<span class=" fw-700" ng-bind="labInspection.xre.otherCheck"></span>
+					</div>
+				</div>
+			</div>
+			<div  class="clinic-split-line" ng-if="labInspection.images.list.length>0 &&user.userType!=4"></div>
+			<div class="flex" ng-if="labInspection.images.list.length>0 &&user.userType!=4">
+				<div>影像图片：</div>
+				<div>
+					<div class="flex flex-wrap">
+						<div class="img-box" ng-repeat="item in labInspection.images.list" style="background:url({{item.url}}) no-repeat center; background-size:cover">
+							<div class="img-box-bottom">{{item.desc}}</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<!--<div class="case-message" ng-if="diagnose">诊断</div>-->
+		<div class="case-message">诊断</div>
+		<div class="clinic-split-line"></div>
+		<div class="case-data-content">
+			<div class="flex">
+				<div>病情分期：</div>
+				<div class="c-m" >
+					<span class=" fw-700">{{diagnose.diseaseStage.dictItemValue}}</span>
+					
+				</div>
+			</div>
+			<!--<div class="clinic-split-line"  ng-if="diagnose.sod.dictItemValue"></div>-->
+			<div class="flex">
+				<div>疾病严重程度：<p class="c-m l-h-1" style="text-align: center;"></p></div>
+				<div class="c-m" >
+					<span class=" fw-700">{{diagnose.sod.dictItemValue}}</span>
+					
+				</div>
+			</div>
+			<div class="flex">
+				<div>病情严重程度：</div>
+				<div class="c-m">
+					<span class=" fw-700">{{diagnose.sodSub.dictItemValue}}</span>
+					</div>
+			</div>
+		</div>
+		<!--<div class="case-message" ng-if="cureOutline">治疗方案</div>-->
+		<div class="case-message">治疗方案</div>
+		<div class="clinic-split-line"></div>
+		<div class="case-data-content">
+			<div class="flex">
+				<div>治疗方案：</div>
+				<div>
+					<table ng-if='cureOutline.cpa.length'>
+						<tr>
+							<th>药物类别</th>
+							<th>药物</th>
+							<th>剂型</th>
+							<th>规格</th>
+							<th>给药频次</th>
+							<th>给药量</th>
+							<th>疗程</th>
+							<th>疗程开始时间</th>
+						</tr>
+						<tr ng-repeat="item in cureOutline.cpa">
+							<td>{{item.categoryName}}</td>
+							<td>{{item.medicineName}}</td>
+							<td>{{item.dosageFormName}}</td>
+							<td>{{item.fications}}</td>
+							<td>{{item.timeUser}}</td>
+							<td>{{item.timeNumber}}</td>
+							<td>{{item.treatment}}{{item.treatmentUnit}}</td>
+							<td>{{item.createTime | date:"yyyy-MM-dd"}}</td>
+						</tr>
+					</table>
+					<!-- <div ng-if='cureOutline.isSameAsPre!=null'>是否遵循前序治疗方案？ &nbsp; &nbsp; &nbsp;<span class=" fw-700">{{cureOutline.isSameAsPre?'否':'是'}}</span></div> -->
+				</div>
+			</div>
+			<div class="clinic-split-line" ng-if='cureOutline.nextTime'></div>
+			<div class="flex">
+				<div>
+					下次随访时间：
+				</div>
+				<div>
+					{{cureOutline.nextTime| date:"yyyy-MM-dd"}}
+				</div>
+			</div>
+		</div>
+		<!--<div class="case-message" ng-if="specialAsthma.asthmaTypes.list.length">特殊哮喘</div>-->
+		<div class="case-message">特殊哮喘</div>
+		<div class="clinic-split-line" ng-if="specialAsthma.asthmaTypes.list.length"></div>
+		<div class="case-data-content" ng-if="specialAsthma.asthmaTypes.list.length">
+			<div class="flex" ng-if='specialAsthma.asthmaTypes.list.length'>
+				<div>哮喘类型：</div>
+				<div>
+					<span class="m-r-20 fw-700" ng-repeat='item in specialAsthma.asthmaTypes.list' ng-if='item.status'>
+						{{item.name}}
+					</span>
+				</div>
+			</div>
+			<div class="flex" ng-if='specialAsthma.momo'>
+					<div>备注：</div>
+					<div>
+						<span class="m-r-20 fw-700" >
+							{{specialAsthma.momo}}
+						</span>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="newAddPatientBtn programs-btn dryad-drag-disabled"> 
+		<a data-ng-click="closedModal()" class="button botton-close">关闭</a>
+	</div>
+</div>

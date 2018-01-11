@@ -1,0 +1,38 @@
+<div class="treatment-regimen">
+    <div class="medical-tab-header">
+        <ul class="navs" ng-init="activeIndex=0">
+           <li ng-repeat="item in navs track by item.id">
+               <a href="" ng-click="scrollTo(item.id,$index)" ng-class="{'nav-active': activeIndex==$index }">{{item.name}}</a>
+           </li>
+        </ul>
+        <!--<div class="slide-bar"></div>-->
+        <a ng-click="saveData()" class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</a>
+    </div>
+    <div class="">
+    	<div class="asthma-type-left">
+    		哮喘类型：
+    	</div>
+    	<div class="asthma-type-right">
+             <span>
+                <label style="font-weight:500">
+                     <input name="treatmentPlan" class="activeInput" ng-model="specialAsthma.asthmaTypes.list[0].status" type="checkbox"  ng-true-value=1 ng-false-value=0>
+                     {{specialAsthma.asthmaTypes.list[0].name}}    
+                </label> 
+             </span>
+            <span  ng-repeat="item in specialAsthma.asthmaTypes.list track by $index" ng-if='$index > 0'>
+               <label style="font-weight:500">
+                    <input name="treatmentPlan" class="kang" ng-model="item.status" type="checkbox"  ng-true-value=1 ng-false-value=0>
+                    {{item.name}}    
+               </label> 
+            </span>
+        </div>
+    </div>
+    <div class="">
+        <div class="asthma-type-left p-t-5">
+                备注：
+            </div>
+            <div class="asthma-type-right  p-t-5">
+                    <textarea placeholder="输入备注信息" class='w-100 textareas' data-ng-model="specialAsthma.momo"></textarea>
+            </div>
+    </div>
+</div>

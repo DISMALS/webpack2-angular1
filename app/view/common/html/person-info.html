@@ -1,0 +1,113 @@
+<div class="modal-title" drag-modal>
+	<span class="title" data-ng-bind="title"></span>
+	<i class="close-modal" data-ng-click="close()"></i>
+</div>
+<div class="person-info dryad-drag-disabled">
+	<form name="personInfo" verify-scope="tipStyle:2" >
+		<!--左侧信息-->
+		<div class="left-main">
+			<div class="lm-employee">
+				<i class="lm-employee-logo">
+					<img data-ng-src={{otherObj.headPicUrl}} alt="员工头像">
+				</i>
+				<div class="fileLabel">
+					<label class="person-info-btn">
+						<a class="patients-especial botton-special">上传头像</a>
+                        <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" preview-src="otherObj.headPicUrl" dryad-upload-img>
+					</label>
+                        
+                    </div>
+			</div>
+			<div class="lm-employee">
+				<span class="ewm">
+					<img data-ng-src={{otherObj.qrCodeUrl}} alt="员工二维码">
+				</span>
+				<!--<span class="ewm"><img data-ng-src={{otherObj.headPicUrl}} alt="员工二维码"></span>-->
+				<div class="fileLabel">
+					<div>
+						<a data-ng-click="print()" class="person-info-btn patients-especial botton-special">打印</a>
+						<a data-ng-click="download()" class="person-info-btn patients-especial botton-special">下载</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!--右侧信息-->
+		<div class="right-main">
+			<div class="form float-l">
+				<span class="left-title"><span class="required-field"></span>姓名:</span>
+				<span class="right-content">
+                            <input type="text" placeholder="请输入姓名" ng-verify class="form-input" data-ng-model="departmentObj.name">
+                        </span>
+			</div>
+			<div class="form float-l">
+				<span class="left-title"><span class="required-field"></span>性别:</span>
+				<span class="right-content">
+                            <a class="sex-chooise" data-ng-click="chooiseSex()">
+                                <i class="man" data-ng-class="{'manactive':isBoy}">男</i>
+                                <i class="women" data-ng-class="{'womenactive':!isBoy}">女</i>
+                            </a>
+                        </span>
+			</div>
+			<div class="form float-l">
+				<span class="left-title">生日:</span>
+				<span class="right-content">
+                            <span class="date-main">
+                                <dryad-date-time-picker date-data="departmentObj.birthday"></dryad-date-time-picker>
+                            </span>
+				</span>
+			</div>
+			<div class="form float-l">
+				<span class="left-title"><span class="required-field"></span>手机号码:</span>
+				<span class="right-content">
+                            <input type="text" placeholder="请输入手机号码" ng-verify="{max:11,pattern:/^1{1}[1-9]{1}[0-9]{9}$/}" input-mask='[9][9][9][9][9][9][9][9][9][9][9]' class="form-input" data-ng-model="departmentObj.phoneNo">
+                        </span>
+			</div>
+			<div class="form float-l">
+				<span class="left-title"><span class="required-field"></span>邮箱:</span>
+				<span class="right-content">
+                            <input type="email" placeholder="请输入邮箱" ng-verify data-ng-model="departmentObj.email" class="form-input">
+                        </span>
+			</div>
+			<div class="form float-l">
+				<span class="left-title"><span class="required-field"></span>职称:</span>
+				<span class="right-content">
+                            <div class="nature-select">
+                                <ui-select data-ng-model="departmentObj.titles" ng-verify search-enabled="false" theme="select2">
+                                    <ui-select-match placeholder="请选择职称"><span data-ng-bind="$select.selected.dictItemName"></span></ui-select-match>
+				<ui-select-choices repeat="item.dictItemValue as item in jobTitleList">
+					<span data-ng-bind="item.dictItemName"></span>
+				</ui-select-choices>
+				</ui-select>
+			</div>
+			</span>
+		</div>
+		<div class="form overflow-h height-85">
+			<span class="left-title"><span class="required-field"></span>简介:</span>
+			<span class="right-content right-height-auto">
+                            <div class="description-textarea">
+                                <textarea placeholder="请输入个人简介" ng-verify data-ng-model="departmentObj.baseInfo"></textarea>
+                            </div>
+                        </span>
+		</div>
+		<div class="form overflow-h height-85">
+			<span class="left-title"><span class="required-field"></span>擅长:</span>
+			<span class="right-content right-height-auto">
+                            <div class="description-textarea">
+                                <textarea placeholder="请输入擅长领域" ng-verify data-ng-model="departmentObj.goodAt"></textarea>
+                            </div>
+                        </span>
+		</div>
+        
+        	</div>
+        <!--底部按钮-->
+        <div class="personinfo-btn">
+            <div>
+                <a data-ng-click="save()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
+                <a data-ng-click="close()" class="button botton-close">关闭</a>
+            </div>
+            
+        </div>
+    </form>
+</div>

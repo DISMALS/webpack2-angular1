@@ -1,0 +1,156 @@
+<div class="medical-base-info">
+    <form verify-scope="tipStyle:2" name="checkForm">
+    <div class="medical-tab-header">
+        <button ng-click="saveData()"  class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</button>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td><span class="required-field"></span><label  for="">姓名：</label></td>
+                <td><input type="text" ng-model="baseInfo.patientName" class="pd-l10"></td>
+                <td><label  for="">性别：</label></td>
+                <td class="t-a-l" >
+                    <button class="sex-btn" ng-class="{'sex-btn-active': baseInfo.sex==='M'}" ng-click="baseInfo.sex='M'">男</button>
+                    <button class="sex-btn" ng-class="{'sex-btn-active': baseInfo.sex==='F'}" ng-click="baseInfo.sex='F'">女</button>
+                </td>
+                <td><span class="required-field"></span><label  for="">生日：</label></td>
+                <td>
+                    <dryad-date-time-picker date-data="baseInfo.dob"></dryad-date-time-picker>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label class="base-info-nation" for="">民族：</label>
+                </td>
+                <td>
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.nation"  theme="bootstrap" skip-focusser>
+                            <ui-select-match class="set-height">{{$select.selected.dictItemName || $select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="item.dictItemValue as item in nationArr">
+                                <div ng-bind-html="item.dictItemName | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+                <td>
+                    <span class="required-field"></span>  <label for="">身高<span>(cm)</span>：</label>
+                </td>
+                <td>
+                    <div  class='verifyParent'>
+                            <input type="text" input-mask='[9][9][9][.][9][9]'  placeholder="单位/cm"  ng-verify="pattern:/^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/" ng-model="baseInfo.patientHeight" class="pd-l10">
+                    </div>
+                </td>
+                <td>
+                    <span class="required-field"></span> <label for="">体重<span>(kg)</span>：</label>
+
+                </td>
+                <td>
+                    <div class='verifyParent'>
+                            <input type="text" input-mask='[9][9][9][.][9][9]' placeholder="单位/kg"   ng-verify="pattern:/^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/" ng-model="baseInfo.patientWeight" class="pd-l10">
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for=" ">BMI指数<span><img class="tooltip1" data-toggle="tooltip" data-placement="top" title="体质指数(BMI)=体重(KG)÷身高^2(M)"  src="../../../../images/toolTip1.png" alt=""></span>：</label></td>
+                <td><input ng-readonly="true" type="text" data-ng-model="baseInfo.bmi" class="pd-l10"></td>
+                <td><label for="">教育程度：</label></td>
+                <td>
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.education"  theme="bootstrap">
+                            <ui-select-match class="set-height">{{$select.selected.dictItemName || $select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="item.dictItemValue as item in educationArr">
+                                <div ng-bind-html="item.dictItemName | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+                <td><label for="">职业：</label></td>
+                <td>
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.job"  theme="bootstrap">
+                            <ui-select-match class="set-height">{{$select.selected.dictItemName || $select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="item.dictItemValue as item in jobArr" style="margin-top: -1px">
+                                <div ng-bind-html="item.dictItemName | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td><span class="required-field"></span><label for="">手机：</label></td>
+                <td>
+                    <div class='verifyParent'>
+                        <input type="text" input-mask='[9][9][9][9][9][9][9][9][9][9][9]' data-ng-model="baseInfo.mobilePhone" ng-verify="max:11,pattern:/^1[1-9]{1}[0-9]{9}$/" placeholder="请输入手机号码" class="form-input">
+                  <!-- <input-ui class='number-button' data='baseInfo.mobilePhone' length='11'></input-ui> -->
+                    </div>  
+                </td>
+                <td><label for="">固定电话：</label></td>
+                
+                <td><input type="text" input-mask='[9][9][9][9][-][9][9][9][9][9][9][9]'  ng-model="baseInfo.telePhone" class="pd-l10"></td>
+                <td><span class="required-field"></span><label for="">接诊医生：</label></td>
+                <td>
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.receptDoctor"  theme="bootstrap" >
+                            <ui-select-match class="set-height">{{$select.selected.name || $select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="person.employeeId as person in itemArr">
+                                <div ng-bind-html="person.name | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><span class="required-field"></span><label for="">地址：</label></td>
+                <td colspan="5" class="t-a-l">
+                    <div class="dropdown-select medicalProvince">
+                        <ui-select ng-model="baseInfo.address.province" search-enabled="true" theme="select2" on-select = 'onSearchProvince($item)'>
+                            <ui-select-match style="line-height:32px;color:#575d6a !important;" class="set-height" placeholder="省(拼首码搜索)">{{$select.selected.regionName}}</ui-select-match>
+                            <ui-select-choices repeat="item.regionCode as item in address.province"
+                            refresh="serchProvinceForm($select.search)" refresh-delay='0'>
+                                <div ng-bind-html="item.regionName | highlight: $select.search"></div>
+                                <small></small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.address.city" 　search-enabled="true" theme="bootstrap" on-select = "onSearchCity($item)">
+                            <ui-select-match class="set-height"  placeholder="---市---">{{$select.selected.regionName}}</ui-select-match>
+                            <ui-select-choices    repeat="item.regionCode as item in address.city | filter: $select.search">
+                                <div  ng-bind-html="item.regionName | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                    <div class="dropdown-select">
+                        <ui-select ng-model="baseInfo.address.country" search-enabled="true"  theme="bootstrap" on-select = "onSearchRegion($item)">
+                            <ui-select-match class="set-height"　placeholder="---县---">{{$select.selected.regionName || $select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="item.regionCode as item in address.country | filter: $select.search">
+                                <div ng-bind-html="item.regionName | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>

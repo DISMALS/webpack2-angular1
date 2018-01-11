@@ -1,0 +1,26 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<form verify-scope="tipStyle:2" name="checkForm" class="dryad-drag-disabled">
+    <!-- 新增科室或者修改科室 -->
+    <div class="sure-patient add-department">
+        <div class="patientinfo">
+            <span class="left-title">所属类目:</span>
+            <span class="right-content">
+            <div data-ng-bind="parentBase.name"></div>
+            </span>
+        </div>
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>项目名称:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" ng-verify placeholder="请输入项目名称" data-ng-model="configurationObj.name">
+            </span>
+        </div>
+        <!-- 按钮 -->
+        <div class="patientinfo text-right programs-btn">
+            <button data-ng-click="closedModal()" class="button botton-close">取消</button>
+            <button data-ng-click="sure()" ng-verify="control:'checkForm'" data-ng-disabled="!configurationObj.name" class="button-default botton-save"><i class="save save-icon"></i>保存</button>
+        </div>
+    </div>
+</form>

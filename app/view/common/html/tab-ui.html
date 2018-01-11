@@ -1,0 +1,21 @@
+<div class="dryad-tab">
+    <h3 class="dryad-tab-title text-center" data-ng-if="tabTitle">这是父级标题</h3>
+    <ul class="dryad-tab-list">
+        <li data-ng-repeat="item in tabList track by $index" data-ng-mouseenter="mouseenterEvt($event,$index)" data-ng-mouseleave="mouseleaveEvt($event,$index)" class="tabLi" data-ng-class="{'dryad-tabList-active':($index == tabActive)}">
+            <a data-ng-class="{'dryad-tabList-fixed': !item.close,'dryad-tabList-dynamics': item.close}" data-ng-click="selectTab($index)">
+                <i class="dryad-tabList-icon" data-ng-if="item.close">
+                    <img ng-if="item.sex =='M'||item.sex =='男'" data-ng-src={{man}}>
+                    <img ng-if="item.sex =='F'||item.sex =='女'" data-ng-src={{woman}}>
+                </i>
+                </i>
+                <div class="tab-user-info" data-ng-if="item.close">
+                    <b class="dryad-tabList-text" data-ng-bind="item.title"></b>
+                    <p class="dryad-tabList-textp" data-ng-bind="item.createdate"></p>
+                </div>
+                <i class="dryad-tabList-icon" data-ng-class="item.icon" data-ng-if="!item.close"></i>
+                <b class="dryad-tabList-text" data-ng-bind="item.title" data-ng-if="!item.close"></b>
+            </a>
+            <i data-ng-click="closeEvt($index,item)" class="close-tab close-modal" data-ng-if="item.close"></i>
+        </li>
+    </ul>
+</div>

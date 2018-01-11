@@ -1,0 +1,14 @@
+<div class="medical-history-details-case">
+    <div class="modal-title" drag-modal>
+        <span class="title" ng-bind="title"></span>
+        <i class="close-modal" data-ng-click="retreatModalVm.closedModal()"></i>
+    </div>
+    <!-- 输入退回说明 -->
+    <div class="medical-case-content retreatInfo dryad-drag-disabled" >
+        <input  type="text" ng-model="info" placeholder="{{title}}"  ng-keyup="UpSure($event)"/>
+    </div>
+    <div class="newAddPatientBtn programs-btn dryad-drag-disabled">
+        <a data-ng-click="retreatModalVm.closedModal()" class="button botton-close">关闭</a>
+        <a ng-click="sure()" class="button botton-close button-default">确认</a>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="employee-details">
+    <div class="employee-details-title">
+        <b class="left-title">查看员工信息</b>
+        <!-- <a data-ng-click="" class="patients-especial botton-special"><i class="new-add"></i>特殊哮喘记录</a> -->
+        <a data-ng-click="edit()" class="button-default botton-special"><i class="change-password"></i>修改</a>
+        <a data-ng-click="close()" class="button botton-close">关闭</a>
+    </div>
+    <div class="employee-details-main">
+        <div class="left-main">
+            <div class="lm-employee">
+                <i class="lm-employee-logo"><img data-ng-src={{otherObj.headPicUrl}} alt="员工头像" class="headpic"></i>
+            </div>
+            <div class="lm-employee">
+                <span class="ewm"><img data-ng-src={{departmentObj.qrCodeUrl}} alt="员工二维码"></span>
+                <a data-ng-click="print()" class="patients-especial botton-special">打印</a>
+                <a data-ng-click="download()" class="patients-especial botton-special">下载</a>
+            </div>
+        </div>
+        <div class="right-main">
+            <div class="right-main-l">
+                <div class="form float-l">
+                    <span class="left-title">姓名:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.name">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">性别:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.sexDesc">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">生日:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.birthday">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">手机号码:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.phoneNo">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">邮箱:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.email">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">职称:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.titlesDesc">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">简介:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.baseInfo">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">擅长:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.goodAt">
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">在职状态:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.statusDesc">
+                    </span>
+                </div>
+            </div>
+            <div class="right-main-r">
+                <div class="form float-l">
+                    <span class="left-title">所属科室:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.deptName">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">所属角色:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.roleName">
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">登录账号:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.userCode">
+                    </span>
+                </div>
+                <!-- <div class="form float-l">
+                    <span class="left-title">登录密码:</span>
+                    <span class="right-content" data-ng-bind="departmentObj.password">
+                    </span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

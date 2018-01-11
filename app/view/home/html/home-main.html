@@ -1,0 +1,68 @@
+<div class="home-main-top">
+    <!-- 首页左边部分 -->
+    <div class="home-left">
+        <div class="home-top">
+            <div class="medicalrecords top-main m-r-20">
+                <span class="top-main-icon"><i class="registered-medicalrecords"></i></span>
+                <span class="text-content">
+                    <p class="text-title">已登记病历</p>
+                    <b class="text-number" ng-bind="homeInfo.medicalRecordCount"></b>
+                </span>
+                <a class="details-a" data-ng-click="homeDetails(3,'已登记病历')" data-ng-if="user.userType !== 2">详情>></a>
+            </div>
+
+            <div class="registered top-main">
+                <span class="top-main-icon"><i class="registered-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">已登记患者</p>
+                    <b class="text-number" ng-bind="homeInfo.patientCount"></b>
+                </span>
+                <a class="details-a" data-ng-click="homeDetails(1,'已登记患者')" data-ng-if="user.userType !== 2">详情>></a>
+            </div>
+
+        </div>
+        <div class="home-main">
+            <div class="curve-diagram-title">
+                <span class="title-text">疾病严重程度统计</span>
+            </div>
+            <div class="curve-diagram-main">
+                <img class="bg-img" data-ng-if="(initData.chartOnePei && illnessInitPieShow) || (!initData.chartOnePei && patientShow)" src="../../../../images/nodata.png"/>
+                <div dryad-echarts="peiChartOptionOne" ratio='1' data-ng-if="initData.chartOnePei"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 首页右边部分 -->
+    <div class="home-right">
+        <div class="home-top">
+            <div class="asthma top-main">
+                <span class="top-main-icon"><i class="asthma-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">重度哮喘患者</p>
+                    <b class="text-number" ng-bind="homeInfo.highLevelPatientCount"></b>
+                </span>
+                <a class="details-a" data-ng-click="homeDetails(2,'重度哮喘患者')" data-ng-if="user.userType !== 2">详情>></a>
+            </div>
+            <div class="nocontrol top-main m-r-20">
+                <span class="top-main-icon"><i class="nocontrol-patient"></i></span>
+                <span class="text-content">
+                    <p class="text-title">未控制患者</p>
+                    <b class="text-number" ng-bind="homeInfo.uncontrolPatientCount"></b>
+                </span>
+                <a class="details-a" data-ng-click="homeDetails(4,'未控制患者')" data-ng-if="user.userType !== 2">详情>></a>
+            </div>
+        </div>
+        <div class="home-main">
+            <div class="curve-diagram-title">
+                <span class="title-text">整体控制水平统计</span>
+            </div>
+            <div class="curve-diagram-main">
+                <img class="bg-img" data-ng-if="(initData.chartTwoPei && illnessInitPieShow) || (!initData.chartTwoPei && patientCtrlShow)" src="../../../../images/nodata.png"/>
+                <div dryad-echarts="peiChartOptionTwo" ratio='1' data-ng-if="initData.chartTwoPei"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-main-bottom" data-ng-if="user.userType == 4">
+    <div data-ng-if="dataArr && (dataArr.medicalRecordAreaCountList.length > 0 || dataArr.patientAreaCountList.length > 0)" dryad-echarts="optionEarthMap" ratio='1' map-account="true"></div>
+    <div data-ng-if="!dataArr || (dataArr.medicalRecordAreaCountList.length == 0 && dataArr.patientAreaCountList.length == 0)"><img class="bg-img" src="../../../../images/nodata.png"/></div>
+</div>

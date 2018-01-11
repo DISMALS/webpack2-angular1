@@ -1,0 +1,24 @@
+<div class="login">
+    <h1>欢迎登录哮喘患者管理平台</h1>
+    <div class="login-main">
+        <div class="input-operate">
+            <form name='login'>
+                <label for="">
+                    <input type="text" placeholder="用户名" data-ng-model="login.userCode" autocomplete="off">
+                    <i class="user-name"></i>
+                </label>
+                <label for="">
+                    <input type="password" data-ng-keyup="enter($event)" placeholder="密码" data-ng-model="login.password" autocomplete="off">
+                    <i class="pass-word"></i>
+                </label>
+                <div class="redioBtn">
+                    <input type="checkbox" data-ng-model="login.remmeberUsername">记住账号
+                    <a class="forgetpass" data-ng-click="reset()">忘记密码？</a>
+                </div>
+                <div class="submite" data-ng-click="logins()"><a>登录</a></div>
+                <div class="forgetpass"></div>
+            </form>
+        </div>
+        <div class="company-logo"></div>
+    </div>
+</div>

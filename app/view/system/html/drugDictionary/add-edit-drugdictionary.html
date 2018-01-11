@@ -1,0 +1,72 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<form verify-scope="tipStyle:2" name="checkForm" class="dryad-drag-disabled">
+    <!-- 新增科室或者修改科室 -->
+    <div class="sure-patient add-department">
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>药品分类:</span>
+            <span class="right-content">
+                <div class="nature-select">
+                    <ui-select data-ng-model="drugdictionary.categoryId" ng-verify search-enabled="false" theme='select2'>
+                        <ui-select-match placeholder="请选择药品分类"><span data-ng-bind="$select.selected.name"></span></ui-select-match>
+                    <ui-select-choices repeat="item.categoryId as item in drugClasses">
+                        <span data-ng-bind="item.name"></span>
+                    </ui-select-choices>
+                    </ui-select>
+                </div>
+            </span>
+        </div>
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>药品名称:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" ng-verify placeholder="请输入药品名称" data-ng-model="drugdictionary.drugName">
+            </span>
+        </div>
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>剂型:</span>
+            <span class="right-content">
+                <div class="nature-select">
+                    <ui-select data-ng-model="drugdictionary.dosageId" ng-verify search-enabled="false" theme='select2'>
+                        <ui-select-match placeholder="请选择剂型"><span data-ng-bind="$select.selected.dictItemName"></span></ui-select-match>
+                    <ui-select-choices repeat="item.dictItemValue as item in allDosageList">
+                        <span data-ng-bind="item.dictItemName"></span>
+                    </ui-select-choices>
+                    </ui-select>
+                </div>
+            </span>
+        </div>
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>规格:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入最小规格" ng-verify data-ng-model="drugdictionary.unit">
+            </span>
+        </div>
+        <!-- <div class="patientinfo">
+            <span class="left-title">制造商:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入药品制造商" data-ng-model="drugdictionary.manufacturerId">
+            </span>
+        </div>
+        <div class="patientinfo">
+            <span class="left-title">国药准字:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" placeholder="请输入国药准字" data-ng-model="drugdictionary.otc">
+            </span>
+        </div> -->
+        <div class="patientinfo department-textarea">
+            <span class="left-title">备注:</span>
+            <span class="right-content">
+                <div class="description-textarea">
+                    <textarea data-ng-model="drugdictionary.memo" placeholder="请输入备注内容"></textarea>
+                </div>
+            </span>
+        </div>
+        <!-- 按钮 -->
+        <div class="patientinfo text-right programs-btn">
+            <button data-ng-click="closedModal()" class="button botton-close">取消</button>
+            <button data-ng-click="sure()" ng-verify="{control:'checkForm'}" class="button-default botton-save"><i class="save save-icon"></i>保存</button>
+        </div>
+    </div>
+</form>

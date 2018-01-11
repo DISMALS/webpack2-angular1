@@ -1,0 +1,35 @@
+<div class="table-list">
+    <table class="table-main" cellspacing="0" cellpadding="0" border="0">
+        <tr class="disposition-grid-header">
+            <th class="table-width-40">过敏原</th>
+            <th class="table-width-40">结果分级</th>
+            <th class="table-width-20">操作</th>
+        </tr>
+        <tr ng-repeat="allergicRecord in allergicRecordList track by $index">
+            <td>
+                <div class="nature-select">
+                    <ui-select data-ng-model="allergicRecord.value" search-enabled="false" theme="select2" ng-disabled="allergicRecord.hide">
+                        <ui-select-match placeholder="请选择过敏源"><span data-ng-bind="$select.selected.dictItemName"></span></ui-select-match>
+                        <ui-select-choices repeat="item.dictItemValue as item in allergyList">
+                            <span data-ng-bind="item.dictItemName"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </td>
+            <td>
+                <div class="nature-select">
+                    <ui-select data-ng-model="allergicRecord.intensity" search-enabled="false" theme="select2" ng-disabled="allergicRecord.hide">
+                        <ui-select-match placeholder="请选择结果等级"><span data-ng-bind="$select.selected.dictItemName"></span></ui-select-match>
+                        <ui-select-choices repeat="item.dictItemValue as item in natureSelect">
+                            <span data-ng-bind="item.dictItemName"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </td>
+            <td>
+             <a class="screen-icon screen-add "   data-ng-click="addRow($index)"><i class="add"></i></a>
+             <a class="screen-icon screen-reduction"  ng-if="allergicRecordList.length>1" data-ng-click="deleteRow(allergicRecord,$index)"><i class="reduction"></i></a>
+            </td>
+        </tr>
+    </table>
+</div>

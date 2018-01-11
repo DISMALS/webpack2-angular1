@@ -1,0 +1,19 @@
+<div class="table-list">
+    <table class="table-main" cellspacing="0" cellpadding="0" border="0">
+        <tr class="disposition-grid-header">
+            <th class="table-width-25">检查项目</th>
+            <th class="table-width-25">正常预计值（L）</th>
+            <th class="table-width-25">实测值（L）</th>
+            <th class="table-width-25">%pred<i class="yiwen" data-toggle="tooltip"  title="%pred=实测值(L)/正常预计值(L)%"></i></th>
+        </tr>
+        <tr data-ng-repeat="checkItem in lungCheckList track by $index">
+            <td data-ng-bind="checkItem.name"></td>
+            <td><input type="text" data-ng-change="changData(checkItem)" class="user-input" data-ng-model="checkItem.estimate" ng-if="$index!=2"></td>
+            <td><input type="text" data-ng-change="changData(checkItem)" class="user-input" data-ng-model="checkItem.amount" ng-if="$index!=2"></td>
+            <td><span ng-bind="checkItem.percent"></span>%</td>
+<!--
+            <td><input type="text" class="user-input" data-ng-model="checkItem.shice/checkItem.amount"></td>
+-->
+        </tr>
+    </table>
+</div>

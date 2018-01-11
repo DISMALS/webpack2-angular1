@@ -1,0 +1,147 @@
+<div class="treatment-regimen">
+    <div class="medical-tab-header">
+        <ul class="navs" ng-init="activeIndex=0">
+            <li ng-repeat="item in navs track by item.id">
+                <a href="" ng-click="scrollTo(item.id,$index)" ng-class="{'nav-active': activeIndex==$index }">{{item.name}}</a>
+            </li>
+        </ul>
+        <!--<div class="slide-bar"></div>-->
+        <a ng-click="saveData()" class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</a>
+    </div>
+    <div class="treatment-regimen-content">
+        <div id="disease-staging">
+            <div><label>治疗方案：</label></div>
+            <table>
+                <tr class='table-title'>
+                    <td>药物类别</td>
+                    <td>药物</td>
+                    <td>剂型</td>
+                    <td>规格</td>
+                    <td>给药频次</td>
+                    <td>给药量</td>
+                    <td>疗程</td>
+                    <td>治疗开始时间</td>
+                    <td>操作</td>
+                </tr>
+                <tr ng-repeat="item in cureOutline.cpa track by $index">
+                    <td style='width:110px'>
+                        <!-- 药品类别 -->
+                        <div class="dropdown-select" style='width:108px'>
+                            <ui-select ng-model="item.category" theme="bootstrap" skip-focusser
+                                       on-select="changeSelectCategory($select.selected.categoryId,$index)">
+                                <ui-select-match class="set-height" placeholder=''>{{$select.selected.name ||''}}
+                                </ui-select-match>
+                                <ui-select-choices class='w-80' repeat="items.categoryId as items in categoryList"
+                                                   refresh="getMedicineList($select.search)">
+                                    <div ng-bind-html="items.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </td>
+                    <td style='width:150px' class="clearfix addMedical">
+                        <!-- 药物 -->
+                        <div class="dropdown-select" style='width:120px'>
+                            <ui-select ng-model="item.medicine" theme="select2"
+                                       search-enabled="true" skip-focusser
+                                       on-select="changeDosageForm(item,$select.selected.drugId,$index)">
+                                <ui-select-match class="set-height" placeholder="拼音首码快速搜索"  autofocus="true">{{$select.selected.drugName ||''}} </ui-select-match>
+                                <ui-select-choices class='w-80' repeat="medicine.drugId as medicine in copyeMdicineDataList[$index]"
+                                refresh="serchDosageForm($select.search,item,$index)">
+                                    <div ng-bind-html="medicine.drugName | highlight: $select.search"></div>
+                                    <small></small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="medicalButton">
+                            <a ng-click="editeAdd($index,item)"
+                               class="button-default botton-save tab-header-btn"><i class="add"></i></a>
+                        </div>
+                    </td>
+                    <td class='w-80'>
+                        <!-- 剂型 -->
+                        <div class="dropdown-select" style='width:80px'>
+                            <ui-select ng-model="item.dosageForm" theme="bootstrap" skip-focusser
+                                       on-select="changeFications(item,$select.selected,$index)">
+                                <ui-select-match class="set-height" placeholder=''>{{$select.selected.dictItemName || ''}}
+                                </ui-select-match>
+                                <ui-select-choices class='w-80'
+                                                   repeat="dosageForm.dictItemValue as dosageForm in copyDosageForm[$index]">
+                                    <div ng-bind-html="dosageForm.dictItemName | highlight: $select.search"></div>
+                                    <small>
+                                        <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </td>
+                    <td class='w-80'>
+                        <!-- 规格 -->
+                        <div class="dropdown-select" style='width:80px'>
+                            <ui-select ng-model="item.fications" theme="bootstrap" skip-focusser>
+                                <ui-select-match class="set-height" placeholder=''>{{$select.selected.unit || ''}}
+                                </ui-select-match>
+                                <ui-select-choices class='w-80'
+                                                   repeat="fications.unit as fications in copyFicationsList[$index]">
+                                    <div ng-bind-html="fications.unit | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </td>
+                    <td class='w-80'>
+                            <div class="dropdown-select" style='width:80px'>
+                                <ui-select ng-model="item.timeUser" theme="bootstrap" skip-focusser>
+                                        <ui-select-match class="set-height">{{$select.selected.dictItemName ||''}}
+                                        </ui-select-match>
+                                        <ui-select-choices class='w-80' repeat="items.dictItemName as items in UseDrugFrequencyList">
+                                            <div ng-bind-html="items.dictItemName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                            </div>
+                    </td>
+
+                    <td class='w-80'><input type="text" ng-model="item.timeNumber" class="pd-l10"></td>
+                    <td class='w-80 clearfix addMedical'>
+                         <input type="text" ng-model="item.treatment"  style='width:40px' class="pd-l10">
+                        <div class="dropdown-select" style='width:40px;float:right'>
+                            <ui-select ng-model="item.treatmentUnit" theme="bootstrap" skip-focusser>
+                                <ui-select-match class="set-height">{{$select.selected.dictItemName ||''}}
+                                </ui-select-match>
+                                <ui-select-choices  style='width:40px' repeat="items.dictItemName as items in CourseOfTreatmentList">
+                                    <div ng-bind-html="items.dictItemName | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                       
+                     </td>
+                    <td style='width:120px' class="treatmentDate">
+                        <dryad-date-time-picker style='width:130px' max-data-true='true'  date-data="item.createTime"></dryad-date-time-picker>
+                    </td>
+                    <td style='width:56px' class="medicalButton">
+                        <a ng-click="addCpa($index)"
+                           class="button-default botton-save tab-header-btn"><i class="add"></i></a>
+                        <a ng-click="deletCpa($index)" ng-if="cureOutline.cpa.length>1"
+                           class="button-default botton-save screen-reduction"><i class="reduction"></i></a>
+                    </td>
+                </tr>
+            </table>
+            <!-- <div class="treatment-plan" ng-if="followlastplan">
+                <label>是否遵循前序治疗方案？</label>
+                <label class="radioStyle">
+                    <input name="treatmentPlan" type="radio" ng-value="0"
+                           ng-model="cureOutline.isSameAsPre"><span>是</span>
+                </label>
+                <label class="radioStyle">
+                    <input name="treatmentPlan" type="radio" ng-value="1"
+                           ng-model="cureOutline.isSameAsPre"><span>否</span>
+                </label>
+            </div> -->
+            <div class="clinic-split-line"></div>
+            <div id='next-visit-time' class="visiting-time">
+                <label>下次随访时间：</label>
+                <label>
+                    <dryad-date-time-picker max-data-true='true' date-data="cureOutline.nextTime"></dryad-date-time-picker>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

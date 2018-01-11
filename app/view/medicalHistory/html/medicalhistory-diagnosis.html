@@ -1,0 +1,48 @@
+<div class="medical-diagnose">
+    <div class="medical-tab-header">
+        <a ng-click="saveData()" class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</a>
+    </div>
+    <div class="diagnose-content">
+        <div class="row">
+            <div class="col-lg-2 text-right" style="padding: 0;">疾病分期<i class="yiwen" data-toggle="feno"  data-placement="right" data-container="body"  data-content='<p style="padding: 10px;">急性发作期：喘息、气急、咳嗽、胸闷等症状突然发生，或原有症状急剧加重，常有呼吸困难，特征为呼气流量降低。<br/>
+慢性维持期：在相当长的时间内，每周均不同频度和(或)不同程度出现症状(喘息、气急、胸闷、咳嗽等)。<br/>
+临床缓解期：经过治疗或未经治疗症状、体征消失，肺功能恢复到急性发作前水平，并维持3个月以上。</p>'></i>：</div>
+            <div class="col-lg-9">
+                <div>
+                    <span ng-repeat="item in diseaseStageList track by $index">
+                        <label class="wid-130 font-w500"><input type="radio" name="{{item.name}}" ng-value="item.dictItemValue" ng-model="initInfo.diseaseStage.state" ng-checked="initInfo.diseaseStage.state">{{item.dictItemName}}</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="split-line"></div>-->
+
+        <div class="row mg-tb20">
+            <div class="col-lg-2 text-right" style="padding: 0;">疾病严重程度<i class="yiwen" data-toggle="feno"  data-placement="right" data-container="body"  data-content='<img src="images/severityofdisease.png" id="severity_of_disease" style="width:550px;height:420px;opacity:1;"/>'></i>：</div>
+            <div class="col-lg-9">
+                <div>
+                    <span ng-repeat="item in sodList track by $index">
+                        <label class="wid-130 font-w500"><input type="radio" name="{{item.name}}" ng-value="item.dictItemValue" ng-model="initInfo.sod.state" ng-checked="initInfo.sod.state">{{item.dictItemName}}</label>
+                    </span>
+                    <span class="tip" ng-if="initInfo.sod.state===3">可点击右上角‘特殊哮喘记录’按钮，对重度哮喘病人做记录，并选择具体的哮喘类型！</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mg-tb20">
+            <div class="col-lg-2 text-right" style="padding: 0;">病情严重程度<i class="yiwen" data-toggle="feno"  data-placement="right" data-container="body"  data-content='<p style="padding:10px;">间歇状态(第1级)：白天症状<1次/周，夜间症状<2次/月，发作间歇肺功能正常。<br/>
+轻度持续(第2级)：白天症状>1次/周但<1次/日，夜间症状>2次/月但<1次/周，发作间歇肺功能正常。<br/>
+中度持续(第3级)：每日有症状，夜间发作>1次/周，发作时影响活动和睡眠，60%预计值<肺功能<80%预计值。<br/>
+重度持续(第4级)：每日有症状，夜间症状影响活动和睡眠，症状持续加重，日常肺功能<60%预计值。</p>
+'></i>：</div>
+            <div class="col-lg-9">
+                <div>
+                    <span ng-repeat="item in sodSubList track by $index">
+                        <label class="wid-130 font-w500"><input type="radio" name="{{item.name}}" ng-value="item.dictItemValue" ng-model="initInfo.sodSub.state" ng-checked="initInfo.sodSub.state">{{item.dictItemName}}</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

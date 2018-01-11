@@ -1,0 +1,206 @@
+<div class="medical-history-details-case">
+        <!-- 确认患者并且创建病历 -->
+        <div class="medical-case-content" data-ng-if="true">
+            <div class="case-data-content  p-t15-l0"  ng-if="labInspection">
+                <div class="flex" ng-if='labInspection.bre.checkTime||labInspection.bre.wbc||labInspection.bre.eos||labInspection.bre.neut'>
+                    <div>血常规检查：</div>
+                    <div  class="simple-text">
+                        <p ng-if='labInspection.bre.checkTime'>检查时间： <span>{{labInspection.bre.checkTime | date: 'yyyy-MM-dd' }}</span></p>
+                        <p ng-if='labInspection.bre.wbc'>白细胞总数（WBC）： <span>{{labInspection.bre.wbc}}</span></p>
+                        <p ng-if='labInspection.bre.eos.percent'>嗜酸性粒细胞（EOS）： <span>{{labInspection.bre.eos.percent}}%</span> </p>
+                        <p ng-if='labInspection.bre.neut'>中性粒细胞比例（NEUT%）： <span>{{labInspection.bre.neut}}%</span></p>
+                    </div>
+                </div>
+                <div  class="clinic-split-line"  ng-if="labInspection.lge.checkTime||labInspection.lge.amount"></div>
+                <div class="flex" ng-if="labInspection.lge.checkTime || labInspection.lge.checkTIme ||labInspection.lge.amount">
+                    <div>血清总IgE检测：</div>
+                    <div  class="simple-text">
+                        <span ng-if="labInspection.lge.checkTime">检查时间：{{labInspection.lge.checkTime | date: 'yyyy-MM-dd'}}</span>
+                        <span ng-if="labInspection.lge.checkTIme">检查时间：{{labInspection.lge.checkTIme | date: 'yyyy-MM-dd'}}</span>
+                        &nbsp;&nbsp;
+                        <span  ng-if="labInspection.lge.amount">总IgE：{{labInspection.lge.amount}}IU/ml</span>
+                    </div>
+                </div>
+                <div  class="clinic-split-line" ng-if="labInspection.pft"></div>
+                <div class="flex">
+                    <div>肺功能检查：</div>
+                    <div>
+                        <p ng-if="labInspection.pft.checkTime">检查时间：{{labInspection.pft.checkTime | date: 'yyyy-MM-dd'}}</p>
+                        <div>
+                            <table ng-if="labInspection.pft.list[0].estimate||labInspection.pft.list[0].amount||labInspection.pft.list[0].percent">
+                                <tr>
+                                    <th>检查项目</th>
+                                    <th>正常预计值（L）</th>
+                                    <th>实测值（L）</th>
+                                    <th>%pred</th>
+                                </tr>
+                                <tr ng-repeat="list in labInspection.pft.list" ng-if='list.estimate||list.amount||list.percent'>
+                                    <td ng-bind="list.name"><i ng-show="$index==list.length">|</i ><i></i></td>
+                                    <td ng-bind="list.estimate">100</td>
+                                    <td ng-bind="list.amount">100</td>
+                                    <td ng-bind="list.percent + '%'">100</td>
+                                    <!--
+                                                                   <td ng-bind="(list.amount*100/list.estimate).toFixed(0) != 'null'  ? (list.amount*100/list.estimate).toFixed(2) + '%' : '&#45;&#45;'">100</td>
+                                    -->
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <div ng-if="labInspection.pft.bdt">支气管舒张试验</div>
+                            <div class="c-m"  ng-if="labInspection.pft.bdt">
+                                <span>FEV1上升：&nbsp;{{labInspection.pft.bdt.amount}}L&nbsp;{{labInspection.pft.bdt.percent}}%&nbsp;{{!labInspection.pft.bdt.state? '' : labInspection.pft.bdt.state == 1 ? '阳性' : '阴性'}}</span>
+                            </div>
+                            <div>支气管激发试验</div>
+                            <div class="t-i-20 c-m"  ng-if="labInspection.pft.bpt.type||labInspection.pft.bpt.result.state||labInspection.pft.bpt.result.concentration||labInspection.pft.bpt.result.dosage||labInspection.pft.bpt.result.amount">
+                                <div  class="flex" ng-if="labInspection.pft.bpt.type">
+                                    <div>
+                                        <span class="fl-l wid-130">激发试剂：</span>
+                                        <span class="fl-l">{{labInspection.pft.bpt.type}}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.state">
+                                        <span class="fl-l wid-130">结果：</span>
+                                        <span class="fl-l">{{!labInspection.pft.bpt.result.state? '' : labInspection.pft.bpt.result.state== 1 ? '阳性' : '阴性'}}</span>
+                                    </div>
+                                    <div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.concentration && labInspection.pft.bpt.result.state == 1">
+                                        <span class="fl-l wid-130">激发浓度：</span>
+                                        <span class="fl-l">{{labInspection.pft.bpt.result.concentration}}</span>
+                                    </div>
+                                    <div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.dosage && labInspection.pft.bpt.result.state == 1">
+                                        <span class="fl-l wid-130">累计吸入剂量：</span>
+                                        <span class="fl-l">{{labInspection.pft.bpt.result.dosage}}</span>
+                                    </div>
+                                    <div class="fl-l wid-max" ng-if="labInspection.pft.bpt.result.amount && labInspection.pft.bpt.result.state == 1">
+                                        <span class="fl-l wid-130">FEV1下降：</span>
+                                        <span class="fl-l">{{labInspection.pft.bpt.result.amount}}L&nbsp;{{labInspection.pft.bpt.result.percent}}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div  class="clinic-split-line" ng-if='labInspection.cap'></div>
+                <div class="flex">
+                    <div>变应原检测：</div>
+                    <div ng-if='labInspection.cap.ast'>
+                        <div  ng-if='labInspection.cap.ast.checkTime||labInspection.cap.ast.result.state'>过敏原皮试：</div>
+                        <div class="t-i-20" ng-if='labInspection.cap.ast.checkTime||labInspection.cap.ast.result.state'>
+                            <div class="c-m" ng-if="labInspection.cap.ast.checkTime"><span >时间：</span><span ng-bind="labInspection.cap.ast.checkTime | date: 'yyyy-MM-dd'"></span></div>
+                            <div class="c-m"><span >结果：</span><span ng-bind="!labInspection.cap.ast.result.state? '' : labInspection.cap.ast.result.state== '1' ? '阳性' : '阴性'"></span></div>
+                            <div class="p-l-20" ng-if="labInspection.cap.ast.result.state =='1'">
+                                <table ng-if="labInspection.cap.ast.result.source[0].name">
+                                    <tr>
+                                        <th class="table-width-50">过敏源</th>
+                                        <th class="table-width-50">结果分级</th>
+                                    </tr>
+                                    <tr ng-repeat="source in labInspection.cap.ast.result.source">
+                                        <td ng-bind="source.name"></td>
+                                        <td ng-bind="source.intensityName"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-if='labInspection.cap.lge.checkTime||labInspection.cap.lge.list.length'>血清特异性IgE检测：</div>
+                        <div class="t-i-20" ng-if='labInspection.cap.lge.checkTime||labInspection.cap.lge.list.length'>
+                            <div class="c-m" ng-if="labInspection.cap.lge.checkTime">时间：{{labInspection.cap.lge.checkTime | date: 'yyyy-MM-dd'}}</div>
+                            <div class="p-l-20">
+                                <table ng-if='labInspection.cap.lge.list.length'>
+                                    <tr>
+                                        <th class="table-width-30">过敏原</th>
+                                        <th class="table-width-25">OD值</th>
+                                        <th class="table-width-25">浓度（KIU/L）</th>
+                                        <th class="table-width-20">级别</th>
+                                    </tr>
+                                    <tr ng-repeat="list in labInspection.cap.lge.list">
+                                        <td ng-bind="list.name"></td>
+                                        <td ng-bind="list.ODAmount"></td>
+                                        <td ng-bind="list.amount"></td>
+                                        <td ng-bind="list.level"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="clinic-split-line"  ng-if='labInspection.ait'></div>
+                <div class="flex" ng-if='labInspection.ait'>
+                    <div>气道炎症检查：</div>
+                    <div>
+                        <div  ng-if='labInspection.ait.feno.checkTime'>呼出气一氧化氮（FeNO）：</div>
+                        <div class="p-l-20 c-m" ng-if='labInspection.ait.feno.checkTime'>
+                            时间：{{labInspection.ait.feno.checkTime | date: 'yyyy-MM-dd'}}&nbsp;&nbsp;特异性IgE：{{labInspection.ait.feno.amount}}&nbsp;ppd
+                        </div>
+                        <div ng-if='labInspection.ait.list'>诱导痰检查：</div>
+                        <div  class="p-l-20 flex c-m">
+                            <div class="f-1 t-a-l" ng-if="labInspection.ait.list.checkTime">
+                                <span class="fl-l wid-170">时间：</span>
+                                <span class="fl-l" ng-bind="labInspection.ait.list.checkTime | date: 'yyyy-MM-dd'"></span>
+                            </div>
+                            <div class="f-1 t-a-l"  ng-if="labInspection.ait.list.totalCount">
+                                <span class="fl-l wid-170">细胞总数：</span>
+                                <span class="fl-l">{{labInspection.ait.list.totalCount}}</span>
+                            </div>
+                        </div>
+                        <div  class="p-l-20 flex c-m" >
+                            <div class="f-1 t-a-l"  ng-if='labInspection.ait.list.eos'>
+                                <span class="fl-l wid-170">嗜酸性粒细胞比例(Eos)：</span>
+                                <span class="fl-l" ng-bind="labInspection.ait.list.eos"></span>
+                            </div>
+                            <div class="f-1 t-a-l" ng-if='labInspection.ait.list.neut'>
+                                <span class="fl-l wid-170">中性粒细胞比例(N)：</span>
+                                <span class="fl-l">{{labInspection.ait.list.neut}}</span>
+                            </div>
+                        </div>
+                        <div  class="p-l-20 flex c-m" >
+                            <div class="f-1 t-a-l"  ng-if='labInspection.ait.list.mp'>
+                                <span class="fl-l wid-170">巨噬细胞比例(M)：</span>
+                                <span class="fl-l">{{labInspection.ait.list.mp}}</span>
+                            </div>
+                            <div class="f-1 t-a-l" ng-if='labInspection.ait.list.lymr'>
+                                <span class="fl-l wid-170">淋巴细胞(L)：</span>
+                                <span class="fl-l">{{labInspection.ait.list.lymr}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="clinic-split-line"  ng-if='labInspection.xre.list'> </div>
+                <div class="flex"  ng-if='labInspection.xre.list'>
+                    <div>影像学检查：</div>
+                    <div>
+                        <div ng-repeat="list in labInspection.xre.list" ng-if='list.checkTime||list.state'>
+                            <span class="lk-w-100">{{list.name}}:</span>
+                            <span class="p-r-20 lk-w-140">时间：{{list.checkTime | date: 'yyyy-MM-dd'}}</span>
+                            <span>结果：<i ng-bind="!list.state? '' : list.state == '2' ? '异常' : '无异常'"></i></span>
+                        </div>
+
+                        <div>
+                            <span cass="lk-w-100">其他检查：</span>
+                            <span ng-bind="labInspection.xre.otherCheck"></span>
+                        </div>
+                    </div>
+                </div>
+                <div  class="clinic-split-line" ng-if="labInspection.images.list.length>0 && user.userType!=4"></div>
+                <div class="flex" ng-if="labInspection.images.list.length>0 && user.userType!=4">
+                    <div>影像图片：</div>
+                    <div>
+                        <div class="flex flex-wrap">
+                            <div class="img-box" ng-repeat="item in labInspection.images.list" style="background:url({{item.url}}) no-repeat center; background-size:cover" data-ng-click="viewPictureDetails(item)">
+                                <!--
+                                                        <img  ng-src="{{}}"/>
+                                -->
+                                <div class="img-box-bottom">{{item.desc}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="medical-case-content"  ng-if='imgShow'  style="margin:20px auto;text-align:center">
+                <img src="../../../../images/nodata.png" style="width:330px;" alt="">
+            </div>
+        </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="dryad-head">
+    <div class="dryad-head-search">
+        <label class="head-search">
+            <input class="search-input" type="text" placeholder="姓名/拼音/病历号查询">
+            <div class="search-list" data-ng-if="false">
+                <i class="search-dialog dialog-needle"></i>
+                <span class="search-list-promp">找到<b>{{searchList.length}}</b>位符合条件的患者</span>
+                <ul class="search-list-main">
+                    <li data-ng-repeat="patient in searchList">
+                        <a data-ng-click="selectedItem(patient)">
+                            <i  class="patients-img"><img data-ng-src={{patient.img}} alt=""></i>
+                            <div class="patients-name-info">
+                                <p class="patients-name">{{patient.name}}</p>
+                                <p class="patients-info"><i class="patients-sex" data-ng-class="{'patients-man':patient.sex == 'man','patients-women':patient.sex == 'women'}"></i>23岁</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <i class="search"></i>
+        </label>
+        <a data-ng-click="mainvm.medicalRecords()" class="head-new-add"><i class="new-add"></i>新建病历</a>
+    </div>
+    <div class="dryad-head-operate">
+        <a class="meetting-list"><i class="meeting"></i></a>
+        <a class="task-list"><i class="task"></i></a>
+        <div class="user-operate">
+            <a class="user" element-show-hide>
+                <i class="user-img"><img data-ng-src={{userimg}} alt="" class="img"></i>
+                <span class="head-user-name">Jyue Huang</span>
+                <i class="user-select"></i>
+            </a>
+            <div class="operate-list">
+                <i class="operate-dialog arrow-new"></i>
+                <ul class="operate-list-main">
+                    <li data-ng-click="mainvm.editPassWord()"><i class="change-password"></i>修改密码</li>
+                    <li data-ng-click="mainvm.lock()"><i class="lock-window"></i>锁定屏幕</li>
+                    <li data-ng-click="mainvm.signOut()"><i class="sign-out"></i>退出</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

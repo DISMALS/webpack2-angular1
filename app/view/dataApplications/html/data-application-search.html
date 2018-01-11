@@ -1,0 +1,94 @@
+<div class="main-right-search">
+    <div class="searchTitle">
+        <label class="head-search m-r-20" ng-show='user.userType!=4'>
+            <span class="search-input">
+                <input class="keywordInput" type="text" data-ng-model="keyword" data-ng-keydown="enterFn($event)" placeholder="姓名/拼音/病历号/手机号">
+            </span>
+            <i class="search searchBg" data-ng-click="seach(obj.keyword)"></i>
+         </label>
+        <label class="head-search">
+            <span class="search-input high-level-search">
+                    <!-- on-select -->
+                <ui-select data-ng-model="objs.hisObj"
+                        theme="bootstrap"
+                        reset-search-input="true">
+                    <ui-select-match placeholder="高级筛选历史记录">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="relSearchHis.name as relSearchHis in relSearchHisLists track by $index" 
+                        data-ng-hide="relSearchHisLists.length == 0" class="set-width">
+                        <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
+                        <div class="rel-query-list-item" data-ng-click="selectHisList($event,relSearchHis)">
+                            <span data-ng-bind="relSearchHis.name"></span>
+                            <i class="delete-icon"></i>
+                            <i class="change-password"></i>
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+            </span>
+        </label>
+        <a data-ng-click="" class="screening">
+            高级筛选
+            <i class="full-selectdown ico"></i>
+            <i class="screen-dialog dialog-needle"></i>
+        </a>
+        <!-- screen-data="screenData" -->
+        
+        <a data-ng-click="exportMedical()" class="exportBtn button-default botton-save">
+            <i class="export-icon" style='font-size:18px;line-height:16px'></i> 数据导出
+        </a>
+    </div>
+    <div class="all-scroll">
+    		<dryad-screen-ui search-fn="searchFn" type-data="2" clean-flag="objs.cleanFlag"></dryad-screen-ui>
+        <!-- screen conditions -->
+        <!--<div class="advanced-filter" data-ng-if="screenList.length > 0">
+            <div class="filter-title">高级筛选&nbsp;&nbsp;></div>
+            <div class="filter-conditions">
+                <div class="every-item" data-ng-repeat="item in screenList track by $index">
+                    <span class="filter-range" data-ng-bind="item.transObj.logicRelation"></span>
+                    <span>{{($index + 1) + '、'}}</span>
+                    <span data-ng-bind="item.transObj.filterItemName"></span>
+                    <span data-ng-bind="item.transObj.filterConditionName"></span>
+                    <span data-ng-bind="item.transObj.beginValueNameCn ? item.transObj.beginValueNameCn:item.transObj.beginValueName"></span>
+                    <span data-ng-bind="item.transObj.endValueName"></span>
+                    <a data-ng-click="deleteFilter($index)">删除</a>
+                </div>
+                <div class="filter-operate">
+                    <a class="filter-clear" data-ng-click="clearFilter()">清空</a>
+                    <a class="filter-edite" data-ng-click="editFilter()">修改筛选条件</a>
+                </div>
+            </div>
+        </div>-->
+        <!-- grid -->
+        <div class="dryad-grid">
+            <layui-table-ui grid-options="tableOptions"></layui-table-ui>
+            <!-- <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid> -->
+        </div>
+    </div>
+    
+    <!-- page -->
+    <div class="common-page">
+        <!-- <dryad-ui-page page-config="pageConfig" page-data-fn="initFn"></dryad-ui-page> -->
+        <div class="dryad-page-main" data-ng-if='pageConfig.pageCount > pageConfig.pageSize'>
+            <span class="count-size">共{{pageConfig.pageCount}}条</span>
+            <button class="button " ng-click="pagination.goto(1)" ng-disabled='pagination.currentPage == 1'>
+                <i class="fa fa-step-backward"></i>
+            </button>
+            <button class="button" ng-click="pagination.previousPage()" ng-disabled='pagination.currentPage == 1'>
+                <i class="fa fa-backward"></i>
+            </button>
+            
+            <a class='dryad-page-link' ng-repeat="item in pagination.items" ng-class="pagination.currentPage == item ? 'active' : ''" ng-click="pagination.goto(item)">{{item}}</a>
+            <button class="button" ng-click="pagination.nextPage()" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                <i class="fa fa-forward"></i>
+            </button>
+            <button class="button" ng-click="pagination.goto(pagination.pageCount)" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                <i class="fa fa-step-forward"></i>
+            </button>
+            <div class="jump-page">
+                跳至
+                <input type="text" class="text-center go-page" ng-model="pagination.goToPage" data-ng-keyup="jumpTo($event)"> 页
+            </div>
+        
+            <!-- <button class="button" ng-click="pagination.goto(pagination.goToPage)">GO</button> -->
+        </div>
+    </div>
+</div>

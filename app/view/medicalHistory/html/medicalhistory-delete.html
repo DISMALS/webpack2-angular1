@@ -1,0 +1,17 @@
+<div class="modal-title" drag-modal>
+        <!-- <h2 class="delete-modal-title" data-ng-bind="deleteModalCtrlVm.items.title"></h2> -->
+    <span class="title" data-ng-bind="delectMedicalhistoryCtrlVm.items.title"></span>
+    <i class="close-modal" data-ng-click="delectMedicalhistoryCtrlVm.cancle()"></i>
+</div>
+<div class="delete-modal dryad-drag-disabled">
+    <div class="delete-modal-content">
+        <i class="warning-icon"></i>
+        <span class="text" data-ng-bind="delectMedicalhistoryCtrlVm.items.content"></span>
+    </div>
+    <div class="delete-modal-btn">
+        <a data-ng-click="delectMedicalhistoryCtrlVm.noSure()" ng-if='type!="DELETE"' class="button botton-cancle">不保存</a>
+        <a data-ng-click="delectMedicalhistoryCtrlVm.cancle()" class="button botton-cancle">取消</a>
+        <a data-ng-click="delectMedicalhistoryCtrlVm.sure()" ng-if='type!="DELETE"'  class="button-default botton-delete">保存</a>
+        <a data-ng-click="delectMedicalhistoryCtrlVm.delete()" ng-if='type=="DELETE"'  class="button-default botton-delete">确定</a>
+    </div>
+</div>

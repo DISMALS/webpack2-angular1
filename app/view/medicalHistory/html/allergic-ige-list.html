@@ -1,0 +1,43 @@
+<div class="table-list">
+    <form verify-scope="tipStyle:2" name="checkForm">
+        <table class="table-main" cellspacing="0" cellpadding="0" border="0">
+        <tr class="disposition-grid-header">
+            <th class="table-width-30">过敏原</th>
+            <th class="table-width-20">OD值</th>
+            <th class="table-width-20">浓度（KIU/L）</th>
+            <th class="table-width-15">级别</th>
+            <th class="table-width-15">操作</th>
+        </tr>
+        <tr data-ng-repeat="ige in igeList track by $index">
+            <td>
+                <div class="nature-select">
+                    <ui-select data-ng-model="ige.value" search-enabled="false" theme="select2" ng-disabled="ige.hide">
+                        <ui-select-match placeholder="请选择过敏源"><span data-ng-bind="$select.selected.dictItemName"></span></ui-select-match>
+                        <ui-select-choices repeat="item.dictItemValue as item in allergyList">
+                            <span data-ng-bind="item.dictItemName"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </td>
+            <td>
+                <div class="nature-select allergicInput">
+                    <input type="text" ng-model="ige.ODAmount">
+                </div>
+            </td>
+            <td>
+                <div class="nature-select allergicInput">
+                    <input type="text" ng-model="ige.amount" data-ng-change="changData(ige)" ng-verify="pattern:/^\d+(\.\d{1,3})?$/">
+                </div>
+            </td>
+            <td>
+                <div class="nature-select" ng-bind="ige.level">
+                 </div>
+            </td>
+            <td>
+                <a class="screen-icon screen-add"  data-ng-click="addRow($index)"><i class="add"></i></a>
+                <a class="screen-icon screen-reduction"  ng-if="igeList.length>1" data-ng-click="deleteRow(ige,$index)"><i class="reduction"></i></a>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

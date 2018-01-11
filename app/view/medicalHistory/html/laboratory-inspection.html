@@ -1,0 +1,368 @@
+<div class="lab-inspection">
+    <div class="medical-tab-header">
+        <ul class="navs" ng-init="activeIndex=0">
+            <li ng-repeat="item in navs track by item.id">
+                <a href="" ng-click="scrollTo(item.id,$index)" ng-class="{'nav-active': activeIndex==$index }">{{item.name}}</a>
+            </li>
+        </ul>
+        <div class="slide-bar"></div>
+        <a ng-click="saveData()" class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</a>
+    </div>
+    <div class="medical-lab-main">
+        <!-- 模块一 -->
+        <div class="modules row" id="bre">
+            <div class="left-title">
+                <span>血常规检查：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title fl-l wid-200">检查时间：</span>
+                        <span class="segment-content fl-l">
+                            <div class="lab-date-inout timepickertop">
+                                <dryad-date-time-picker date-data="medicalHistoryObj.bre.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row">
+                    <div class="segment">
+                        <span class="segment-title fl-l wid-200">白细胞总数（WBC）：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入白细胞总数" data-ng-model="medicalHistoryObj.bre.wbc">10<sup>9</sup>/L
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row">
+                    <div class="segment">
+                        <span class="segment-title fl-l wid-200">嗜酸性粒细胞（EOS）：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入嗜酸性粒细胞比例" data-ng-model="medicalHistoryObj.bre.eos.percent">%
+                            <input type="text" class="user-input m-l-10" placeholder="请输入嗜酸性粒细胞数量" data-ng-model="medicalHistoryObj.bre.eos.amount">10<sup>9</sup>/L
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row">
+                    <div class="segment">
+                        <span class="segment-title fl-l wid-200">中性粒细胞比例（NEUT%）：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入细胞比例" data-ng-model="medicalHistoryObj.bre.neut">%
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块二 -->
+        <div class="modules row" id="lge">
+            <div class="left-title">
+                <span>血清总IgE检测：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title">检查时间：</span>
+                        <span class="segment-content">
+                            <div class="lab-date-inout">
+                                <dryad-date-time-picker date-data="medicalHistoryObj.lge.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="segment">
+                        <span class="segment-title">总IgE<i class="yiwen" data-toggle="feno"  data-placement="top" data-container="body"  data-content='<p style="padding: 10px;">正常参考值：6-20岁<51IU/ml；20岁以上<100IU/ml</p>'></i>：</span>
+                        <span class="segment-content">
+                            <input type="text" class="user-input" placeholder="请输入总IgE" data-ng-model="medicalHistoryObj.lge.amount">IU/ml
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块三 -->
+        <div class="modules row" id="pft">
+            <div class="left-title">
+                <span>肺功能检查：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title">检查时间：</span>
+                        <span class="segment-content">
+                            <div class="lab-date-inout">
+                                <dryad-date-time-picker date-data="medicalHistoryObj.pft.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <dryad-lab-check-ui lung-check-list="medicalHistoryObj.pft.list"></dryad-lab-check-ui>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment">
+                    		<span class="segment-title">支气管舒张试验：</span>
+                        <span class="segment-title">FEV1上升：</span>
+                        <span class="segment-content">
+                            <input type="text" class="user-input" data-ng-model="medicalHistoryObj.pft.bdt.amount">L
+                            <input type="text" class="user-input m-l-10" data-ng-model="medicalHistoryObj.pft.bdt.percent">%
+                            <label class="label-radio m-l-10"><input type="radio" name="positivenegative" class="radio-input mg-8" data-ng-model="medicalHistoryObj.pft.bdt.state"  value="1">阳性</label>
+                            <label class="label-radio m-l-10"><input type="radio" name="positivenegative" class="radio-input mg-8" data-ng-model="medicalHistoryObj.pft.bdt.state" value="2">阴性</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment table-width-100">
+                        <span class="segment-title">支气管激发试验：</span>
+                        <span class="segment-content table-width-100">
+                            <div class="segment-row">
+                                <span class="segment-row-title">激发试剂：</span>
+                                <span class="segment-row-content">
+                                    <label class="label-radio m-l-10"><input type="radio" class="mg-8" name="reagent" class="radio-input" data-ng-model="medicalHistoryObj.pft.bpt.type"  value="1">组胺</label>
+                                    <label class="label-radio m-l-10"><input type="radio" name="reagent" class="radio-input mg-8" data-ng-model="medicalHistoryObj.pft.bpt.type"  value="2">乙酰甲胆碱</label>
+                                    <label class="label-radio m-l-10"><input type="radio" name="reagent" class="radio-input mg-8" data-ng-model="medicalHistoryObj.pft.bpt.type"  value="3">甘露醇</label>
+                                </span>
+                            </div>
+                            <div class="segment-row">
+                                <span class="segment-row-title">结果：</span>
+                                <span class="segment-row-content">
+                                    <label class="label-radio m-l-10"><input type="radio" name="resultState" class="user-input mg-8" data-ng-model="medicalHistoryObj.pft.bpt.result.state"  value="1">阳性</label>
+                                    <label class="label-radio m-l-10"><input type="radio" name="resultState" class="user-input mg-8" data-ng-model="medicalHistoryObj.pft.bpt.result.state"  value="2">阴性</label>
+                                </span>
+                            </div>
+                            <div class="segment-row m-b-10" ng-if='medicalHistoryObj.pft.bpt.result.state == 1'>
+                                <span class="segment-row-title">激发浓度：</span>
+                                <span class="segment-row-content">
+                                    <input type="text" class="user-input" data-ng-model="medicalHistoryObj.pft.bpt.result.concentration">
+                                </span>
+                            </div>
+                            <div class="segment-row m-b-10" ng-if='medicalHistoryObj.pft.bpt.result.state == 1'>
+                                <span class="segment-row-title">累计吸入剂量：</span>
+                                <span class="segment-row-content">
+                                    <input type="text" class="user-input" data-ng-model="medicalHistoryObj.pft.bpt.result.dosage">
+                                </span>
+                            </div>
+                            <div class="segment-row" ng-if='medicalHistoryObj.pft.bpt.result.state == 1'>
+                                <span class="segment-row-title">FEV1下降：</span>
+                                <span class="segment-row-content">
+                                    <input type="text" class="user-input" data-ng-model="medicalHistoryObj.pft.bpt.result.amount">L
+                                    <input type="text" class="user-input m-l-10" data-ng-model="medicalHistoryObj.pft.bpt.result.percent">%
+                                </span>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块四 -->
+        <div class="modules row" id="cap">
+            <div class="left-title">
+                <span>变应原检测：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row">
+                    <div class="segment table-width-100">
+                        <span class="segment-title">过敏原皮试：</span>
+                        <span class="segment-content table-width-100">
+                            <div class="segment-row">
+                                <span class="segment-row-title">时间：</span>
+                                <span class="segment-row-content">
+                                    <div class="lab-date-inout">
+                                        <dryad-date-time-picker date-data="medicalHistoryObj.cap.ast.checkTime"></dryad-date-time-picker>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="segment-row">
+                                <span class="segment-row-title">结果：</span>
+                                <span class="segment-row-content">
+                                        <label class="label-radio m-l-10"><input type="radio" name="resultAst" class="radio-input mg-8" data-ng-model="medicalHistoryObj.cap.ast.result.state" value="1">阳性</label>
+                                        <label class="label-radio m-l-10"><input type="radio" name="resultAst" class="radio-input mg-8" data-ng-model="medicalHistoryObj.cap.ast.result.state" value="2">阴性</label>
+                                </span>
+                            </div>
+                            <div class="segment-row" ng-show="medicalHistoryObj.cap.ast.result.state == '1'">
+                                <dryad-allergic-record allergic-record-list="medicalHistoryObj.cap.ast.result.source"></dryad-allergic-record>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment table-width-100">
+                        <span class="segment-title">血清特异性IgE检测
+                        	<i class="yiwen"
+                               data-toggle="feno"
+                               data-placement="top"
+                               data-container="body"
+                               data-content='
+                               <ul class="toolTipUl" style="padding: 10px;">
+                               <li><span><0.35</span><span>0级</span><span>阴性</span></li>
+                               <li><span>0.35-<0.7</span><span>1级</span><span>低</span></li>
+                               <li><span>0.7-3.5</span><span>2级</span><span>中等</span></li>
+                               <li><span>3.5-17.5</span><span>3级</span><span>高</span></li>
+                               <li><span>17.5-50</span><span>4级</span><span>非常高</span></li>
+                               <li><span>50-100</span><span>5级</span><span>很高</span></li>
+                               <li><span>>100</span><span>6级</span><span>极高</span></li>
+                               </ul>
+                            '>
+                            </i>：</span>
+                        <span class="segment-content table-width-100">
+                            <div class="segment-row">
+                                <span class="segment-row-title">时间：</span>
+                                <span class="segment-row-content">
+                                    <div class="lab-date-inout">
+                                        <dryad-date-time-picker date-data="medicalHistoryObj.cap.lge.checkTime"></dryad-date-time-picker>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="segment-row">
+                                <dryad-ige-value ige-list="medicalHistoryObj.cap.lge.list"></dryad-ige-value>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块五 -->
+        <div class="modules row" id="ait">
+            <div class="left-title">
+                <span>气道炎症检查：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title biginner">呼出气一氧化氮(FeNO)<i class="yiwen" data-toggle="feno"  data-placement="top" data-container="body"  data-content='<p style="padding: 10px;">成人:<25ppb(低水平正常);25～50ppb(中间水平轻度);>50ppb(高水平重度)<br />
+儿童:<20ppb(低水平正常);20～35ppb(中间水平轻度);>35ppb(高水平重度)</p>'></i>：</span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title">时间：</span>
+                        <span class="segment-content">
+                            <div class="lab-date-inout">
+                                <dryad-date-time-picker date-data="medicalHistoryObj.ait.feno.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="segment">
+                        <span class="segment-title">结果：</span>
+                        <span class="segment-content">
+                                <input type="text" class="user-input" placeholder="请输入特异性IgE" data-ng-model="medicalHistoryObj.ait.feno.amount">ppb
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title">诱导痰检查：</span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment">
+                        <span class="segment-title">时间：</span>
+                        <span class="segment-content">
+                            <div class="lab-date-inout">
+                                <dryad-date-time-picker date-data="medicalHistoryObj.ait.list.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="segment">
+                        <span class="segment-title">细胞总数：</span>
+                        <span class="segment-content">
+                            <input type="text" class="user-input" placeholder="请输入细胞总数" data-ng-model="medicalHistoryObj.ait.list.totalCount">
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment fl-l">
+                        <span class="segment-title fl-l wid-165">嗜酸性粒细胞比例(Eos)：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入细胞比例" data-ng-model="medicalHistoryObj.ait.list.eos">%
+                        </span>
+                    </div>
+                    <div class="segment fl-l mg-l-3">
+                        <span class="segment-title fl-l wid-165">中性粒细胞比例(N)：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入细胞比例" data-ng-model="medicalHistoryObj.ait.list.neut">%
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment fl-l">
+                        <span class="segment-title fl-l wid-165">巨噬细胞比例(M)：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入细胞比例" data-ng-model="medicalHistoryObj.ait.list.mp">%
+                        </span>
+                    </div>
+                    <div class="segment fl-l mg-l-3">
+                        <span class="segment-title fl-l wid-165 ">淋巴细胞(L)：</span>
+                        <span class="segment-content fl-l">
+                            <input type="text" class="user-input" placeholder="请输入淋巴细胞" data-ng-model="medicalHistoryObj.ait.list.lymr">%
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块六 -->
+        <div class="modules row" id="xre">
+            <div class="left-title">
+                <span>影像学检查：</span>
+            </div>
+            <div class="right-content">
+                <div class="tr-row row" ng-repeat="item in medicalHistoryObj.xre.list track by $index">
+                    <div class="segment wid-120">
+                        <span class="segment-title" ng-bind="item.name"></span>
+                    </div>
+                    <div class="segment">
+                        <span class="segment-title">时间：</span>
+                        <span class="segment-content">
+                            <div class="lab-date-inout">
+                                <dryad-date-time-picker date-data="item.checkTime"></dryad-date-time-picker>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="segment">
+                        <span class="segment-title">结果：</span>
+                        <span class="segment-content">
+                            <label class="label-radio m-l-10"><input type="radio" name="result{{$index}}" class="radio-input mg-8" data-ng-model="item.state" value="1">无异常</label>
+                            <label class="label-radio m-l-10"><input type="radio" name="result{{$index}}" class="radio-input mg-8" data-ng-model="item.state" value="2">异常</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="tr-row row">
+                    <div class="segment table-width-100">
+                        <span class="segment-title">其他检查：</span>
+                        <span class="segment-content">
+                            <textarea class="other-check-textarea" name="" id="" ng-model="medicalHistoryObj.xre.otherCheck"></textarea>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 模块七 -->
+        <div class="modules row" id="images-list">
+            <div class="left-title">
+                <span>影像图片：</span>
+            </div>
+            <div class="right-content">
+                <div class="pictur-list">
+                    <ul>
+                        <li data-ng-repeat="picture in medicalHistoryObj.images.list track by $index">
+                            <i class="close-modal" ng-click="onDeleteImg($index)"></i>
+                            <a data-ng-click="viewPictureDetails(picture)" class="lab-picture-list">
+                                <img data-ng-src={{picture.url}} class="lab-picture">
+                                <p data-ng-bind="picture.desc"></p>
+                            </a>
+                        </li>
+                        <li>
+                            <label class="upLoadImg">
+                                <span>
+                                    <i class="add-picture"></i>
+                                    <p>新增图片</p>
+                                </span>
+                                <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" service-fn="serviceFunc" preview-src="pictureSrc" dryad-upload-img> 
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <!-- page -->
+                <!-- <div class="common-page">
+                    <dryad-ui-page page-config="pageConfig"></dryad-ui-page>
+                </div> -->
+            </div> 
+        </div>
+    </div>
+</div>

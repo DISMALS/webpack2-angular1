@@ -1,0 +1,15 @@
+<div class="preview">
+   <div class="previewTitleCenter">
+       {{textData.title}}
+       <i class="close-modal" ng-click="closedModal()"></i>
+   </div>
+    <div class="previewContentText" ng-bind-html="textData.content">
+
+    </div>
+    <div class="approvalButton" ng-if="type == 'approval'">
+        <ul>
+            <li ng-click="getReject()">退回</li>
+            <li ng-click="getApprove()">发布</li>
+        </ul>
+    </div>
+</div>

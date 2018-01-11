@@ -1,0 +1,29 @@
+<div class="medical-history-details-case">
+        <!-- 确认患者并且创建病历 -->
+        <div class="medical-case-content" data-ng-if="true">
+            <div class="case-data-content  p-t15-l0" ng-if="diagnose">
+                <div class="flex" ng-if="diagnose.diseaseStage.dictItemValue">
+                    <div>病情分期：</div>
+                    <div class="c-m" >
+                        {{diagnose.diseaseStage.dictItemValue}}
+                    </div>
+                </div>
+                <!--<div class="clinic-split-line"  ng-if="diagnose.sod.dictItemValue"></div>-->
+                <div class="flex"  ng-if="diagnose.sod.state!=null">
+                    <div>疾病严重程度：<p class="c-m l-h-1" style="text-align: center;"></p></div>
+                    <div class="c-m" >
+                        {{diagnose.sod.dictItemValue}}
+                    </div>
+                </div>
+                <div class="flex"  ng-if="diagnose.sodSub.dictItemValue">
+                    <div>病情严重程度：</div>
+                    <div class="c-m">
+                        {{diagnose.sodSub.dictItemValue}}</div>
+                </div>
+            </div>
+            <div  class="case-data-content"  ng-if='imgShow' style="margin:20px auto;text-align:center">
+                <img src="../../../../../images/nodata.png" style="width:330px;" alt="">
+            </div>
+        </div>
+</div>
+        

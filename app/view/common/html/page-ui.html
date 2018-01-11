@@ -1,0 +1,23 @@
+<div class="dryad-page-main" data-ng-if='pageCount > pagination.pageSize'>
+    <span class="count-size">共{{pageCount}}条{{showList}}</span>
+    <button class="button " ng-click="pagination.goto(1)" ng-disabled='pagination.currentPage == 1'>
+        <i class="fa fa-step-backward"></i>
+    </button>
+    <button class="button" ng-click="pagination.previousPage()" ng-disabled='pagination.currentPage == 1'>
+        <i class="fa fa-backward"></i>
+    </button>
+    
+    <a class='dryad-page-link' ng-repeat="item in showList" ng-class="pagination.currentPage == item ? 'active' : ''" ng-click="pagination.goto(item)">{{item}}</a>
+    <button class="button" ng-click="pagination.nextPage()" ng-disabled='pagination.currentPage == pagination.pageCount'>
+        <i class="fa fa-forward"></i>
+    </button>
+    <button class="button" ng-click="pagination.goto(pagination.pageCount)" ng-disabled='pagination.currentPage == pagination.pageCount'>
+        <i class="fa fa-step-forward"></i>
+    </button>
+    <div class="jump-page">
+        跳至
+        <input type="text" class="text-center go-page" ng-model="pagination.goToPage" data-ng-keyup="jumpTo($event)"> 页
+    </div>
+
+    <!-- <button class="button" ng-click="pagination.goto(pagination.goToPage)">GO</button> -->
+</div>

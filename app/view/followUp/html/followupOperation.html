@@ -1,0 +1,77 @@
+<div class="medical-history-details-case"  drag-modal>
+    <div class="modal-title">
+        <span class="title">随访</span>
+        <i class="close-modal" ng-click="closedModal()"></i>
+    </div>
+    <!-- 确认患者并且创建病历 -->
+    <div class="medical-case-content dryad-drag-disabled">
+        <ul class="addFollowupList followHeader">
+            <li class="clearfix">
+                <div><span>患者姓名：</span><span ng-bind="followData.patientName"> </span></div>
+                <div><span>生日：</span><span ng-bind="followData.birthday"></span></div>
+            </li>
+            <li class="clearfix">
+                <div><span>手机号码：</span><span ng-bind="followData.phoneNo"></span></div>
+                <div><span>计划随访日期：</span><span ng-bind="followData.planDate"></span></div>
+            </li>
+            <li class="clearfix">
+                <div><span>计划随访人员：</span><span ng-bind="followData.planEmployeeName"></span></div>
+                
+            </li>
+            <li class="clearfix">
+                <div class="textareaDiv clearfix">
+                    <span>计划随访内容：</span>
+                    <span ng-bind="followData.planContent" class="textarea">
+                    </span>
+                </div>
+            </li>
+        </ul>
+        <ul class="addFollowupList followHeader followupContent">
+            <li class="clearfix">
+                <div><span>随访日期：</span>
+                    <span>
+                    <dryad-date-time-picker max-data-true="true" date-data="followData.realDate"></dryad-date-time-picker>
+                    </span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <div>
+                    <span>随访人员：</span>
+                    <span>
+                    <label class="head-search inputSearch">
+                            <ui-select data-ng-model="followData.realEmployeeId" theme="select2" search-enabled="false" on-select="changeResource($select.selected)" class="search-drug form-control form-white">
+                                <ui-select-match placeholder="">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item.employeeId as item in getDoctorList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                    <span>{{item.name}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </label>
+                    </span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <div class="modeList"><span>随访方式：</span>
+                    <span >
+                        <dl class="clearfix">
+                            <dd ng-class="item.dictItemValue == active ? 'active' : '' " ng-repeat="item in followupModeList" ng-click="onModeList(item.dictItemValue)" ng-bind="item.dictItemName"></dd>
+                        </dl>
+                    </span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <div class="textareaDiv clearfix">
+                    <span>随访结果：</span>
+                    <span  class="textarea">
+                        <textarea placeholder="随访结果" data-ng-model="followData.resultContent"></textarea>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="newAddPatientBtn programs-btn addFollowupBtn dryad-drag-disabled">
+        <a data-ng-click="getSaveFollowup()" class="button botton-close"><i class="save-icon"></i>保存</a>
+        <a data-ng-click="closedModal()" class="button botton-close">关闭</a>
+    </div>
+</div>

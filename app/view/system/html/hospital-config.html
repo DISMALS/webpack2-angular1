@@ -1,0 +1,24 @@
+<div class="custom-select">
+    <a class="text-default" data-ng-click="showSelect()"><span>请选择医院</span><i data-ng-class="{'full-selectdown':!isShow,'full-selectup':isShow}"></i></a>
+    <div class="chooise-list" data-ng-if="!isShow && chooiseLists.length > 0">
+        <span data-ng-repeat="item in chooiseLists" class="chooise-module">
+            <span data-ng-bind="item.orgName"></span>
+            <i data-ng-click="deleteChooise(item,$index)" class="delete-close"></i>
+        </span>
+    </div>
+    <div class="custom-select-main"  data-ng-show="isShow">
+        <div class="custom-select-main-title">
+            <span class="warning"><i class="warning-icon"></i>已选择{{chooiseLists.length}}家医院</span>
+            <a data-ng-click="showSelect(1)" class="button-default botton-save height-24">确定</a>
+            <a data-ng-click="showSelect(2)" class="button botton-close height-24">关闭</a>
+        </div>
+        <div class="custom-select-main-content">
+            <ul class="custom-select-main-content-l">
+                <li data-ng-repeat="city in cityList" data-ng-class="{'active':city.active}" data-ng-click="cityClick(city,$index)" data-ng-bind="city.regionName"></li>
+            </ul>
+            <ul class="custom-select-main-content-r">
+                <li data-ng-repeat="hospital in hospitalList" data-ng-click="hospitalClick(hospital,$index)" data-ng-class="{'active':hospital.active}" data-ng-bind="hospital.orgName"></li>
+            </ul>
+        </div>
+    </div>
+</div>

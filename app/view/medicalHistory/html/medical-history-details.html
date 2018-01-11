@@ -1,0 +1,33 @@
+<div class="medical-history-details">
+    <div class="details-title">
+        <div class="patinets-info">
+            <i class="patients-logo">
+                <img data-ng-if="baseInfo.sex == 'M'" data-ng-src={{man}}>
+                <img data-ng-if="baseInfo.sex == 'F'" data-ng-src={{woman}}>
+            </i>
+            <div class="patients-formation">
+                <span class="name">
+                    <b>{{baseInfo.patientName}}</b>
+                    <i data-ng-class="{'patients-man':(baseInfo.sex == 'M'),'patients-women':(baseInfo.sex == 'F')}"></i>{{baseInfo.age}}
+                </span>
+                <span class="mobile"><i class="mobile-icon"></i>{{baseInfo.mobilePhone}}</span>
+            </div>
+            <div class="patients-formation">
+                <span><span class="title">病历编号:</span>{{baseInfo.code}}</span>
+                <span><span class="title">病历类型:</span>{{baseInfo.recoradType}}</span>
+            </div>
+        </div>
+        <div class="patients-btn">
+            <a data-ng-click="caseOverview()" class="button-default botton-save patients-preview"><i class="patients-preview-icon"></i>病历预览</a>
+            <a data-ng-click="showAsthmaRecord()" class="patients-especial botton-special"><i class="new-add"></i>特殊哮喘记录</a>
+        </div>
+    </div>
+    <div class="details-content">
+        <div class="tab-title">
+            <tabs data="tabData" type="pills" template-url="ui-router-tabs-custom-ui-view-template.html"></tabs>
+        </div>
+        <div class="tab-content p-t-0">
+            <ui-view></ui-view>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,748 @@
+{
+  "baseInfo": {
+    //基本信息
+    "patientName": "李雷",
+    //患者姓名
+    "sex": "f",
+    // 性别
+    "dob": "1990-01-01",
+    //　出生日期
+    "nation": "han",
+    //民族
+    "patientHeight": "188",
+    //　身高
+    "patientWeight": "70",
+    //　体重
+    "BMI": "",
+    //　ＢＭＩ指数
+    "education": "本科",
+    //教育程度　
+    "job": "码农",
+    //　　职业
+    "mobilePhone": "18888888888",
+    //　移动电话
+    "telePhone": "010-123456",
+    //　　固定电话
+    "receptDoctor": "李时珍",
+    //　　接诊医生
+    "address": {
+      "province": {"regionName":"---省---","regionCode":"-1"},
+      "city":{"regionName":"---市---","regionCode":"-1"},
+      "region": {"regionName":"---县---","regionCode":"-1"}
+    }
+  },
+  "clinicInfo": {               //临床信息
+      "generalCondition": {     //一般情况
+        "br": "",               //呼吸频率
+        "hr": "",               //心率
+        "bp": ""                //血压
+      },
+      "asthmaSymptoms": {       //   呼吸症状
+        "status": 1,            //  有/无
+        "symptoms": [           //列表项
+          {
+            "type": "a",
+            "name": "喘息",
+            "state": 1,           //　　有/无
+            "isMain": 1           //　是否主要症状
+          },
+          {
+            "type": "b",
+            "name": "气急",
+            "state": 1,
+            "isMain": 1
+          },
+          {
+            "type": "c",
+            "name": "咳嗽",
+            "state": 1,
+            "isMain": 1
+          },
+          {
+            "type": "d",
+            "name": "胸闷",
+            "state": 1,
+            "isMain": 1
+          },
+          {
+            "type": "e",
+            "name": "咳痰",
+            "state": 1,
+            "isMain": 1,
+            "details": {
+              "times": {          //咳痰次数（选项）
+                "type":1,
+                "list":[
+                  {"name":　"1-10次"},
+                  {"name": "10-30次"},
+                  {"name": "30次以上"}
+                ]
+              },
+              "color":{         //颜色（选项）
+                "type":1,
+                "list":[
+                  {"name":"黄"},
+                  {"name": "黄白"},
+                  {"name": "白等"}
+                ]
+              },
+              "character": {        //性状（选项）
+                "type":1,
+                "list":[
+                  {"name":"粘"},
+                  {"name":"稀"}
+                ]
+              }
+            }
+          }
+        ],
+        "routineTime": {          //症状好发时间（选项）
+          "type":2,
+          "list":[
+            {"name":"日间"},
+            {"name":"夜间"},
+            {"name":"清晨"},
+            {"name":"不确定"}
+          ]
+        },
+        "morbidityDays": 44,       //本次发病天数
+        "morbidityFactors":{      //本次发病因素
+          "values":[1,2,3],
+          "list":[
+            {"id":1,"name":"感冒"},
+            {"id":2,"name":"刺激性气体"},
+            {"id":3,"name":"花粉、宠物或其它变应原刺激"},
+            {"id":4,"name":"运动"},
+            {"id":5,"name":"冷空气"},
+            {"id":6,"name":"大气污染加重"},
+            {"id":7,"name":"月经"},
+            {"id":8,"name":"不清楚"}
+          ]
+        }
+      },
+      "medicalHistory": {         //既往病史
+        "firstTime": "2010-01-01",  //首次发病时间
+        "acuteCondition": [         //急性发作情况
+          {
+            "type": "a",
+            "name": "住院史",
+            "state": 1,           //　有或无
+            "times": 1            //住院次数
+          },
+          {
+            "type": "b",
+            "name": "急诊就诊",
+            "state": 1,
+            "times": 1
+          },
+          {
+            "type": "c",
+            "name": "门诊就诊",
+            "state": 1,
+            "times": 1
+          },
+          {
+            "type": "d",
+            "name": "全身激素口服或静脉使用",
+            "state": 1,
+            "times": 2
+          }
+        ],
+        "comorbidity": [        //合并症
+          {
+            "type": "a",
+            "name": "慢性阻塞性肺疾病（COPD）",
+            "state": 1,
+            "firstTime": "2016-02-02"
+          },
+          {
+            "type": "b",
+            "name": "过敏性鼻炎",
+            "state": 1,
+            "times": 1
+          },
+          {
+            "type": "c",
+            "name": "湿疹（皮肤过敏）",
+            "state": 1,
+            "times": 2
+          },
+          {
+            "type": "d",
+            "name": "食物过敏",
+            "state": 1,
+            "values":[1,2,3],
+            "others":"",
+            "list": [
+              {"id":1,"name":"河海鲜"},
+              {"id":2,"name":"蔬果"},
+              {"id":3,"name":"奶制品"},
+              {"id":4,"name":"豆制品"},
+              {"id":5,"name":"肉制品"},
+              {"id":6,"name":"坚果类"},
+              {"id":7,"name":"禽食"},
+              {"id":8,"name":"酒精"},
+              {"id":999,"name":"其它"}
+            ]
+          },
+          {
+            "type": "e",
+            "name": "其它疾病史",
+            "state": 1,
+            "values":[1,2,3,4],
+            "others":"",
+            "list": [
+              {"id":1,"name":"鼻窦炎"},
+              {"id":2,"name":"鼻息肉"},
+              {"id":3,"name":"肺结核"},
+              {"id":4,"name":"高血压"},
+              {"id":5,"name":"糖尿病"},
+              {"id":6,"name":"抑郁症"},
+              {"id":7,"name":"焦虑症"},
+              {"id":8,"name":"COPD"},
+              {"id":9,"name":"脑血管病"},
+              {"id":10,"name":"支气管扩张"},
+              {"id":11,"name":"骨质疏松"},
+              {"id":999,"name":"其它"}
+            ]
+          }
+        ],
+        "familyHistory": [          //家族史
+          {
+            "type": "a",
+            "name": "哮喘家族史",
+            "state": 1
+          },
+          {
+            "type": "b",
+            "name": "湿疹（皮肤过敏家族史）",
+            "state": 1
+          },
+          {
+            "type": "c",
+            "name": "过敏性鼻炎家族史",
+            "state": 1
+          }
+        ],
+        "smokeHistory":{        //吸烟史
+          "state":2,            //状态（不吸烟/吸烟/曾经吸烟/被动吸烟）
+          "options":[
+            {
+              "type":1,
+              "name:":"不吸烟"
+            },
+            {
+              "type":2,
+              "name":"吸烟",
+              "list":[
+                {
+                  "type":"a",
+                  "name":"香烟",
+                  "state":1,        //有或无
+                  "number":1,       //吸烟数量
+                  "years":10        //年数
+                },
+                {
+                  "type":"b",
+                  "name":"旱烟",
+                  "state":1,
+                  "number":1,
+                  "years":10
+                },
+                {
+                  "type":"c",
+                  "name":"水烟",
+                  "state":1,
+                  "number":1,
+                  "years":10
+                },
+                {
+                  "type":"d",
+                  "name":"雪茄",
+                  "state":1,
+                  "number":1,
+                  "years":10
+                }
+              ]
+            },
+            {
+              "type":3,
+              "name":"曾经吸烟",
+              "number":1,
+              "years":10
+            },
+            {
+              "type":4,
+              "name":"被动吸烟",
+              "number":1,
+              "years":10
+            }
+          ]
+        },
+        "workHistory":{               //职业生活史
+          "status":1,                 //有或无
+          "list":[
+            {
+              "type":"a",
+              "name":"吸入或接触过敏史",
+              "state":1,            //有或无
+              "form":"药品",        //类型
+              "years":10            //年数
+            },
+            {
+              "type":"b",
+              "name":"职业性接触有害气体",
+              "state":1,
+              "form":"药品",
+              "years":10
+            },
+            {
+              "type":"c",
+              "name":"职业性接触粉尘",
+              "state":1,
+              "form":"药品",
+              "years":10
+            },
+            {
+              "type":"d",
+              "name":"经常暴露于生物燃料烟雾",
+              "state":1,
+              "form":"药品",
+              "years":10
+            },
+            {
+              "type":"e",
+              "name":"药物过敏史",
+              "state":1,
+              "form":"药品"           //过敏药物
+            },
+            {
+              "type":"f",
+              "name":"食物过敏史",
+              "state":1,
+              "form":"药品"           //过敏食物
+            },
+            {
+              "type":"g",
+              "name":"宠物过敏史",
+              "state":1,
+              "form":"药品"           //过敏宠物
+            }
+          ]
+        }
+    },
+      "controlSituation":{            //控制情况
+        "gina":{                      //数据录入员完成GINA指南的症状控制评估，过去4周，患者存在：
+          "level":1,                  //由后端自动生成
+          "list":[
+              {
+                "type":"a",
+                "name":"日间哮喘症状>2次/周：",
+                "state":1             //有或无
+              },
+              {
+                "type":"b",
+                "name":"夜间因哮喘憋醒：",
+                "state":1
+              },
+              {
+                "type":"c",
+                "name":"使用缓解药物次数>2次/周：",
+                "state":1
+              },
+              {
+                "type":"d",
+                "name":"哮喘引起的活动受限：",
+                "state":1
+              }
+            ]
+        },
+        "act":{               //数据录入员协助患者完成ACT测试量表：
+          "score":100,        //评估得分（自动生成）
+          "level":1,          //控制水平（控制水平）
+
+          "list":[
+            {
+              "type":"a",
+              "name":"在过去的4周内，在工作、学习或家中，有多少时候哮喘妨碍您进行日常活动？",
+              "state":2,          //对应options的选项下标
+              "options":[
+                {
+                  "value":1,
+                  "name":"所有时间"
+                },
+                {
+                  "value":2,
+                  "name":"大多数时间"
+                },
+                {
+                  "value":3,
+                  "name":"有些时候"
+                },
+                {
+                  "value":4,
+                  "name":"很少时候"
+                },
+                {
+                  "value":5,
+                  "name":"没有"
+                }
+              ]
+              },
+            {
+                "type":"b",
+                "name":"在过去的4周内，您有多少次呼吸困难？",
+                "state":2,
+                "options":[
+                  {
+                    "value":1,
+                    "name":"每天不止一次"
+                  },
+                  {
+                    "value":2,
+                    "name":"每天一次"
+                  },
+                  {
+                    "value":3,
+                    "name":"每周３－６次"
+                  },
+                  {
+                    "value":4,
+                    "name":"每周１－２次"
+                  },
+                  {
+                    "value":5,
+                    "name":"完全没有"
+                  }
+                ]
+              },
+            {
+              "type":"c",
+              "name":"在过去4周内，因为哮喘症状（喘息、咳嗽、呼吸困难），您有多少次在夜间醒来或早上比平时醒？",
+              "state":2,
+              "options":[
+                {
+                  "value":1,
+                  "name":"每周四晚或更多"
+                },
+                {
+                  "value":2,
+                  "name":"每周２－３晚"
+                },
+                {
+                  "value":3,
+                  "name":"每周３－６次"
+                },
+                {
+                  "value":4,
+                  "name":"每周１－２次"
+                },
+                {
+                  "value":5,
+                  "name":"完全没有"
+                }
+              ]
+            },
+            {
+              "type":"d",
+              "name":"在过去4周内，您有多少次使用急救药物治疗（如沙丁胺醇）？",
+              "state":2,
+              "options":[
+                {
+                  "value":1,
+                  "name":"每天三次以上"
+                },
+                {
+                  "value":2,
+                  "name":"每天１－２次"
+                },
+                {
+                  "value":3,
+                  "name":"每周２－３次"
+                },
+                {
+                  "value":4,
+                  "name":"每周１次或更少"
+                },
+                {
+                  "value":5,
+                  "name":"没有"
+                }
+              ]
+            },
+            {
+              "type":"e",
+              "name":"您如何评价过去4周内，您的哮喘控制情况？",
+              "state":2,
+              "options":[
+                {
+                  "value":1,
+                  "name":"没有控制"
+                },
+                {
+                  "value":2,
+                  "name":"控制很差"
+                },
+                {
+                  "value":3,
+                  "name":"有所控制"
+                },
+                {
+                  "value":4,
+                  "name":"控制很好"
+                },
+                {
+                  "value":5,
+                  "name":"完全控制"
+                }
+              ]
+            }
+          ]
+        }
+      }
+  },
+  "labInspection": {//实验室检查
+    "bre":{         //血常规检查
+      "checkTime":"2017-01-01",     //检查时间
+      "wbc":10,                     //白细胞总数
+      "eos":{                       //eos嗜酸性粒细胞
+        "percent":50,               //比例
+        "amount":3                  //数量
+      },
+      "neut":10                     //中性粒细胞比例
+    },
+    "lge":{                         //lge检测
+      "checkTIme":"2017-01-01",         //检查时间
+      "amount":10                       //总数
+    },
+    "pft":{                             //肺功能检查
+      "checkTime":"2017-01-01",         //检查时间
+      "list":[                          //列表
+        {
+          "name":"FEV1",
+          "amount":10,                  //数量
+          "percent":100                 //比例
+        },
+        {
+          "name":"FVC",
+          "amount":10,
+          "percent":100
+        },
+        {
+          "name":"FEV1/FVC",
+          "amount":10,
+          "percent":100
+        },
+        {
+          "name":"MMEF",
+          "amount":10,
+          "percent":100
+        },
+        {
+          "name":"MEF75",
+          "amount":10,
+          "percent":100
+        },
+        {
+          "name":"MEF25",
+          "amount":10,
+          "percent":100
+        },
+        {
+          "name":"MEF50",
+          "amount":10,
+          "percent":100
+        }
+      ],
+      "bdt":{           //支气管舒张试验
+        "amount":10,    //数量
+        "percent":100,   //比例
+        "state":1       //阴性/阳性
+      },
+      "bpt":{           //支气管舒张试验
+       "type":1,        //激发试剂类型
+        "result":{       //结果
+          "state":1,      //阴性/阳性
+          "concentration":10,   //激发浓度
+          "dosage":22,          //吸入剂量
+          "amount":33,          //数量
+          "percent":50          //比例
+        }
+      }
+    },
+    "cap":{         //变应原检测
+      "ast":{       //过敏原皮试
+        "checkTime":"",   //开始时间
+        "result":{        //结果
+          "state":1,      //阴性／阳性
+          "source":[       //来源
+            {
+              "type":"a",
+              "name":"粉尘螨",
+              "intensity":10,       //强度
+              "state":1             //是否勾选
+            },
+            {
+              "type":"b",
+              "name":"屋尘螨",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"c",
+              "name":"艾蒿",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"d",
+              "name":"豚草",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"e",
+              "name":"美洲大蠊",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"f",
+              "name":"德国小蠊",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"g",
+              "name":"猫毛",
+              "intensity":10,
+              "state":1
+            },
+            {
+              "type":"h",
+              "name":"狗毛",
+              "intensity":10,
+              "state":1
+            }
+          ]
+        }
+      },
+      "lge":{               //血清特异性IgE检测：
+        "checkTime":"2017-01-01",   //时间
+        "amount":10         //特异性
+      }
+    },
+    "ait":{               //气道炎症检查
+      "feno":{            //呼出气一氧化氮（FeNO）
+        "checkTime":"2017-01-01", //时间
+        "amount":10               //特异性lge
+      },
+      "list":{
+        "checkTime":"2017-02-02",      //时间
+        "totalCount":100,             //总数
+        "eos":50,                     //嗜酸性细胞比例
+        "neut":55,                    //中性粒细胞比例
+        "mp":33,                      //巨嗜细胞比例
+        "lymr":11                     //淋巴细胞比例
+      }
+    },
+    "xre":{                         //影像学检查
+      "otherCheck":"ff",            //其它检查
+      "list":[
+        {
+          "type":"a",
+          "name":"胸部Ｘ线检查",
+          "checkTime":"2017-08-08",     //检查时间
+          "state":1                     //是否异常
+        },
+        {
+          "type":"b",
+          "name":"胸部CT检查",
+          "checkTime":"2017-08-08",
+          "state":1
+        },
+        {
+          "type":"c",
+          "name":"鼻窦CT线检查",
+          "checkTime":"2017-08-08",
+          "state":1
+        }
+      ]
+    },
+    "images":{                    //图片
+      "count":10,                  //数量
+      "desc":"",                   //影像总体描述
+      "list":[
+        {
+          "url":"https://www.fff.jpg",　　　//图片地址
+          "title":"额为额为"                 //图片标题
+        }
+      ]                   //
+    }
+
+},
+  "diagnose": {//诊断
+    "diseaseStage":{        //疾病分期
+      "state":1,            //病情分期状态
+      "list":[
+        {"name":"急性发作"},
+        {"name":"慢性维持期"},
+        {"name":"临床缓解期"}
+      ]
+    },
+    "sod":{
+      "state":1,          //病情严重程度
+      "list":[
+        {"name":"轻度哮喘"},
+        {"name":"中度哮喘"},
+        {"name":"重度哮喘"}
+      ]
+    },
+    "sodSub":{           //病情严重程度二级页面
+      "state":2,        //状态等级
+      "list":[
+        {"name":"间歇状态（第１级）"},
+        {"name":"轻度持续（第２级）"},
+        {"name":"中度持续（第３级）"},
+        {"name":"间歇状态（第４级）"}
+      ]
+    }
+
+},
+  "cureOutline": {        //治疗方案
+    "cpa":{               //变应原
+      "drug":"fdfd",      //药品
+      "usage":12345,      //用法用量
+      "course":{            //疗程
+        "days":12,        //天数
+        "startAt":"2017-01-01"    //开始时间
+      },
+      "isSameAsPre":1           //是否遵循前治疗方案
+    },
+    "nextTime":"2017-05-05"     //下次随访时间
+},
+  "specialAsthma": {          //特殊类型哮喘
+    "asthmaTypes":{
+      "type":2,               //哮喘类型
+      "list":[
+        {"name":"咳嗽变异性哮喘"},
+        {"name":"胸闷变异性哮喘"},
+        {"name":"阿司匹林药物诱发性哮喘"},
+        {"name":"哮喘 - 慢阻肺重叠"},
+        {"name":"妊娠期哮喘"},
+        {"name":"月经期哮喘"},
+        {"name":"脆性哮喘"},
+        {"name":"职业性哮喘"}
+      ]
+    },
+    "asthmaTable":{},
+    "asythmaSpecialTypes":{}
+  }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<div class="employee-details">
+    <div class="employee-details-title">
+        <b class="left-title">查看账号信息</b>
+        <!-- <a data-ng-click="" class="patients-especial botton-special"><i class="new-add"></i>特殊哮喘记录</a> -->
+        <a data-ng-click="edit()" class="button botton-close"><i class="change-password"></i>修改</a><!--button-default botton-special-->
+        <a data-ng-click="close()" class="button botton-close">关闭</a>
+    </div>
+    <div class="employee-details-main">
+        <div class="left-main">
+            <div class="lm-employee">
+                <i class="lm-employee-logo"><img data-ng-src={{accountObj.headPicUrl}} alt="员工头像"  class="headpic"></i>
+            </div>
+        </div>
+        <div class="right-main">
+            <div class="right-main-l">
+                <div class="form float-l">
+                    <span class="left-title">姓名:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.name"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">性别:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.sexDesc"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">生日:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.birthday"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">手机号码:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.phoneNo"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">邮箱:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.email"></div>
+                    </span>
+                </div>
+                <div class="form overflow-h">
+                    <span class="left-title">在职状态:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.statusDesc"></div>
+                    </span>
+                </div>
+            </div>
+            <div class="right-main-r">
+                <div class="form float-l">
+                    <span class="left-title">登录账号:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.userCode"></div>
+                    </span>
+                </div>
+                <!-- <div class="form float-l">
+                    <span class="left-title">登录密码:</span>
+                    <span class="right-content">
+                        <div data-ng-bind="accountObj.password"></div>
+                    </span>
+                </div> -->
+                <div class="form float-l">
+                    <span class="left-title">所属角色:</span>
+                    <span class="right-content mg-t-1">
+                        <div data-ng-bind="accountObj.roleName"></div>
+                    </span>
+                </div>
+                <div class="form float-l">
+                    <span class="left-title">客服医院配置:</span>
+                    <span class="right-content">
+                        <i class="config-info" ng-repeat="hospital in accountObj.consultOrgNameList track by $index" style="margin-right: 5px;">{{hospital}}</i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

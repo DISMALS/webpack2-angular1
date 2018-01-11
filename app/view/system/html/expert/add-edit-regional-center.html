@@ -1,0 +1,41 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<form verify-scope="tipStyle:0" name="checkForm" class="dryad-drag-disabled">
+    <!-- 新增科室或者修改科室 -->
+    <div class="sure-patient add-department">
+        <div class="patientinfo">
+            <span class="left-title"><span class="required-field"></span>区域中心名称:</span>
+            <span class="right-content">
+                <input type="text" class="user-input" ng-verify placeholder="请输入区域中心名称" data-ng-model="orginalCenter.name">
+            </span>
+        </div>
+        <div class="patientinfo multiple">
+            <span class="left-title"><span class="required-field"></span>中心下辖省份:</span>
+            <span class="right-content regionListCentent">
+                <div class="nature-select auto-height">
+                    <ui-select data-ng-model="orginalCenter.regionCodeList" search-enabled="true" multiple on-select="selectProvince($select.selected)">
+                        <ui-select-match placeholder="请输入拼首码搜索省份"><span class="select-value" data-ng-bind="$item.regionName"></span></ui-select-match>
+                    <ui-select-choices repeat="item.regionCode as item in provinceList" refresh="searchProvinceForm($select.search)" refresh-delay="0">
+                        <span data-ng-bind="item.regionName"></span>
+                    </ui-select-choices>
+                    </ui-select>
+                </div>
+            </span>
+        </div>
+        <div class="patientinfo department-textarea">
+            <span class="left-title">区域中心说明:</span>
+            <span class="right-content">
+                <div class="description-textarea">
+                    <textarea data-ng-model="orginalCenter.memo" placeholder="请输入区域中心说明"></textarea>
+                </div>
+            </span>
+        </div>
+        <!-- 按钮 -->
+        <div class="patientinfo text-right programs-btn">
+            <button data-ng-click="closedModal()" class="button botton-close">取消</button>
+            <button data-ng-click="sure()" ng-verify="{control:'checkForm'}" class="button-default botton-save"><i class="save save-icon"></i>保存</button>
+        </div>
+    </div>
+</form>

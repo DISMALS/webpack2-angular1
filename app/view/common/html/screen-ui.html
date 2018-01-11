@@ -1,0 +1,122 @@
+<div class="screen">
+        <form verify-scope="tipStyle:2" name="checkForm">
+    <div class="screen-main">
+        <div class="screen-table">
+            <div class="table-title">
+                <span class="colm-15">逻辑关系</span>
+                <span class="colm-20">查询主题</span>
+                <span class="colm-15">查询条件</span>
+                <span class="colm-35">查询域值</span>
+                <span class="colm-btn"></span>
+            </div>
+            <div class="screen-conditions-row" data-ng-repeat="filter in screenData track by $index">
+                <!-- 逻辑关系 -->
+                <div class="colm colm-15">
+                    <div class="date-select" data-ng-if="$index != 0">
+                        <ui-select data-ng-model="filter.logicRelation" search-enabled="false" theme="select2">
+                            <ui-select-match placeholder="逻辑关系">
+                                <span data-ng-bind="$select.selected.logicalName"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item.logicalCode as item in informationList.logicalRelationship">
+                                <span data-ng-bind="item.logicalName"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <!-- 查询主题 -->
+                <div class="colm colm-20">
+                    <div class="date-select screen-ui-filterItem">
+                        <ui-select data-ng-model="filter.filterItem" theme="select2" reset-search-input="true" search-enabled="fasle" on-select="queryConditionList($select.selected,$index)">
+                            <ui-select-match placeholder="查询主题(拼首码搜索)">{{$select.selected.filterItem}}</ui-select-match>
+                            <ui-select-choices repeat="querySubject.filterItemEn as querySubject in informationList.querySubject" data-ng-hide="informationList.querySubject.length == 0"
+                            refresh="serchQuerySubject($select.search,$index)" refresh-delay='0'>
+                                <div data-ng-bind-html="querySubject.filterItem | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <!-- 查询条件 -->
+                <div class="colm colm-15">
+                    <div class="date-select">
+                        <ui-select data-ng-model="filter.filterCondition" theme="bootstrap" reset-search-input="true"  on-select="queryValueArea($select.selected,$index)">
+                            <ui-select-match placeholder="查询条件">{{$select.selected.filterCondition}}</ui-select-match>
+                            <ui-select-choices repeat="item.filterConditionSymbol as item in filter.conditionList" data-ng-hide="filter.conditionList.length == 0">
+                                <div data-ng-bind-html="item.filterCondition | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <!-- 查询域值 -->
+                <div class="colm colm-35">
+                    <!-- 下拉框 -->
+                    <div class="date-select" data-ng-if="filter.account == 1">
+                        <ui-select data-ng-model="filter.beginValue" theme="bootstrap" reset-search-input="true"  ng-if='screenData[$index].filterItem!="cpa"'>
+                            <ui-select-match placeholder="查询域值">{{$select.selected.dictItemName}}</ui-select-match>
+                            <ui-select-choices repeat="item.dictItemValue as item in filter.valueArea" data-ng-hide="filter.valueArea.length == 0">
+                                <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
+                                <div data-ng-bind-html="item.dictItemName | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                         <ui-select data-ng-model="filter.beginValue" theme="bootstrap" reset-search-input="true"  ng-if='screenData[$index].filterItem=="cpa"'>
+                            <ui-select-match placeholder="查询域值">{{$select.selected.drugName}}</ui-select-match>
+                            <ui-select-choices repeat="item.drugId as item in filter.valueArea" data-ng-hide="filter.valueArea.length == 0">
+                                <!-- refresh="ctrl.refreshAddresses($select.search)" refresh-delay="0" -->
+                                <div data-ng-bind-html="item.drugName | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <!-- 双文本输入框 -->
+                    <div class="date-select selectTwo flex" data-ng-if="filter.account == 3">
+                        <div class='flex-1' >
+                            <input class="date-select-text w-100" ng-if='filter.filterItem!="age"' type="text"  ng-verify="pattern:/^\d+\.?\d*$/g" data-ng-model="filter.beginValue">
+                            <input class="date-select-text w-100"ng-if='filter.filterItem=="age"'  type="text"  ng-verify="pattern:/^\d*$/ig" data-ng-model="filter.beginValue" input-mask='[9][9][9]'>
+                         </div> 
+                         <div class="p-l-r-10">-</div> 
+                         <div class='flex-1' >
+                            <input class="date-select-text w-100" type="text" ng-if='filter.filterItem!="age"' ng-verify="pattern:/^\d+\.?\d*$/g"  data-ng-model="filter.endValue">
+                            <input class="date-select-text w-100" type="text"  ng-if='filter.filterItem=="age"' ng-verify="pattern:/^\d*$/ig"  data-ng-model="filter.endValue"  input-mask='[9][9][9]'>
+                          </div>
+                    </div>
+                    <!-- 单文本输入框 -->
+                    <div class="date-select" data-ng-if="filter.account == 2">
+                        <input class="date-select-text" type="text"  ng-if='filter.filterItem!="age"' ng-verify="pattern:/^\d+\.?\d*$/g" data-ng-model="filter.beginValue">
+                        <input class="date-select-text" type="text"  ng-if='filter.filterItem=="age"' ng-verify="pattern:/^\d*$/ig" data-ng-model="filter.beginValue"  input-mask='[9][9][9]'>
+                    </div>
+                    <!-- 双日期控件 -->
+                    <div class="date-select-time" data-ng-if="filter.account == 5">
+                        <span class="right-content">
+                            <dryad-date-time-picker date-data="filter.beginValue"></dryad-date-time-picker>                            
+                        </span>
+                        <span class="contact-line">-</span>
+                        <span class="right-content">
+                            <dryad-date-time-picker date-data="filter.endValue"></dryad-date-time-picker>
+                        </span>
+                    </div>
+                    <!-- 单日期空件 -->
+                    <div class="date-select-singl" data-ng-if="filter.account == 4">
+                        <span class="right-content">
+                            <dryad-date-time-picker date-data="filter.beginValue"></dryad-date-time-picker>
+                        </span>
+                    </div>
+                </div>
+                <!-- 添加行 -->
+                <div class="colm colm-btn">
+                    <div class="colm-btn-box">
+                        <a class="screen-icon screen-add" data-ng-click="addRow($index)"><i class="add"></i></a>
+                        <a class="screen-icon screen-reduction" data-ng-click="deleteRow($index)" data-ng-if="$index != 0"><i class="reduction"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="screen-btn">
+            <div class="remeber-filter">
+                <label class="checkbox-remeber"><input type="checkbox" data-ng-model="save">记住本次查询</label>
+                <label class="filter-name" data-ng-if="save">本次查询名称:<input type="text" data-ng-model="obssj.filterNames"></label>
+            </div>
+            <a data-ng-click="closeScreen()" class="screen-close">关闭</a>
+            <a data-ng-click="searchScreen()" class="screen-search-btn button-default botton-search"><i class="search"></i>搜索</a>
+            <a data-ng-click="resetScreen()" class="screen-reset-btn button botton-cancle">重置</a>
+        </div>
+    </div>
+    </form>
+</div>

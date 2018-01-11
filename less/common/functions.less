@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+.border-radius(@topleft,@topright,@bottomleft,@bottomright){
+    -webkit-border-top-left-radius: @topleft;
+    -moz-border-top-left-radius: @topleft;
+    border-top-left-radius: @topleft;
+    -webkit-border-top-right-radius: @topright;
+    -moz-border-top-right-radius: @topright;
+    border-top-right-radius: @topright;
+    -webkit-border-bottom-left-radius: @bottomleft;
+    -moz-border-bottom-left-radius: @bottomleft;
+    border-bottom-left-radius: @bottomleft;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -moz-border-bottom-right-radius: @bottomright;
+    border-bottom-right-radius: @bottomright;
+}
+.border(@size,@type,@color){
+    border:@size @type @color;
+}
+.box-shadow(@align,@vertical,@size,@ambiguity,@color){
+    box-shadow: @align @vertical @size @ambiguity @color;
+    -webkit-box-shadow: @align @vertical @size @ambiguity @color;
+    -moz-box-shadow: @align @vertical @size @ambiguity @color;
+}
+.vertical-align(){
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

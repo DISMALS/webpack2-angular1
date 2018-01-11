@@ -1,0 +1,110 @@
+<div class="employee-details">
+    <form verify-scope="tipStyle:2" name="checkForm">
+        <div class="employee-details-title">
+            <b class="left-title" data-ng-bind="title"></b>
+            <button data-ng-click="save()" class="button-default botton-save" ng-verify="{control:'checkForm'}"><i class="save save-icon"></i>保存</button>
+            <button data-ng-click="cancel()" class="button botton-close">取消</button>
+        </div>
+        <div class="employee-details-main">
+            <div class="left-main">
+                <div class="lm-employee">
+                    <i class="lm-employee-logo"><img data-ng-src={{obj.logoSrc}} alt="员工头像" class="headpic"></i>
+                    <label class="fileLabel">
+                        <a class="patients-especial botton-special">上传头像</a>
+                        <input class="upfile" type="file" accept="image/jpg, image/gif, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" preview-src="obj.logoSrc" dryad-upload-img>
+                    </label>
+                </div>
+            </div>
+            <div class="right-main" style="padding-bottom:50px">
+                <div class="right-main-l">
+                    <div class="form float-l">
+                        <span class="left-title"><span class="required-field"></span>姓名:</span>
+                        <span class="right-content">
+                            <input type="text" ng-verify data-ng-model="accountObj.name" placeholder="请输入姓名" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title">性别:</span>
+                        <span class="right-content">
+                            <a class="sex-chooise" data-ng-click="chooiseSex()">
+                                <i class="man" data-ng-class="{'manactive':isBoy}">男</i>
+                                <i class="women" data-ng-class="{'womenactive':!isBoy}">女</i>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title">生日:</span>
+                        <span class="right-content">
+                            <span class="date-main">
+                                <dryad-date-time-picker date-data="accountObj.birthday"></dryad-date-time-picker>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title"><span class="required-field"></span>手机号码:</span>
+                        <span class="right-content">
+                            <input type="text" data-ng-model="accountObj.phoneNo" ng-verify="max:11,pattern:/^1[1-9]{1}[0-9]{9}$/" input-mask='[9][9][9][9][9][9][9][9][9][9][9]' placeholder="请输入手机号码" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title">邮箱:</span>
+                        <span class="right-content">
+                            <input type="email" data-ng-model="accountObj.email" placeholder="请输入邮箱" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form overflow-h">
+                        <span class="left-title"><span class="required-field"></span>在职状态:</span>
+                        <span class="right-content">
+                            <a class="sex-chooise" data-ng-click="isWork()">
+                                <i class="man" data-ng-class="{'manactive':working}">在职</i>
+                                <i class="women" data-ng-class="{'womenactive':!working}">离职</i>
+                            </a>
+                        </span>
+                        <span class="warning"><i class="warning-icon"></i>离职员工不能登录系统</span>
+                    </div>
+                </div>
+                <div class="right-main-r">
+                    <div class="form float-l">
+                        <span class="left-title"><span class="required-field"></span>登录账号:</span>
+                        <span class="right-content">
+                            <input type="text" data-ng-model="accountObj.userCode" ng-verify="min:6,max:16,pattern:/^[A-Za-z0-9]{6,16}$/,errmsg:'登录账号必须是6到16位的大小写字母以及数字'" placeholder="输入登录账号" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title"><span data-ng-if="!id" class="required-field"></span>登录密码:</span>
+                        <span class="right-content">
+                            <input type="password" data-ng-if="!id" data-ng-model="accountObj.password" name="passwordc" ng-verify="min:6,max:16,pattern:/^[A-Za-z0-9]{6,16}$/,errmsg:'登录密码必须是6到16位的大小写字母以及数字'" placeholder="输入密码" class="form-input">
+                            <input type="password" data-ng-if="id" data-ng-model="accountObj.password" placeholder="输入密码" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title"><span data-ng-if="!id" class="required-field"></span>确认密码:</span>
+                        <span class="right-content">
+                            <input type="password" data-ng-if="!id" data-ng-model="accountObj.confirmPassword" ng-verify="recheck:'passwordc'" placeholder="确认密码" class="form-input">
+                            <input type="password" data-ng-if="id" data-ng-model="accountObj.confirmPassword" placeholder="确认密码" class="form-input">
+                        </span>
+                    </div>
+                    <div class="form float-l">
+                        <span class="left-title"><span class="required-field"></span>所属角色:</span>
+                        <span class="right-content">
+                            <div class="nature-select">
+                                <ui-select data-ng-model="accountObj.roleId" ng-verify search-enabled="false" theme="select2" on-select="selectRole($select.selected)">
+                                    <ui-select-match placeholder="选择账号所选角色"><span data-ng-bind="$select.selected.roleName"></span></ui-select-match>
+                                    <ui-select-choices repeat="item.roleId as item in roleList"><span data-ng-bind="item.roleName"></span></ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="form float-l" data-ng-if='consultOrgList'>
+                        <span class="left-title">客户医院配置:</span>
+                        <span class="right-content">
+                            <div class="nature-select height-32">
+                                <dryad-hospital-config chooise-list="chooisesList" city-list="cityList" hospital-list='hospitalList' get-hospital-list="getHospitalLists"></dryad-hospital-config>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

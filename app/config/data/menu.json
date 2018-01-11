@@ -1,0 +1,172 @@
+[{
+        "title": "首页",
+        "iconfont": "index-icon",
+        "permissions": ["permitAll"],
+        "state": "dryad.home.main",
+        "active": "parent-active",
+        "uiRouter": "dryad.home",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "病历管理",
+        "iconfont": "medical-record-icon",
+        "permissions": ["DOCTOR_MEDICAL_REOCRD"],
+        "state": "dryad.medicalhistory.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.medicalhistory.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "患者管理",
+        "iconfont": "patient-icon",
+        "permissions": ["DOCTOR_PATIENT"],
+        "state": "dryad.patients.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.patients.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "预约管理",
+        "iconfont": "appointment-icon",
+        "permissions": ["DOCTOR_FOLLOW"],
+        "state": "dryad.appointment.view",
+        "active": "parent-active",
+        "uiRouter": "dryad.appointment.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "随访管理",
+        "iconfont": "follow-up-icon",
+        "permissions": ["DOCTOR_FOLLOW"],
+        "state": "dryad.followup.list",
+        "active": "parent-active",
+        "uiRouter": "dryad.followup.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "患教资源",
+        "iconfont": "teaching-resources-icon",
+        "permissions": ["DOCTOR_PATIENT_EDU_RESOURCE"],
+        "state": "dryad.teaching-resources.list",
+        "active": "parent-active",
+        "uiRouter": "dryad.teaching-resources.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "资源管理",
+        "iconfont": "operation-icon",
+        "permissions": ["OPERATION_RESOURCE"],
+        "state": "dryad.resource.list.uncommitted",
+        "active": "parent-active",
+        "uiRouter": "dryad.resource.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "在线咨询",
+        "iconfont": "online-consulting-icon",
+        "permissions": ["OPERATION_CONSULT"],
+        "state": "dryad.online-consulting",
+        "active": "parent-active",
+        "uiRouter": "dryad.online-consulting.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "数据应用",
+        "iconfont": "data-applications-icon",
+        "permissions": ["SPECIALLIST_DATA"],
+        "state": "dryad.data-applications.search",
+        "active": "parent-active",
+        "uiRouter": "dryad.data-applications.**",
+        "child": [],
+        "level": 1
+    },
+    {
+        "title": "系统管理",
+        "iconfont": "system-icon",
+        "permissions": ["DOCTOR_SYSTEM"],
+        "active": "parent-active",
+        "uiRouter": "dryad.system.**",
+        "child": [{
+            "title": "机构管理",
+            "permissions": ["DOCTOR_SYSTEM_ORG","DOCTOR_SYSTEM_ORG_DEPT","DOCTOR_SYSTEM_ORG_ROLE","DOCTOR_SYSTEM_ORG_EMPLOYEE"],
+            "state": "dryad.system.institutional-management.list.department",
+            "active": "child-active",
+            "uiRouter": "dryad.system.institutional-management.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "药品字典",
+            "permissions": ["DOCTOR_SYSTEM_DRUG_DICT"],
+            "state": "dryad.system.drug-dictionary",
+            "active": "child-active",
+            "uiRouter": "dryad.system.drug-dictionary.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "基础配置",
+            "permissions": ["DOCTOR_SYSTEM_BASE_CONFIG"],
+            "state": "dryad.system.basic-configuration",
+            "active": "child-active",
+            "uiRouter": "dryad.system.basic-configuration.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "医疗单位",
+            "permissions": ["OPERATION_SYSTEM_ORG"],
+            "state": "dryad.system.programs",
+            "active": "child-active",
+            "uiRouter": "dryad.system.programs.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "运营角色",
+            "permissions": ["OPERATION_SYSTEM_ROLE"],
+            "state": "dryad.system.operational-roles",
+            "active": "child-active",
+            "uiRouter": "dryad.system.operational-roles.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "运营账号",
+            "permissions": ["OPERATION_SYSTEM_ACCOUNT"],
+            "state": "dryad.system.operating-account.list",
+            "active": "child-active",
+            "uiRouter": "dryad.system.operating-account.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "区域中心",
+            "permissions": ["SPECIALLIST_SYSTEM_AREA"],
+            "state": "dryad.system.regional-center",
+            "active": "child-active",
+            "uiRouter": "dryad.system.regional-center.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "专家角色",
+            "permissions": ["SPECIALLIST_SYSTEM_ROLE"],
+            "state": "dryad.system.expert-role",
+            "active": "child-active",
+            "uiRouter": "dryad.system.expert-role.**",
+            "level": 2,
+            "child": []
+        }, {
+            "title": "专家账号",
+            "permissions": ["SPECIALLIST_SYSTEM_ACCOUNT"],
+            "state": "dryad.system.experts-account.list",
+            "active": "child-active",
+            "uiRouter": "dryad.system.experts-account.**",
+            "level": 2,
+            "child": []
+        }],
+        "level": 1
+    }
+]

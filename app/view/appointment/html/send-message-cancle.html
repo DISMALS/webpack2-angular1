@@ -1,0 +1,19 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="cancle()"></i>
+</div>
+<div class="delete-modal dryad-drag-disabled">
+    <div class="delete-modal-content" data-ng-if="type != 'CANCLE' || type == 'MOVE'">
+        <i class="warning-icon"></i>
+        <span class="text" data-ng-bind="items.content"></span>
+    </div>
+    <div class="delete-modal-content" data-ng-if="type == 'CANCLE'">
+        
+    </div>
+    <div class="delete-modal-btn">
+        <!-- <a data-ng-click="noSure()" ng-if='type!="DELETE"' class="button botton-cancle">不保存</a> -->
+        <a data-ng-click="cancle()" data-ng-if="type == 'CANCLE' || type == 'MOVE'" class="button botton-cancle">取消</a>
+        <a data-ng-click="sure()" data-ng-if="type != 'CANCLE' && type != 'MOVE'" class="button-default botton-delete">关闭</a>
+        <a data-ng-click="delete()" data-ng-if="type == 'CANCLE' || type == 'MOVE'" class="button-default botton-delete">确定</a>
+    </div>
+</div>

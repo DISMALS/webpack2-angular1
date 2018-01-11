@@ -1,0 +1,66 @@
+<div class="system">
+    <div class="medical-history-details">
+        <div class="drug-class">
+            <div class="class-title" data-ng-bind="title"></div>
+            <ul class="class-list">
+                <li data-ng-repeat="baseConfig in BaseConfigList"><a data-ng-class="{'active':baseConfig.active}" data-ng-click="chooiseBaseConfig($index)">{{baseConfig.name}}<i class="fa-forward"></i></a></li>
+            </ul>
+        </div>
+        <div class="drug-list">
+            <div class="searchTitle">
+                <label class="head-search">
+                    <span class="search-input">
+                        <input class="keywordInput" type="text" data-ng-model="searchkey" data-ng-keydown="enterFn($event)" placeholder="请输入配置项名称">
+                    </span>
+                    <i class="search searchBg" ng-click="searchKeyword()"></i>
+                </label>
+                <a data-ng-click="editeAdd()" class="exportBtn button-default botton-save">
+                    <i class="new-add"></i> 新增{{chooiseType.name}}
+                </a>
+                <button data-ng-click="moveUpBtn()" 
+                    class="disabled-btn" 
+                    ng-disabled="!moveUpDisable" 
+                    data-ng-class="{'button botton-close':moveUpDisable,'botton-disabled':!moveUpDisable}">
+                    <i class="moveUpDown move-up"></i> 上移
+                </button>
+                <button data-ng-click="moveDownBtn()" 
+                    class="disabled-btn" 
+                    ng-disabled="!moveDownDisable" 
+                    data-ng-class="{'button botton-close':moveDownDisable,'botton-disabled':!moveDownDisable}">
+                    <i class="moveUpDown move-down"></i> 下移
+                </button>
+            </div>
+            <!-- grid -->
+            <div class="dryad-grid medical-history-height">
+                <layui-table-ui grid-options="tableOptions" last-click-row-index='selectedCopy' chooise-row="chooiseRowEvt"></layui-table-ui>
+                <!-- <dryad-ui-grid grid-options="gridOptions"></dryad-ui-grid> -->
+            </div>
+            <!-- page -->
+            <div class="common-page">
+                <div class="dryad-page-main" data-ng-if='pageConfig.pageCount > pageConfig.pageSize'>
+                    <span class="count-size">共{{pageConfig.pageCount}}条</span>
+                    <button class="button " ng-click="pagination.goto(1)" ng-disabled='pagination.currentPage == 1'>
+                        <i class="fa fa-step-backward"></i>
+                    </button>
+                    <button class="button" ng-click="pagination.previousPage()" ng-disabled='pagination.currentPage == 1'>
+                        <i class="fa fa-backward"></i>
+                    </button>
+                    
+                    <a class='dryad-page-link' ng-repeat="item in pagination.items" ng-class="pagination.currentPage == item ? 'active' : ''" ng-click="pagination.goto(item)">{{item}}</a>
+                    <button class="button" ng-click="pagination.nextPage()" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                        <i class="fa fa-forward"></i>
+                    </button>
+                    <button class="button" ng-click="pagination.goto(pagination.pageCount)" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                        <i class="fa fa-step-forward"></i>
+                    </button>
+                    <div class="jump-page">
+                        跳至
+                        <input type="text" class="text-center go-page" ng-model="pagination.goToPage" data-ng-keyup="jumpTo($event)"> 页
+                    </div>
+                
+                    <!-- <button class="button" ng-click="pagination.goto(pagination.goToPage)">GO</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

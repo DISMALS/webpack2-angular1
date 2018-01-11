@@ -1,0 +1,22 @@
+<div class="medical-history-details patients">
+    <div class="details-title">
+        <div class="patinets-info">
+            <i class="patients-logo"><img data-ng-src={{activeTab.userimg}}></i>
+            <div class="patients-formation">
+                <span class="name">
+                    <b data-ng-bind="activeTab.data.name"></b>
+                    <i data-ng-class="activeTab.data.sex == 'M'?'patients-man':'patients-women'"></i>{{activeTab.data.age}}
+                </span>
+                <span class="mobile"><i class="mobile-icon"></i>{{activeTab.data.phoneNo}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="details-content">
+        <div class="tab-title">
+            <tabs data="tabData" type="pills" template-url="ui-router-tabs-custom-ui-view-template.html"></tabs>
+        </div>
+        <div class="tab-content">
+            <ui-view></ui-view>
+        </div>
+    </div>
+</div>

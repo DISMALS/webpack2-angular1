@@ -1,0 +1,103 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="title"></span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<form verify-scope="tipStyle:2" name="checkForm" class="dryad-drag-disabled">
+    <!-- 新增医疗单位或者修改医疗单位 -->
+    <div class="sure-patient programs-add-edit">
+        <div class="row">
+            <div class="programs-input col-sm-6">
+                <span class="left-title"><span class="required-field"></span>机构名称:</span>
+                <span class="right-content">
+                    <input type="text" class="user-input" ng-verify placeholder="请输入机构名称" data-ng-model="orgDetails.orgName">
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title"><span class="required-field"></span>机构管理员:</span>
+                <span class="right-content">
+                    <input type="text" class="user-input" ng-verify placeholder="请输入联系人" data-ng-model="orgDetails.adminName">
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title"><span class="required-field"></span>联系电话:</span>
+                <span class="right-content">
+                    <input type="text" class="user-input" ng-verify="max:11,pattern:/^1[1-9]{1}[0-9]{9}$/" input-mask='[9][9][9][9][9][9][9][9][9][9][9]' placeholder="请输入联系电话" data-ng-model="orgDetails.phoneNo">
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title">邮编:</span>
+                <span class="right-content">
+                    <input type="text" class="user-input" ng-change="limitlength()" placeholder="请输入邮编" input-mask='[9][9][9][9][9][9][9]' data-ng-model="orgDetails.zipCode">
+                </span>
+            </div>
+            <div class="programs-input col-sm-12">
+                    <span class="left-title"><span class="required-field"></span>联系地址:</span>
+                    <span class="right-content">
+                        <div class="nature-select">
+                            <ui-select data-ng-model="orgDetails.province" ng-verify search-enabled="true" theme="select2" class="bootstrap-select" on-select="getCityList(orgDetails.province)">
+                                <ui-select-match placeholder="省"><span data-ng-bind="$select.selected.regionName"></span></ui-select-match>
+                            <ui-select-choices refresh="serchProvinceForm($select.search)"  refresh-delay='0' repeat="item.regionCode as item in provinceList">
+                                <span data-ng-bind="item.regionName"></span>
+                            </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="nature-select">
+                            <ui-select data-ng-model="orgDetails.city" search-enabled="true" theme="bootstrap" class="bootstrap-select" on-select="getCountryList(orgDetails.city)">
+                                <ui-select-match placeholder="市"><span data-ng-bind="$select.selected.regionName"></span></ui-select-match>
+                            <ui-select-choices repeat="item.regionCode as item in cityList">
+                                <span data-ng-bind="item.regionName"></span>
+                            </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="nature-select">
+                            <ui-select data-ng-model="orgDetails.country" search-enabled="true" theme="bootstrap" class="bootstrap-select">
+                                <ui-select-match placeholder="区/县"><span data-ng-bind="$select.selected.regionName"></span></ui-select-match>
+                            <ui-select-choices repeat="item.regionCode as item in countryList">
+                                <span data-ng-bind="item.regionName"></span>
+                            </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="addressInfo"><input type="text" class="user-input" placeholder="请输入具体地址" data-ng-model="orgDetails.address"></div>
+                </span>
+            </div>
+            <div class="programs-upload col-sm-12">
+                <span class="left-title">机构logo:</span>
+                <span class="right-content">
+                    <div class="orgLogo">
+                        <i class="upload-icon" data-ng-if="!logoSrc"></i>
+                        <img data-ng-src={{logoSrc}} data-ng-if="logoSrc">
+                        <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" preview-src="logoSrc" dryad-upload-img>
+                    </div>
+                    <p class="warning"><i class="warning-icon"></i>只能上传JPG/PNG文件单个文件不能超过1M，长宽比（4：3）</p>
+                </span>
+            </div>
+            <div class="programs-input col-sm-6" style="height: 50px;">
+                <span class="left-title"><span class="required-field"></span>管理员账号:</span>
+                <span class="right-content">
+                    <input type="text" class="user-input" ng-verify="min:6,max:16,pattern:/^[A-Za-z0-9]{6,16}$/,errmsg:'登录账号必须是6到16位的大小写字母以及数字'" data-ng-disabled="orgId" placeholder="请输入管理员账号" data-ng-model="orgDetails.adminCode">
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title"><span data-ng-if="!orgId" class="required-field"></span>登录密码:</span>
+                <span class="right-content">
+                    <input type="password" data-ng-if="!orgId" class="user-input" ng-verify="min:6,max:16,pattern:/^[A-Za-z0-9]{6,16}$/,errmsg:'登录密码必须是6到16位的大小写字母以及数字'" name="passwordc" placeholder="请输入密码" data-ng-model="orgDetails.password">
+                    <input type="password" data-ng-if="orgId" class="user-input" placeholder="请输入密码" data-ng-model="orgDetails.password">
+                </span>
+            </div>
+            <div class="programs-input col-sm-6">
+                <span class="left-title"><span data-ng-if="!orgId" class="required-field"></span>确认密码:</span>
+                <span class="right-content">
+                    <input type="password" data-ng-if="!orgId" ng-verify="recheck:'passwordc'" class="user-input" placeholder="请确认密码" data-ng-model="orgDetails.confirmPassword">
+                    <input type="password" data-ng-if="orgId" class="user-input" placeholder="请确认密码" data-ng-model="orgDetails.confirmPassword">
+                </span>
+            </div>
+        </div>
+        
+        <!-- 按钮 -->
+        <div class="patientinfo text-right programs-btn">
+            <label class="pullsend"><input type="checkbox" data-ng-model="isSend">推送账号至管理员</label>
+            <button data-ng-click="closedModal()" class="button botton-close">取消</button>
+            <button data-ng-click="sure()" ng-verify="{control:'checkForm'}" class="button-default botton-save"><i class="save save-icon"></i>保存</button>
+        </div>
+    </div>
+</form>

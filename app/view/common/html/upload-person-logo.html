@@ -1,0 +1,25 @@
+<div class="modal-title" drag-modal>
+    <span class="title" data-ng-bind="items.title"></span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+
+<!-- 裁剪头像 -->
+<div class="sure-patient add-department dryad-drag-disabled">
+    <div class="cropper-main">
+        <div class="cropper-main-l">
+            <dryad-upload-employee-logo crop-options="cropObj.cropOptions" source-img="cropObj.sourceImg" crop-pable="cropObj.cropPable"></dryad-upload-employee-logo>
+        </div>
+        <div class="cropper-main-r">
+            <h3 class="cropper-view-title">头像预览</h3>
+            <div id="resultImg"></div>
+        </div>
+    </div>
+    <!-- 按钮 -->
+    <div class="patientinfo text-right programs-btn">
+        <!-- <span class="reuploadLogo">
+            <a class="button botton-close">重新选择头像</a>
+            <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" style="opacity:0;cursor:pointer;" service-fn="serviceFunc" dryad-upload-img>
+        </span> -->
+        <a data-ng-click="sure()" class="button-default botton-save"><i class="save save-icon"></i>保存</a>
+    </div>
+</div>

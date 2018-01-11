@@ -1,0 +1,26 @@
+
+<div class="videoCentent preview clearfix">
+
+    <div class="videogular-container">
+        <i class="close-modal" ng-click="closedModal()"></i>
+        <video-play-directive file-id="fileId" cover="{{videoData.coverFileUrl}}" play="true"></video-play-directive>
+        <ul>
+            <li class="clearfix active">
+                <div class="videoImg">
+                    <img ng-src="{{videoData.coverFileUrl}}" />
+                </div>
+                <div class="videoInfo">
+                    <p>{{videoData.title}}</p>
+                    <p><span>{{videoData.author}}</span><span>{{videoData.createDate}}</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="approvalButton" ng-if="type == 'approval'">
+        <ul>
+            <li ng-click="getReject()">退回</li>
+            <li ng-click="getApprove()">发布</li>
+        </ul>
+    </div>
+</div>

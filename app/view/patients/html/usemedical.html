@@ -1,0 +1,19 @@
+<div class="patients-baseinfo">
+    <div class="chooise-time">
+        <span class="left-title">时间:</span>
+        <span class="right-content">
+            <dryad-date-time-picker date-data="chatDate" date-format="'YYYY-MM'"></dryad-date-time-picker>
+        </span>
+    </div>
+    <div class="curve-diagram-main" data-ng-if="data.medicationRecordVOs && data.medicationRecordVOs.length > 0">
+        <div dryad-echarts="diagramOptionTwo" ratio='1'></div>
+    </div>
+    <div class="instruction-text" data-ng-if="data.medicationRecordVOs && data.medicationRecordVOs.length > 0">
+        <span>测评项目:<b>ACT</b></span>
+        <span>测评时间:<b data-ng-bind="data.estimateDate"></b></span>
+        <span>分数:<b data-ng-bind="data.score"></b><i class="no-ctrol">{{level}}</i></span>
+    </div>
+    <div data-ng-if="!data.medicationRecordVOs" class="nodata-img nodata-minheight-omg">
+        <img src="../../../../images/nodata.png" alt="">
+    </div>
+</div>

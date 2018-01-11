@@ -1,0 +1,51 @@
+<div class="medical-history-details-case"  drag-modal>
+    <div class="modal-title">
+        <span class="title">查看随访</span>
+        <i class="close-modal" ng-click="closedModal()"></i>
+    </div>
+    <!-- 确认患者并且创建病历 -->
+    <div class="medical-case-content dryad-drag-disabled">
+        <ul class="addFollowupList followHeader">
+            <li class="clearfix">
+                <div><span>患者姓名：</span><span ng-bind="followData.patientName"> </span></div>
+                <div><span>生日：</span><span ng-bind="followData.birthday"></span></div>
+            </li>
+            <li class="clearfix">
+                <div><span>手机号码：</span><span ng-bind="followData.phoneNo"></span></div>
+                <div><span>计划随访日期：</span><span ng-bind="followData.planDate"></span></div>
+            </li>
+            <li class="clearfix">
+                <div><span>计划随访人员：</span><span ng-bind="followData.planEmployeeName"></span></div>
+                
+            </li>
+            <li class="clearfix">
+                <div class="textareaDiv clearfix">
+                    <span>计划随访内容：</span>
+                    <span ng-bind="followData.planContent" class="textarea">
+                    </span>
+                </div>
+            </li>
+        </ul>
+        <ul class="addFollowupList followHeader followupContent" ng-if="followUpId">
+            <li class="clearfix">
+                <div><span>随访日期：</span><span ng-bind="followData.realDate"> </span></div>
+             </li>
+            <li class="clearfix">
+                <div><span>随访人员：</span><span ng-bind="followData.realEmployeeName"></span></div>
+             </li>
+            <li class="clearfix">
+                <div><span>随访方式：</span><span ng-bind="followData.wayDesc"></span></div>
+             </li>
+            <li class="clearfix">
+                <div class="textareaDiv clearfix">
+                    <span>随访结果：</span>
+                    <span ng-bind="followData.resultContent" class="textarea">
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="newAddPatientBtn programs-btn dryad-drag-disabled">
+        <a data-ng-click="closedModal()" class="button botton-close">关闭</a>
+    </div>
+</div>

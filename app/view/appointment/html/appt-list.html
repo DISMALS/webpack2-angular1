@@ -1,0 +1,59 @@
+<div class="appt_main">
+    <!-- header -->
+    <div class="appt_list_header">
+        <div class="btn_group">
+            <button type="button" ng-click="goScheduler()" class="scheduler_btn btn_lt">日历</button>
+            <button type="button" class="scheduler_btn btn_rt active">列表</button>
+        </div>
+        <div class="fl_l dropdown-select appt_list_select m-l-15">
+            <ui-select ng-model="obj.periodOfTime" theme="bootstrap">
+                <ui-select-match class="set-height">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="item.id as item in periodOfTimeArr">
+                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="fl_l table-width-15 m-l-15 appt_list_time" data-ng-if="obj.periodOfTime == 5"><dryad-date-time-picker date-data="obj.dateStart"></dryad-date-time-picker></div>
+        <div class="fl_l text-center" style="width:3%;" data-ng-if="obj.periodOfTime == 5">——</div>
+        <div class="fl_l table-width-15 appt_list_time" data-ng-if="obj.periodOfTime == 5"><dryad-date-time-picker date-data="obj.dateEnd"></dryad-date-time-picker></div>
+        <div class="fl_l dropdown-select appt_list_select m-l-15">
+            <ui-select ng-model="obj.doctorId" theme="bootstrap">
+                <ui-select-match class="set-height">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="item.id as item in doctorArr">
+                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <!-- list -->
+    <div class="dryad-grid">
+        <layui-table-ui grid-options="tableOptions"></layui-table-ui>
+    </div>
+    <!-- page -->
+    <div class="common-page">
+        <!-- <dryad-ui-page page-config="pageConfig" page-data-fn="initFn"></dryad-ui-page> -->
+        <div class="dryad-page-main" data-ng-if='pageConfig.pageCount > pageConfig.pageSize'>
+            <span class="count-size">共{{pageConfig.pageCount}}条</span>
+            <button class="button " ng-click="pagination.goto(1)" ng-disabled='pagination.currentPage == 1'>
+                <i class="fa fa-step-backward"></i>
+            </button>
+            <button class="button" ng-click="pagination.previousPage()" ng-disabled='pagination.currentPage == 1'>
+                <i class="fa fa-backward"></i>
+            </button>
+            
+            <a class='dryad-page-link' ng-repeat="item in pagination.items" ng-class="pagination.currentPage == item ? 'active' : ''" ng-click="pagination.goto(item)">{{item}}</a>
+            <button class="button" ng-click="pagination.nextPage()" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                <i class="fa fa-forward"></i>
+            </button>
+            <button class="button" ng-click="pagination.goto(pagination.pageCount)" ng-disabled='pagination.currentPage == pagination.pageCount'>
+                <i class="fa fa-step-forward"></i>
+            </button>
+            <div class="jump-page">
+                跳至
+                <input type="text" class="text-center go-page" ng-model="pagination.goToPage" data-ng-keyup="jumpTo($event)"> 页
+            </div>
+        
+            <!-- <button class="button" ng-click="pagination.goto(pagination.goToPage)">GO</button> -->
+        </div>
+    </div>
+</div>

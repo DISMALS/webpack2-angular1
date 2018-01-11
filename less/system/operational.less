@@ -1,0 +1,405 @@
+@charset 'UTF-8';
+.programs-add-edit{
+	overflow:hidden;
+}
+.programs-input{
+	margin-bottom: 10px;
+	height: 32px;
+	.left-title{
+		width:80px;
+		text-align: right;
+		height: 32px;
+		line-height: 32px;
+		float: left;
+		overflow: hidden;
+		margin-right:5px;
+	}
+	.right-content{
+		float: left;
+		width: calc(~"100% - 90px");
+		height: 32px;
+		.user-input{
+			width:90%;
+		}
+		.nature-select{
+			float: left;
+			width: 20%;
+			height: 32px;
+			padding: 0px 5px 0px 0px;
+		}
+		.bootstrap-select{
+			.border-radius(4px,4px,4px,4px);
+			.border(1px,solid,@font-color-9);
+		}
+		.addressInfo{
+			float: left;
+			width: 40%;
+		}
+	}
+}
+.programs-upload{
+	width:33%;
+	display: inline-block;
+	margin-bottom: 10px;
+	.left-title{
+		width:80px;
+		text-align: right;
+		height: 32px;
+		line-height: 32px;
+		float: left;
+		overflow: hidden;
+		margin-right:5px;
+	}
+	.right-content{
+		float: left;
+		width: calc(~"100% - 90px");
+	}
+	.warning{
+	    font-size:@font-size-12;
+	    color:@font-color-5;
+	    letter-spacing:0;
+	    line-height:16px;
+	    margin:8px 0px 0px;
+	    i{
+	        font-size: @font-size-15;
+	        color:@font-color-10;
+	        margin-right:6px;
+	    }
+	}
+	.orgLogo{
+		width:120px;
+		height:80px;
+		.border(1px,dashed,@font-color-9);
+		.border-radius(4px,4px,4px,4px);
+		background:@font-color-3;
+		text-align: center;
+		line-height: 80px;
+		cursor:pointer;
+		position: relative;
+		.upload-icon{
+			font-size: @font-size-35;
+			color:@font-color-4;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+	}
+}
+.orgLogo-view{
+	width:240px;
+	height: 180px;
+	overflow: hidden;
+	img{
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+}
+.text-view{
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	overflow: hidden;
+}
+.programs-btn{
+	width: 100%;
+	line-height: 52px;
+	border-top:1px solid @font-color-24;
+	padding:0px 20px !important;
+	margin-top:30px;
+	margin-bottom: 0px;
+	.pullsend{
+		display: inline-block;
+		font-size: @font-size-14;
+		color:@font-color-5;
+		font-weight: normal;
+	    margin: 0;
+	    padding-right:15px;
+		input{
+			margin: 19px 5px 0px 0px;
+    		float: left;
+			width: 14px;
+			height: 14px;
+			.border(1px,solid,@font-color-1);
+			.border-radius(2px,2px,2px,2px);
+		}
+	}
+}
+.config-info{
+	display: inline-block;
+	background:@icon-bg-color-7;
+	.border(1px,solid,@font-color-9);
+	.border-radius(4px,4px,4px,4px);
+	height:22px;
+	line-height: 22px;
+	padding:0px 3px;
+	font-size: @font-size-14;
+	color:@font-color-5;
+}
+
+//custom select
+.height-32{
+	height:32px;
+}
+.custom-select{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.text-default{
+		display: block;
+		font-size:@font-size-14;
+		color:@font-color-1;
+		padding:0px 5px 0px;
+		height: 100%;
+		span{
+			float: left;
+			display: block;
+			width:calc(~"100% - 17px");
+			height: 100%;
+			overflow: hidden;
+		}
+		i{
+			float: right;
+		    font-size: 12px;
+		}
+	}
+	.chooise-list{
+		width: 100%;
+		position: absolute;
+		top:calc(~"100% + 2px");
+		right: 0px;
+		.chooise-module{
+			display:block;
+			padding:0px 0px 0px 10px;
+			height: 24px;
+			line-height: 24px;
+			background:@icon-bg-color-7;
+			.border(1px,solid,@font-color-9);
+			.border-radius(4px,4px,4px,4px);
+			font-size:@font-size-14;
+			color:@font-color-5;
+			overflow: hidden;
+			margin:5px 0px 0px 5px;
+			float: left;
+			span{
+				display: inline-block;
+			}
+			.delete-close{
+				width:24px;
+				height: 24px;
+				display: block;
+				float: right;
+				text-align: center;
+				line-height: 24px;
+				cursor: pointer;
+				margin-left:3px;
+			}
+			&:hover{
+				.delete-close{
+					background-color: rgba(247,186,42,0.19);
+					color:@font-color-4;
+				}
+			}
+		}
+	}
+	.custom-select-main{
+		width: 350px;
+		position: absolute;
+		top:calc(~"100% + 3px");
+		right: 0px;
+		background-color:@font-color-3;
+		.box-shadow(0px,1px,4px,0px,rgba(0,0,0,0.20));
+		.border-radius(4px,4px,4px,4px);
+		overflow: hidden;
+		.custom-select-main-title{
+			width:100%;
+			height: 30px;
+			line-height: 30px;
+			border-bottom:1px solid @font-color-9;
+			padding:0px 10px;
+		    overflow: hidden;
+			.warning{
+				padding-left: 0px;
+			    line-height: 30px;
+			    i{
+			    	float: left;
+    				margin-top: 1px;
+			    	margin-right: 5px;
+			    }
+			}
+			.height-24{
+				height: 24px;
+				line-height: 24px;
+				padding: 0px 10px;
+				font-size: 12px;
+				float: right;
+    			margin-top: 2px;
+			}
+		}
+		.custom-select-main-content{
+			width: 100%;
+			height:180px; 
+			.custom-select-main-content-l{
+				float: left;
+				width: 130px;
+				height: calc(~"100%");
+				border-right:1px solid @font-color-9;
+				padding:10px 0px;
+				margin:0px;
+				overflow-y: auto;
+				li{
+					height: 28px;
+					line-height: 28px;
+					cursor: pointer;
+					font-size:@font-size-14;
+					color:@font-color-5;
+					text-align: center;
+					&:hover{
+						// background-color: @icon-bg-color-6;
+						background-color: @font-color-4;
+						color:@font-color-3;
+					}
+				}
+				.active{
+					background-color: @font-color-4;
+					color:@font-color-3;
+				}
+			}
+			.custom-select-main-content-r{
+				float: left;
+				width:calc(~"100% - 131px");
+				padding:10px;
+				height: calc(~"100%");
+				margin:0px;
+				overflow-y: auto;
+				li{
+					width: 100%;
+					height: 28px;
+					line-height: 28px;
+					padding:0px 10px;
+					overflow: hidden;
+					color:@font-color-5;
+					font-size:14px;
+					cursor: pointer;
+					margin: 5px 0;
+					.border-radius(4px,4px,4px,4px);
+					&:hover{
+						// background-color: @icon-bg-color-6;
+						background-color: #7cdcf1;
+						color:@font-color-3;
+					}
+				}
+				.active{
+					background-color: @font-color-4 !important;
+					color:@font-color-3;
+				}
+			}
+		}
+	}
+
+}
+.fl-l{
+    float: left;
+}
+.mg-l-0{
+    margin-left: 0!important;
+}
+.isEnable{
+    height: 18px;
+    margin: 6px 0px 10px 0px;
+    .isEnableMain{
+        width:85px;
+        height: 18px;
+        line-height: 18px;
+        overflow: hidden;
+    }
+    .isEnableBtn{
+        float: right;
+        position: relative;
+        background:@font-color-3;
+        overflow: hidden;
+        .border-radius(100px,100px,100px,100px);
+        width:50px;
+        height: 18px;
+        cursor: pointer;
+        .text{
+            color:@font-color-3;
+            font-size: 12px;
+        }
+        .roundBtn{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background:@font-color-3;
+            top:2px;
+            left:34px;
+            .border-radius(100px,100px,100px,100px);
+        }
+        .moveLeft{
+//          animation: moveleft 0.3s linear  both;
+            animation: moveleft  both;
+            -webkit-animation: moveleft both;
+        }
+        .moveRight{
+            animation: moveright both;
+            -webkit-animation: moveright both;
+        }
+        &.fl-l{
+            float: left;
+        }
+        &.mg-l-10{
+        margin-left: 10px;
+        }
+    }
+    .yes{
+        padding-left: 7px;
+        animation: yescolor both;
+        -webkit-animation: yescolor both;
+    }
+    .no{
+        padding-right: 7px;
+        text-align: right;
+        animation: nocolor both;
+        -webkit-animation: nocolor both;
+        .notext{
+            padding-right: 15px;
+        }
+    }
+}
+
+//向左移动
+@keyframes nocolor{
+    from{background:@icon-bg-color-1;}
+    to{background:@icon-bg-color-3;}
+}
+@-webkit-keyframes nocolor{
+    from{background:@icon-bg-color-1;}
+    to{background:@icon-bg-color-3;}
+}
+@keyframes moveleft{
+    from{left:34px;}
+    to{left:2px;}
+}
+@-webkit-keyframes moveleft{
+    from{left:34px;}
+    to{left:2px;}
+}
+//向右移动
+@keyframes yescolor{
+    from{background:@icon-bg-color-3;}
+    to{background:@icon-bg-color-1;}
+}
+@-webkit-keyframes yescolor{
+    from{background:@icon-bg-color-3;}
+    to{background:@icon-bg-color-1;}
+}
+@keyframes moveright{
+    from{left:2px;}
+    to{left:34px;}
+}
+@-webkit-keyframes moveright{
+    from{left:2px;}
+    to{left:34px;}
+}

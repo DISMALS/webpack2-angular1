@@ -1,0 +1,15 @@
+<div class="modal-title" drag-modal>
+    <span class="title">查看图片</span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<div class="sure-patient padding-b-10 dryad-drag-disabled">
+    <div class="picture-main"><img data-ng-src={{picture.url}}></div>
+    <div class="picture-descriptor">
+        <span class="descriptor-title">影像描述</span>
+        <span class="textarea descriptor-main" ng-bind="picture.desc" ng-if="action === 'dataVIEW'"></span>
+        <textarea class="descriptor-main" placeholder="请输入描述" ng-model="picture.desc" ng-show="action !== 'dataVIEW'"></textarea>
+    </div>
+</div>
+<div class="newAddPatientBtn programs-btn line-height2 dryad-drag-disabled">
+     <a data-ng-click="closedModal()" class="patients-especial botton-special"><i class="save sure-icon"></i>确认</a>
+</div>

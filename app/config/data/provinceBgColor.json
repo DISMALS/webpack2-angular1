@@ -1,0 +1,422 @@
+[
+    {
+        "name":"上海",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"云南",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"内蒙古",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"北京",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"台湾",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"吉林",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"四川",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"天津",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"宁夏",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"安徽",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"山东",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"山西",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"广东",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"广西",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"新疆",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"江苏",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"江西",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"河北",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"河南",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"浙江",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"海南",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"湖北",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"湖南",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"澳门",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"甘肃",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"福建",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"西藏",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"贵州",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"辽宁",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"重庆",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"陕西",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"青海",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"香港",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"黑龙江",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "red",
+                "color": "red"
+            },
+            "emphasis": {
+                "areaColor": "#2a333d"
+            }
+        }
+    },
+    {
+        "name":"南海诸岛",
+        "itemStyle": {
+            "normal": {
+                "areaColor": "#26a4d6",
+                "color": "#555"
+            },
+            "emphasis": {
+                "areaColor": "#00a6c9"
+            }
+        }
+    }
+]

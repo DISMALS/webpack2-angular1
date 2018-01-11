@@ -1,0 +1,44 @@
+<div class="medical-history-details-case"  drag-modal>
+    <div class="modal-title">
+        <span class="title">{{addText}}随访</span>
+        <i class="close-modal" ng-click="closedModal()"></i>
+    </div>
+    <!-- 确认患者并且创建病历 -->
+    <div class="medical-case-content dryad-drag-disabled">
+        <form verify-scope="tipStyle:2" name="checkForm">
+            <ul class="addFollowupList">
+                <li class="clearfix">
+                    <div><span><i class="warning-xin">*</i>患者姓名</span><span><input  placeholder="请输入姓名" data-ng-model="followData.patientName"/></span></div>
+                    <div><span><i class="warning-xin">*</i>手机号码</span><span><input type="text" input-mask='[9][9][9][9][9][9][9][9][9][9][9]'  placeholder="请输入手机号码" data-ng-model="followData.phoneNo" ng-verify="max:11,pattern:/^1[1-9]{1}[0-9]{9}$/"/></span></div>
+                </li>
+                <li class="clearfix">
+                    <div><span>计划随访人员</span><span>
+                        <label class="head-search inputSearch">
+                                <ui-select ng-model="followData.planEmployeeId" theme="select2" search-enabled="false" on-select="changeResource($select.selected)" class="search-drug form-control form-white">
+                                    <ui-select-match placeholder="计划随访人员">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item.employeeId as item in doctorList" refresh="itemSearch($select.search)" refresh-delay='300'>
+                                        <span  data-ng-bind="item.name"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </label>
+                        </span></div>
+                    <div><span><i class="warning-xin">*</i>计划随访日期</span><span><dryad-date-time-picker max-data-true='true' date-data="followData.planDate"></dryad-date-time-picker></span></div>
+                </li>
+                <li class="clearfix">
+                    <div class="textareaDiv clearfix">
+                        <span>计划随访内容</span>
+                        <span  class="textarea">
+                            <textarea placeholder="计划随访内容" data-ng-model="followData.planContent"></textarea>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="newAddPatientBtn programs-btn addFollowupBtn dryad-drag-disabled">
+        <a data-ng-click="getSaveFollowup()" class="button botton-close"><i class="save-icon"></i>保存</a>
+        <a data-ng-click="closedModal()" class="button botton-close">关闭</a>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿<data>
+  <event id="2">
+    <start_date><![CDATA[2016-06-18 12:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-18 14:00:00]]></end_date>
+    <text>张雨</text>
+ 
+    <expired1>1</expired1>
+    <expired12>1</expired12>
+    <section_id>1</section_id>
+  </event>
+  <event id="3">
+    <start_date><![CDATA[2016-06-18 10:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-18 12:00:00]]></end_date>
+    <text><![CDATA[<h4>何洁天</h4>热玛吉<br/>水光针]]></text>
+    <section_id>2</section_id>
+  </event>
+  <event id="4">
+    <start_date><![CDATA[2016-06-18 16:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-18 18:00:00]]></end_date>
+    <text><![CDATA[<h4>刘思宇</h4>热玛吉]]></text>
+    <section_id>3</section_id>
+  </event>
+  <event id="5">
+    <start_date><![CDATA[2016-06-18 10:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-18 15:00:00]]></end_date>
+    <text><![CDATA[<h4>张迪生</h4>瘦脸<br/>水光针]]></text>
+    <section_id>4</section_id>
+  </event>
+  <event id="6">
+    <start_date><![CDATA[2016-06-19 12:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-19 14:00:00]]></end_date>
+    <text><![CDATA[<h4>张艾</h4>水光针]]></text>
+    <section_id>1</section_id>
+  </event>
+  <event id="7">
+    <start_date><![CDATA[2016-06-21 12:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-21 14:00:00]]></end_date>
+    <text><![CDATA[<h4>李维斯</h4>抽脂<br/>水光针]]></text>
+    <section_id>1</section_id>
+  </event>
+  <!--<event id="7">
+    <start_date><![CDATA[2016-06-14 12:00:00]]></start_date>
+    <end_date><![CDATA[2016-06-26 14:00:00]]></end_date>
+    <text><![CDATA[multi-day event]]></text>
+    <section_id>2</section_id>
+  </event>-->
+</data>

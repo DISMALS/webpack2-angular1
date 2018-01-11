@@ -1,0 +1,403 @@
+<div class="clinical-info">
+    <div class="medical-tab-header">
+        <ul class="navs" ng-init="activeIndex=0">
+           <li ng-repeat="item in navs track by item.id">
+               <a href="" ng-click="scrollTo(item.id,$index)" ng-class="{'nav-active': activeIndex==$index }">{{item.name}}</a>
+           </li>
+        </ul>
+        <div class="slide-bar"></div>
+        <a ng-click="saveData()" class="button-default botton-save tab-header-btn"><i class="save-icon"></i>&nbsp保存</a>
+    </div>
+    <div class="clinical-info-content">
+    <table>
+        <tbody>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr id="general-condition">
+                <td><label>呼吸频率(R)：</label></td>
+                <td>
+                    <input class="input-ui pd-l10"  type="text" ng-model="initInfo.generalCondition.br">次/分 
+                </td>
+            </tr>
+            <tr>
+                <td><label for="">心率(HR)：</label></td>
+                <td><input class="input-ui pd-l10" type="text" ng-model="initInfo.generalCondition.hr">次/分 
+                </td>
+            </tr>
+            <tr>
+                <td><label for="">血压(BP)：</label></td>
+                <td>
+                    <input class="input-ui-bp pd-l10" type="text" ng-model="initInfo.generalCondition.bp">/
+                    <input class="input-ui-bp pd-l10" type="text" ng-model="initInfo.generalCondition.bp2">mmhg
+                </td>
+            </tr>    
+            <tr>   
+                <td><label for="">血氧饱和度(SpO2)：</label></td>
+                <td>
+                    <input class="input-ui pd-l10" type="text" ng-model="initInfo.generalCondition.SpO2">%
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><div  class="clinic-split-line"></div></td>
+            </tr>
+            <tr id="asthma-symptoms">
+                <td><span class="required-field"></span><label for="">哮喘症状：</label></td>
+                <td>
+                		<span ng-class="{'tip-border':asthmabtn}">
+                			 <label class="radioStyle">
+	                     <input name="asthmaSymptomsStatus" type="radio" ng-change="changebordertip()" ng-value="0" ng-model="initInfo.asthmaSymptoms.status">无
+	                    </label>
+                			<label class="radioStyle">
+                        <input name="asthmaSymptomsStatus" type="radio" ng-change="changebordertip()" ng-value="1" ng-model="initInfo.asthmaSymptoms.status">有
+	                    </label>
+	                   
+                    <ul ng-if="initInfo.asthmaSymptoms.status">
+                        <li ng-repeat="item in initInfo.asthmaSymptoms.symptoms track by item.type" class="height-32">
+                            <span class="v-a-t dis-i-b">
+                                <label  class="radioStyle" for="">{{item.type}}、{{item.name}}：</label>
+                            <label class="radioStyle">
+                                <input name="{{item.type}}+'symptoms'" type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                            </label>
+                            <label class="radioStyle">
+                                <input name="{{item.type}}+'symptoms'" type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                            </label>
+                            </span>
+
+                            <span ng-if="item.type!='e' && item.state">【是否为主要症状：
+                                <label class="radioStyle">
+                                    <input name="{{item.name}}+'symptoms'" type="radio" ng-value="0" ng-model="item.isMain"　ng-checked="item.isMain">否
+                                </label>
+                                <label class="radioStyle">
+                                    <input name="{{item.name}}+'symptoms'" type="radio" ng-value="1" ng-model="item.isMain" ng-checked="item.isMain">是
+                                </label>】
+                                
+                            </span>
+                            <span class="dis-b v-a-t mg-l70" ng-if="item.type=='d' && item.state">
+                            	  <i class="fl-l" for="">咳痰描述：
+                                   <label ng-repeat="itemNumber in item.details.coughtype.list track by $index">
+                                       <input type="radio" name="symptomscoughtype" ng-value="$index+1" ng-model="item.details.coughtype.type">{{itemNumber.name}}
+                                   </label>
+                               </i>
+                               <span class="fl-l mg-l20 wid-350">
+                               	<i class="fl-l" for="" ng-if="item.details.coughtype.type == 2">			
+                               		<span class="fl-l wid-85 t-a-r">【咳痰次数：</span>
+                                   <label ng-repeat="itemNumber in item.details.times.list track by $index" class="fl-l">
+                                       <input type="radio" name="symptomstimes" ng-value="$index+1" ng-model="item.details.times.type">{{itemNumber.name}}
+                                   </label>
+                               </i>
+                               <i class="fl-l dis-b" for="" ng-if="item.details.coughtype.type == 2">
+                               	<span class="fl-l wid-85 t-a-r">颜色：</span>
+                                   <label ng-repeat="itemNumber in item.details.color.list track by $index" class="fl-l">
+                                       <input type="radio" name="symptomscolor" ng-value="$index+1" ng-model="item.details.color.type">{{itemNumber.name}}
+                                   </label>
+                               </i>
+                               <i class="fl-l dis-b"  for="" ng-if="item.details.coughtype.type == 2"><span class="fl-l wid-85 t-a-r">性状：</span>
+                                   <label ng-repeat="itemNumber in item.details.character.list track by $index" class="fl-l">
+                                       <input type="radio" name="symptomscharacter"ng-value="$index+1" ng-model="item.details.character.type">{{itemNumber.name}}
+                                   </label>】
+                               </i>
+                               </span>
+                               
+                            </span>
+                        </li>
+                    </ul>
+                		</span>
+                    
+                </td>
+            </tr>
+
+            <tr>
+               <td><label for="">症状高发时间：</label></td>
+                <td>
+                    <label  ng-repeat="item in initInfo.asthmaSymptoms.routineTime.list track by $index">
+                        <input type="radio"  name="routineTime" ng-model="initInfo.asthmaSymptoms.routineTime.type" ng-value= '$index' ng-checked="initInfo.asthmaSymptoms.routineTime.type">{{item.name}}
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="">最近一次发病天数<img class="tooltip1" data-toggle="tooltip" data-placement="right" title="提示：若为慢性持续期随访，症状与日常无差异，最近一次发病天数记为0天"  src="../../../../images/toolTip1.png" alt="">：</label></td>
+                <td>
+                    <input type="text"  class="input-ui pd-l10 morbidityDays" ng-model="initInfo.asthmaSymptoms.morbidityDays">
+                    <div class="dropdown-select morbidityDaysUnit">
+                        <ui-select ng-model="initInfo.asthmaSymptoms.morbidityDaysUnit"  theme="bootstrap" skip-focusser>
+                            <ui-select-match class="set-height">{{$select.selected.dictItemName||''}}</ui-select-match>
+                            <ui-select-choices repeat="item.dictItemName as item in morbidityDaysUnitList">
+                                <div ng-bind-html="item.dictItemName | highlight: $select.search"></div>
+                                <small>
+                                    <!--age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>-->
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="">本次发病因素：</label></td>
+                <td>
+                    <label ng-repeat="item in initInfo.asthmaSymptoms.morbidityFactors.list track by $index">
+                        <input type="checkbox"  ng-model="item.stuts" ng-true-value=1 ng-false-value=0 class="pd-l10 mg-8">{{item.name}}
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><div  class="clinic-split-line"></div></td>
+            </tr>
+
+            <tr>
+                <td id="medical-history">首次发病时间：</td>
+                <td  class='data-time'>
+                	 <dryad-date-time-picker date-data="initInfo.medicalHistory.firstTime" ></dryad-date-time-picker>
+                </td>
+            </tr>
+
+            <tr>
+                <td>急性发作情况<img class="tooltip1" data-toggle="tooltip" data-placement="right" title="提示：门诊随访，配药不作为急性发作，仅记录因症状变化不能耐受的门诊"  src="../../../../images/toolTip1.png" alt="">：</td>
+                <td>
+                    <ul>
+                        <li ng-repeat="item in initInfo.medicalHistory.acuteCondition" class="height32">
+                            <span class="fl-l wid-300">{{item.type}}、{{item.name}}(近一年因哮喘):</span>
+                            <span class="fl-l">
+                            	<label class="radioStyle">
+                                <input name="{{item.type}}+'acuteCondition'" type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                            </label>
+                            <label class="radioStyle">
+                                <input name="{{item.type}}+'acuteCondition'" type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                            </label>
+                            </span>
+                            
+                            <span class="fl-l mg-l20" ng-if="item.state">
+                                <i ng-if="item.type == 'a'">【住院次数：</i>
+                                <i ng-if="item.type == 'b'">【急诊次数：</i>
+                                <i ng-if="item.type == 'c'">【</i>
+                                <label ng-repeat="radioType in initInfo.medicalHistory.timesTypes track by $index" ng-hide="radioType == '常年' && item.type !== 'c' ">
+                                    <input type="radio" name="{{item.name}}+'acuteCondition'" ng-value="$index+1" ng-model="item.times">{{radioType}}
+                                </label>】
+                            </span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="">合并症：</label></td>
+                <td>
+                    <ul>
+                        <li class="minheight-32 clearfix" ng-repeat="item in initInfo.medicalHistory.comorbidity.data">
+                            <span for="" class="wid-220 fl-l">{{item.type}}、{{item.name}}：</span>
+                            <span class="fl-l">
+                            	<label class="radioStyle">
+                            <input name="{{item.type}}+'comorbidity'" type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                            </label>
+                            <label class="radioStyle">
+                            <input name="{{item.type}}+'comorbidity'" type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                            </label>
+                            </span>
+                            
+                            <span class="fl-l mg-l20 p-t-5" ng-if="item.type=='a' && item.state" style="top: -10px;">
+                                <label for="">首次诊断时间：</label>
+                                <span class='data-time dis-i-f'>
+                                	 <dryad-date-time-picker date-data="item.firstTime" ></dryad-date-time-picker>
+                                </span>
+                            </span>
+                            <span ng-if="item.type=='b' && item.state" class="mg-l20 dis-i-b">
+                                【
+                                <label ng-repeat="radioType in initInfo.medicalHistory.comorbidity.timesTypes track by $index">
+                                <input type="radio" name="{{item.name}}+'acuteCondition'" ng-value="$index+1" ng-model="item.times">{{radioType}}
+                                </label>
+                                】
+                            </span>
+
+                            <span ng-if="item.type=='c' && item.state" class="mg-l20" >
+                                【
+                                <label ng-repeat="radioType in initInfo.medicalHistory.comorbidity.timesTypes track by $index">
+                                <input type="radio" name="{{item.name}}+'acuteCondition'" ng-value="$index+1" ng-model="item.times">{{radioType}}
+                                </label>
+                                】
+                            </span>
+							<!--<br ng-if="item.type=='d' || item.type=='e'"/>-->
+							<span class="fl-l wid55 mg-l20">
+                           <span  ng-if="item.type=='d' && item.state ">
+                               【
+                                    <label ng-repeat="cbox in initInfo.medicalHistory.comorbidity.fruitTypes track by cbox.id">
+                                      <!--  <input type="checkbox" class="mg-8"  ng-model="cbox.stuts" ng-true-value=1 ng-false-value=0>{{cbox.name}}-->
+                                      	<label><input type="checkbox"  ng-model="cbox.stuts" class="mg-8" ng-true-value=1 ng-false-value=0>{{cbox.name}}</label>
+                                         &nbsp&nbsp<label ng-if="cbox.id==999"><input  class="input-ui pd-l10" type="text" data-ng-model='cbox.value' placeholder="输入过敏食物"></label>
+                                    </label>
+                                】
+                           </span>
+
+                            <span  ng-if="item.type=='e' && item.state ">
+                               【
+                                    <label ng-repeat="cbox in initInfo.medicalHistory.comorbidity.diseaseTypes track by cbox.id">
+                                         <label><input type="checkbox"  ng-model="cbox.stuts" class="mg-8" ng-true-value=1 ng-false-value=0>{{cbox.name}}</label>
+                                         &nbsp&nbsp<label ng-if="cbox.id==999"><input  class="input-ui pd-l10" type="text" data-ng-model='cbox.value' placeholder="输入疾病史"></label>
+                                    </label>
+                                】
+                           </span>
+                           </span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>家族史：</label></td>
+                <td>
+                    <ul>
+                        <li ng-repeat="item in initInfo.medicalHistory.familyHistory" class="height-32">
+                            <span class="wid-220 fl-l">{{item.type}}、{{item.name}}：</span>
+                            <label class="radioStyle">
+                                <input name="{{item.type}}+familyHistory" type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                            </label>
+                            <label class="radioStyle">
+                                <input name="{{item.type}}+'familyHistory'" type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                            </label>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>吸烟史<img  class="tooltip1" data-toggle="tooltip" data-placement="right" title="提示：戒断时间超过6个月定义为戒烟"  src="../../../../images/toolTip1.png" alt="">：</label></td>
+                <td>
+                    <ul>
+                        <li class="smokeli" ng-repeat="item in initInfo.medicalHistory.smokeHistory.options track by $index" >
+                            <label>
+                                <input type="radio" name="{{item.name}}+'smokeHistory'" ng-value="item.type" ng-model="initInfo.medicalHistory.smokeHistory.state">{{item.name}}
+                            </label>
+                            <i class="smokei" ng-if="item.type==2 && initInfo.medicalHistory.smokeHistory.state==2 ">
+                                <span class="seize"></span>
+                                <span>吸烟数量：<input type="text"  class="input-ui short-input pd-l10" ng-model='item.number'>包/天</span>
+                                <span class="seize"></span>
+                                <span>吸烟年数：<input type="text"  class="input-ui short-input pd-l10" ng-model='item.years'>年</span>
+                            </i>
+                            <i class="smokei" ng-if="item.type==3 && initInfo.medicalHistory.smokeHistory.state==3 ">
+                                <span class="seize"></span>
+                                <span>吸烟数量：<input type="text"  class="input-ui short-input pd-l10" ng-model='item.number'>包/天</span>
+                                <span class="seize"></span>
+                                <span>吸烟年数：<input type="text"  class="input-ui short-input pd-l10" ng-model='item.smokeyears'>年</span>
+                                <span class="seize"></span>
+                                <span>戒烟年数：<input type="text"  class="input-ui short-input pd-l10" ng-model='item.nosmokeyears'>年</span>
+                            </i>
+                            <i class="smokei" ng-if="item.type==4 && initInfo.medicalHistory.smokeHistory.state==4 ">
+                                <span class="seize"></span>
+                                <input type="text"  class="input-ui short-input pd-l10" placeholder="输入值"  ng-model='item.years'>年
+                            </i>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+         <!--职业/生活史-->
+            <tr>
+                <td>
+                    <span>职业/生活史：</span>
+                </td>
+                <td>
+                    <span>职业/生活中致喘物质接触史：</span>
+                    <span class="seize"></span>
+                    <span class="mg-l20">
+                    	<label class="radioStyle">
+                        <input name="workHistory" type="radio" ng-value="0" ng-model="initInfo.medicalHistory.workHistory.status"　ng-checked="initInfo.medicalHistory.workHistory.status">无
+                    </label>
+                    <label class="radioStyle">
+                        <input name="workHistory" type="radio" ng-value="1" ng-model="initInfo.medicalHistory.workHistory.status" ng-checked="initInfo.medicalHistory.workHistory.status">有
+                    </label>
+                    </span>
+                   
+                    <ul ng-if="initInfo.medicalHistory.workHistory.status">
+                        <li class="workHistoryli" ng-repeat="item in initInfo.medicalHistory.workHistory.list track by $index" style="min-height: 30px;">
+                        		<span class="mg-lw330">
+                            <span class="workHistoryspan">{{item.type}}、{{item.name}}</span>
+                            <span class="seize"></span>
+                            <span ng-if="item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd' || item.type== 'e' " class="fl-r mg-r20">
+                                <label class="radioStyle fl-l mg-l20">
+                                    <input name="{{item.name}}+'workHistory'" type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                                </label>
+                                &nbsp
+                                <label class="radioStyle fl-l mg-l5">
+                                    <input name="{{item.name}}+'workHistory'" type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                                </span>
+                                </span>
+                                </span>
+                                <span class="seize"></span>
+                                <span ng-if="item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd' || item.type== 'e' " class="fl-l mg-l-1">
+                                <span ng-if="item.state" class="workHistorytype">
+                                    <span  ng-if="item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd' ">
+                                        【类型：
+                                        <input type="text"  class="input-ui pd-l10 wid-100" placeholder="输入类型" ng-model="item.form">
+                                    </span>
+                                    <span ng-if="item.type== 'a' || item.type== 'b' || item.type== 'c' || item.type== 'd' ">
+                                        时间：
+                                        <input type="text"  class="input-ui short-input pd-l10" placeholder="输入值" ng-model="item.years">(年)】
+                                    </span>    
+                                    <span ng-if="item.type=='e'">【药物：
+                                        <input ng-if="item.type=='e'" type="text"  class="input-ui pd-l10 wid-100" placeholder="输入类型" ng-model="item.form" >】
+                                    </span>
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+         <!--职业/生活史-->
+            <tr>
+                <td colspan="2"><div  class="clinic-split-line"></div></td>
+            </tr>
+        <!--控制情况-->
+            <tr>
+                <td id="control-situation"><span class="required-field"></span>控制情况：</td>
+                <td>
+                    <span>1、数据录入员完成GINA指南的症状控制评估，过去4周，患者存在：</span>
+                    <ul>
+                        <li class="mg-t20" ng-repeat="item in initInfo.controlSituation.gina.list track by $index" style="overflow: hidden;">
+                        	<p ng-class="{'tip-border':ginaindex==$index}" style="float: left;"><span class="fl-l wid-248">{{item.type}}、{{item.name}}</span>
+                            <span class="labelseize"></span>
+                            <span style="float: left;">
+                            	 <label class="radioStyle">
+                                <input name="{{item.name}}+'gina'" ng-change='changeOneType()' type="radio" ng-value="0" ng-model="item.state"　ng-checked="item.state">无
+                            </label>
+                            <label class="radioStyle">
+                                <input name="{{item.name}}+'gina'" ng-change='changeOneType()' type="radio" ng-value="1" ng-model="item.state" ng-checked="item.state">有
+                            </label>
+                            </span></p>
+                            
+                           
+                        </li>
+                        <li class="mg-t28">
+                            <span>哮喘症状控制水平：<input type="text"  class="input-ui pd-l10" placeholder="自动生成" ng-readonly="true" ng-model="initInfo.controlSituation.gina.level"></span>
+                            <img  class="tooltip1" src="../../../../images/toolTip1.png" alt=""     data-container="body" data-toggle="kang123" data-placement="right" 
+                             data-content='<p style="padding: 10px;">控制:4个问题均为"无"<br/>部分控制:4个问题有1到2个为"有"<br/>未控制:4个问题有3到4个为"有"</p>'>
+                        </li>
+                        
+                    </ul>
+
+                    <ul class="mg-t28">
+                        <span>2、数据录入员协助患者完成ACT测试量表：</span>
+                        <li class="mg-t28" ng-repeat="item in initInfo.controlSituation.act.list" style="overflow: hidden;">
+                        	<div  ng-class="{'tip-border':actindex==$index}" style="float: left;overflow: hidden;">
+                        		<p>{{item.type}}、{{item.name}}</p>
+                            <label ng-repeat="radioType in item.options track by $index">
+                                <input type="radio" name="{{item.name}}+'act'"  ng-change='changeTwoType()' ng-value="$index" ng-model="item.state" ng-checked="item.state" >{{radioType.name}}
+                            </label>
+                        	</div>
+                        </li>
+
+                        <span>评估得分：<input  class="input-ui pd-l10" type="text" placeholder="自动生成" ng-readonly="true" ng-model="initInfo.controlSituation.act.score"></span>
+                        <span class="labelseize"></span>
+                        <span>哮喘控制水平：<input type="text"  class="input-ui pd-l10" placeholder="自动生成" ng-readonly="true" ng-model="initInfo.controlSituation.act.level"></span>
+                        <img  class="tooltip1" src="../../../../images/toolTip1.png" alt=""     data-container="body" data-toggle="kang123" data-placement="right" 
+                        data-content='<p style="padding: 10px;">控制:25<br/>部分控制:20-24<br/>未控制:<20</p>'>
+                    </ul>
+                </td>
+            </tr>
+        <!--控制情况-->
+        </tbody>
+    </table>
+    </div>
+</div>

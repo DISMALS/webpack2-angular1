@@ -1,0 +1,73 @@
+<div class="medical-base-info dataBase">
+    <table>
+        <tbody>
+            <tr>
+                <td><span class="required-field"></span><label  for="">姓名：</label></td>
+                <td>{{baseInfo.name}}</td>
+                <td><label  for="">性别：</label></td>
+                <td style="text-align: left">
+                        <span>{{baseInfo.sex=='M'?'男':'女'}}</span>
+                </td>
+                <td><span class="required-field"></span><label  for="">生日：</label></td>
+                <td>
+                    {{baseInfo.birthday}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label class="base-info-nation" for="">民族：</label>
+                </td>
+                <td>
+                        {{baseInfo.nation ||''}}
+                </td>
+                <td>
+                    <label for="">身高<span>(cm)</span>：</label>
+                </td>
+                <td>
+                    {{baseInfo.height ||''}}
+                </td>
+                <td>
+                    <label for="">体重<span>(kg)</span>：</label>
+
+                </td>
+                <td>
+                    {{baseInfo.weight ||''}}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for=" ">BMI指数<span><img style="display: inline-block;width:15px;height:15px " data-toggle="tooltip" data-placement="top" title="体质指数(BMI)=体重(KG)÷身高^2(M)"  src="../../../../images/toolTip1.png" alt=""></span>：</label></td>
+                <td>{{baseInfo.bmi}}</td>
+                <td><label for="">教育程度：</label></td>
+                <td>
+                    {{baseInfo.education||''}}
+                </td>
+                <td><label for="">职业：</label></td>
+                <td>
+                    {{baseInfo.job||''}}
+                </td>
+            </tr>
+            
+            <tr>
+                <td><span class="required-field"></span><label for="">手机：</label></td>
+                <td>
+                    {{baseInfo.phoneNo}}
+                </td>
+                <td><label for="">固定电话：</label></td>
+                <td>{{baseInfo.telephone||''}}</td>
+                <td><span class="required-field"></span><label for="">接诊医生：</label></td>
+                <td>
+                    {{baseInfo.receptDoctor||''}}
+                </td>
+            </tr>
+
+            <tr>
+                <td><span class="required-field"></span><label for="">地址：</label></td>
+                <td colspan="5" style="text-align: left">
+                        {{baseInfo.address}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

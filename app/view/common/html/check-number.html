@@ -1,0 +1,56 @@
+<div class="modal-title" drag-modal>
+    <span class="title">患者信息确认</span>
+    <i class="close-modal" data-ng-click="closedModal()"></i>
+</div>
+<!-- 确认患者并且创建病历 -->
+<div class="sure-patient padding-b-0 dryad-drag-disabled">
+    <div class="patientinfo col-sm-3">
+        <span class="left-title">姓名:</span>
+        <span class="right-content">
+            <input type="text" class="user-input" data-ng-model="patients.name">
+        </span>
+    </div>
+    <div class="patientinfo col-sm-3 only-sex">
+        <span class="left-title">性别:</span>
+        <span class="right-content">
+            <a class="sex-chooise"  data-ng-click="chooiseSex()">
+                <i class="man" data-ng-class="{'manactive':isBoy}">男</i>
+                <!-- womenactive -->
+                <i class="women" data-ng-class="{'womenactive':!isBoy}">女</i>
+            </a>
+        </span>
+    </div>
+    <div class="patientinfo col-sm-3">
+        <span class="left-title">生日:</span>
+        <span class="right-content">
+            <dryad-date-time-picker date-data="patients.birthday"></dryad-date-time-picker>
+        </span>
+    </div>
+    <div class="patientinfo col-sm-2">
+        <a data-ng-click="searchPatients()" class="create-medical-records patients-especial botton-special min100">
+            <i class="search"></i> 搜索患者
+        </a>
+    </div>
+</div>
+<div class="table-list dryad-drag-disabled" data-ng-if="patientsRecord.length > 0">
+    <span class="warning"><i class="warning-icon"></i>提示：请确认并选择患者本人，为其新增病历。</span>
+    <table class="table-main" cellspacing="0" cellpadding="0" border="0">
+        <tr class="disposition-grid-header">
+            <th class="table-width-10"></th>
+            <th class="table-width-20">就诊日期</th>
+            <th class="table-width-35">就诊医院</th>
+            <th class="table-width-35">患者手机号</th>
+        </tr>
+        <tr data-ng-repeat="record in patientsRecord" data-ng-class="{'active':record.check}">
+            <td><input name="active" type="checkbox" data-ng-model="record.check" data-ng-click="isCheck(record,$index)"></td>
+            <td data-ng-if="record.flag" colspan="3" class="single-tr" align="left" data-ng-bind="record.visitDate"></td>
+            <td data-ng-if="!record.flag" data-ng-bind="record.visitDate"></td>
+            <td data-ng-if="!record.flag" data-ng-bind="record.visitHospital"></td>
+            <td data-ng-if="!record.flag" data-ng-bind="record.phoneNo"></td>
+        </tr>
+    </table>
+</div>
+<div class="newAddPatientBtn programs-btn dryad-drag-disabled" data-ng-if="patientsRecord.length > 0"> 
+    <button data-ng-click="sure()" data-ng-class="{'button-default botton-save':sureBtn,'botton-disabled':!sureBtn}"><i class="save sure-icon"></i>确认</button>
+    <button data-ng-click="closedModal()" class="button botton-close">取消</button>
+</div>

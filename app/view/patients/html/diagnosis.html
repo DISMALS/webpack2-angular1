@@ -1,0 +1,31 @@
+<!-- <div class="float-title">
+    <a data-ng-click="" class="info-save button-default botton-save"><i class="save save-icon"></i>保存</a>
+</div> -->
+<div class="patients-baseinfo">
+    <timeline data-ng-if="events.length > 0">
+        <i class="tody-record">今</i>
+        <timeline-event ng-repeat="event in events" side="right">
+            <timeline-badge class="{{event.badgeClass}}">
+                <i class="glyphicon"></i>
+            </timeline-badge>
+            <timeline-panel class="{{event.badgeClass}}">
+                <span class="record-time">
+                    {{event.visitDate | date:'yyyy'}}
+                    <b>{{event.visitDate | date:'MM-dd'}}</b>
+                </span>
+                <div class="content-main">
+                    <i class="identification first-visit" ng-if="event.firstVisit">初诊</i>
+                    <i class="identification visit-icon" ng-if="!event.firstVisit">复诊</i>
+                    <div class="item-baseinfo">
+                        <p><span class="baseinfo-key">病历号:</span><span class="baseinfo-value" data-ng-bind="event.code"></span></p>
+                        <p><span class="baseinfo-key">主要诊断:</span><span class="baseinfo-value">{{event.diagnose}}</span></p>
+                        <p><a  ng-click="caseOverview(event)" class="baseinfo-details">查看详情</a></p>
+                    </div>
+                </div>
+            </timeline-panel>
+        </timeline-event>
+    </timeline>
+    <div data-ng-if="!events.length" class="nodata-img">
+        <img src="../../../../images/nodata.png" alt="">
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="medical-history-details-case">
+        <!-- 确认患者并且创建病历 -->
+        <div class="medical-case-content" data-ng-if="true">
+            <div class="case-data-content p-t15-l0" ng-if="cureOutline">
+                <div class="flex">
+                    <div class="w-100">治疗方案：</div>
+                    <div>
+                        <table ng-if='cureOutline.cpa.length'>
+                            <tr>
+                                <th style="width: 15%;">药物类别</th>
+                                <th style="">药物</th>
+                                <th style="width: 8%;">剂型</th>
+                                <th style="width: 8%;">规格</th>
+                                <th style="width: 10%;">给药频次</th>
+                                <th style="width: 10%;">给药量</th>
+                                <th style="width: 8%;">疗程</th>
+                                <th style="width: 15%;">疗程开始时间</th>
+                            </tr>
+                            <tr ng-repeat="item in cureOutline.cpa">
+                                <td>{{item.categoryName}}</td>
+                                <td>{{item.medicineName}}</td>
+                                <td>{{item.dosageFormName}}</td>
+                                <td>{{item.fications}}</td>
+                                <td>{{item.timeUser}}</td>
+                                <td>{{item.timeNumber}}</td>
+                                <td>{{item.treatment}}{{item.treatmentUnit}}</td>
+                                <td>{{item.createTime | date:"yyyy-MM-dd"}}</td>
+                            </tr>
+                           </table>
+                           <!-- <div ng-if='cureOutline.isSameAsPre!=null'>是否遵循前序治疗方案？ &nbsp; &nbsp; &nbsp;<span>{{cureOutline.isSameAsPre?'否':'是'}}</span></div> -->
+                    </div>
+                </div>
+                <div class="clinic-split-line" ng-if='cureOutline.nextTime'></div>
+                <div class="flex" ng-if='cureOutline.nextTime'>
+                    <div  class="w-100">
+                        下次随访时间：
+                    </div>
+                    <div>
+                        {{cureOutline.nextTime| date:"yyyy-MM-dd"}}
+                    </div>
+                </div>
+            </div>
+            <div class='case-data-content' ng-if='imgShow' style="margin:20px auto;text-align:center">
+                <img src="../../../../images/nodata.png" style="width:330px;" alt="">
+            </div>
+        </div>
+</div>
+        

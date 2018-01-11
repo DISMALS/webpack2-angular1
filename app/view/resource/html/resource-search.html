@@ -1,0 +1,39 @@
+<div class="searchTitle">
+    <label class="head-search inputSearch">
+        <ui-select ng-model="searchList.resourceProperty" theme="select2" on-select="changeResource($select.selected)" search-enabled="false" class="search-drug form-control form-white">
+            <ui-select-match placeholder="全部资源">
+                <span>{{$select.selected.dictItemName}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="item.dictItemValue as item in searchResourceList" refresh="itemSearch($select.search)" refresh-delay='300' >
+                <span>{{item.dictItemName}}</span>
+            </ui-select-choices>
+        </ui-select>
+    </label>
+    <label class="head-search inputSearch">
+        <ui-select ng-model="searchList.resourceClassify" theme="select2" on-select="changeResource($select.selected)" search-enabled="false" class="search-drug form-control form-white">
+            <ui-select-match placeholder="全部分类">
+                <span>{{$select.selected.dictItemName}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="item.dictItemValue as item in searchClassifyList" refresh="searchClassify($select.search)" refresh-delay='300'>
+                <span>{{item.dictItemName}}</span>
+            </ui-select-choices>
+        </ui-select>
+    </label>
+    <label class="head-search inputSearch" ng-show="isUncommitted">
+        <ui-select ng-model="searchList.resourceType" theme="select2" on-select="changeResource($select.selected)"  search-enabled="false" class="search-drug form-control form-white">
+            <ui-select-match placeholder="全部状态">
+                <span>{{$select.selected.dictItemName}}</span>
+            </ui-select-match>
+            <ui-select-choices repeat="item.dictItemValue as item in resourceTypeList"  refresh="searchStatus($select.search)" refresh-delay='300'>
+                <span >{{item.dictItemName}}</span>
+            </ui-select-choices>
+        </ui-select>
+    </label>
+    <label class="head-search">
+            <span class="search-input">
+                <input ng-model="searchList.queryKeyword" ng-keyup="UpchangeResource($event)" class="keyInput" placeholder="请输入关键字、拼音、作者"/>
+            </span>
+        <i class="search searchBg" ng-click="changeResource()"></i>
+    </label>
+    <button ng-click="goPublish()"><i class="new-add"></i>新增资源</button>
+</div>

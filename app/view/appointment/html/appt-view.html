@@ -1,0 +1,132 @@
+
+<style>
+    /*预约点击详情*/
+    .div_appt_check { 
+        position: relative; 
+        /* margin: 81px 0 0 51px; */
+        margin-bottom:51px; 
+        padding: 0 0 0 7px; 
+        background-color: transparent; 
+        width: 0px; 
+        z-index: 2; 
+        font-size: 12px; 
+    }
+    .div_appt_check_content { 
+        padding: 6px 10px 10px 10px; 
+        background-color: #fff; 
+        border: 1px solid #00a6c9; 
+        border-radius: 5px; 
+        height: 205px; 
+        width: 200px; 
+        z-index: 0; 
+    }
+    
+    .vertical-check-content:before { 
+        content: ''; 
+        position: absolute; 
+        left: -7px; 
+        top: 320px; 
+        height: 0; 
+        width: 0; 
+        border: 7px solid transparent; 
+        border-right: 7px solid #00a6c9; 
+    }
+    
+    .vertical-check-content.onr:before { 
+        content: ''; 
+        position: absolute; 
+        left: -7px; 
+        top: 320px; 
+        height: 0; 
+        width: 0; 
+        border: 7px solid transparent; 
+        border-right: 7px solid #00a6c9; 
+    }
+    
+    .vertical-check-content.onl:before { 
+        content: ''; 
+        position: absolute; 
+        left: 317px; 
+        top: 320px; 
+        height: 0; 
+        width: 0; 
+        border: 7px solid transparent; 
+        border-left: 7px solid #00a6c9; 
+    }
+    
+    .vertical-check-content.onb:before { top: 10px; }
+</style>
+<div class="appt_main padding-b-30">
+    <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+        <div class="dhx_cal_navline">
+            <div class="btn_group">
+                <button type="button" ng-click="changeView('unit')" class="scheduler_btn btn_lt" data-ng-class="{'active':obj.viewTypes == 'unit'}">日</button>
+                <button type="button" ng-click="changeView('week')" class="scheduler_btn btn_ct" data-ng-class="{'active':obj.viewTypes == 'week'}">周</button>
+                <button type="button" ng-click="goList('month')" class="scheduler_btn btn_rt">列表</button>
+            </div>
+            <div class="dropdown-select department_select">
+                <ui-select ng-model="obj.department" search-enabled="false" theme="select2">
+                    <ui-select-match class="set-height">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item.id as item in jobArr">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="dhx_cal_prev_button" style="right:303px;">&nbsp;</div>
+            <div class="chooise_day" ng-if="obj.viewTypes == 'unit'">
+                <div>
+                    <input class="date-input" id="datetimepicker" datetimepicker options="optionObj" data-ng-change="datechange()" data-ng-model="obj.dayDate" placeholder="____-__-__"/>
+                    <i class="date-icon date-time" data-ng-click="dateShow()"></i>
+                </div>
+            </div>
+            <div class="dhx_cal_date data_value" style="width:241px;height:30px;padding:0px;line-height:30px;right:62px;border-top: 1px solid #cecece;border-bottom: 1px solid #cecece;"></div>
+            <div class="dhx_cal_next_button">&nbsp;</div>
+            <div class="cheduler_today" ng-click="changeView('unit')">今天</div>
+        </div>
+        <div class="dhx_cal_header"></div>
+        <div id="dhx_cal_data" class="dhx_cal_data"></div>
+        <div class="div_curr_time" ng-if="obj.offsetTopTimeLine > 80"></div>
+        <!--预约详情弹出框-->
+        <div class="div_appt_check vertical-check-content" style="display:none;">
+            <div class="div_appt_check_content">
+                <div style="width: 100%;height: 70px;">
+                    <div class="text-left" style="float:left;width: 65px;">
+                        <img alt="image" class="img-circle img-responsive"
+                                style="border: 2px solid white;width: 53px;display: inline-block;"
+                                ng-src="{{apptDetails.gender}}">
+                    </div>
+                    <div style="float:left;width: 110px;">
+                        <div class="m-t-xs">
+                            <strong>{{apptDetails.patientName}}</strong>
+                            <i data-ng-class="{'patients-man':(apptDetails.sex == 'M'),'patients-women':(apptDetails.sex == 'F')}"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="div_appt_details_line">
+                    <div class="line_l">预约时间</div>
+                    <div class="line_r">{{apptDetails.startStr}}~{{apptDetails.endStr}}</div>
+                </div>
+                <div class="div_appt_details_line">
+                    <div class="line_l">预约医生</div>
+                    <div class="line_r" data-ng-bind="apptDetails.doctorName"></div>
+                </div>
+                <div class="div_appt_details_line">
+                    <div class="line_l">备注</div>
+                    <div class="line_r font-overflow" data-ng-bind="apptDetails.note">
+                    </div>
+                </div>
+                <div class="div_appt_details_line m-t-20">
+                    <button class="btn btn-warning btn-appt-details m-l-xs" data-ng-click="sendMessage('CANCLE')">取消预约</button>
+                    <button class="btn btn-success btn-appt-details m-l-xs" data-ng-click="sendMessage('SEND')">发送短信</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scheduler_foot">
+        <span class="appt_num">
+            <i class="warning_appt"></i>
+            已预约<b>100</b>
+        </span>
+    </div>
+</div>

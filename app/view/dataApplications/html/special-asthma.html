@@ -1,0 +1,27 @@
+<div class="medical-history-details-case">
+        <!-- 确认患者并且创建病历 -->
+     <div class="medical-case-content" data-ng-if="true">
+        <div class="case-data-content" ng-if="specialAsthma.asthmaTypes.list.length">
+                <div class="flex" ng-if='specialAsthma.asthmaTypes.list.length'>
+                    <div>哮喘类型：</div>
+                    <div>
+                        <span class="m-r-20" ng-repeat='item in specialAsthma.asthmaTypes.list' ng-if='item.status'>
+                            {{item.name}}
+                        </span>
+                    </div>
+                </div>
+                <div class="flex" ng-if='specialAsthma.momo'>
+                        <div>备注：</div>
+                        <div>
+                            <span class="m-r-20">
+                                {{specialAsthma.momo}}
+                            </span>
+                        </div>
+                    </div>
+         </div>
+         <div class='case-data-content' ng-if='imgShow' style="margin:20px auto;text-align:center">
+            <img src="../../../../images/nodata.png" style="width:330px;" alt="">
+        </div>
+     </div>
+ </div>
+        

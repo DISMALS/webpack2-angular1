@@ -1,0 +1,12 @@
+<div>
+
+    <div class="uploadCover" class="button"  ng-show="!coverFileUrl" >
+        <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" service-fn="serviceFunc" preview-src="pictureSrc" dryad-upload-img>
+        <strong>请添加资源封面图</strong>（支持xM以内的JPG\PNG图片，建议尺寸：）
+    </div>
+    <div class="imgPreview" ng-show="coverFileUrl">
+        <img ng-src="{{coverFileUrl}}">
+        <i>更换照片 <input class="upfile" type="file" accept="image/jpg, image/jpeg, image/png" service-fn="serviceFunc" preview-src="pictureSrc" dryad-upload-img>
+        </i>
+    </div>
+</div>

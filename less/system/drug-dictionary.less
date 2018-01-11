@@ -1,0 +1,66 @@
+@charset 'UTF-8';
+.drug-class{
+	background:@font-color-3;
+	.border-radius(4px,4px,4px,4px);
+	width:220px;
+	height:100%;
+	overflow:hidden;
+	float: left;
+	margin-right:10px;
+}
+.drug-list{
+	width:calc(~"100% - 230px");
+	height: 100%;
+	overflow: hidden;
+	float: left;
+	background:@font-color-3;
+	.border-radius(4px,4px,4px,4px);
+	padding:20px;
+	.medical-history-height{
+		height:calc(~"100% -82px");
+		overflow-y: auto;
+		// height:auto;
+	}
+}
+.class-title{
+	height: 44px;
+	padding-left:20px;
+	font-size:@font-size-14;
+	color:@font-color-7;
+	line-height: 44px;
+	border-bottom:1px solid @font-color-9;
+}
+.class-list{
+	padding:10px;
+	height: calc(~"100% - 45px");
+	overflow-y: auto;
+	li{
+		height: 32px;
+		overflow: hidden;
+		a{
+			display: block;
+			height: 32px;
+			line-height: 32px;
+			align-items:center;
+			.border-radius(4px,4px,4px,4px);
+			cursor: pointer;
+			font-size:@font-size-14;
+			color:@font-color-5;
+			padding:0px 10px;
+			&:hover{
+				text-decoration: none;
+				background: @font-color-4;
+				color:@font-color-3;
+			}
+			.fa-forward{
+				float: right;
+				display: block;
+				font-size: 14px;
+			}
+		}
+		.active{
+			background: @font-color-4;
+			color:@font-color-3;
+		}
+	}
+}
